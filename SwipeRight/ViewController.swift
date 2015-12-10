@@ -10,17 +10,28 @@ import UIKit
 
 typealias Coordinates = (x: CGFloat, y: CGFloat)
 typealias GridCoordinates = (x: Int, y: Int)
+typealias NumberCombination = (x: Int, b: Int, y: Int, operation: Operation)
+
+enum Operation {
+  case Divide
+  case Subtract
+  case Add
+  case Multiply
+}
 
 class ViewController: UIViewController {
 
   @IBOutlet weak var topScoreLabel: UILabel!
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
+
   
   var gameView: UIView?
   var tileViews: Array<UIView> = []
   //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
   var tileCoordinates: Array<GridCoordinates> = [(x:0, y:0), (x:1, y:0), (x:2, y:0), (x:0, y:1), (x:1, y:1), (x:2, y:1), (x:0, y:2), (x:1, y:2), (x:2, y:2)]
+  let operations: Array<Operation> = [.Add, .Divide, .Subtract, .Multiply]
+  let gridDirections: Array<GridDirection> = [.Diagonal, .Horizontal, .Vertical]
   
   var numberGrid: Array<Int>?
   var nextNumberGrid: Array<Int>?
@@ -38,6 +49,8 @@ class ViewController: UIViewController {
     configureGameView()
   }
   
+  
+  //MARK: TILE FUNCTIONALITY
   func configureGameView() {
     let offset = (viewWidth - (viewWidth / 1.25)) / 2
     gameView = UIView(frame: CGRectMake(offset, 210, viewWidth / 1.25, viewWidth / 1.25))
@@ -76,11 +89,6 @@ class ViewController: UIViewController {
       adjustCoords(i)
       gameView.addSubview(tileView)
     }
-  }
-  
-  func generateNumberGrid() {
-    var numbers = []
-    
   }
   
   func resolveUserInteraction() {
@@ -151,6 +159,92 @@ class ViewController: UIViewController {
       print("Gesture Ended \(loc)")
       resolveUserInteraction()
     }
+  }
+  
+  
+  
+  
+  
+  
+  //MARK: Number Functionality
+
+  func generateNumberGrid() {
+    let solution = generateWinningSolution()
+    if let solution = solution {
+      populateRestOfGrid(solution)
+    }
+  }
+  
+  func generateWinningSolution() -> NumberCombination? {
+    //    let randomOperationIndex = randoNumber(minX: 0, maxX: 3)
+    //    let currentOperation = operations[randomOperationIndex]
+    let currentOperation = Operation.Add
+    
+    var winningCombo: NumberCombination
+    let randomSolution = randoNumber(minX:0, maxX:UInt32(100))
+    
+    switch currentOperation {
+    case .Add:
+      let firstNumber = randoNumber(minX: 0, maxX: UInt32(randomSolution))
+      let secondNumber = randomSolution - firstNumber
+      winningCombo = (x: firstNumber, b: secondNumber, y: randomSolution, operation: currentOperation)
+      return winningCombo
+    case .Divide:
+      break
+    case .Multiply:
+      break
+    case .Subtract:
+      break
+    }
+  }
+  
+  
+  //randomization:
+  // [(x:0, y:0), (x:1, y:0), (x:2, y:0), (x:0, y:1), (x:1, y:1), (x:2, y:1), (x:0, y:2), (x:1, y:2), (x:2, y:2)]
+  //X combos: all the same, one of each, or all different
+  //Y combos based on X combos: all same: all different, all different: allsame, one of each: one of each
+  
+  enum GridDirection {
+    case Horizontal
+    //all same vs all different
+    case Vertical
+    case Diagonal
+    //one of each
+  }
+  
+  func populateRestOfGrid(solution: NumberCombination) {
+    //should only need three numberCombinations in this array
+    var numbers : Array<NumberCombination> = [solution]
+    let thisOperation = solution.operation
+    
+    let randomGridPositionIndex = randoNumber(minX: 0, maxX: UInt32(8))
+    let randomDirectionIndex = randoNumber(minX: 0, maxX: 2)
+    
+    let solutionDirection = gridDirections[randomDirectionIndex]
+    let solutionPosition = tileCoordinates[randomGridPositionIndex]
+    
+    //how the fuck do you translate a random direction with the array of grid numbers though
+    
+    //basically need to layout a fake grid and do all the math on it until the numbers all work
+    let gridLayout = [0,0,0,0,0,0,0,0,0]
+    
+    switch thisOperation {
+    case .Add:
+      
+      break
+    case .Subtract:
+      break
+    case .Divide:
+      break
+    case .Multiply:
+      break
+    }
+  }
+  
+  //Random number generator
+  func randoNumber(minX minX:UInt32, maxX:UInt32) -> Int {
+    let result = (arc4random() % (maxX - minX + 1)) + minX
+    return Int(result)
   }
 
 }
