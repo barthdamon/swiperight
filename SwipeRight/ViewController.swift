@@ -22,6 +22,9 @@ class ViewController: UIViewController {
   //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
   var tileCoordinates: Array<GridCoordinates> = [(x:0, y:0), (x:1, y:0), (x:2, y:0), (x:0, y:1), (x:1, y:1), (x:2, y:1), (x:0, y:2), (x:1, y:2), (x:2, y:2)]
   
+  var numberGrid: Array<Int>?
+  var nextNumberGrid: Array<Int>?
+  
   var startLoc: CGPoint?
   var endLoc: CGPoint?
   var middleLocs: Array<CGPoint> = []
@@ -66,10 +69,18 @@ class ViewController: UIViewController {
     for var i = 0; i < 9; i++ {
       let tileView = UIView(frame: CGRectMake(coords.x, coords.y, tileWidth, tileWidth))
       tileView.backgroundColor = UIColor.cyanColor()
+      let numberLabel = UILabel(frame: CGRectMake(tileWidth / 2.1, tileWidth / 5.2, tileWidth / 2, tileWidth / 2))
+      numberLabel.text = "2"
+      tileView.addSubview(numberLabel)
       tileViews.append(tileView)
       adjustCoords(i)
       gameView.addSubview(tileView)
     }
+  }
+  
+  func generateNumberGrid() {
+    var numbers = []
+    
   }
   
   func resolveUserInteraction() {
@@ -121,7 +132,7 @@ class ViewController: UIViewController {
   func resetTiles() {
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(1, animations: { () -> Void in
-        tile.backgroundColor = UIColor.darkGrayColor()
+        tile.backgroundColor = UIColor.cyanColor()
         }, completion: { (complete) -> Void in
           //RESET TILES HERE WITH NEW NUMBERS
       })
