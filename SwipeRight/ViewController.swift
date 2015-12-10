@@ -70,22 +70,20 @@ class ViewController: UIViewController {
       adjustCoords(i)
       gameView.addSubview(tileView)
     }
-    
   }
   
-  //first find the tiles in the array based on the coordinates within the game view began and ended on. Have  tuple with the number of tilewidths horizontal and vertical then each tile has a set of tupels that it corresponds to
-  //then divide the x and ys to get the differences based on the gameview and find the middle
-  
   func resolveUserInteraction() {
-
     if let startLoc = startLoc, endLoc = endLoc {
       var startTile: UIView?
       var endTile: UIView?
+      var midTile: UIView?
       //Int floors the cgfloat
       let start = (x: Int(startLoc.x / tileWidth), y: Int(startLoc.y / tileWidth))
       print("START: \(start.x), \(start.y)")
       let end = (x: Int(endLoc.x / tileWidth), y: Int(endLoc.y / tileWidth))
       print("END: \(end.x), \(end.y)")
+      let mid = (x: (start.x + end.x) / 2, y: (start.y + end.y) / 2)
+      print("MIDDLE: \(mid.x), \(mid.y)")
       
       for var i = 0; i < tileCoordinates.count; i++ {
         let loc = tileCoordinates[i]
@@ -97,20 +95,37 @@ class ViewController: UIViewController {
           endTile = tileViews[i]
           print("END TILE FOUND: \(i)")
         }
+        if loc.x == mid.x && loc.y == mid.y {
+          midTile = tileViews[i]
+          print("MID TILE FOUND: \(i)")
+        }
       }
       
-      if let startTile = startTile, endTile = endTile {
-        tileRespond(startTile, endTile: endTile)
+      if let startTile = startTile, midTile = midTile, endTile = endTile {
+        tileRespond(startTile, middleTile: midTile, endTile: endTile)
         self.startLoc = nil
         self.endLoc = nil
       }
     }
   }
   
-  func tileRespond(startTile: UIView, endTile: UIView) {
+  func tileRespond(startTile: UIView, middleTile: UIView, endTile: UIView) {
     print("TILE RESPOND TIME")
     startTile.backgroundColor = UIColor.redColor()
     endTile.backgroundColor = UIColor.redColor()
+    middleTile.backgroundColor = UIColor.redColor()
+    
+    resetTiles()
+  }
+  
+  func resetTiles() {
+    tileViews.forEach { (tile) -> () in
+      UIView.animateWithDuration(1, animations: { () -> Void in
+        tile.backgroundColor = UIColor.darkGrayColor()
+        }, completion: { (complete) -> Void in
+          //RESET TILES HERE WITH NEW NUMBERS
+      })
+    }
   }
   
   func gameViewSwiped(sender: UIGestureRecognizer) {
@@ -126,7 +141,6 @@ class ViewController: UIViewController {
       resolveUserInteraction()
     }
   }
-
 
 }
 
