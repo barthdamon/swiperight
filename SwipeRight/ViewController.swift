@@ -27,12 +27,9 @@ class ViewController: UIViewController {
   var gameViewWidth: CGFloat = 0
   var tileWidth: CGFloat = 0
   
-  var timer = NSTimer()
-  var time: Int = 60 {
-    didSet {
-      timeLabel.text = String(time)
-    }
-  }
+  var timer: NSTimer?
+  var gameActive: Bool = false
+  var time: Int = 60
   var score: Int = 0 {
     didSet {
       scoreLabel.text = String(score)
@@ -54,19 +51,27 @@ class ViewController: UIViewController {
   
   func resetGameState() {
     score = 0
-    time = 60
+    timeSet(true)
+  }
+  
+  func beginGame() {
+    //animate countdown
     timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickTock", userInfo: nil, repeats: true)
+    gameActive = true
   }
   
   func tickTock() {
-    time--
-    if time == 0 {
-      gameOver()
+    if gameActive {
+      timeSet(false)
+      if time == 0 {
+        gameOver()
+      }
     }
   }
   
   func gameOver() {
-    timer.invalidate()
+    timer?.invalidate()
+    timer = nil
     self.gameView?.userInteractionEnabled = false
     self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
   }
@@ -83,7 +88,15 @@ class ViewController: UIViewController {
     }))
     self.presentViewController(alert, animated: true, completion: nil)
   }
-
+  
+  func timeSet(reset: Bool) {
+    if reset {
+      time = 10
+    } else {
+      time = time - 1
+    }
+    timeLabel.text = String(time)
+  }
   //MARK: TILE FUNCTIONALITY
   func configureGameView() {
     let offset = (viewWidth - (viewWidth / 1.25)) / 2
@@ -198,6 +211,7 @@ class ViewController: UIViewController {
         UIView.animateWithDuration(1, animations: { () -> Void in
           tile.hidden = false
           }, completion: { (complete) -> Void in
+            self.beginGame()
             self.gameView?.userInteractionEnabled = true
         })
       }
