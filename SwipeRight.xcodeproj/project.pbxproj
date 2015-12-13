@@ -12,6 +12,7 @@
 		0220981C1C1DC796005155E6 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220981B1C1DC796005155E6 /* Grid.swift */; };
 		0220981E1C1DC808005155E6 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220981D1C1DC808005155E6 /* Math.swift */; };
 		022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220981F1C1DCA6C005155E6 /* NumberCombination.swift */; };
+		022098251C1DFDEB005155E6 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098241C1DFDEB005155E6 /* TileView.swift */; };
 		0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240B9541C18EF86004B48BA /* AppDelegate.swift */; };
 		0240B9571C18EF86004B48BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240B9561C18EF86004B48BA /* ViewController.swift */; };
 		0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B9581C18EF86004B48BA /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		0220981B1C1DC796005155E6 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = ../Grid.swift; sourceTree = "<group>"; };
 		0220981D1C1DC808005155E6 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		0220981F1C1DCA6C005155E6 /* NumberCombination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberCombination.swift; sourceTree = "<group>"; };
+		022098241C1DFDEB005155E6 /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		0240B9511C18EF86004B48BA /* SwipeRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0240B9541C18EF86004B48BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0240B9561C18EF86004B48BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				0220981A1C1DC00A005155E6 /* Extensions */,
 				022098211C1DCA73005155E6 /* GridDataObjects */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
+				022098241C1DFDEB005155E6 /* TileView.swift */,
 				022098221C1DCAA9005155E6 /* Interface */,
 				0240B95B1C18EF86004B48BA /* Assets.xcassets */,
 			);
@@ -184,6 +187,7 @@
 			files = (
 				022098171C1DBFD2005155E6 /* GridLayout.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
+				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
 				0220981C1C1DC796005155E6 /* Grid.swift in Sources */,
 				022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */,

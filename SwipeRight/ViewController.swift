@@ -8,9 +8,6 @@
 
 import UIKit
 
-typealias Coordinates = (x: CGFloat, y: CGFloat)
-typealias GridCoordinates = (x: Int, y: Int)
-
 class ViewController: UIViewController {
 
   @IBOutlet weak var scoreLabel: UILabel!
@@ -69,7 +66,7 @@ class ViewController: UIViewController {
     
     for var i = 0; i < 9; i++ {
       let tileView = UIView(frame: CGRectMake(coords.x, coords.y, tileWidth, tileWidth))
-      tileView.backgroundColor = UIColor.cyanColor()
+      tileView.backgroundColor = UIColor.lightGrayColor()
       let numberLabel = UILabel(frame: CGRectMake(tileWidth / 2.1, tileWidth / 5.2, tileWidth / 2, tileWidth / 2))
       numberLabel.text = "2"
       tileView.addSubview(numberLabel)
@@ -128,7 +125,7 @@ class ViewController: UIViewController {
   func resetTiles() {
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(1, animations: { () -> Void in
-        tile.backgroundColor = UIColor.cyanColor()
+        tile.backgroundColor = UIColor.lightGrayColor()
         }, completion: { (complete) -> Void in
           //RESET TILES HERE WITH NEW NUMBERS
       })
