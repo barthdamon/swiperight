@@ -12,9 +12,15 @@ class GridNumberLayout: NSObject {
   
   var winningCombination: NumberCombination?
   
+  //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
   //actual numbers to be displayed relative to tile coordinates (what gets returned to main vc):
   var numbers = [0,0,0,0,0,0,0,0,0]
   var solutionIndexes: Array<Int>?
+  
+  override init() {
+    super.init()
+    generateNumberGrid()
+  }
 
   func generateNumberGrid() {
     winningCombination = NumberCombination(solution: true)

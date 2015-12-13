@@ -10,16 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+  @IBOutlet weak var beginButton: NSLayoutConstraint!
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
 
-  
   var gameView: UIView?
-  var tileViews: Array<UIView> = []
-  //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
-  
-  var numberGrid: Array<Int>?
-  var nextNumberGrid: Array<Int>?
+  var tileViews: Array<TileView> = []
+
+  var currentLayout: GridNumberLayout?
+  var nextLayout: GridNumberLayout?
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
@@ -28,13 +27,63 @@ class ViewController: UIViewController {
   var gameViewWidth: CGFloat = 0
   var tileWidth: CGFloat = 0
   
+  var timer = NSTimer()
+  var time: Int = 60 {
+    didSet {
+      timeLabel.text = String(time)
+    }
+  }
+  var score: Int = 0 {
+    didSet {
+      scoreLabel.text = String(score)
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     viewWidth = self.view.frame.width
+    configureHUD()
     configureGameView()
   }
   
   
+  //MARK: HUD
+  func configureHUD() {
+    resetGameState()
+  }
+  
+  func resetGameState() {
+    score = 0
+    time = 60
+    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickTock", userInfo: nil, repeats: true)
+  }
+  
+  func tickTock() {
+    time--
+    if time == 0 {
+      gameOver()
+    }
+  }
+  
+  func gameOver() {
+    timer.invalidate()
+    self.gameView?.userInteractionEnabled = false
+    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
+  }
+
+  func alertShow(alertText :String, alertMessage :String) {
+    let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+    alert.addAction(UIAlertAction(title: "AGAIN!", style: .Default, handler: { (action) -> Void in
+      self.dismissViewControllerAnimated(true, completion: nil)
+      self.resetGameState()
+      self.resetTiles()
+    }))
+    alert.addAction(UIAlertAction(title: "Please, no more", style: .Default, handler: { (action) -> Void in
+      self.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    self.presentViewController(alert, animated: true, completion: nil)
+  }
+
   //MARK: TILE FUNCTIONALITY
   func configureGameView() {
     let offset = (viewWidth - (viewWidth / 1.25)) / 2
@@ -42,6 +91,7 @@ class ViewController: UIViewController {
     gameViewWidth = gameView!.frame.width
     tileWidth = gameViewWidth / 3
     gameView?.backgroundColor = UIColor.darkGrayColor()
+    gameView?.userInteractionEnabled = false
     self.view.addSubview(gameView!)
     addGestureRecognizers(gameView!)
     configureGameViewComponents(gameView!)
@@ -65,11 +115,7 @@ class ViewController: UIViewController {
     }
     
     for var i = 0; i < 9; i++ {
-      let tileView = UIView(frame: CGRectMake(coords.x, coords.y, tileWidth, tileWidth))
-      tileView.backgroundColor = UIColor.lightGrayColor()
-      let numberLabel = UILabel(frame: CGRectMake(tileWidth / 2.1, tileWidth / 5.2, tileWidth / 2, tileWidth / 2))
-      numberLabel.text = "2"
-      tileView.addSubview(numberLabel)
+      let tileView = TileView(xCoord: coords.x, yCoord: coords.y, tileWidth: tileWidth)
       tileViews.append(tileView)
       adjustCoords(i)
       gameView.addSubview(tileView)
@@ -78,9 +124,9 @@ class ViewController: UIViewController {
   
   func resolveUserInteraction() {
     if let startLoc = startLoc, endLoc = endLoc {
-      var startTile: UIView?
-      var endTile: UIView?
-      var midTile: UIView?
+      var startTile: TileView?
+      var endTile: TileView?
+      var midTile: TileView?
       //Int floors the cgfloat
       let start = (x: Int(startLoc.x / tileWidth), y: Int(startLoc.y / tileWidth))
       print("START: \(start.x), \(start.y)")
@@ -113,22 +159,66 @@ class ViewController: UIViewController {
     }
   }
   
-  func tileRespond(startTile: UIView, middleTile: UIView, endTile: UIView) {
+  func tileRespond(startTile: TileView, middleTile: TileView, endTile: TileView) {
     print("TILE RESPOND TIME")
-    startTile.backgroundColor = UIColor.redColor()
-    endTile.backgroundColor = UIColor.redColor()
-    middleTile.backgroundColor = UIColor.redColor()
-    
-    resetTiles()
+    if let startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
+      if startNumber + midNumber == endNumber {
+        score++
+        startTile.backgroundColor = UIColor.greenColor()
+        endTile.backgroundColor = UIColor.greenColor()
+        middleTile.backgroundColor = UIColor.greenColor()
+        gameView?.userInteractionEnabled = false
+        resetTiles()
+      } else {
+        score--
+        startTile.backgroundColor = UIColor.redColor()
+        endTile.backgroundColor = UIColor.redColor()
+        middleTile.backgroundColor = UIColor.redColor()
+        gameView?.userInteractionEnabled = false
+        resetTiles()
+      }
+    }
   }
   
   func resetTiles() {
+    if let nextLayout = self.nextLayout {
+      self.currentLayout = nextLayout
+      self.nextLayout = GridNumberLayout()
+    } else {
+      self.currentLayout = GridNumberLayout()
+      //in the future generate next layout asynchronously in thebackground after current layout is generated
+      self.nextLayout = GridNumberLayout()
+    }
+    animateTileReset()
+  }
+  
+  func animateTileReset() {
+    func fadeInTiles() {
+      tileViews.forEach { (tile) -> () in
+        UIView.animateWithDuration(1, animations: { () -> Void in
+          tile.hidden = false
+          }, completion: { (complete) -> Void in
+            self.gameView?.userInteractionEnabled = true
+        })
+      }
+    }
+    
     tileViews.forEach { (tile) -> () in
-      UIView.animateWithDuration(1, animations: { () -> Void in
-        tile.backgroundColor = UIColor.lightGrayColor()
+      UIView.animateWithDuration(0.3, animations: { () -> Void in
+        tile.backgroundColor = UIColor.cyanColor()
+        tile.hidden = true
         }, completion: { (complete) -> Void in
-          //RESET TILES HERE WITH NEW NUMBERS
+          self.applyNumberLayoutToTiles()
+          fadeInTiles()
       })
+    }
+  }
+  
+  func applyNumberLayoutToTiles() {
+    if let layout = currentLayout {
+      for var i = 0; i < layout.numbers.count; i++ {
+        tileViews[i].number = layout.numbers[i]
+      }
     }
   }
   
@@ -146,5 +236,9 @@ class ViewController: UIViewController {
     }
   }
  
+  @IBAction func beginButtonPressed(sender: AnyObject) {
+    resetGameState()
+    resetTiles()
+  }
 }
 

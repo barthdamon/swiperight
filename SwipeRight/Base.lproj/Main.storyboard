@@ -70,6 +70,14 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7J-M9-VZ5">
+                                        <rect key="frame" x="281" y="23" width="39" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Begin"/>
+                                        <connections>
+                                            <action selector="beginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bxQ-3f-Eak"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,8 +92,10 @@
                                     <constraint firstAttribute="height" constant="128" id="abz-AB-ScW"/>
                                     <constraint firstItem="8Jw-PP-9zO" firstAttribute="top" secondItem="Pgb-iQ-xdE" secondAttribute="bottom" constant="15" id="bAl-Ha-cdV"/>
                                     <constraint firstAttribute="height" constant="85" id="ejn-SJ-NtC"/>
+                                    <constraint firstItem="q7J-M9-VZ5" firstAttribute="centerY" secondItem="hCO-aU-Ph3" secondAttribute="centerY" id="fTA-rn-7X0"/>
                                     <constraint firstItem="8Jw-PP-9zO" firstAttribute="leading" secondItem="Pgb-iQ-xdE" secondAttribute="trailing" constant="15" id="pu3-hU-GME"/>
                                     <constraint firstAttribute="bottom" secondItem="Tpb-kf-eRY" secondAttribute="bottom" constant="8" id="qJ4-aN-866"/>
+                                    <constraint firstItem="q7J-M9-VZ5" firstAttribute="centerX" secondItem="hCO-aU-Ph3" secondAttribute="centerX" id="rs3-GT-QmM"/>
                                     <constraint firstItem="Tpb-kf-eRY" firstAttribute="leading" secondItem="hCO-aU-Ph3" secondAttribute="leading" constant="63" id="v0e-8r-N4m"/>
                                 </constraints>
                                 <variation key="default">
@@ -118,6 +128,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="beginButton" destination="fTA-rn-7X0" id="CcS-E6-Cau"/>
                         <outlet property="scoreLabel" destination="8Jw-PP-9zO" id="flA-Ug-oyO"/>
                         <outlet property="timeLabel" destination="Tpb-kf-eRY" id="Rrx-JV-4BO"/>
                     </connections>
