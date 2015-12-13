@@ -10,7 +10,15 @@ import UIKit
 
 typealias Coordinates = (x: CGFloat, y: CGFloat)
 typealias GridCoordinates = (x: Int, y: Int)
-typealias NumberCombination = (x: Int, b: Int, y: Int, operation: Operation)
+struct NumberCombination {
+  var x: Int!
+  var b: Int!
+  var sum: Int!
+  var operation = Operation.Add
+  var xPosition: Int?
+  var bPosition: Int?
+  var sumPosition: Int?
+}
 
 enum Operation {
   case Divide
@@ -21,7 +29,6 @@ enum Operation {
 
 class ViewController: UIViewController {
 
-  @IBOutlet weak var topScoreLabel: UILabel!
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
 
@@ -187,7 +194,7 @@ class ViewController: UIViewController {
     case .Add:
       let firstNumber = randoNumber(minX: 0, maxX: UInt32(randomSolution))
       let secondNumber = randomSolution - firstNumber
-      winningCombo = (x: firstNumber, b: secondNumber, y: randomSolution, operation: currentOperation)
+      winningCombo = NumberCombination(x: firstNumber, b: secondNumber, sum: randomSolution, operation: currentOperation, xPosition: nil, bPosition: nil, sumPosition: nil)
       return winningCombo
     case .Divide:
       break
@@ -212,33 +219,54 @@ class ViewController: UIViewController {
     //one of each
   }
   
-  func populateRestOfGrid(solution: NumberCombination) {
+  func generateSolutionDirection(solutionPosition: GridCoordinates) -> GridDirection? {
+    let solutionDirection: GridDirection?
+    //check the grid for possible directions
+    switch solutionPosition {
+      //only vertical
+    case (x:1, y:0), (x:1, y:2):
+      solutionDirection = .Vertical
+      //only horizontal
+    case (x:0, y:1), (x:2, y:1):
+      solutionDirection = .Horizontal
+    default:
+      let randomDirectionIndex = randoNumber(minX: 0, maxX: 2)
+      solutionDirection = gridDirections[randomDirectionIndex]
+    }
+    return solutionDirection
+  }
+  
+  
+  func populateRestOfGrid(var solution: NumberCombination) {
     //should only need three numberCombinations in this array
     var numbers : Array<NumberCombination> = [solution]
     let thisOperation = solution.operation
     
-    let randomGridPositionIndex = randoNumber(minX: 0, maxX: UInt32(8))
-    let randomDirectionIndex = randoNumber(minX: 0, maxX: 2)
+    //get the grid position
+    let solutionGridPositionIndex = randoNumber(minX: 0, maxX: UInt32(8))
+    let solutionPosition = tileCoordinates[solutionGridPositionIndex]
     
-    let solutionDirection = gridDirections[randomDirectionIndex]
-    let solutionPosition = tileCoordinates[randomGridPositionIndex]
-    
-    //how the fuck do you translate a random direction with the array of grid numbers though
-    
-    //basically need to layout a fake grid and do all the math on it until the numbers all work
-    let gridLayout = [0,0,0,0,0,0,0,0,0]
-    
-    switch thisOperation {
-    case .Add:
+    if let direction = generateSolutionDirection(solutionPosition) {
+      var gridLayout = [0,0,0,0,0,0,0,0,0]
+      gridLayout[solutionGridPositionIndex] = solution.sum
+      solution.sumPosition = gridLayout[solutionGridPositionIndex]
+      gridLayout[generateBPosition(solution)] = solution.b
       
-      break
-    case .Subtract:
-      break
-    case .Divide:
-      break
-    case .Multiply:
-      break
+      switch direction {
+      case .Horizontal:
+        break
+      case .Vertical:
+        break
+      case .Diagonal:
+        break
+      }
+      
+      //populate the other areas of the grid with the random numbers using recursive function that checks each row and changes numbers if any work together
     }
+  }
+  
+  func generateBPosition(solution: NumberCombination) -> Int {
+    return 1
   }
   
   //Random number generator
