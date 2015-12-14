@@ -28,9 +28,10 @@ class ViewController: UIViewController {
   var gameViewWidth: CGFloat = 0
   var tileWidth: CGFloat = 0
   
+  var gameDuration = 60
   var timer: NSTimer?
   var gameActive: Bool = false
-  var time: Int = 10 {
+  var time: Int = 0 {
     didSet {
       timeLabel.text = String(time)
     }
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
   
   func resetGameState() {
     score = 0
-    time = 10
+    time = gameDuration
     applyNumberLayoutToTiles(true)
     gameActive = false
   }
