@@ -15,6 +15,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var timeLabel: UILabel!
 
   var gameView: UIView?
+  var countdownOverlayView: TileView?
   var tileViews: Array<TileView> = []
 
   var currentLayout: GridNumberLayout?
@@ -29,7 +30,11 @@ class ViewController: UIViewController {
   
   var timer: NSTimer?
   var gameActive: Bool = false
-  var time: Int = 60
+  var time: Int = 10 {
+    didSet {
+      timeLabel.text = String(time)
+    }
+  }
   var score: Int = 0 {
     didSet {
       scoreLabel.text = String(score)
@@ -51,18 +56,41 @@ class ViewController: UIViewController {
   
   func resetGameState() {
     score = 0
-    timeSet(true)
+    time = 10
+    applyNumberLayoutToTiles(true)
+    gameActive = false
   }
   
   func beginGame() {
     //animate countdown
-    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickTock", userInfo: nil, repeats: true)
-    gameActive = true
+    if !gameActive {
+      animateBeginGame()
+    }
+  }
+  
+  func animateBeginGame() {
+    let coords = Coordinates(x: 0, y: 0)
+    let overlayView = TileView(xCoord: coords.x + tileWidth, yCoord: coords.y + tileWidth, tileWidth: tileWidth, overlay: true)
+    gameView?.addSubview(overlayView)
+    overlayView.animateCountdown() { (res) in
+      if res {
+        overlayView.removeFromSuperview()
+        self.startGameplay()
+      }
+    }
+  }
+  
+  func startGameplay() {
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickTock", userInfo: nil, repeats: true)
+      self.gameActive = true
+      self.resetTiles()
+    })
   }
   
   func tickTock() {
     if gameActive {
-      timeSet(false)
+      time--
       if time == 0 {
         gameOver()
       }
@@ -77,25 +105,17 @@ class ViewController: UIViewController {
   }
 
   func alertShow(alertText :String, alertMessage :String) {
-    let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+    let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertControllerStyle.ActionSheet)
     alert.addAction(UIAlertAction(title: "AGAIN!", style: .Default, handler: { (action) -> Void in
       self.dismissViewControllerAnimated(true, completion: nil)
       self.resetGameState()
-      self.resetTiles()
+      self.beginGame()
     }))
     alert.addAction(UIAlertAction(title: "Please, no more", style: .Default, handler: { (action) -> Void in
       self.dismissViewControllerAnimated(true, completion: nil)
+      self.resetGameState()
     }))
     self.presentViewController(alert, animated: true, completion: nil)
-  }
-  
-  func timeSet(reset: Bool) {
-    if reset {
-      time = 10
-    } else {
-      time = time - 1
-    }
-    timeLabel.text = String(time)
   }
   //MARK: TILE FUNCTIONALITY
   func configureGameView() {
@@ -128,7 +148,7 @@ class ViewController: UIViewController {
     }
     
     for var i = 0; i < 9; i++ {
-      let tileView = TileView(xCoord: coords.x, yCoord: coords.y, tileWidth: tileWidth)
+      let tileView = TileView(xCoord: coords.x, yCoord: coords.y, tileWidth: tileWidth, overlay: false)
       tileViews.append(tileView)
       adjustCoords(i)
       gameView.addSubview(tileView)
@@ -208,30 +228,35 @@ class ViewController: UIViewController {
   func animateTileReset() {
     func fadeInTiles() {
       tileViews.forEach { (tile) -> () in
-        UIView.animateWithDuration(1, animations: { () -> Void in
-          tile.hidden = false
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+          tile.numberLabel?.alpha = 1
           }, completion: { (complete) -> Void in
-            self.beginGame()
             self.gameView?.userInteractionEnabled = true
+            self.beginGame()
         })
       }
     }
     
     tileViews.forEach { (tile) -> () in
-      UIView.animateWithDuration(0.3, animations: { () -> Void in
+      UIView.animateWithDuration(0.2, animations: { () -> Void in
         tile.backgroundColor = UIColor.cyanColor()
-        tile.hidden = true
+        tile.numberLabel?.alpha = 0
         }, completion: { (complete) -> Void in
-          self.applyNumberLayoutToTiles()
+          self.applyNumberLayoutToTiles(false)
           fadeInTiles()
       })
     }
   }
   
-  func applyNumberLayoutToTiles() {
+  func applyNumberLayoutToTiles(reset: Bool) {
     if let layout = currentLayout {
       for var i = 0; i < layout.numbers.count; i++ {
-        tileViews[i].number = layout.numbers[i]
+        if reset {
+          tileViews[i].numberLabel?.alpha = 0
+        } else {
+          tileViews[i].numberLabel?.alpha = 1
+          tileViews[i].number = layout.numbers[i]
+        }
       }
     }
   }
@@ -252,7 +277,7 @@ class ViewController: UIViewController {
  
   @IBAction func beginButtonPressed(sender: AnyObject) {
     resetGameState()
-    resetTiles()
+    beginGame()
   }
 }
 

@@ -17,12 +17,35 @@ class TileView: UIView {
     }
   }
   
-  convenience init(xCoord: CGFloat, yCoord: CGFloat, tileWidth: CGFloat) {
+  convenience init(xCoord: CGFloat, yCoord: CGFloat, tileWidth: CGFloat, overlay: Bool) {
     self.init()
     self.frame = CGRectMake(xCoord, yCoord, tileWidth, tileWidth)
-    self.backgroundColor = UIColor.cyanColor()
-    numberLabel = UILabel(frame: CGRectMake(tileWidth / 2.1, tileWidth / 5.2, tileWidth / 2, tileWidth / 2))
+    numberLabel = UILabel(frame: CGRectMake(tileWidth / 2.1, tileWidth / 5.2, tileWidth / 1.5, tileWidth / 1.5))
     self.addSubview(numberLabel!)
+    if overlay {
+      self.backgroundColor = UIColor.clearColor()
+    } else {
+      self.backgroundColor = UIColor.cyanColor()
+    }
+  }
+  
+  func animateCountdown(callback: (Bool) -> () ) {
+    var countDown = 3
+    func tickTock() {
+      self.numberLabel?.alpha = 0
+      self.numberLabel?.text = String(countDown)
+      UIView.animateWithDuration(1, animations: { () -> Void in
+        self.numberLabel?.alpha = 1
+        }, completion: { (complete) -> Void in
+          if countDown == 1 {
+            callback(true)
+          } else {
+            countDown--
+            tickTock()
+          }
+      })
+    }
+    tickTock()
   }
 
     /*
