@@ -16,7 +16,6 @@ class GridNumberLayout: NSObject {
   //actual numbers to be displayed relative to tile coordinates (what gets returned to main vc):
   var numbers = [0,0,0,0,0,0,0,0,0]
   //some of these only have to be once for multiplication and addition (less math, but thats an optimization)
-  var combinations = [[0,1,2], [0,3,6], [0,4,8], [1,4,7], [2,1,0], [2,5,8], [2,4,6], [3,4,5], [5,4,3], [6,3,0], [6,4,2], [6,7,8], [7,4,1], [8,7,6], [8,4,0], [8,5,2]]
   var solutionIndexes: Array<Int>?
   
   override init() {
@@ -54,47 +53,47 @@ class GridNumberLayout: NSObject {
 //    checkForOtherSolutions()
   }
   
-  func checkForOtherSolutions() {
-    
-    var valid = true
-    //make sure none of the other combinations will work
-    for combo in combinations {
-      if !checkIfSolution(combo) {
-        let numbersOne = numbers[combo[0]]
-        let numbersTwo = numbers[combo[1]]
-        let numbersThree = numbers[combo[2]]
-        
-        if numbersOne + numbersTwo == numbersThree {
-          valid = false
-        } else if numbersOne - numbersTwo == numbersThree {
-          valid = false
-        } else if numbersOne * numbersTwo == numbersThree {
-          valid = false
-        } else if numbersOne != 0 && numbersTwo != 0 {
-          if numbersOne / numbersTwo == numbersThree {
-            valid = false
-          }
-        }
-      }
-    }
-    
-    if !valid {
-      valid = true
-      injectFillerNumbers()
-    }
-  }
-  
-  func checkIfSolution(combo: Array<Int>) -> Bool {
-    if let solutionIndexes = solutionIndexes {
-      if combo[0] == solutionIndexes[0] && combo[1] == solutionIndexes[1] && combo[2] == solutionIndexes[2] {
-        return true
-      } else {
-        return false
-      }
-    } else {
-      return false
-    }
-  }
+//  func checkForOtherSolutions() {
+//    
+//    var valid = true
+//    //make sure none of the other combinations will work. HAS TO GO BOTH WAYS FOR THE SOLUTION THOUGH. Its crashing cause infinitely looping through it injecting
+//    for combo in Grid.combinations {
+//      if !checkIfSolution(combo) {
+//        let numbersOne = numbers[combo[0]]
+//        let numbersTwo = numbers[combo[1]]
+//        let numbersThree = numbers[combo[2]]
+//        
+//        if numbersOne + numbersTwo == numbersThree {
+//          valid = false
+//        } else if numbersOne - numbersTwo == numbersThree {
+//          valid = false
+//        } else if numbersOne * numbersTwo == numbersThree {
+//          valid = false
+//        } else if numbersOne != 0 && numbersTwo != 0 {
+//          if numbersOne / numbersTwo == numbersThree {
+//            valid = false
+//          }
+//        }
+//      }
+//    }
+//    
+//    if !valid {
+//      valid = true
+//      injectFillerNumbers()
+//    }
+//  }
+//  
+//  func checkIfSolution(combo: Array<Int>) -> Bool {
+//    if let solutionIndexes = solutionIndexes {
+//      if combo[0] == solutionIndexes[0] && combo[1] == solutionIndexes[1] && combo[2] == solutionIndexes[2] {
+//        return true
+//      } else {
+//        return false
+//      }
+//    } else {
+//      return false
+//    }
+//  }
   
   
 }

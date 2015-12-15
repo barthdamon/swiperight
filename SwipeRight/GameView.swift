@@ -88,6 +88,7 @@ class GameView: UIView {
       var startTile: TileView?
       var endTile: TileView?
       var midTile: TileView?
+      var tileIndexes: Array<Int> = []
       //Int floors the cgfloat
       let start = (x: Int(startLoc.x / tileWidth), y: Int(startLoc.y / tileWidth))
       print("START: \(start.x), \(start.y)")
@@ -101,21 +102,36 @@ class GameView: UIView {
         if loc.x == start.x && loc.y == start.y {
           startTile = tileViews[i]
           print("START TILE FOUND: \(i)")
+          tileIndexes.append(i)
         }
         if loc.x == end.x && loc.y == end.y {
           endTile = tileViews[i]
           print("END TILE FOUND: \(i)")
+          tileIndexes.append(i)
         }
         if loc.x == mid.x && loc.y == mid.y {
           midTile = tileViews[i]
           print("MID TILE FOUND: \(i)")
+          tileIndexes.append(i)
         }
       }
       
       if let startTile = startTile, midTile = midTile, endTile = endTile {
-        tileRespond(startTile, middleTile: midTile, endTile: endTile)
-        self.startLoc = nil
-        self.endLoc = nil
+        //check if the tileviews stack in a valid combination of index
+        var valid = false
+        for combo in Grid.combinations {
+          if combo[0] == tileIndexes[0] && combo[1] == tileIndexes[1] && combo[2] == tileIndexes[2] {
+            valid = true
+          }
+        }
+        if valid {
+          tileRespond(startTile, middleTile: midTile, endTile: endTile)
+          self.startLoc = nil
+          self.endLoc = nil
+        } else {
+          self.startLoc = nil
+          self.endLoc = nil
+        }
       }
     }
   }
