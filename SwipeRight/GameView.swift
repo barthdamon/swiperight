@@ -11,6 +11,8 @@ import UIKit
 protocol GameViewDelegate {
   func beginGame()
   func scoreChange(correct: Bool)
+  func startGameplay()
+  func resetGameState()
 }
 
 class GameView: UIView {
@@ -29,6 +31,7 @@ class GameView: UIView {
   convenience init(viewWidth: CGFloat, delegate: GameViewDelegate) {
     self.init()
     self.viewWidth = viewWidth
+    self.delegate = delegate
     
     let offset = (viewWidth - (viewWidth / 1.25)) / 2
     self.frame = CGRectMake(offset, 210, viewWidth / 1.25, viewWidth / 1.25)
@@ -37,7 +40,6 @@ class GameView: UIView {
     tileWidth = self.frame.width / 3
     self.backgroundColor = UIColor.darkGrayColor()
     self.userInteractionEnabled = false
-    // KEEP return the var self.view.addSubview(gameView!)
     addGestureRecognizers()
     configureGameViewComponents()
   }
@@ -186,9 +188,20 @@ class GameView: UIView {
       }
     }
   }
-
-
-
-
-
+  
+  func animateBeginGame() {
+    let coords = Coordinates(x: 0, y: 0)
+    let overlayView = TileView(xCoord: coords.x + tileWidth, yCoord: coords.y + tileWidth, tileWidth: tileWidth, overlay: true)
+    self.addSubview(overlayView)
+    overlayView.animateCountdown() { (res) in
+      if res {
+        overlayView.removeFromSuperview()
+        self.resetTiles()
+        self.delegate.startGameplay()
+      }
+    }
+  }
+  
+  
+  
 }
