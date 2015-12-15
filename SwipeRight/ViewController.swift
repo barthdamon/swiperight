@@ -43,7 +43,6 @@ class ViewController: UIViewController, GameViewDelegate {
   
   
   //MARK: GameView Delegate Methods:
-  
   func scoreChange(correct: Bool) {
     if correct {
       score++
@@ -107,7 +106,6 @@ class ViewController: UIViewController, GameViewDelegate {
     }))
     self.presentViewController(alert, animated: true, completion: nil)
   }
-  
   
   
   @IBAction func beginButtonPressed(sender: AnyObject) {
