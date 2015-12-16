@@ -10,35 +10,43 @@ import UIKit
 
 class ViewController: UIViewController, GameViewDelegate {
 
-  @IBOutlet weak var beginButton: NSLayoutConstraint!
-  @IBOutlet weak var scoreLabel: UILabel!
-  @IBOutlet weak var timeLabel: UILabel!
-
-  var gameView: GameView?
-  var countdownOverlayView: TileView?
-  var viewWidth: CGFloat = 0
-  
-  var gameDuration = 10
-  var timer: NSTimer?
-  var gameActive: Bool = false
-  
+  //HUD
+  var scoreLabel: UILabel?
+  var timeLabel: UILabel?
+  var componentView: UIView?
   var time: Int = 0 {
     didSet {
-      timeLabel.text = String(time)
+      timeLabel?.text = stringToGameTime(time)
     }
   }
   var score: Int = 0 {
     didSet {
-      scoreLabel.text = String(score)
+      scoreLabel?.text = String(score)
     }
   }
+  var gameDuration = 10
+  var timer: NSTimer?
+  
+  //Game Client
+  var clientView: UIView?
+  var beginButton: UIButton?
+  
+  
+  //Game View
+  var gameView: GameView?
+  var countdownOverlayView: TileView?
+  var viewWidth: CGFloat = 0
+  var viewHeight: CGFloat = 0
+  var gameActive: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
     viewWidth = self.view.frame.width
+    viewHeight = self.view.frame.height
     configureHUD()
-    gameView = GameView(viewWidth: viewWidth, delegate: self)
+    gameView = GameView(viewWidth: viewWidth, viewHeight: viewHeight, delegate: self)
     self.view.addSubview(gameView!)
+    configureStartOptions()
   }
   
   
@@ -74,7 +82,31 @@ class ViewController: UIViewController, GameViewDelegate {
   
   //MARK: HUD
   func configureHUD() {
+    configureScoreElements()
     resetGameState()
+  }
+  
+  func configureScoreElements() {
+    let offset = (viewWidth - (viewWidth / 1.25)) / 2
+    componentView = UIView(frame: CGRectMake(offset, viewHeight / 2.8, viewWidth / 1.25, 30))
+    componentView?.backgroundColor = UIColor.clearColor()
+    
+    let scoreTagLabel = UILabel(frame: CGRectMake(0, -10, 50, 50))
+    scoreTagLabel.text = "Score:"
+    scoreTagLabel.textColor = UIColor.whiteColor()
+    componentView?.addSubview(scoreTagLabel)
+    
+    scoreLabel = UILabel(frame: CGRectMake(60, -10, 50, 50))
+    scoreLabel?.text = "0"
+    scoreLabel?.textColor = UIColor.whiteColor()
+    componentView?.addSubview(scoreLabel!)
+    
+    let negativeOffset = viewWidth - (offset + viewWidth / 4.4)
+    timeLabel = UILabel(frame: CGRectMake(negativeOffset, -10, 50, 50))
+    timeLabel?.text = "0:00"
+    timeLabel?.textColor = UIColor.whiteColor()
+    componentView?.addSubview(timeLabel!)
+    self.view.addSubview(componentView!)
   }
   
   func tickTock() {
@@ -108,7 +140,30 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   
-  @IBAction func beginButtonPressed(sender: AnyObject) {
+  //MARK: Game Client
+  func configureStartOptions() {
+    let offset = (viewWidth - (viewWidth / 1.25)) / 2
+    
+    clientView = UIView(frame: CGRectMake(offset, viewHeight / 5, viewWidth / 1.25, viewWidth / 3.5))
+    clientView?.backgroundColor = UIColor.redColor()
+    self.view.addSubview(clientView!)
+    
+    beginButton = UIButton(frame: CGRectMake(0, 0, 50, 50))
+    beginButton!.center = clientView!.center
+    beginButton?.setTitle("Begin", forState: .Normal)
+    beginButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    beginButton?.addTarget(self, action: "beginButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+    clientView?.addSubview(beginButton!)
+  }
+  
+  func toggleClientView() {
+    self.clientView?.hidden = true
+  }
+  
+  
+  func beginButtonPressed() {
+    print("Begin button pressed")
+    toggleClientView()
     resetGameState()
     beginGame()
   }

@@ -28,13 +28,13 @@ class GameView: UIView {
   var currentLayout: GridNumberLayout?
   var nextLayout: GridNumberLayout?
   
-  convenience init(viewWidth: CGFloat, delegate: GameViewDelegate) {
+  convenience init(viewWidth: CGFloat, viewHeight: CGFloat, delegate: GameViewDelegate) {
     self.init()
     self.viewWidth = viewWidth
     self.delegate = delegate
     
     let offset = (viewWidth - (viewWidth / 1.25)) / 2
-    self.frame = CGRectMake(offset, 210, viewWidth / 1.25, viewWidth / 1.25)
+    self.frame = CGRectMake(offset, viewHeight / 2.5, viewWidth / 1.25, viewWidth / 1.25)
     // KEEP return this as var: gameViewWidth = gameView!.frame.width
     //also need tileWidth to be a var based off this view
     tileWidth = self.frame.width / 3

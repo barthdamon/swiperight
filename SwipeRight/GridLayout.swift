@@ -8,6 +8,10 @@
 
 import Foundation
 
+//First need to put code in numbercombination that makes sure not to override any points in solutions. it can use the same, but not override...
+//basically do this by passing in numbers to NumberCombination init(), that way it can tell what is already set (which will only ever be other solutions). Just when generating random numbers check if the index of that spot already exists, and if it does adjust the random number generation accordingly the match the operation
+//then need to have solutionIndexes array just be bigger, and generate several numberCombinations depending on difficulty selected
+
 class GridNumberLayout: NSObject {
   
   var winningCombination: NumberCombination?

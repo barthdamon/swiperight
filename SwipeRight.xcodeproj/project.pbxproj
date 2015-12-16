@@ -19,6 +19,7 @@
 		0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B9581C18EF86004B48BA /* Main.storyboard */; };
 		0240B95C1C18EF86004B48BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95B1C18EF86004B48BA /* Assets.xcassets */; };
 		0240B95F1C18EF86004B48BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95D1C18EF86004B48BA /* LaunchScreen.storyboard */; };
+		02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0240B95B1C18EF86004B48BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0240B95E1C18EF86004B48BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0240B9601C18EF86004B48BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				0220981B1C1DC796005155E6 /* Grid.swift */,
 				0220981D1C1DC808005155E6 /* Math.swift */,
 				022098181C1DC005005155E6 /* RandomNumber.swift */,
+				02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				022098171C1DBFD2005155E6 /* GridLayout.swift in Sources */,
+				02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
 				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
