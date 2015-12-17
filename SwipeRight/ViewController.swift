@@ -143,13 +143,16 @@ class ViewController: UIViewController, GameViewDelegate {
   //MARK: Game Client
   func configureStartOptions() {
     let offset = (viewWidth - (viewWidth / 1.25)) / 2
+    let clientViewWidth = viewWidth / 1.25
+    let clientViewHeight = viewWidth / 3.5
     
-    clientView = UIView(frame: CGRectMake(offset, viewHeight / 5, viewWidth / 1.25, viewWidth / 3.5))
+    clientView = UIView(frame: CGRectMake(offset, viewHeight / 5, clientViewWidth, clientViewHeight))
     clientView?.backgroundColor = UIColor.redColor()
     self.view.addSubview(clientView!)
     
-    beginButton = UIButton(frame: CGRectMake(0, 0, 50, 50))
-    beginButton!.center = clientView!.center
+    let buttonX = (clientViewWidth / 2) - 25
+    let buttonY = (clientViewHeight / 2) - 25
+    beginButton = UIButton(frame: CGRectMake(buttonX, buttonY, 50, 50))
     beginButton?.setTitle("Begin", forState: .Normal)
     beginButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     beginButton?.addTarget(self, action: "beginButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
