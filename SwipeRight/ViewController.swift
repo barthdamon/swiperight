@@ -8,6 +8,8 @@
 
 import UIKit
 
+var gameActive = false
+
 class ViewController: UIViewController, GameViewDelegate {
 
   //HUD
@@ -24,20 +26,23 @@ class ViewController: UIViewController, GameViewDelegate {
       scoreLabel?.text = String(score)
     }
   }
-  var gameDuration = 10
+  var gameDuration = 2
   var timer: NSTimer?
   
   //Game Client
   var clientView: UIView?
   var beginButton: UIButton?
+  var puzzleButton: UIButton?
+  var normalButton: UIButton?
+  var speedButton: UIButton?
   
+  var selectedMode: GameMode?
   
   //Game View
   var gameView: GameView?
   var countdownOverlayView: TileView?
   var viewWidth: CGFloat = 0
   var viewHeight: CGFloat = 0
-  var gameActive: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -68,13 +73,15 @@ class ViewController: UIViewController, GameViewDelegate {
   func startGameplay() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickTock", userInfo: nil, repeats: true)
-      self.gameActive = true
+      gameActive = true
     })
   }
   
   func resetGameState() {
     score = 0
     time = gameDuration
+    gameView?.gameOverView?.hidden = true
+    gameView?.gameOverView = nil
     gameView?.applyNumberLayoutToTiles(true)
     gameActive = false
   }
@@ -121,23 +128,25 @@ class ViewController: UIViewController, GameViewDelegate {
   func gameOver() {
     timer?.invalidate()
     timer = nil
+    gameActive = false
     self.gameView?.userInteractionEnabled = false
-    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
+    self.gameView?.gameOver(score)
+//    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
   }
 
-  func alertShow(alertText :String, alertMessage :String) {
-    let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-    alert.addAction(UIAlertAction(title: "AGAIN!", style: .Default, handler: { (action) -> Void in
-      self.dismissViewControllerAnimated(true, completion: nil)
-      self.resetGameState()
-      self.beginGame()
-    }))
-    alert.addAction(UIAlertAction(title: "Please, no more", style: .Default, handler: { (action) -> Void in
-      self.dismissViewControllerAnimated(true, completion: nil)
-      self.resetGameState()
-    }))
-    self.presentViewController(alert, animated: true, completion: nil)
-  }
+//  func alertShow(alertText :String, alertMessage :String) {
+//    let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+//    alert.addAction(UIAlertAction(title: "AGAIN!", style: .Default, handler: { (action) -> Void in
+//      self.dismissViewControllerAnimated(true, completion: nil)
+//      self.resetGameState()
+//      self.beginGame()
+//    }))
+//    alert.addAction(UIAlertAction(title: "Please, no more", style: .Default, handler: { (action) -> Void in
+//      self.dismissViewControllerAnimated(true, completion: nil)
+//      self.resetGameState()
+//    }))
+//    self.presentViewController(alert, animated: true, completion: nil)
+//  }
   
   
   //MARK: Game Client
@@ -157,6 +166,58 @@ class ViewController: UIViewController, GameViewDelegate {
     beginButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     beginButton?.addTarget(self, action: "beginButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
     clientView?.addSubview(beginButton!)
+    configureGameModeUI()
+    
+    
+  }
+  
+  func configureGameModeUI() {
+    let buttonWidth = (viewWidth / 1.25) / 3
+    puzzleButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
+    puzzleButton?.setTitle("Puzzle", forState: .Normal)
+    puzzleButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    puzzleButton?.backgroundColor = UIColor.lightGrayColor()
+    puzzleButton?.addTarget(self, action: "modeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    
+    normalButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
+    normalButton?.setTitle("Normal", forState: .Normal)
+    normalButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    normalButton?.backgroundColor = UIColor.lightGrayColor()
+    normalButton?.addTarget(self, action: "modeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    
+    speedButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
+    speedButton?.setTitle("Speed", forState: .Normal)
+    speedButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    speedButton?.backgroundColor = UIColor.lightGrayColor()
+    speedButton?.addTarget(self, action: "modeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    
+    clientView?.addSubview(puzzleButton!)
+    clientView?.addSubview(normalButton!)
+    clientView?.addSubview(speedButton!)
+  }
+  
+  func modeButtonPressed(sender: UIButton) {
+    if let puzzleButton = self.puzzleButton, speedButton = self.speedButton, normalButton = self.normalButton {
+      switch sender {
+      case puzzleButton:
+        self.normalButton?.backgroundColor = UIColor.lightGrayColor()
+        self.speedButton?.backgroundColor = UIColor.lightGrayColor()
+        self.puzzleButton?.backgroundColor = UIColor.darkGrayColor()
+        selectedMode = .Puzzle
+      case normalButton:
+        self.normalButton?.backgroundColor = UIColor.darkGrayColor()
+        self.speedButton?.backgroundColor = UIColor.lightGrayColor()
+        self.puzzleButton?.backgroundColor = UIColor.lightGrayColor()
+        selectedMode = .Normal
+      case speedButton:
+        self.normalButton?.backgroundColor = UIColor.lightGrayColor()
+        self.speedButton?.backgroundColor = UIColor.darkGrayColor()
+        self.puzzleButton?.backgroundColor = UIColor.lightGrayColor()
+        selectedMode = .Speed
+      default:
+        break
+      }
+    }
   }
   
   func toggleClientView() {

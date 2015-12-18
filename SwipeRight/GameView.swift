@@ -13,6 +13,7 @@ protocol GameViewDelegate {
   func scoreChange(correct: Bool)
   func startGameplay()
   func resetGameState()
+  func configureStartOptions()
 }
 
 class GameView: UIView {
@@ -21,6 +22,9 @@ class GameView: UIView {
   var tileWidth: CGFloat!
   var viewWidth: CGFloat!
   var tileViews: Array<TileView> = []
+  
+  //gameOver
+  var gameOverView: UIView?
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
@@ -84,53 +88,55 @@ class GameView: UIView {
   }
   
   func resolveUserInteraction() {
-    if let startLoc = startLoc, endLoc = endLoc {
-      var startTile: TileView?
-      var endTile: TileView?
-      var midTile: TileView?
-      var tileIndexes: Array<Int> = []
-      //Int floors the cgfloat
-      let start = (x: Int(startLoc.x / tileWidth), y: Int(startLoc.y / tileWidth))
-      print("START: \(start.x), \(start.y)")
-      let end = (x: Int(endLoc.x / tileWidth), y: Int(endLoc.y / tileWidth))
-      print("END: \(end.x), \(end.y)")
-      let mid = (x: (start.x + end.x) / 2, y: (start.y + end.y) / 2)
-      print("MIDDLE: \(mid.x), \(mid.y)")
-      
-      for var i = 0; i < Grid.tileCoordinates.count; i++ {
-        let loc = Grid.tileCoordinates[i]
-        if loc.x == start.x && loc.y == start.y {
-          startTile = tileViews[i]
-          print("START TILE FOUND: \(i)")
-          tileIndexes.append(i)
-        }
-        if loc.x == end.x && loc.y == end.y {
-          endTile = tileViews[i]
-          print("END TILE FOUND: \(i)")
-          tileIndexes.append(i)
-        }
-        if loc.x == mid.x && loc.y == mid.y {
-          midTile = tileViews[i]
-          print("MID TILE FOUND: \(i)")
-          tileIndexes.append(i)
-        }
-      }
-      
-      if let startTile = startTile, midTile = midTile, endTile = endTile {
-        //check if the tileviews stack in a valid combination of index
-        var valid = false
-        for combo in Grid.combinations {
-          if combo[0] == tileIndexes[0] && combo[1] == tileIndexes[1] && combo[2] == tileIndexes[2] {
-            valid = true
+    if gameActive {
+      if let startLoc = startLoc, endLoc = endLoc {
+        var startTile: TileView?
+        var endTile: TileView?
+        var midTile: TileView?
+        var tileIndexes: Array<Int> = []
+        //Int floors the cgfloat
+        let start = (x: Int(startLoc.x / tileWidth), y: Int(startLoc.y / tileWidth))
+        print("START: \(start.x), \(start.y)")
+        let end = (x: Int(endLoc.x / tileWidth), y: Int(endLoc.y / tileWidth))
+        print("END: \(end.x), \(end.y)")
+        let mid = (x: (start.x + end.x) / 2, y: (start.y + end.y) / 2)
+        print("MIDDLE: \(mid.x), \(mid.y)")
+        
+        for var i = 0; i < Grid.tileCoordinates.count; i++ {
+          let loc = Grid.tileCoordinates[i]
+          if loc.x == start.x && loc.y == start.y {
+            startTile = tileViews[i]
+            print("START TILE FOUND: \(i)")
+            tileIndexes.append(i)
+          }
+          if loc.x == end.x && loc.y == end.y {
+            endTile = tileViews[i]
+            print("END TILE FOUND: \(i)")
+            tileIndexes.append(i)
+          }
+          if loc.x == mid.x && loc.y == mid.y {
+            midTile = tileViews[i]
+            print("MID TILE FOUND: \(i)")
+            tileIndexes.append(i)
           }
         }
-        if valid {
-          tileRespond(startTile, middleTile: midTile, endTile: endTile)
-          self.startLoc = nil
-          self.endLoc = nil
-        } else {
-          self.startLoc = nil
-          self.endLoc = nil
+        
+        if let startTile = startTile, midTile = midTile, endTile = endTile {
+          //check if the tileviews stack in a valid combination of index
+          var valid = false
+          for combo in Grid.combinations {
+            if combo[0] == tileIndexes[0] && combo[1] == tileIndexes[1] && combo[2] == tileIndexes[2] {
+              valid = true
+            }
+          }
+          if valid {
+            tileRespond(startTile, middleTile: midTile, endTile: endTile)
+            self.startLoc = nil
+            self.endLoc = nil
+          } else {
+            self.startLoc = nil
+            self.endLoc = nil
+          }
         }
       }
     }
@@ -218,6 +224,29 @@ class GameView: UIView {
     }
   }
   
-  
+  func gameOver(score: Int) {
+    self.applyNumberLayoutToTiles(true)
+    let yCoord = tileWidth / 2
+    gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
+    gameOverView?.backgroundColor = UIColor.clearColor()
+
+    let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,tileWidth * 3, 50))
+    gameOverLabel.text = "Game Over"
+    gameOverLabel.font = UIFont.systemFontOfSize(30)
+    gameOverLabel.textAlignment = .Center
+    gameOverLabel.textColor = UIColor.whiteColor()
+    
+    
+    let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,tileWidth * 3, 50))
+    scoreLabel.text = "Your Score: \(score)"
+    scoreLabel.textColor = UIColor.whiteColor()
+    scoreLabel.textAlignment = .Center
+    
+    //add top score label or w/e
+    gameOverView?.addSubview(gameOverLabel)
+    gameOverView?.addSubview(scoreLabel)
+    self.addSubview(gameOverView!)
+    delegate.configureStartOptions()
+  }
   
 }

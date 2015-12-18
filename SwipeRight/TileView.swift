@@ -24,8 +24,10 @@ class TileView: UIView {
     self.addSubview(numberLabel!)
     if overlay {
       self.backgroundColor = UIColor.clearColor()
+      self.numberLabel?.font = UIFont.systemFontOfSize(40)
     } else {
       self.backgroundColor = UIColor.cyanColor()
+      self.numberLabel?.font = UIFont.systemFontOfSize(25)
     }
   }
   

@@ -14,6 +14,7 @@
 		022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220981F1C1DCA6C005155E6 /* NumberCombination.swift */; };
 		022098251C1DFDEB005155E6 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098241C1DFDEB005155E6 /* TileView.swift */; };
 		022098271C1E107B005155E6 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098261C1E107B005155E6 /* GameView.swift */; };
+		0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232DC911C2386360039E5CE /* CenterOfView.swift */; };
 		0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240B9541C18EF86004B48BA /* AppDelegate.swift */; };
 		0240B9571C18EF86004B48BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240B9561C18EF86004B48BA /* ViewController.swift */; };
 		0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B9581C18EF86004B48BA /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		0220981F1C1DCA6C005155E6 /* NumberCombination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberCombination.swift; sourceTree = "<group>"; };
 		022098241C1DFDEB005155E6 /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		022098261C1E107B005155E6 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		0232DC911C2386360039E5CE /* CenterOfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterOfView.swift; sourceTree = "<group>"; };
 		0240B9511C18EF86004B48BA /* SwipeRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0240B9541C18EF86004B48BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0240B9561C18EF86004B48BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				0220981D1C1DC808005155E6 /* Math.swift */,
 				022098181C1DC005005155E6 /* RandomNumber.swift */,
 				02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */,
+				0232DC911C2386360039E5CE /* CenterOfView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				022098271C1E107B005155E6 /* GameView.swift in Sources */,
 				0220981C1C1DC796005155E6 /* Grid.swift in Sources */,
 				022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */,
+				0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */,
 				022098191C1DC005005155E6 /* RandomNumber.swift in Sources */,
 				0220981E1C1DC808005155E6 /* Math.swift in Sources */,
 			);
