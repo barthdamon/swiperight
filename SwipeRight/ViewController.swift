@@ -8,8 +8,6 @@
 
 import UIKit
 
-var gameActive = false
-
 class ViewController: UIViewController, GameViewDelegate {
 
   //HUD
@@ -35,8 +33,6 @@ class ViewController: UIViewController, GameViewDelegate {
   var puzzleButton: UIButton?
   var normalButton: UIButton?
   var speedButton: UIButton?
-  
-  var selectedMode: GameMode?
   
   //Game View
   var gameView: GameView?
@@ -65,7 +61,7 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func beginGame() {
-    if !gameActive {
+    if !GameStatus.status.gameActive {
       gameView?.animateBeginGame()
     }
   }
@@ -73,7 +69,7 @@ class ViewController: UIViewController, GameViewDelegate {
   func startGameplay() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickTock", userInfo: nil, repeats: true)
-      gameActive = true
+      GameStatus.status.gameActive = true
     })
   }
   
@@ -83,7 +79,7 @@ class ViewController: UIViewController, GameViewDelegate {
     gameView?.gameOverView?.hidden = true
     gameView?.gameOverView = nil
     gameView?.applyNumberLayoutToTiles(true)
-    gameActive = false
+    GameStatus.status.gameActive = false
   }
   
   
@@ -117,7 +113,7 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func tickTock() {
-    if gameActive {
+    if GameStatus.status.gameActive {
       time--
       if time == 0 {
         gameOver()
@@ -128,7 +124,7 @@ class ViewController: UIViewController, GameViewDelegate {
   func gameOver() {
     timer?.invalidate()
     timer = nil
-    gameActive = false
+    GameStatus.status.gameActive = false
     self.gameView?.userInteractionEnabled = false
     self.gameView?.gameOver(score)
 //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
@@ -168,7 +164,6 @@ class ViewController: UIViewController, GameViewDelegate {
     clientView?.addSubview(beginButton!)
     configureGameModeUI()
     
-    
   }
   
   func configureGameModeUI() {
@@ -191,6 +186,15 @@ class ViewController: UIViewController, GameViewDelegate {
     speedButton?.backgroundColor = UIColor.lightGrayColor()
     speedButton?.addTarget(self, action: "modeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     
+    switch GameStatus.status.selectedMode {
+    case .Puzzle:
+      puzzleButton?.backgroundColor = UIColor.darkGrayColor()
+    case .Normal:
+      normalButton?.backgroundColor = UIColor.darkGrayColor()
+    case .Speed:
+      speedButton?.backgroundColor = UIColor.darkGrayColor()
+    }
+    
     clientView?.addSubview(puzzleButton!)
     clientView?.addSubview(normalButton!)
     clientView?.addSubview(speedButton!)
@@ -203,17 +207,17 @@ class ViewController: UIViewController, GameViewDelegate {
         self.normalButton?.backgroundColor = UIColor.lightGrayColor()
         self.speedButton?.backgroundColor = UIColor.lightGrayColor()
         self.puzzleButton?.backgroundColor = UIColor.darkGrayColor()
-        selectedMode = .Puzzle
+        GameStatus.status.selectedMode = .Puzzle
       case normalButton:
         self.normalButton?.backgroundColor = UIColor.darkGrayColor()
         self.speedButton?.backgroundColor = UIColor.lightGrayColor()
         self.puzzleButton?.backgroundColor = UIColor.lightGrayColor()
-        selectedMode = .Normal
+        GameStatus.status.selectedMode = .Normal
       case speedButton:
         self.normalButton?.backgroundColor = UIColor.lightGrayColor()
         self.speedButton?.backgroundColor = UIColor.darkGrayColor()
         self.puzzleButton?.backgroundColor = UIColor.lightGrayColor()
-        selectedMode = .Speed
+        GameStatus.status.selectedMode = .Speed
       default:
         break
       }

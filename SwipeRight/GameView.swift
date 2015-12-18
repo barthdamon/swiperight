@@ -88,7 +88,7 @@ class GameView: UIView {
   }
   
   func resolveUserInteraction() {
-    if gameActive {
+    if GameStatus.status.gameActive {
       if let startLoc = startLoc, endLoc = endLoc {
         var startTile: TileView?
         var endTile: TileView?
