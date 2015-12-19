@@ -10,6 +10,10 @@ import Foundation
 
 //Random number generator
 func randoNumber(minX minX:UInt32, maxX:UInt32) -> Int {
-  let result = (arc4random() % (maxX - minX + 1)) + minX
-  return Int(result)
+  if minX == 1 && maxX == 1 {
+    return 1
+  } else {
+    let result = (arc4random() % (maxX - minX + 1)) + minX
+    return Int(result)
+  }
 }

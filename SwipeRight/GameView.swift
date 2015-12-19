@@ -143,36 +143,40 @@ class GameView: UIView {
   }
   
   func tileRespond(startTile: TileView, middleTile: TileView, endTile: TileView) {
-    print("TILE RESPOND TIME")
-    if let startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
-      if startNumber + midNumber == endNumber {
-        delegate.scoreChange(true)
-        startTile.backgroundColor = UIColor.greenColor()
-        endTile.backgroundColor = UIColor.greenColor()
-        middleTile.backgroundColor = UIColor.greenColor()
-        self.userInteractionEnabled = false
-        resetTiles()
-      } else {
-        delegate.scoreChange(false)
-        startTile.backgroundColor = UIColor.redColor()
-        endTile.backgroundColor = UIColor.redColor()
-        middleTile.backgroundColor = UIColor.redColor()
-        self.userInteractionEnabled = false
-        resetTiles()
+    if GameStatus.status.gameActive {
+      print("TILE RESPOND TIME")
+      if let startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
+        if startNumber + midNumber == endNumber {
+          delegate.scoreChange(true)
+          startTile.backgroundColor = UIColor.greenColor()
+          endTile.backgroundColor = UIColor.greenColor()
+          middleTile.backgroundColor = UIColor.greenColor()
+          self.userInteractionEnabled = false
+          resetTiles()
+        } else {
+          delegate.scoreChange(false)
+          startTile.backgroundColor = UIColor.redColor()
+          endTile.backgroundColor = UIColor.redColor()
+          middleTile.backgroundColor = UIColor.redColor()
+          self.userInteractionEnabled = false
+          resetTiles()
+        }
       }
     }
   }
   
   func resetTiles() {
-    if let nextLayout = self.nextLayout {
-      self.currentLayout = nextLayout
-      self.nextLayout = GridNumberLayout()
-    } else {
-      self.currentLayout = GridNumberLayout()
-      //in the future generate next layout asynchronously in thebackground after current layout is generated
-      self.nextLayout = GridNumberLayout()
+    if GameStatus.status.gameActive {
+      if let nextLayout = self.nextLayout {
+        self.currentLayout = nextLayout
+        self.nextLayout = GridNumberLayout()
+      } else {
+        self.currentLayout = GridNumberLayout()
+        //in the future generate next layout asynchronously in thebackground after current layout is generated
+        self.nextLayout = GridNumberLayout()
+      }
+      animateTileReset()
     }
-    animateTileReset()
   }
   
   func animateTileReset() {
@@ -218,6 +222,7 @@ class GameView: UIView {
     overlayView.animateCountdown() { (res) in
       if res {
         overlayView.removeFromSuperview()
+        GameStatus.status.gameActive = true
         self.resetTiles()
         self.delegate.startGameplay()
       }

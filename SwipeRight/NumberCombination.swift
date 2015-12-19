@@ -86,11 +86,18 @@ class NumberCombination : NSObject {
   }
   
   func setNumberValues() {
+    
     //Might have the case where another solution completely overrides this one, oh well makes it interesting, they dont need to know the actual mechanics. Theres a chance of three, suck it.
     //now just need to make sure you aren't overriding anything here
     var randomSolution = 0
     if notSet(sumNumberIndex) {
-      randomSolution = randoNumber(minX:1, maxX:UInt32(100))
+      func generateSolution() {
+        randomSolution = randoNumber(minX:0, maxX:UInt32(100))
+        if randomSolution == 0 {
+          generateSolution()
+        }
+      }
+      generateSolution()
     } else {
       randomSolution = numbers[sumNumberIndex]
     }
@@ -106,7 +113,13 @@ class NumberCombination : NSObject {
       if notSet(xNumberIndex) {
         //first need to check if the third number is set and set this based on that in case that one can't change
         if notSet(bNumberIndex) {
-          firstNumber = randoNumber(minX: 1, maxX: UInt32(randomSolution))
+          func generateFirst() {
+            firstNumber = randoNumber(minX: 0, maxX: UInt32(randomSolution))
+            if firstNumber == randomSolution || firstNumber == 1 {
+              generateFirst()
+            }
+          }
+          generateFirst()
         } else {
           firstNumberNeedsSetting = true
         }
