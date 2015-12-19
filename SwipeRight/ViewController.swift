@@ -24,7 +24,10 @@ class ViewController: UIViewController, GameViewDelegate {
       scoreLabel?.text = String(score)
     }
   }
-  var gameDuration = 2
+  var gameDuration = 60
+//  var gameDuration: Int {
+//    return GameStatus.status.selectedMode.rawValue * 60
+//  }
   var timer: NSTimer?
   
   //Game Client

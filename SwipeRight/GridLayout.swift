@@ -8,17 +8,18 @@
 
 import Foundation
 
+//need to generate position and xb positions fist, then select the random numbers to populate them after!
 //First need to put code in numbercombination that makes sure not to override any points in solutions. it can use the same, but not override...
-//basically do this by passing in numbers to NumberCombination init(), that way it can tell what is already set (which will only ever be other solutions). Just when generating random numbers check if the index of that spot already exists, and if it does adjust the random number generation accordingly the match the operation
+//basically do this by passing in numbers to NumberCombination init(), that way it can tell what is already set (which will only ever be other solutions). Just when generating random numbers check if the index of that spot already exists, and if it does adjust the random number generation accordingly to match the operation
 //then need to have solutionIndexes array just be bigger, and generate several numberCombinations depending on difficulty selected
 
 class GridNumberLayout: NSObject {
   
-  var winningCombination: NumberCombination?
+  var winningCombinations: Array<NumberCombination> = []
   
   //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
   //actual numbers to be displayed relative to tile coordinates (what gets returned to main vc):
-  var numbers = [0,0,0,0,0,0,0,0,0]
+  var numbers = [-1,-1,-1,-1,-1,-1,-1,-1,-1]
   //some of these only have to be once for multiplication and addition (less math, but thats an optimization)
   var solutionIndexes: Array<Int>?
   
@@ -28,22 +29,19 @@ class GridNumberLayout: NSObject {
   }
 
   func generateNumberGrid() {
-    winningCombination = NumberCombination(solution: true)
-    populateGrid()
-  }
-  
-  func populateGrid() {
-    setSolutionInGrid()
-    injectFillerNumbers()
-  }
-  
-  func setSolutionInGrid() {
-    if let solution = winningCombination {
-      numbers[solution.xNumberIndex] = solution.x
-      numbers[solution.bNumberIndex] = solution.b
-      numbers[solution.sumNumberIndex] = solution.sum
-      solutionIndexes = [solution.xNumberIndex, solution.bNumberIndex, solution.sumNumberIndex]
+    for var i = 0; i < GameStatus.status.selectedMode.rawValue; i++ {
+      winningCombinations.append(NumberCombination(solution: true, layout: self))
+      setSolutionInGrid(i)
     }
+//    injectFillerNumbers()
+  }
+  
+  func setSolutionInGrid(index: Int) {
+    let solution = winningCombinations[index]
+    numbers[solution.xNumberIndex] = solution.x
+    numbers[solution.bNumberIndex] = solution.b
+    numbers[solution.sumNumberIndex] = solution.sum
+    solutionIndexes = [solution.xNumberIndex, solution.bNumberIndex, solution.sumNumberIndex]
   }
   
   func injectFillerNumbers() {
@@ -54,51 +52,8 @@ class GridNumberLayout: NSObject {
         }
       }
     }
-//    checkForOtherSolutions()
+//    checkForOtherSolutions() (refer to github history for this code)
   }
-  
-//  func checkForOtherSolutions() {
-//    
-//    var valid = true
-//    //make sure none of the other combinations will work. HAS TO GO BOTH WAYS FOR THE SOLUTION THOUGH. Its crashing cause infinitely looping through it injecting
-//    for combo in Grid.combinations {
-//      if !checkIfSolution(combo) {
-//        let numbersOne = numbers[combo[0]]
-//        let numbersTwo = numbers[combo[1]]
-//        let numbersThree = numbers[combo[2]]
-//        
-//        if numbersOne + numbersTwo == numbersThree {
-//          valid = false
-//        } else if numbersOne - numbersTwo == numbersThree {
-//          valid = false
-//        } else if numbersOne * numbersTwo == numbersThree {
-//          valid = false
-//        } else if numbersOne != 0 && numbersTwo != 0 {
-//          if numbersOne / numbersTwo == numbersThree {
-//            valid = false
-//          }
-//        }
-//      }
-//    }
-//    
-//    if !valid {
-//      valid = true
-//      injectFillerNumbers()
-//    }
-//  }
-//  
-//  func checkIfSolution(combo: Array<Int>) -> Bool {
-//    if let solutionIndexes = solutionIndexes {
-//      if combo[0] == solutionIndexes[0] && combo[1] == solutionIndexes[1] && combo[2] == solutionIndexes[2] {
-//        return true
-//      } else {
-//        return false
-//      }
-//    } else {
-//      return false
-//    }
-//  }
-  
   
 }
 

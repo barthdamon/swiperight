@@ -29,4 +29,6 @@ class Grid: NSObject {
   class func indexForTileCoordiate(tile: TileCoordinates) -> Int? {
     return tileCoordinates.indexOf({$0.x == tile.x && $0.y == tile.y})
   }
+  
 }
+
