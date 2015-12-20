@@ -14,7 +14,7 @@ class NumberCombination : NSObject {
   
   var solution = false
   
-  var operation = Operation.Add
+  var operation: Operation!
   var x: Int!
   var b: Int!
   var sum: Int!
@@ -51,6 +51,7 @@ class NumberCombination : NSObject {
   
   convenience init(solution: Bool, layout: GridNumberLayout) {
     self.init()
+    self.operation = layout.operation
     self.numbers = layout.numbers
     self.previousWinners = layout.winningCombinations
     if solution {
@@ -60,9 +61,6 @@ class NumberCombination : NSObject {
   }
   
   func generateWinningCombination() {
-    //later set to random operation:
-    //    let randomOperationIndex = randoNumber(minX: 0, maxX: 3)
-    //    let currentOperation = operations[randomOperationIndex]
     //set random grid position
     solutionGridPositionIndex = generateSolutionGridPositionIndex()
     sumPosition = Grid.tileCoordinates[solutionGridPositionIndex]
@@ -93,7 +91,7 @@ class NumberCombination : NSObject {
     if notSet(sumNumberIndex) {
       func generateSolution() {
         randomSolution = randoNumber(minX:0, maxX:UInt32(100))
-        if randomSolution == 0 {
+        if randomSolution == 0 || randomSolution == 1 {
           generateSolution()
         }
       }
@@ -102,59 +100,46 @@ class NumberCombination : NSObject {
       randomSolution = numbers[sumNumberIndex]
     }
     
-    switch operation {
-    case .Add:
-      var firstNumber = 0
-      var secondNumber = 0
-      var firstNumberNeedsSetting = false
-      print("Addition")
-      
-      //first number
-      if notSet(xNumberIndex) {
-        //first need to check if the third number is set and set this based on that in case that one can't change
-        if notSet(bNumberIndex) {
-          func generateFirst() {
-            firstNumber = randoNumber(minX: 0, maxX: UInt32(randomSolution))
-            if firstNumber == randomSolution || firstNumber == 1 {
-              generateFirst()
-            }
-          }
-          generateFirst()
-        } else {
-          firstNumberNeedsSetting = true
-        }
-      } else {
-        firstNumber = numbers[xNumberIndex]
-      }
-      
-      //second number
+    var firstNumber = 0
+    var secondNumber = 0
+    var firstNumberNeedsSetting = false
+    
+    //first number
+    if notSet(xNumberIndex) {
+      //first need to check if the third number is set and set this based on that in case that one can't change
       if notSet(bNumberIndex) {
-        secondNumber = randomSolution - firstNumber
-      } else {
-        secondNumber = numbers[bNumberIndex]
-        if firstNumberNeedsSetting {
-         firstNumber = randomSolution - secondNumber
+        func generateFirst() {
+          firstNumber = randoNumber(minX: 0, maxX: UInt32(randomSolution))
+          if firstNumber == randomSolution || firstNumber == 1 || firstNumber == 0 {
+            generateFirst()
+          }
         }
+        generateFirst()
+      } else {
+        firstNumberNeedsSetting = true
       }
-      
-      self.x = firstNumber
-      self.b = secondNumber
-      self.sum = randomSolution
-      print("FIRSTNUMBER: \(firstNumber)")
-      print("SECONDNUMBER: \(secondNumber)")
-      print("THIRDNUMBER: \(randomSolution)")
-      print("SUM INDEX: \(sumNumberIndex)")
-      print("PREVIOUS: \(self.previousWinners.count)")
-    case .Divide:
-      print("Division")
-      break
-    case .Multiply:
-      print("Multiplication")
-      break
-    case .Subtract:
-      print("Subtraction")
-      break
+    } else {
+      firstNumber = numbers[xNumberIndex]
     }
+    
+    //second number
+    if notSet(bNumberIndex) {
+        secondNumber = completeOperation(randomSolution, first: firstNumber, second: nil, operation: operation)
+    } else {
+      secondNumber = numbers[bNumberIndex]
+      if firstNumberNeedsSetting {
+        firstNumber = completeOperation(randomSolution, first: nil, second: secondNumber, operation: operation)
+      }
+    }
+    
+    self.x = firstNumber
+    self.b = secondNumber
+    self.sum = randomSolution
+    print("FIRSTNUMBER: \(firstNumber)")
+    print("SECONDNUMBER: \(secondNumber)")
+    print("THIRDNUMBER: \(randomSolution)")
+    print("SUM INDEX: \(sumNumberIndex)")
+    print("PREVIOUS: \(self.previousWinners.count)")
   }
   
   func generateSolutionGridPositionIndex() -> Int {
@@ -232,6 +217,7 @@ class NumberCombination : NSObject {
   }
   
   //helper for checking if number index can't be overridden
+  //TODO: CANT BE NEGATIVE ONE FOREVER, NEEDS TO BE -10000 or something that can never happen with the regular numbers
   func notSet(index: Int) -> Bool {
     if numbers[index] != -1 {
       return false

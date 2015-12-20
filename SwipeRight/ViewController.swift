@@ -24,18 +24,35 @@ class ViewController: UIViewController, GameViewDelegate {
       scoreLabel?.text = String(score)
     }
   }
-  var gameDuration = 60
-//  var gameDuration: Int {
-//    return GameStatus.status.selectedMode.rawValue * 60
-//  }
+  var gameDuration: Int {
+    return GameStatus.status.selectedMode.rawValue * 60
+//    return 10
+  }
   var timer: NSTimer?
   
   //Game Client
   var clientView: UIView?
   var beginButton: UIButton?
+  var resetButton: UIButton?
   var puzzleButton: UIButton?
   var normalButton: UIButton?
   var speedButton: UIButton?
+  
+  var multiplyView: UIImageView?
+  var divideView: UIImageView?
+  var addView: UIImageView?
+  var subtractView: UIImageView?
+  
+  let addImage = UIImage(named: "add")
+  let subtractImage = UIImage(named: "subtract")
+  let multiplyImage = UIImage(named: "multiply")
+  let divideImage = UIImage(named: "divide")
+  
+  let addImageGray = UIImage(named: "addGray")
+  let subtractImageGray = UIImage(named: "subtractGray")
+  let multiplyImageGray = UIImage(named: "multiplyGray")
+  let divideImageGray = UIImage(named: "divideGray")
+  
   
   //Game View
   var gameView: GameView?
@@ -43,6 +60,8 @@ class ViewController: UIViewController, GameViewDelegate {
   var viewWidth: CGFloat = 0
   var viewHeight: CGFloat = 0
   
+  var operation: Operation?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     viewWidth = self.view.frame.width
@@ -82,6 +101,7 @@ class ViewController: UIViewController, GameViewDelegate {
     gameView?.gameOverView?.hidden = true
     gameView?.gameOverView = nil
     gameView?.applyNumberLayoutToTiles(true)
+    resetClientOperations(nil)
     GameStatus.status.gameActive = false
   }
   
@@ -158,15 +178,60 @@ class ViewController: UIViewController, GameViewDelegate {
     clientView?.backgroundColor = UIColor.redColor()
     self.view.addSubview(clientView!)
     
-    let buttonX = (clientViewWidth / 2) - 25
-    let buttonY = (clientViewHeight / 2) - 25
-    beginButton = UIButton(frame: CGRectMake(buttonX, buttonY, 50, 50))
+    let buttonX = (clientViewWidth / 2) - 50
+    let buttonY = (clientViewHeight / 2) - 40
+    beginButton = UIButton(frame: CGRectMake(buttonX, buttonY, 100, 70))
     beginButton?.setTitle("Begin", forState: .Normal)
     beginButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    beginButton?.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
+    beginButton?.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
+    beginButton?.titleLabel?.font = UIFont.systemFontOfSize(30)
     beginButton?.addTarget(self, action: "beginButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
-    clientView?.addSubview(beginButton!)
-    configureGameModeUI()
     
+    resetButton = UIButton(frame: CGRectMake(buttonX, buttonY, 100, 70))
+    resetButton?.setTitle("Reset", forState: .Normal)
+    resetButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    resetButton?.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
+    resetButton?.titleLabel?.font = UIFont.systemFontOfSize(30)
+    resetButton?.addTarget(self, action: "resetButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+    resetButton?.hidden = true
+    
+    clientView?.addSubview(beginButton!)
+    clientView?.addSubview(resetButton!)
+    configureGameModeUI()
+    configureOperationFeedback()
+    
+  }
+  
+  func configureOperationFeedback() {
+    if let clientView = clientView {
+      let width = clientView.frame.width / 2
+      let height = clientView.frame.height
+      let offset = width / 2
+      
+      let buttonsView = UIView(frame: CGRectMake(offset,height - 30,width,30))
+      
+      let operationWidth = buttonsView.frame.width / 4
+      multiplyView = UIImageView(frame: CGRectMake(0,0,operationWidth, 30))
+      multiplyView?.contentMode = .ScaleAspectFill
+      multiplyView?.image = multiplyImageGray
+      divideView = UIImageView(frame: CGRectMake(operationWidth,0,operationWidth, 30))
+      divideView?.image = divideImageGray
+      divideView?.contentMode = .ScaleAspectFill
+      addView = UIImageView(frame: CGRectMake(operationWidth * 2,0,operationWidth, 30))
+      addView?.image = addImageGray
+      addView?.contentMode = .ScaleAspectFill
+      subtractView = UIImageView(frame: CGRectMake(operationWidth * 3,0,operationWidth, 30))
+      subtractView?.image = subtractImageGray
+      subtractView?.contentMode = .ScaleAspectFill
+      
+      buttonsView.addSubview(multiplyView!)
+      buttonsView.addSubview(divideView!)
+      buttonsView.addSubview(addView!)
+      buttonsView.addSubview(subtractView!)
+      
+      clientView.addSubview(buttonsView)
+    }
   }
   
   func configureGameModeUI() {
@@ -225,18 +290,67 @@ class ViewController: UIViewController, GameViewDelegate {
         break
       }
     }
+    time = gameDuration
   }
   
   func toggleClientView() {
-    self.clientView?.hidden = true
+    if let beginButton = beginButton, resetButton = resetButton {
+      if beginButton.hidden {
+        beginButton.enabled = true
+        beginButton.hidden = false
+      } else {
+        beginButton.hidden = true
+      }
+      resetButton.hidden = resetButton.hidden ? false : true
+    }
   }
   
+  func resetClientOperations(current: Operation?) {
+    if let current = current {
+      self.operation = current
+      switch current {
+      case .Add:
+        self.multiplyView?.image = multiplyImageGray
+        self.divideView?.image = divideImageGray
+        self.addView?.image = addImage
+        self.subtractView?.image = subtractImageGray
+      case .Subtract:
+        self.multiplyView?.image = multiplyImageGray
+        self.divideView?.image = divideImageGray
+        self.addView?.image = addImageGray
+        self.subtractView?.image = subtractImage
+      case .Multiply:
+        self.multiplyView?.image = multiplyImage
+        self.divideView?.image = divideImageGray
+        self.addView?.image = addImageGray
+        self.subtractView?.image = subtractImageGray
+      case .Divide:
+        self.multiplyView?.image = multiplyImageGray
+        self.divideView?.image = divideImage
+        self.addView?.image = addImageGray
+        self.subtractView?.image = subtractImageGray
+      }
+    } else {
+      self.multiplyView?.image = multiplyImageGray
+      self.divideView?.image = divideImageGray
+      self.addView?.image = addImageGray
+      self.subtractView?.image = subtractImageGray
+    }
+  }
+  
+  func resetButtonPressed() {
+    gameOver()
+    resetGameState()
+  }
   
   func beginButtonPressed() {
-    print("Begin button pressed")
-    toggleClientView()
-    resetGameState()
-    beginGame()
+    if let animating = self.gameView?.animatingBeginCountdown {
+      if !animating {
+        beginButton?.enabled = false
+        resetGameState()
+        beginGame()
+      }
+    }
   }
   
 }

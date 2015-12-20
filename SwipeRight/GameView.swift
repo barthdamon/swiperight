@@ -14,6 +14,8 @@ protocol GameViewDelegate {
   func startGameplay()
   func resetGameState()
   func configureStartOptions()
+  func toggleClientView()
+  func resetClientOperations(current: Operation?)
 }
 
 class GameView: UIView {
@@ -25,11 +27,16 @@ class GameView: UIView {
   
   //gameOver
   var gameOverView: UIView?
+  var animatingBeginCountdown = false
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
   
-  var currentLayout: GridNumberLayout?
+  var currentLayout: GridNumberLayout? {
+    didSet {
+      self.delegate.resetClientOperations(currentLayout?.operation)
+    }
+  }
   var nextLayout: GridNumberLayout?
   
   convenience init(viewWidth: CGFloat, viewHeight: CGFloat, delegate: GameViewDelegate) {
@@ -143,10 +150,40 @@ class GameView: UIView {
   }
   
   func tileRespond(startTile: TileView, middleTile: TileView, endTile: TileView) {
+    
+    func checkForCorrect(operation: Operation, start: Int, mid: Int, end: Int) -> Bool {
+      switch operation {
+      case .Add:
+        if start + mid == end {
+          return true
+        } else {
+          return false
+        }
+      case .Subtract:
+        if start - mid == end {
+          return true
+        } else {
+          return false
+        }
+      case .Divide:
+        if start / mid == end {
+          return true
+        } else {
+          return false
+        }
+      case .Multiply:
+        if start * mid == end {
+          return true
+        } else {
+          return false
+        }
+      }
+    }
+    
     if GameStatus.status.gameActive {
       print("TILE RESPOND TIME")
-      if let startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
-        if startNumber + midNumber == endNumber {
+      if let operation = currentLayout?.operation, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
+        if checkForCorrect(operation, start: startNumber, mid: midNumber, end: endNumber) {
           delegate.scoreChange(true)
           startTile.backgroundColor = UIColor.greenColor()
           endTile.backgroundColor = UIColor.greenColor()
@@ -219,12 +256,15 @@ class GameView: UIView {
     let coords = Coordinates(x: 0, y: 0)
     let overlayView = TileView(xCoord: coords.x + tileWidth, yCoord: coords.y + tileWidth, tileWidth: tileWidth, overlay: true)
     self.addSubview(overlayView)
+    animatingBeginCountdown = true
     overlayView.animateCountdown() { (res) in
       if res {
         overlayView.removeFromSuperview()
         GameStatus.status.gameActive = true
         self.resetTiles()
         self.delegate.startGameplay()
+        self.delegate.toggleClientView()
+        self.animatingBeginCountdown = false
       }
     }
   }
