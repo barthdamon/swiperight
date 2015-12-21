@@ -26,7 +26,7 @@ class TileView: UIView {
       self.backgroundColor = UIColor.clearColor()
       self.numberLabel?.font = UIFont.systemFontOfSize(40)
     } else {
-      self.backgroundColor = UIColor.cyanColor()
+      self.backgroundColor = UIColor.clearColor()
       self.numberLabel?.font = UIFont.systemFontOfSize(25)
     }
   }

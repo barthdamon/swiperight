@@ -60,7 +60,7 @@ class ViewController: UIViewController, GameViewDelegate {
   var viewWidth: CGFloat = 0
   var viewHeight: CGFloat = 0
   
-  var operation: Operation?
+  var operations: Array<Operation>?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -175,7 +175,7 @@ class ViewController: UIViewController, GameViewDelegate {
     let clientViewHeight = viewWidth / 3.5
     
     clientView = UIView(frame: CGRectMake(offset, viewHeight / 5, clientViewWidth, clientViewHeight))
-    clientView?.backgroundColor = UIColor.redColor()
+//    clientView?.backgroundColor = UIColor.redColor()
     self.view.addSubview(clientView!)
     
     let buttonX = (clientViewWidth / 2) - 50
@@ -294,47 +294,46 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func toggleClientView() {
-    if let beginButton = beginButton, resetButton = resetButton {
-      if beginButton.hidden {
-        beginButton.enabled = true
-        beginButton.hidden = false
-      } else {
-        beginButton.hidden = true
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      if let beginButton = self.beginButton, resetButton = self.resetButton {
+        if beginButton.hidden {
+          resetButton.hidden = true
+          beginButton.enabled = true
+          beginButton.hidden = false
+        } else {
+          beginButton.enabled = false
+          beginButton.hidden = true
+          resetButton.hidden = false
+        }
       }
-      resetButton.hidden = resetButton.hidden ? false : true
-    }
+    })
   }
   
-  func resetClientOperations(current: Operation?) {
-    if let current = current {
-      self.operation = current
-      switch current {
-      case .Add:
-        self.multiplyView?.image = multiplyImageGray
-        self.divideView?.image = divideImageGray
-        self.addView?.image = addImage
-        self.subtractView?.image = subtractImageGray
-      case .Subtract:
-        self.multiplyView?.image = multiplyImageGray
-        self.divideView?.image = divideImageGray
-        self.addView?.image = addImageGray
-        self.subtractView?.image = subtractImage
-      case .Multiply:
-        self.multiplyView?.image = multiplyImage
-        self.divideView?.image = divideImageGray
-        self.addView?.image = addImageGray
-        self.subtractView?.image = subtractImageGray
-      case .Divide:
-        self.multiplyView?.image = multiplyImageGray
-        self.divideView?.image = divideImage
-        self.addView?.image = addImageGray
-        self.subtractView?.image = subtractImageGray
-      }
-    } else {
+  func resetClientOperations(currentOperations: Array<Operation>?) {
+    
+    func resetImages() {
       self.multiplyView?.image = multiplyImageGray
       self.divideView?.image = divideImageGray
       self.addView?.image = addImageGray
       self.subtractView?.image = subtractImageGray
+    }
+    if let currentOperations = currentOperations {
+      resetImages()
+      self.operations = currentOperations
+      for operation in currentOperations {
+        switch operation {
+        case .Add:
+          self.addView?.image = addImage
+        case .Subtract:
+          self.subtractView?.image = subtractImage
+        case .Multiply:
+          self.multiplyView?.image = multiplyImage
+        case .Divide:
+          self.divideView?.image = divideImage
+        }
+      }
+    } else {
+      resetImages()
     }
   }
   

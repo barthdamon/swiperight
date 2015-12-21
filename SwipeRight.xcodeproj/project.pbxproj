@@ -76,6 +76,8 @@
 				0220981F1C1DCA6C005155E6 /* NumberCombination.swift */,
 				0232DC931C23A9830039E5CE /* GameStatus.swift */,
 				022098161C1DBFD2005155E6 /* GridLayout.swift */,
+				022098261C1E107B005155E6 /* GameView.swift */,
+				022098241C1DFDEB005155E6 /* TileView.swift */,
 			);
 			name = DataObjects;
 			sourceTree = "<group>";
@@ -121,8 +123,6 @@
 				0220981A1C1DC00A005155E6 /* Extensions */,
 				022098211C1DCA73005155E6 /* DataObjects */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
-				022098261C1E107B005155E6 /* GameView.swift */,
-				022098241C1DFDEB005155E6 /* TileView.swift */,
 				022098221C1DCAA9005155E6 /* Interface */,
 				0240B95B1C18EF86004B48BA /* Assets.xcassets */,
 			);

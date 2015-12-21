@@ -9,11 +9,22 @@
 import Foundation
 
 //Random number generator
-func randoNumber(minX minX:UInt32, maxX:UInt32) -> Int {
-  if (minX == 1 && maxX == 1) || (minX == 0 && maxX == 1) {
-    return 1
+func randoNumber(min: UInt32?, max:UInt32) -> Int {
+  var result = Int(arc4random_uniform(max + 1))
+  
+  func getRandom() {
+    let check = arc4random_uniform(max + 1)
+    if check < min {
+      getRandom()
+    } else {
+      result = Int(check)
+    }
+  }
+  
+  if let _ = min {
+    getRandom()
+    return result
   } else {
-    let result = (arc4random() % (maxX - minX + 1)) + minX
-    return Int(result)
+    return result
   }
 }

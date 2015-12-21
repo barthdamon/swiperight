@@ -18,8 +18,10 @@ func completeOperation(sum: Int, first: Int?, second: Int?, operation: Operation
       int = sum - first
     case .Subtract:
       int = first - sum
-    default:
-      break
+    case .Divide:
+      int = first / sum
+    case .Multiply:
+      int = sum / first
     }
   } else if let second = second {
     //solve for first number
@@ -28,8 +30,10 @@ func completeOperation(sum: Int, first: Int?, second: Int?, operation: Operation
       int = sum - second
     case .Subtract:
       int = sum + second
-    default:
-      break
+    case .Divide:
+      int = sum * second
+    case .Multiply:
+      int = sum / second
     }
   }
   

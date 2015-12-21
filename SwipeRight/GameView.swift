@@ -15,7 +15,7 @@ protocol GameViewDelegate {
   func resetGameState()
   func configureStartOptions()
   func toggleClientView()
-  func resetClientOperations(current: Operation?)
+  func resetClientOperations(currentOperations: Array<Operation>?)
 }
 
 class GameView: UIView {
@@ -34,7 +34,7 @@ class GameView: UIView {
   
   var currentLayout: GridNumberLayout? {
     didSet {
-      self.delegate.resetClientOperations(currentLayout?.operation)
+      self.delegate.resetClientOperations(currentLayout?.operations)
     }
   }
   var nextLayout: GridNumberLayout?
@@ -151,39 +151,37 @@ class GameView: UIView {
   
   func tileRespond(startTile: TileView, middleTile: TileView, endTile: TileView) {
     
-    func checkForCorrect(operation: Operation, start: Int, mid: Int, end: Int) -> Bool {
-      switch operation {
-      case .Add:
-        if start + mid == end {
-          return true
-        } else {
-          return false
-        }
-      case .Subtract:
-        if start - mid == end {
-          return true
-        } else {
-          return false
-        }
-      case .Divide:
-        if start / mid == end {
-          return true
-        } else {
-          return false
-        }
-      case .Multiply:
-        if start * mid == end {
-          return true
-        } else {
-          return false
+    func checkForCorrect(operations: Array<Operation>, start: Int, mid: Int, end: Int) -> Bool {
+      var found = false
+      for operation in operations {
+        switch operation {
+        case .Add:
+          if start + mid == end {
+            found = true
+          }
+        case .Subtract:
+          if start - mid == end {
+            found = true
+          }
+        case .Divide:
+          if start != 0 && mid != 0 && end != 0 {
+            if start / mid == end {
+              found = true
+            }
+          }
+        case .Multiply:
+          if start * mid == end {
+            found = true
+          }
         }
       }
+      return found
     }
     
     if GameStatus.status.gameActive {
       print("TILE RESPOND TIME")
-      if let operation = currentLayout?.operation, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
-        if checkForCorrect(operation, start: startNumber, mid: midNumber, end: endNumber) {
+      if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
+        if checkForCorrect(operations, start: startNumber, mid: midNumber, end: endNumber) {
           delegate.scoreChange(true)
           startTile.backgroundColor = UIColor.greenColor()
           endTile.backgroundColor = UIColor.greenColor()
@@ -230,7 +228,7 @@ class GameView: UIView {
     
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(0.2, animations: { () -> Void in
-        tile.backgroundColor = UIColor.cyanColor()
+        tile.backgroundColor = UIColor.clearColor()
         tile.numberLabel?.alpha = 0
         }, completion: { (complete) -> Void in
           self.applyNumberLayoutToTiles(false)
@@ -291,7 +289,7 @@ class GameView: UIView {
     gameOverView?.addSubview(gameOverLabel)
     gameOverView?.addSubview(scoreLabel)
     self.addSubview(gameOverView!)
-    delegate.configureStartOptions()
+    delegate.toggleClientView()
   }
   
 }

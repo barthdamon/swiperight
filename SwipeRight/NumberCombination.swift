@@ -51,7 +51,8 @@ class NumberCombination : NSObject {
   
   convenience init(solution: Bool, layout: GridNumberLayout) {
     self.init()
-    self.operation = layout.operation
+    let randomOperation = randoNumber(nil, max: 1)
+    self.operation = layout.operations[randomOperation]
     self.numbers = layout.numbers
     self.previousWinners = layout.winningCombinations
     if solution {
@@ -90,7 +91,7 @@ class NumberCombination : NSObject {
     var randomSolution = 0
     if notSet(sumNumberIndex) {
       func generateSolution() {
-        randomSolution = randoNumber(minX:0, maxX:UInt32(100))
+        randomSolution = randoNumber(nil, max:UInt32(100))
         if randomSolution == 0 || randomSolution == 1 {
           generateSolution()
         }
@@ -109,7 +110,7 @@ class NumberCombination : NSObject {
       //first need to check if the third number is set and set this based on that in case that one can't change
       if notSet(bNumberIndex) {
         func generateFirst() {
-          firstNumber = randoNumber(minX: 0, maxX: UInt32(randomSolution))
+          firstNumber = randoNumber(nil, max: UInt32(randomSolution))
           if firstNumber == randomSolution || firstNumber == 1 || firstNumber == 0 {
             generateFirst()
           }
@@ -146,7 +147,7 @@ class NumberCombination : NSObject {
     var index: Int!
     //Can't have the index for the solution be the middle of the grid
     func generateRand() {
-      index = randoNumber(minX: 0, maxX: UInt32(8))
+      index = randoNumber(nil, max: UInt32(8))
       if index == 4 {
         generateRand()
       }
@@ -167,7 +168,7 @@ class NumberCombination : NSObject {
       case (x: 0, y: 1), (x: 2, y: 1):
         solutionDirection = .Horizontal
       default:
-        let randomDirectionIndex = randoNumber(minX: 0, maxX: 2)
+        let randomDirectionIndex = randoNumber(nil, max: 2)
         solutionDirection = Grid.directions[randomDirectionIndex]
       }
       direction = solutionDirection

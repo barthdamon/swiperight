@@ -16,7 +16,7 @@ import Foundation
 class GridNumberLayout: NSObject {
   
   var winningCombinations: Array<NumberCombination> = []
-  var operation: Operation!
+  var operations: Array<Operation>!
   
   //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
   //actual numbers to be displayed relative to tile coordinates (what gets returned to main vc):
@@ -32,9 +32,15 @@ class GridNumberLayout: NSObject {
   
   func randomizeOperation() {
     //later set to random operation:
-    //    let randomOperationIndex = randoNumber(minX: 0, maxX: 3)
-    //    let currentOperation = operations[randomOperationIndex]
-    operation = Operation.Add
+    operations = nil
+    operations = Array()
+//    let randomPlusMinusIndex = 1
+    let randomPlusMinusIndex = randoNumber(nil, max: 1)
+    operations.append(Grid.operations[randomPlusMinusIndex])
+//    let randomTwo = 3
+    let randomTwo = randoNumber(2, max: 3)
+    operations.append(Grid.operations[randomTwo])
+    
   }
 
   func generateNumberGrid() {
@@ -57,7 +63,7 @@ class GridNumberLayout: NSObject {
     if let omitted = solutionIndexes {
       for var i = 0; i < numbers.count; i++ {
         if !omitted.contains(i) {
-          numbers[i] = randoNumber(minX: 0, maxX: UInt32(100))
+          numbers[i] = randoNumber(nil, max: UInt32(100))
         }
       }
     }
