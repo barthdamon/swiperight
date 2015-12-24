@@ -35,11 +35,11 @@ class GridNumberLayout: NSObject {
     operations = nil
     operations = Array()
 //    let randomPlusMinusIndex = 1
-    let randomPlusMinusIndex = randoNumber(nil, max: 1)
-    operations.append(Grid.operations[randomPlusMinusIndex])
+    let randomPlusMinusIndex = randoNumber(0, max: 1)
+    operations.append(Grid.operations[2])
 //    let randomTwo = 3
     let randomTwo = randoNumber(2, max: 3)
-    operations.append(Grid.operations[randomTwo])
+    operations.append(Grid.operations[3])
     
   }
 
@@ -57,13 +57,14 @@ class GridNumberLayout: NSObject {
     numbers[solution.bNumberIndex] = solution.b
     numbers[solution.sumNumberIndex] = solution.sum
     solutionIndexes = [solution.xNumberIndex, solution.bNumberIndex, solution.sumNumberIndex]
+    print("Winning indexes: \(solution.xNumberIndex), \(solution.bNumberIndex), \(solution.sumNumberIndex)")
   }
   
   func injectFillerNumbers() {
     if let omitted = solutionIndexes {
       for var i = 0; i < numbers.count; i++ {
         if !omitted.contains(i) {
-          numbers[i] = randoNumber(nil, max: UInt32(100))
+          numbers[i] = randoNumber(nil, max: 50)
         }
       }
     }

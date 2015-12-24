@@ -343,13 +343,9 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func beginButtonPressed() {
-    if let animating = self.gameView?.animatingBeginCountdown {
-      if !animating {
-        beginButton?.enabled = false
-        resetGameState()
-        beginGame()
-      }
-    }
+    beginButton?.enabled = false
+    resetGameState()
+    beginGame()
   }
   
 }

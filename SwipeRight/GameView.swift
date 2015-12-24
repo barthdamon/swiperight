@@ -27,7 +27,6 @@ class GameView: UIView {
   
   //gameOver
   var gameOverView: UIView?
-  var animatingBeginCountdown = false
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
@@ -254,7 +253,6 @@ class GameView: UIView {
     let coords = Coordinates(x: 0, y: 0)
     let overlayView = TileView(xCoord: coords.x + tileWidth, yCoord: coords.y + tileWidth, tileWidth: tileWidth, overlay: true)
     self.addSubview(overlayView)
-    animatingBeginCountdown = true
     overlayView.animateCountdown() { (res) in
       if res {
         overlayView.removeFromSuperview()
@@ -262,7 +260,6 @@ class GameView: UIView {
         self.resetTiles()
         self.delegate.startGameplay()
         self.delegate.toggleClientView()
-        self.animatingBeginCountdown = false
       }
     }
   }

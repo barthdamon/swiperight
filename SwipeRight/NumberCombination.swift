@@ -51,7 +51,7 @@ class NumberCombination : NSObject {
   
   convenience init(solution: Bool, layout: GridNumberLayout) {
     self.init()
-    let randomOperation = randoNumber(nil, max: 1)
+    let randomOperation = randoNumber(0, max: 1)
     self.operation = layout.operations[randomOperation]
     self.numbers = layout.numbers
     self.previousWinners = layout.winningCombinations
@@ -88,10 +88,12 @@ class NumberCombination : NSObject {
     
     //Might have the case where another solution completely overrides this one, oh well makes it interesting, they dont need to know the actual mechanics. Theres a chance of three, suck it.
     //now just need to make sure you aren't overriding anything here
+    
+    //IF operation is division or multiiplication you need to make the random solution even, and it has to be divisible by 3^x or 2^x
     var randomSolution = 0
     if notSet(sumNumberIndex) {
       func generateSolution() {
-        randomSolution = randoNumber(nil, max:UInt32(100))
+        randomSolution = randoNumber(nil, max:50)
         if randomSolution == 0 || randomSolution == 1 {
           generateSolution()
         }
@@ -104,13 +106,14 @@ class NumberCombination : NSObject {
     var firstNumber = 0
     var secondNumber = 0
     var firstNumberNeedsSetting = false
-    
+    print("<<<<<<<<<<<")
+    print("OPERATION: \(operation)")
     //first number
     if notSet(xNumberIndex) {
       //first need to check if the third number is set and set this based on that in case that one can't change
       if notSet(bNumberIndex) {
         func generateFirst() {
-          firstNumber = randoNumber(nil, max: UInt32(randomSolution))
+          firstNumber = randoNumber(nil, max: randomSolution)
           if firstNumber == randomSolution || firstNumber == 1 || firstNumber == 0 {
             generateFirst()
           }
@@ -138,16 +141,17 @@ class NumberCombination : NSObject {
     self.sum = randomSolution
     print("FIRSTNUMBER: \(firstNumber)")
     print("SECONDNUMBER: \(secondNumber)")
-    print("THIRDNUMBER: \(randomSolution)")
+    print("SOLUTION: \(randomSolution)")
     print("SUM INDEX: \(sumNumberIndex)")
     print("PREVIOUS: \(self.previousWinners.count)")
+    print(">>>>>>>>>>>")
   }
   
   func generateSolutionGridPositionIndex() -> Int {
     var index: Int!
     //Can't have the index for the solution be the middle of the grid
     func generateRand() {
-      index = randoNumber(nil, max: UInt32(8))
+      index = randoNumber(0, max: 8)
       if index == 4 {
         generateRand()
       }
@@ -168,7 +172,7 @@ class NumberCombination : NSObject {
       case (x: 0, y: 1), (x: 2, y: 1):
         solutionDirection = .Horizontal
       default:
-        let randomDirectionIndex = randoNumber(nil, max: 2)
+        let randomDirectionIndex = randoNumber(0, max: 2)
         solutionDirection = Grid.directions[randomDirectionIndex]
       }
       direction = solutionDirection
