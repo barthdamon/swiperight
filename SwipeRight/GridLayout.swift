@@ -13,10 +13,17 @@ import Foundation
 //basically do this by passing in numbers to NumberCombination init(), that way it can tell what is already set (which will only ever be other solutions). Just when generating random numbers check if the index of that spot already exists, and if it does adjust the random number generation accordingly to match the operation
 //then need to have solutionIndexes array just be bigger, and generate several numberCombinations depending on difficulty selected
 
+enum Operation {
+  case Divide
+  case Subtract
+  case Add
+  case Multiply
+}
+
 class GridNumberLayout: NSObject {
   
-  var winningCombinations: Array<NumberCombination> = []
-  var operations: Array<Operation>!
+  var winningCombination: NumberCombination?
+  var operations: Array<Operation> = Array()
   
   //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
   //actual numbers to be displayed relative to tile coordinates (what gets returned to main vc):
@@ -32,39 +39,38 @@ class GridNumberLayout: NSObject {
   
   func randomizeOperation() {
     //later set to random operation:
-    operations = nil
     operations = Array()
 //    let randomPlusMinusIndex = 1
-    let randomPlusMinusIndex = randoNumber(0, max: 1)
-    operations.append(Grid.operations[2])
+    let randomPlusMinusIndex = Int.random(0...1)
+    operations.append(Grid.operations[randomPlusMinusIndex])
+//    operations.append(Grid.operations[1])
 //    let randomTwo = 3
-    let randomTwo = randoNumber(2, max: 3)
-    operations.append(Grid.operations[3])
+    let randomTwo = Int.random(2...3)
+    operations.append(Grid.operations[randomTwo])
     
   }
 
   func generateNumberGrid() {
-    for var i = 0; i < GameStatus.status.selectedMode.rawValue; i++ {
-      winningCombinations.append(NumberCombination(solution: true, layout: self))
-      setSolutionInGrid(i)
-    }
+    winningCombination = NumberCombination(solution: true, layout: self)
+    setSolutionInGrid()
 //    injectFillerNumbers()
   }
   
-  func setSolutionInGrid(index: Int) {
-    let solution = winningCombinations[index]
-    numbers[solution.xNumberIndex] = solution.x
-    numbers[solution.bNumberIndex] = solution.b
-    numbers[solution.sumNumberIndex] = solution.sum
-    solutionIndexes = [solution.xNumberIndex, solution.bNumberIndex, solution.sumNumberIndex]
-    print("Winning indexes: \(solution.xNumberIndex), \(solution.bNumberIndex), \(solution.sumNumberIndex)")
+  func setSolutionInGrid() {
+    if let solution = winningCombination {
+      numbers[solution.xNumberIndex] = solution.x
+      numbers[solution.bNumberIndex] = solution.b
+      numbers[solution.sumNumberIndex] = solution.sum
+      solutionIndexes = [solution.xNumberIndex, solution.bNumberIndex, solution.sumNumberIndex]
+      print("Winning indexes: \(solution.xNumberIndex), \(solution.bNumberIndex), \(solution.sumNumberIndex)")
+    }
   }
   
   func injectFillerNumbers() {
     if let omitted = solutionIndexes {
-      for var i = 0; i < numbers.count; i++ {
+      for (i, _) in numbers.enumerate() {
         if !omitted.contains(i) {
-          numbers[i] = randoNumber(nil, max: 50)
+          numbers[i] = Int.random(0...50)
         }
       }
     }

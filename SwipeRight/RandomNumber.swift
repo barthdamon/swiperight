@@ -12,54 +12,25 @@ import Foundation
 
 
 //Random number generator
-func randoNumber(min: Int?, max:Int) -> Int {
-  if max < 0 {
-    return Int(arc4random_uniform(50))
-  } else {
-    var result = Int(arc4random_uniform(UInt32(max) + 1))
+extension Int
+{
+  static func random(range: Range<Int> ) -> Int
+  {
+    var offset = 0
     
-    func getRandom() {
-      let check = arc4random_uniform(UInt32(max) + 1)
-      if check < UInt32(min!) {
-        getRandom()
-      } else {
-        result = Int(check)
-      }
+    if range.startIndex < 0   // allow negative ranges
+    {
+      offset = abs(range.startIndex)
     }
     
-    if let _ = min {
-      getRandom()
-      return result
-    } else {
-      return result
-    }
+    let mini = UInt32(range.startIndex + offset)
+    let maxi = UInt32(range.endIndex   + offset)
+    
+    return Int(mini + arc4random_uniform(maxi - mini)) - offset
+  }
+  
+  static func randomDivisible() -> Int {
+    let random = Int(2 + arc4random_uniform(40 - 2)) - 0
+    return 2 * random
   }
 }
-
-
-//Random number generator
-//func randoNumber(min: UInt32?, max:UInt32) -> Int {
-//  if max < 0 {
-//    return Int(arc4random_uniform(50 + 1))
-//  } else {
-//    var result = Int(arc4random_uniform(max + 1))
-//    //  var onlineResult = min + Int(arc4random_uniform(UInt32(max - min + 1)))
-//    
-//    func getRandom() {
-//      let check = arc4random_uniform(max + 1)
-//      if check < min {
-//        getRandom()
-//      } else {
-//        result = Int(check)
-//      }
-//    }
-//    
-//    if let _ = min {
-//      getRandom()
-//      return result
-//    } else {
-//      return result
-//      //    return -100 + Int(arc4random_uniform(UInt32(max + 100 + 1)))
-//    }
-//  }
-//}

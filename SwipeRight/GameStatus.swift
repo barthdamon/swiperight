@@ -9,9 +9,9 @@
 import Foundation
 
 enum GameMode: Int {
-  case Puzzle = 3
-  case Normal = 2
-  case Speed = 1
+  case Puzzle = 2
+  case Normal = 1
+  case Speed = 0
 }
 
 private var _status = GameStatus()

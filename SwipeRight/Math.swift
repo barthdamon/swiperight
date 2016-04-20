@@ -8,9 +8,3 @@
 
 import Foundation
 
-enum Operation {
-  case Divide
-  case Subtract
-  case Add
-  case Multiply
-}

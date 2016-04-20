@@ -14,7 +14,7 @@ class NumberCombination : NSObject {
   
   var solution = false
   
-  var operation: Operation!
+  var operation: Operation = .Add
   var x: Int!
   var b: Int!
   var sum: Int!
@@ -44,17 +44,11 @@ class NumberCombination : NSObject {
   var sumNumberIndex: Int!
   var numbers: Array<Int>!
   
-  //to avoid overrides
-  var previousWinners: Array<NumberCombination>!
-  var conflictingCombinations: Array<Array<Int>> = []
-
-  
   convenience init(solution: Bool, layout: GridNumberLayout) {
     self.init()
-    let randomOperation = randoNumber(0, max: 1)
+    let randomOperation = Int.random(0...layout.operations.count - 1)
     self.operation = layout.operations[randomOperation]
     self.numbers = layout.numbers
-    self.previousWinners = layout.winningCombinations
     if solution {
       self.solution = solution
       generateWinningCombination()
@@ -69,81 +63,14 @@ class NumberCombination : NSObject {
     generateXBPositions()
     setNumberValues()
 
-    //check for complete override, then redo if it exists
-    for winner in previousWinners {
-      let first = winner.conflictingCombinations[0]
-      let second = winner.conflictingCombinations[1]
-      let ourFirst = self.conflictingCombinations[0]
-      let ourSecond = self.conflictingCombinations[1]
-      
-      if (first[0] == ourFirst[0] && first[1] == ourFirst[1] && first[2] == ourFirst[2]) || (second[0] == ourSecond[0] && second[1] == ourSecond[1] && second[2] == ourSecond[2]) || (first[0] == ourFirst[2] && first[1] == ourFirst[1] && first[2] == ourFirst[0]) || (second[0] == ourSecond[2] && second[1] == ourSecond[1] && second[2] == ourSecond[0]) {
-        //need to make a whole new one
-        generateWinningCombination()
-      }
-    }
+
     
-  }
-  
-  func setNumberValues() {
-    
-    //Might have the case where another solution completely overrides this one, oh well makes it interesting, they dont need to know the actual mechanics. Theres a chance of three, suck it.
-    //now just need to make sure you aren't overriding anything here
-    
-    //IF operation is division or multiiplication you need to make the random solution even, and it has to be divisible by 3^x or 2^x
-    var randomSolution = 0
-    if notSet(sumNumberIndex) {
-      func generateSolution() {
-        randomSolution = randoNumber(nil, max:50)
-        if randomSolution == 0 || randomSolution == 1 {
-          generateSolution()
-        }
-      }
-      generateSolution()
-    } else {
-      randomSolution = numbers[sumNumberIndex]
-    }
-    
-    var firstNumber = 0
-    var secondNumber = 0
-    var firstNumberNeedsSetting = false
     print("<<<<<<<<<<<")
     print("OPERATION: \(operation)")
-    //first number
-    if notSet(xNumberIndex) {
-      //first need to check if the third number is set and set this based on that in case that one can't change
-      if notSet(bNumberIndex) {
-        func generateFirst() {
-          firstNumber = randoNumber(nil, max: randomSolution)
-          if firstNumber == randomSolution || firstNumber == 1 || firstNumber == 0 {
-            generateFirst()
-          }
-        }
-        generateFirst()
-      } else {
-        firstNumberNeedsSetting = true
-      }
-    } else {
-      firstNumber = numbers[xNumberIndex]
-    }
-    
-    //second number
-    if notSet(bNumberIndex) {
-        secondNumber = completeOperation(randomSolution, first: firstNumber, second: nil, operation: operation)
-    } else {
-      secondNumber = numbers[bNumberIndex]
-      if firstNumberNeedsSetting {
-        firstNumber = completeOperation(randomSolution, first: nil, second: secondNumber, operation: operation)
-      }
-    }
-    
-    self.x = firstNumber
-    self.b = secondNumber
-    self.sum = randomSolution
-    print("FIRSTNUMBER: \(firstNumber)")
-    print("SECONDNUMBER: \(secondNumber)")
-    print("SOLUTION: \(randomSolution)")
+    print("x: \(self.x)")
+    print("b: \(self.b)")
+    print("sum: \(self.sum)")
     print("SUM INDEX: \(sumNumberIndex)")
-    print("PREVIOUS: \(self.previousWinners.count)")
     print(">>>>>>>>>>>")
   }
   
@@ -151,7 +78,7 @@ class NumberCombination : NSObject {
     var index: Int!
     //Can't have the index for the solution be the middle of the grid
     func generateRand() {
-      index = randoNumber(0, max: 8)
+      index = Int.random(0...8)
       if index == 4 {
         generateRand()
       }
@@ -172,7 +99,7 @@ class NumberCombination : NSObject {
       case (x: 0, y: 1), (x: 2, y: 1):
         solutionDirection = .Horizontal
       default:
-        let randomDirectionIndex = randoNumber(0, max: 2)
+        let randomDirectionIndex = Int.random(0...2)
         solutionDirection = Grid.directions[randomDirectionIndex]
       }
       direction = solutionDirection
@@ -217,18 +144,53 @@ class NumberCombination : NSObject {
         }
       }
     }
-    //set conflict combinations
-    self.conflictingCombinations = [[xNumberIndex, bNumberIndex, sumNumberIndex],[sumNumberIndex, bNumberIndex, xNumberIndex]]
   }
   
   //helper for checking if number index can't be overridden
-  //TODO: CANT BE NEGATIVE ONE FOREVER, NEEDS TO BE -10000 or something that can never happen with the regular numbers
   func notSet(index: Int) -> Bool {
     if numbers[index] != -1 {
       return false
     } else {
       return true
     }
+  }
+  
+  func findRandomDivisible(first: Int, divider: Int, scale: Int) -> Int {
+    
+    return 0
+  }
+  
+  func setNumberValues() {
+    var solution = 0
+    var firstNumber = 0
+    var secondNumber = 0
+    
+    
+    //cant be just 2 or 3.... needs to be a random combination of multiplyable numbers. maybe just need a list of all the combos that sum to less than 100??
+    let randomDivider = Int.random(2...30)
+    let randomScale = Int.random(2...3)
+    
+    switch operation {
+    case .Add:
+      solution = Int.random(2...98)
+      firstNumber = Int.random(2...solution)
+      secondNumber = completeOperation(solution, first: firstNumber, second: nil, operation: operation)
+    case .Subtract:
+      solution = Int.random(2...88)
+      firstNumber = Int.random(solution...98)
+      secondNumber = completeOperation(solution, first: firstNumber, second: nil, operation: operation)
+    case .Multiply:
+      firstNumber = randomDivider * randomScale
+      secondNumber = findRandomDivisible(firstNumber, divider: randomDivider, scale: randomScale)
+      solution = completeOperation(nil, first: firstNumber, second: secondNumber, operation: operation)
+    case .Divide:
+      firstNumber = randomDivider * randomScale
+      
+    }
+
+    self.x = firstNumber
+    self.b = secondNumber
+    self.sum = solution
   }
 }
 

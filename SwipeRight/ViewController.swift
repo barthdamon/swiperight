@@ -76,9 +76,9 @@ class ViewController: UIViewController, GameViewDelegate {
   //MARK: GameView Delegate Methods:
   func scoreChange(correct: Bool) {
     if correct {
-      score++
+      score += 1
     } else {
-      score--
+      score -= 1
     }
   }
   
@@ -90,7 +90,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func startGameplay() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-      self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickTock", userInfo: nil, repeats: true)
+      self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       GameStatus.status.gameActive = true
     })
   }
@@ -137,7 +137,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func tickTock() {
     if GameStatus.status.gameActive {
-      time--
+      time -= 1
       if time == 0 {
         gameOver()
       }
@@ -186,14 +186,14 @@ class ViewController: UIViewController, GameViewDelegate {
     beginButton?.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
     beginButton?.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
     beginButton?.titleLabel?.font = UIFont.systemFontOfSize(30)
-    beginButton?.addTarget(self, action: "beginButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+    beginButton?.addTarget(self, action: #selector(ViewController.beginButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
     
     resetButton = UIButton(frame: CGRectMake(buttonX, buttonY, 100, 70))
     resetButton?.setTitle("Reset", forState: .Normal)
     resetButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     resetButton?.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
     resetButton?.titleLabel?.font = UIFont.systemFontOfSize(30)
-    resetButton?.addTarget(self, action: "resetButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+    resetButton?.addTarget(self, action: #selector(ViewController.resetButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
     resetButton?.hidden = true
     
     clientView?.addSubview(beginButton!)
@@ -212,23 +212,23 @@ class ViewController: UIViewController, GameViewDelegate {
       let buttonsView = UIView(frame: CGRectMake(offset,height - 30,width,30))
       
       let operationWidth = buttonsView.frame.width / 4
-      multiplyView = UIImageView(frame: CGRectMake(0,0,operationWidth, 30))
-      multiplyView?.contentMode = .ScaleAspectFill
-      multiplyView?.image = multiplyImageGray
-      divideView = UIImageView(frame: CGRectMake(operationWidth,0,operationWidth, 30))
-      divideView?.image = divideImageGray
-      divideView?.contentMode = .ScaleAspectFill
-      addView = UIImageView(frame: CGRectMake(operationWidth * 2,0,operationWidth, 30))
+      addView = UIImageView(frame: CGRectMake(0,0,operationWidth, 30))
       addView?.image = addImageGray
       addView?.contentMode = .ScaleAspectFill
-      subtractView = UIImageView(frame: CGRectMake(operationWidth * 3,0,operationWidth, 30))
+      subtractView = UIImageView(frame: CGRectMake(operationWidth,0,operationWidth, 30))
       subtractView?.image = subtractImageGray
       subtractView?.contentMode = .ScaleAspectFill
+      multiplyView = UIImageView(frame: CGRectMake(operationWidth * 2,0,operationWidth, 30))
+      multiplyView?.contentMode = .ScaleAspectFill
+      multiplyView?.image = multiplyImageGray
+      divideView = UIImageView(frame: CGRectMake(operationWidth * 3,0,operationWidth, 30))
+      divideView?.image = divideImageGray
+      divideView?.contentMode = .ScaleAspectFill
       
-      buttonsView.addSubview(multiplyView!)
-      buttonsView.addSubview(divideView!)
       buttonsView.addSubview(addView!)
       buttonsView.addSubview(subtractView!)
+      buttonsView.addSubview(multiplyView!)
+      buttonsView.addSubview(divideView!)
       
       clientView.addSubview(buttonsView)
     }
@@ -240,19 +240,19 @@ class ViewController: UIViewController, GameViewDelegate {
     puzzleButton?.setTitle("Puzzle", forState: .Normal)
     puzzleButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     puzzleButton?.backgroundColor = UIColor.lightGrayColor()
-    puzzleButton?.addTarget(self, action: "modeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    puzzleButton?.addTarget(self, action: #selector(ViewController.modeButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     normalButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
     normalButton?.setTitle("Normal", forState: .Normal)
     normalButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     normalButton?.backgroundColor = UIColor.lightGrayColor()
-    normalButton?.addTarget(self, action: "modeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    normalButton?.addTarget(self, action: #selector(ViewController.modeButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     speedButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
     speedButton?.setTitle("Speed", forState: .Normal)
     speedButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     speedButton?.backgroundColor = UIColor.lightGrayColor()
-    speedButton?.addTarget(self, action: "modeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+    speedButton?.addTarget(self, action: #selector(ViewController.modeButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     switch GameStatus.status.selectedMode {
     case .Puzzle:

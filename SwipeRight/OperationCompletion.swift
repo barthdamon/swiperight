@@ -9,9 +9,9 @@
 import Foundation
 
 
-func completeOperation(sum: Int, first: Int?, second: Int?, operation: Operation) -> Int {
+func completeOperation(sum: Int?, first: Int?, second: Int?, operation: Operation) -> Int {
   var int = 0
-  if let first = first {
+  if let first = first, sum = sum {
     //solve for second number
     switch operation {
     case .Add:
@@ -23,7 +23,7 @@ func completeOperation(sum: Int, first: Int?, second: Int?, operation: Operation
     case .Multiply:
       int = sum / first
     }
-  } else if let second = second {
+  } else if let second = second, sum = sum {
     //solve for first number
     switch operation {
     case .Add:
@@ -34,6 +34,17 @@ func completeOperation(sum: Int, first: Int?, second: Int?, operation: Operation
       int = sum * second
     case .Multiply:
       int = sum / second
+    }
+  } else if let first = first, second = second {
+    switch operation {
+    case .Add:
+      int = first + second
+    case .Subtract:
+      int = first - second
+    case .Divide:
+      int = first / second
+    case .Multiply:
+      int = first * second
     }
   }
   

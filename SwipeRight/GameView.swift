@@ -55,7 +55,7 @@ class GameView: UIView {
   }
 
   func addGestureRecognizers() {
-    let swipeRecognizer = UIPanGestureRecognizer(target: self, action: "gameViewSwiped:")
+    let swipeRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GameView.gameViewSwiped(_:)))
     swipeRecognizer.minimumNumberOfTouches = 1
     self.addGestureRecognizer(swipeRecognizer)
   }
@@ -71,7 +71,7 @@ class GameView: UIView {
       }
     }
     
-    for var i = 0; i < 9; i++ {
+    for i in 0 ..< 9 {
       let tileView = TileView(xCoord: coords.x, yCoord: coords.y, tileWidth: tileWidth, overlay: false)
       tileViews.append(tileView)
       adjustCoords(i)
@@ -108,7 +108,7 @@ class GameView: UIView {
         let mid = (x: (start.x + end.x) / 2, y: (start.y + end.y) / 2)
         print("MIDDLE: \(mid.x), \(mid.y)")
         
-        for var i = 0; i < Grid.tileCoordinates.count; i++ {
+        for i in 0 ..< Grid.tileCoordinates.count {
           let loc = Grid.tileCoordinates[i]
           if loc.x == start.x && loc.y == start.y {
             startTile = tileViews[i]
@@ -238,7 +238,7 @@ class GameView: UIView {
   
   func applyNumberLayoutToTiles(reset: Bool) {
     if let layout = currentLayout {
-      for var i = 0; i < layout.numbers.count; i++ {
+      for i in 0 ..< layout.numbers.count {
         if reset {
           tileViews[i].numberLabel?.alpha = 0
         } else {
