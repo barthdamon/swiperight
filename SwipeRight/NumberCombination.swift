@@ -125,19 +125,19 @@ class NumberCombination : NSObject {
           xPosition = (x: sumPosition.x, y: 2)
         }
       case .Diagonal:
-        xPosition = (x: 1, y: 1)
+        bPosition = (x: 1, y: 1)
         switch sumPosition {
         case (x: 2, y: 2):
-          bPosition = (x: 0, y: 0)
+          xPosition = (x: 0, y: 0)
           break
         case (x: 0, y: 2):
-          bPosition = (x: 2, y: 0)
+          xPosition = (x: 2, y: 0)
           break
         case (x: 2, y: 0):
-          bPosition = (x: 0, y: 2)
+          xPosition = (x: 0, y: 2)
           break
         case (x: 0, y: 0):
-          bPosition = (x: 2, y: 2)
+          xPosition = (x: 2, y: 2)
           break
         default:
           break
@@ -154,21 +154,17 @@ class NumberCombination : NSObject {
       return true
     }
   }
-  
-  func findRandomDivisible(first: Int, divider: Int, scale: Int) -> Int {
-    
-    return 0
-  }
+
   
   func setNumberValues() {
     var solution = 0
     var firstNumber = 0
     var secondNumber = 0
     
-    
-    //cant be just 2 or 3.... needs to be a random combination of multiplyable numbers. maybe just need a list of all the combos that sum to less than 100??
+    //cant be just 2 or 3.... needs to be a random combination of multiplyable numbers. maybe just need a list of all the combos that sum to less than 100
     let randomDivider = Int.random(2...30)
     let randomScale = Int.random(2...3)
+    let swap = Int.random(1...2)
     
     switch operation {
     case .Add:
@@ -180,12 +176,13 @@ class NumberCombination : NSObject {
       firstNumber = Int.random(solution...98)
       secondNumber = completeOperation(solution, first: firstNumber, second: nil, operation: operation)
     case .Multiply:
-      firstNumber = randomDivider * randomScale
-      secondNumber = findRandomDivisible(firstNumber, divider: randomDivider, scale: randomScale)
-      solution = completeOperation(nil, first: firstNumber, second: secondNumber, operation: operation)
+      solution = randomDivider * randomScale
+      secondNumber = swap == 1 ? randomDivider : randomScale
+      firstNumber = swap == 1 ? randomScale : randomDivider
     case .Divide:
       firstNumber = randomDivider * randomScale
-      
+      secondNumber = swap == 1 ? randomDivider : randomScale
+      solution = swap == 1 ? randomScale : randomDivider
     }
 
     self.x = firstNumber
