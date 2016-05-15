@@ -42,7 +42,7 @@ class TileView: UIView {
           if countDown == 1 {
             callback(true)
           } else {
-            countDown--
+            countDown -= 1
             tickTock()
           }
       })

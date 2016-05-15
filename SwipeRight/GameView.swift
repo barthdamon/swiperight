@@ -16,6 +16,7 @@ protocol GameViewDelegate {
   func configureStartOptions()
   func toggleClientView()
   func resetClientOperations(currentOperations: Array<Operation>?)
+  func addTime(seconds: Int)
 }
 
 class GameView: UIView {
@@ -186,6 +187,7 @@ class GameView: UIView {
           endTile.backgroundColor = UIColor.greenColor()
           middleTile.backgroundColor = UIColor.greenColor()
           self.userInteractionEnabled = false
+          delegate?.addTime(15)
           resetTiles()
         } else {
           delegate.scoreChange(false)

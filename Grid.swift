@@ -18,6 +18,52 @@ enum GridDirection {
   case Diagonal
 }
 
+// difficulty levels (maybe 15?):
+// Maybe each round gets a random difficulty addition ???? - some might be easier than others but thats fine.... eveybodies playing the same game in the end
+// Make it to the next round perhaps?
+// Difficulty types:
+// - Extra tiles
+// - Extra operations
+
+
+
+// Progression 4 picks per round perhaps?:
+// Maybe you let them spec as they progress: you choose what to add, eventually it becomes unavailable....
+// Tiles: add 2 each time (3)
+// Operations: add 1 until full, then add two at once (4)
+// Time: Reduce time added and time allowed til end of round (10 sec each) (6)
+// Range: Increase range of answers (5)
+
+
+// Start off with either tile or additions added on.
+// When
+
+// Helpers:
+// Have 3 helper points per round? - round has 5 questions each perhaps?
+// - Remove a tile (1)
+// - Remove an operation (2)
+// - Highlight section of the answer (3)
+
+
+// Difficulty Effects (perhaps on a spinner?)
+// Time reduction
+// Add time reduction
+// Another tile (so long as extra tiles are less than 7)
+// Number range > (so long as number range is less than 100)
+
+// steady effects
+// Add an operation (so long as there are 4 or less operations)
+// // Multiple active operations
+
+// Difficulty Progression per round:
+//1 : super easy, no extra tiles, add/subtract
+//2 : another random operation, random 2 effects.
+//3 : another random operation, random 2 effects.
+//4 : another random operation, random 2 effects
+//5 : multiple active operations, random 2 effects
+//4 : random 2 effects forever
+// 3 helper points per round, they carry over into the next round
+
 
 class Grid: NSObject {
   //Grid Layout Reference Variables
