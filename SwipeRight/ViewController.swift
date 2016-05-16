@@ -59,11 +59,11 @@ class ViewController: UIViewController, GameViewDelegate {
   var countdownOverlayView: TileView?
   var viewWidth: CGFloat = 0
   var viewHeight: CGFloat = 0
-  
   var operations: Array<Operation>?
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    MultipleHelper.defaultHelper.initializeCombinations()
     viewWidth = self.view.frame.width
     viewHeight = self.view.frame.height
     configureHUD()

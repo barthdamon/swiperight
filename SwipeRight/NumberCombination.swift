@@ -46,9 +46,8 @@ class NumberCombination : NSObject {
   
   convenience init(solution: Bool, layout: GridNumberLayout) {
     self.init()
-    let randomOperation = Int.random(0...layout.operations.count - 1)
-    self.operation = layout.operations[randomOperation]
     self.numbers = layout.numbers
+    self.operation = layout.operations[0]
     if solution {
       self.solution = solution
       generateWinningCombination()
@@ -160,29 +159,25 @@ class NumberCombination : NSObject {
     var solution = 0
     var firstNumber = 0
     var secondNumber = 0
-    
-    //cant be just 2 or 3.... needs to be a random combination of multiplyable numbers. maybe just need a list of all the combos that sum to less than 100
-    let randomDivider = Int.random(2...30)
-    let randomScale = Int.random(2...3)
-    let swap = Int.random(1...2)
+    let combo = MultipleHelper.defaultHelper.combinationWithinRange()
     
     switch operation {
     case .Add:
-      solution = Int.random(2...98)
+      solution = Int.random(2...ProgressionManager.sharedManager.range)
       firstNumber = Int.random(2...solution)
       secondNumber = completeOperation(solution, first: firstNumber, second: nil, operation: operation)
     case .Subtract:
-      solution = Int.random(2...88)
-      firstNumber = Int.random(solution...98)
+      solution = Int.random(2...ProgressionManager.sharedManager.range - 2)
+      firstNumber = Int.random(solution...ProgressionManager.sharedManager.range)
       secondNumber = completeOperation(solution, first: firstNumber, second: nil, operation: operation)
     case .Multiply:
-      solution = randomDivider * randomScale
-      secondNumber = swap == 1 ? randomDivider : randomScale
-      firstNumber = swap == 1 ? randomScale : randomDivider
+      solution = combo.sum
+      secondNumber = combo.b
+      firstNumber = combo.x
     case .Divide:
-      firstNumber = randomDivider * randomScale
-      secondNumber = swap == 1 ? randomDivider : randomScale
-      solution = swap == 1 ? randomScale : randomDivider
+      firstNumber = combo.sum
+      secondNumber = combo.b
+      solution = combo.x
     }
 
     self.x = firstNumber

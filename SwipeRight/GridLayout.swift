@@ -23,7 +23,7 @@ enum Operation {
 class GridNumberLayout: NSObject {
   
   var winningCombination: NumberCombination?
-  var operations: Array<Operation> = Array()
+  var operations: Array<Operation> = ProgressionManager.sharedManager.randomActiveOperations()
   
   //NOTE: ALL TILES START AT 0 INSTEAD OF ONE DONT GET CONFUSED
   //actual numbers to be displayed relative to tile coordinates (what gets returned to main vc):
@@ -33,27 +33,13 @@ class GridNumberLayout: NSObject {
   
   override init() {
     super.init()
-    randomizeOperation()
     generateNumberGrid()
-  }
-  
-  func randomizeOperation() {
-    //later set to random operation:
-    operations = Array()
-//    let randomPlusMinusIndex = 1
-    let randomPlusMinusIndex = Int.random(0...1)
-    operations.append(Grid.operations[randomPlusMinusIndex])
-//    operations.append(Grid.operations[1])
-//    let randomTwo = 3
-    let randomTwo = Int.random(2...3)
-    operations.append(Grid.operations[randomTwo])
-    
   }
 
   func generateNumberGrid() {
     winningCombination = NumberCombination(solution: true, layout: self)
     setSolutionInGrid()
-//    injectFillerNumbers()
+    injectFillerNumbers()
   }
   
   func setSolutionInGrid() {
@@ -70,7 +56,7 @@ class GridNumberLayout: NSObject {
     if let omitted = solutionIndexes {
       for (i, _) in numbers.enumerate() {
         if !omitted.contains(i) {
-          numbers[i] = Int.random(0...50)
+          numbers[i] = Int.random(0...ProgressionManager.sharedManager.range)
         }
       }
     }
