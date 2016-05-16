@@ -87,10 +87,10 @@ class ProgressionManager: NSObject {
   }
   
   // MARK: Time (should time stack? - no each round is different, just need to get to the end)
-  var standardRoundTime: Int = 120
+  var standardRoundDuration: Int = 120
   var standardBoostTime: Int = 15
-  func decreaseStandardRoundTime() {
-    standardRoundTime -= 20
+  func decreaseStandardRoundDuration() {
+    standardRoundDuration -= 20
   }
   func decreaseStandardBoostTime() {
     standardBoostTime -= 5

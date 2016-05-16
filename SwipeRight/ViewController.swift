@@ -25,8 +25,7 @@ class ViewController: UIViewController, GameViewDelegate {
     }
   }
   var gameDuration: Int {
-    return GameStatus.status.selectedMode.rawValue * 60
-//    return 10
+    return ProgressionManager.sharedManager.standardRoundDuration
   }
   var timer: NSTimer?
   

@@ -187,7 +187,7 @@ class GameView: UIView {
           endTile.backgroundColor = UIColor.greenColor()
           middleTile.backgroundColor = UIColor.greenColor()
           self.userInteractionEnabled = false
-          delegate?.addTime(15)
+          delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
           resetTiles()
         } else {
           delegate.scoreChange(false)
