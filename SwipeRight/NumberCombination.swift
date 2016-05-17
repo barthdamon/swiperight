@@ -164,7 +164,7 @@ class NumberCombination : NSObject {
     switch operation {
     case .Add:
       solution = Int.random(2...ProgressionManager.sharedManager.range)
-      firstNumber = Int.random(2...solution)
+      firstNumber = Int.random(1...solution - 1)
       secondNumber = completeOperation(solution, first: firstNumber, second: nil, operation: operation)
     case .Subtract:
       solution = Int.random(2...ProgressionManager.sharedManager.range - 2)
