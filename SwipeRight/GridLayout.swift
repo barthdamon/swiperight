@@ -58,20 +58,18 @@ class GridNumberLayout: NSObject {
   
   func injectFillerNumbers() {
     //TODO: Refactor the shit out of this so that it is smart enough to place tiles so that they confuse player, and so that it checks for no other existing solutions
-//    if let combination = winningCombination {
-//      switch winningCombination {
-//        
-//      }
-//    }
-
-    if let omitted = solutionIndexes {
+    if let indexes = solutionIndexes {
+      var omitted = indexes
+      let omittedTiles = generateOmittedTiles()
+      omittedTiles.forEach({omitted.append($0)})
+      
       for (i, _) in numbers.enumerate() {
         if !omitted.contains(i) {
           numbers[i] = Int.random(0...ProgressionManager.sharedManager.range)
         }
       }
+      checkForOtherSolutions()
     }
-    checkForOtherSolutions()
   }
   
   func checkForOtherSolutions() {
@@ -104,6 +102,160 @@ class GridNumberLayout: NSObject {
       }
     }
     return true
+  }
+  
+  func generateOmittedTiles() -> Array<Int> {
+    var omittedTiles: Array<Int> = []
+    var tiles: Array<Int> = []
+    // I guess first find the ones that aren't omitted then take those out and the rest are omitted????
+    let numberOfTiles = ProgressionManager.sharedManager.numberOfTiles
+    if let combination = winningCombination, direction = combination.direction {
+      if numberOfTiles == 5 {
+        
+        
+        switch direction {
+        case .Diagonal:
+          let randDirection = Int.random(0...1)
+          if combination.xNumberIndex == 0 {
+            if randDirection == 0 {
+              tiles.append(1)
+              tiles.append(2)
+            } else {
+              tiles.append(3)
+              tiles.append(6)
+            }
+          } else {
+            if randDirection == 0 {
+              tiles.append(7)
+              tiles.append(6)
+            } else {
+              tiles.append(5)
+              tiles.append(2)
+            }
+          }
+          break
+        case .Vertical:
+          // in the middle
+          if combination.xNumberIndex == 1 || combination.xNumberIndex == 7 {
+            let randDirection = Int.random(0...3)
+            if randDirection == 0 {
+              tiles.append(0)
+              tiles.append(8)
+            } else if randDirection == 1 {
+              tiles.append(2)
+              tiles.append(6)
+            } else if randDirection == 2 {
+              tiles.append(0)
+              tiles.append(2)
+            } else if randDirection == 3 {
+              tiles.append(6)
+              tiles.append(8)
+            }
+            // on the right
+          } else if combination.xNumberIndex == 2 || combination.xNumberIndex == 5 || combination.xNumberIndex == 8 {
+            let randDirection = Int.random(0...2)
+            if randDirection == 0 {
+              tiles.append(combination.xNumberIndex - 1)
+              tiles.append(combination.xNumberIndex - 2)
+            } else if randDirection == 2 {
+              tiles.append(combination.bNumberIndex - 1)
+              tiles.append(combination.bNumberIndex - 2)
+            } else {
+              tiles.append(combination.sumNumberIndex - 1)
+              tiles.append(combination.sumNumberIndex - 2)
+            }
+          } else {
+            // on the left
+            let randDirection = Int.random(0...2)
+            if randDirection == 0 {
+              tiles.append(combination.xNumberIndex + 1)
+              tiles.append(combination.xNumberIndex + 2)
+            } else if randDirection == 2 {
+              tiles.append(combination.bNumberIndex + 1)
+              tiles.append(combination.bNumberIndex + 2)
+            } else {
+              tiles.append(combination.sumNumberIndex + 1)
+              tiles.append(combination.sumNumberIndex + 2)
+            }
+          }
+        case .Horizontal:
+          // in the middle
+          if combination.xNumberIndex == 3 || combination.xNumberIndex == 5 {
+            let horMidRandDirection = Int.random(0...4)
+            switch horMidRandDirection {
+            case 0:
+              tiles.append(0)
+              tiles.append(8)
+            case 1:
+              tiles.append(2)
+              tiles.append(6)
+            case 2:
+              tiles.append(0)
+              tiles.append(6)
+            case 3:
+              tiles.append(1)
+              tiles.append(7)
+            case 4:
+              tiles.append(2)
+              tiles.append(8)
+            default:
+              break
+            }
+            // on the bottom
+          } else if combination.xNumberIndex == 6 || combination.xNumberIndex == 7 || combination.xNumberIndex == 8 {
+            let randDirection = Int.random(0...2)
+            if randDirection == 0 {
+              tiles.append(combination.xNumberIndex - 3)
+              tiles.append(combination.xNumberIndex - 6)
+            } else if randDirection == 1 {
+              tiles.append(combination.bNumberIndex - 3)
+              tiles.append(combination.bNumberIndex - 6)
+            } else {
+              tiles.append(combination.sumNumberIndex - 3)
+              tiles.append(combination.sumNumberIndex - 6)
+            }
+          } else {
+            // on the top
+            let randDirection = Int.random(0...2)
+            if randDirection == 0 {
+              tiles.append(combination.xNumberIndex + 3)
+              tiles.append(combination.xNumberIndex + 6)
+            } else if randDirection == 1 {
+              tiles.append(combination.bNumberIndex + 3)
+              tiles.append(combination.bNumberIndex + 6)
+            } else {
+              tiles.append(combination.sumNumberIndex + 3)
+              tiles.append(combination.sumNumberIndex + 6)
+            }
+          }
+        }
+        
+        
+      } else if numberOfTiles == 7 {
+        switch direction {
+        case .Diagonal:
+          if combination.xNumberIndex == 0 {
+            
+            // blank number tiles either go on
+          } else {
+            
+          }
+          break
+        case .Vertical:
+          break
+        case .Horizontal:
+          break
+        }
+      }
+    }
+    
+    // Add any indexes that aren't used to omitted tiles
+    for gridIndex in 0...8 {
+      if !tiles.contains(gridIndex) {
+        omittedTiles.append(gridIndex)
+      }
+    }
+    return omittedTiles
   }
 
   

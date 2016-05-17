@@ -71,7 +71,7 @@ class ProgressionManager: NSObject {
   
   
   // MARK: Tiles
-  var numberOfTiles = 3
+  var numberOfTiles = 5
   func increaseNumberOfTiles() {
     numberOfTiles += 2
   }
