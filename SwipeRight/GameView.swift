@@ -37,7 +37,6 @@ class GameView: UIView {
       self.delegate.resetClientOperations(currentLayout?.operations)
     }
   }
-  var nextLayout: GridNumberLayout?
   
   convenience init(viewWidth: CGFloat, viewHeight: CGFloat, delegate: GameViewDelegate) {
     self.init()
@@ -183,6 +182,10 @@ class GameView: UIView {
       if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
         if checkForCorrect(operations, start: startNumber, mid: midNumber, end: endNumber) {
           delegate.scoreChange(true)
+          
+          
+          ProgressionManager.sharedManager.increaseNumberOfTiles()
+          
           startTile.backgroundColor = UIColor.greenColor()
           endTile.backgroundColor = UIColor.greenColor()
           middleTile.backgroundColor = UIColor.greenColor()
@@ -203,14 +206,7 @@ class GameView: UIView {
   
   func resetTiles() {
     if GameStatus.status.gameActive {
-      if let nextLayout = self.nextLayout {
-        self.currentLayout = nextLayout
-        self.nextLayout = GridNumberLayout()
-      } else {
-        self.currentLayout = GridNumberLayout()
-        //in the future generate next layout asynchronously in thebackground after current layout is generated
-        self.nextLayout = GridNumberLayout()
-      }
+      self.currentLayout = GridNumberLayout()
       animateTileReset()
     }
   }

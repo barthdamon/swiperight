@@ -65,10 +65,10 @@ class GridNumberLayout: NSObject {
   
   func injectFillerNumbers() {
     //TODO: Refactor the shit out of this so that it is smart enough to place tiles so that they confuse player, and so that it checks for no other existing solutions
-      resetPopulatedTiles()
-      calculateTileFillerIndexes()
-    
-      fillFillers(populatedTiles)
+    resetPopulatedTiles()
+    calculateTileFillerIndexes() { (success) in
+      self.fillFillers(self.populatedTiles)
+    }
   }
   
   func fillFillers(populated: Array<Int>) {
@@ -94,8 +94,10 @@ class GridNumberLayout: NSObject {
   
   
   
-  func calculateTileFillerIndexes() {
+  func calculateTileFillerIndexes(callback: (success: Bool) -> ()) {
     // is this number of tiles right? Seems like the set isn't getting in as it should
+    
+    // need more connections not working it seems......Also only have one combo dont load ahead of time cause then the effects are old
     let numberOfExtraTiles = ProgressionManager.sharedManager.numberOfExtraTiles
     var requiredConnections = 1
     if numberOfExtraTiles == 6 {
@@ -114,16 +116,20 @@ class GridNumberLayout: NSObject {
     var currentTile = 1
     repeat {
       let numberEmpty = emptyTiles.count - 1
-      let randTileIndex = Int.random(0...numberEmpty)
-      populatedTiles.append(emptyTiles[randTileIndex])
-      emptyTiles.removeAtIndex(randTileIndex)
+      if emptyTiles.count > 0 {
+        let randTileIndex = Int.random(0...numberEmpty)
+        populatedTiles.append(emptyTiles[randTileIndex])
+        emptyTiles.removeAtIndex(randTileIndex)
+      }
       currentTile += 1
     } while currentTile <= numberOfExtraTiles
-    guard numberOfConnections(populatedTiles) != requiredConnections else {
+    
+    if numberOfConnections(populatedTiles) != requiredConnections {
       print("Need more connections in filler...")
       resetPopulatedTiles()
-      calculateTileFillerIndexes()
-      return
+      calculateTileFillerIndexes(callback)
+    } else {
+      callback(success: true)
     }
   }
   
