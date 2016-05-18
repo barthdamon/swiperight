@@ -67,19 +67,73 @@ class GridNumberLayout: NSObject {
     //TODO: Refactor the shit out of this so that it is smart enough to place tiles so that they confuse player, and so that it checks for no other existing solutions
       resetPopulatedTiles()
       calculateTileFillerIndexes()
+    
       fillFillers(populatedTiles)
   }
   
-  func fillFillers(omitted: Array<Int>) {
-    for (i, _) in numbers.enumerate() {
-      if !omitted.contains(i) {
-        numbers[i] = Int.random(0...ProgressionManager.sharedManager.range)
+  func fillFillers(populated: Array<Int>) {
+    if let solution = winningCombination {
+      let tilePopulation = populated.filter({$0 != solution.xNumberIndex && $0 != solution.bNumberIndex && $0 != solution.sumNumberIndex})
+      for (i, _) in numbers.enumerate() {
+        if tilePopulation.contains(i) {
+          numbers[i] = Int.random(0...ProgressionManager.sharedManager.range)
+        }
       }
+      checkForOtherSolutions(populated)
     }
-    checkForOtherSolutions(omitted)
   }
   
-  func checkForOtherSolutions(omitted: Array<Int>) {
+  func calculateTileFillerIndexes() {
+    // is this number of tiles right? Seems like the set isn't getting in as it should
+    let setsOfExtraTiles = ProgressionManager.sharedManager.setsOfExtraTiles
+    var requiredConnections = 1
+    switch setsOfExtraTiles {
+    case 1:
+      requiredConnections = 2
+    case 2:
+      requiredConnections = 4
+    case 3:
+      requiredConnections = 8
+    default:
+      break
+    }
+    var emptyTiles: Array<Int> = []
+    for tileIndex in 0...8 {
+      if !populatedTiles.contains(tileIndex) {
+        emptyTiles.append(tileIndex)
+      }
+    }
+    let numberOfExtraTiles = setsOfExtraTiles * 2
+    if numberOfExtraTiles > 0 {
+      for _ in 0...numberOfExtraTiles - 1 {
+        let numberEmpty = emptyTiles.count - 1
+        let randTileIndex = Int.random(0...numberEmpty)
+        populatedTiles.append(emptyTiles[randTileIndex])
+      }
+    }
+    guard numberOfConnections(populatedTiles) != requiredConnections else {
+      print("Need more connections in filler...")
+      resetPopulatedTiles()
+      calculateTileFillerIndexes()
+      return
+    }
+  }
+  
+  func numberOfConnections(populatedTiles: Array<Int>) -> Int {
+    var connectionsInPopulated = 0
+    for combination in Grid.combinations {
+      var contained = true
+      for index in combination {
+        if !populatedTiles.contains(index) {
+          contained = false
+        }
+      }
+      if contained { connectionsInPopulated += 1 }
+    }
+    return connectionsInPopulated
+  }
+  
+  func checkForOtherSolutions(populated: Array<Int>) {
     if let solution = winningCombination {
       for possible in Grid.combinations {
         let posX = numbers[possible[0]]
@@ -89,7 +143,7 @@ class GridNumberLayout: NSObject {
           if !((possible[0] == solution.xNumberIndex && possible[1] == solution.bNumberIndex && possible[2] == solution.sumNumberIndex) || (possible[0] == solution.sumNumberIndex && possible[1] == solution.bNumberIndex && possible[2] == solution.xNumberIndex)) {
             if !fillerClearsOperations(posX, b: posB, sum: posSum) {
               print("Extra solution found: \(posX) \(posB) \(posSum), regenerating filler...")
-              fillFillers(omitted)
+              fillFillers(populated)
               break
             }
           }
@@ -110,234 +164,6 @@ class GridNumberLayout: NSObject {
     }
     return true
   }
-  
-  func calculateTileFillerIndexes() {
-    let setsOfExtraTiles = ProgressionManager.sharedManager.setsOfExtraTiles
-    var requiredConnections = 1
-    switch setsOfExtraTiles {
-    case 1:
-      requiredConnections = 2
-    case 2:
-      requiredConnections = 4
-    case 3:
-      requiredConnections = 8
-    default:
-      break
-    }
-    var emptyTiles: Array<Int> = []
-    for tileIndex in 0...8 {
-      if !emptyTiles.contains(tileIndex) {
-        emptyTiles.append(tileIndex)
-      }
-    }
-    
-    let numberOfExtraTiles = setsOfExtraTiles * 2
-    for _ in 0...numberOfExtraTiles {
-      let numberEmpty = emptyTiles.count - 1
-      let randTileIndex = Int.random(0...numberEmpty)
-      populatedTiles.append(emptyTiles[randTileIndex])
-    }
-
-    guard numberOfConnections(populatedTiles) != requiredConnections else {
-      resetPopulatedTiles()
-      calculateTileFillerIndexes()
-    }
-    // Loop through each index. If it isn't omitted, pull it and check for a potential distracting position set: try one to the right and left and up and down and diagonal. If those are within the index range and nothing there, put it there.
-    // Then make sure it is complete:
-    // connected combinations depending on sets of extra tiles: 0,1,2,3
-    // 1, 2, 4,  8
-    // if not, redo!
-    // have a checker that runs through all the combinations and checks for tiles that have connected combos
-    
-  }
-  
-  func numberOfConnections(populatedTiles: Array<Int>) -> Int {
-    //Diagonal:
-    
-  }
-  
-//  func generateOmittedTiles() -> Array<Int> {
-//    var tiles: Array<Int> = []
-//    // I guess first find the ones that aren't omitted then take those out and the rest are omitted????
-//    let numberOfTiles = ProgressionManager.sharedManager.numberOfTiles
-//    if let combination = winningCombination, direction = combination.direction {
-//      if numberOfTiles == 5 {
-//        switch direction {
-//        case .Diagonal:
-//          let randDirection = Int.random(0...5)
-//          if combination.xNumberIndex == 0 || combination.xNumberIndex == 8 {
-//            switch randDirection {
-//            case 0:
-//              tiles.append(1)
-//              tiles.append(2)
-//            case 1:
-//              tiles.append(3)
-//              tiles.append(6)
-//            case 2:
-//              tiles.append(3)
-//              tiles.append(5)
-//            case 3:
-//              tiles.append(2)
-//              tiles.append(5)
-//            case 4:
-//              tiles.append(6)
-//              tiles.append(7)
-//            case 5:
-//              tiles.append(2)
-//              tiles.append(6)
-//            default:
-//              break
-//            }
-//          } else {
-//            switch randDirection {
-//            case 0:
-//              tiles.append(0)
-//              tiles.append(8)
-//            case 1:
-//              tiles.append(0)
-//              tiles.append(1)
-//            case 2:
-//              tiles.append(0)
-//              tiles.append(3)
-//            case 3:
-//              tiles.append(3)
-//              tiles.append(5)
-//            case 4:
-//              tiles.append(7)
-//              tiles.append(8)
-//            case 5:
-//              tiles.append(8)
-//              tiles.append(5)
-//            default:
-//              break
-//            }
-//          }
-//          break
-//        case .Vertical:
-//          // in the middle
-//          if combination.xNumberIndex == 1 || combination.xNumberIndex == 7 {
-//            let randDirection = Int.random(0...3)
-//            if randDirection == 0 {
-//              tiles.append(0)
-//              tiles.append(8)
-//            } else if randDirection == 1 {
-//              tiles.append(2)
-//              tiles.append(6)
-//            } else if randDirection == 2 {
-//              tiles.append(0)
-//              tiles.append(2)
-//            } else if randDirection == 3 {
-//              tiles.append(6)
-//              tiles.append(8)
-//            }
-//            // on the right
-//          } else if combination.xNumberIndex == 2 || combination.xNumberIndex == 5 || combination.xNumberIndex == 8 {
-//            let randDirection = Int.random(0...2)
-//            if randDirection == 0 {
-//              tiles.append(combination.xNumberIndex - 1)
-//              tiles.append(combination.xNumberIndex - 2)
-//            } else if randDirection == 2 {
-//              tiles.append(combination.bNumberIndex - 1)
-//              tiles.append(combination.bNumberIndex - 2)
-//            } else {
-//              tiles.append(combination.sumNumberIndex - 1)
-//              tiles.append(combination.sumNumberIndex - 2)
-//            }
-//          } else {
-//            // on the left
-//            let randDirection = Int.random(0...2)
-//            if randDirection == 0 {
-//              tiles.append(combination.xNumberIndex + 1)
-//              tiles.append(combination.xNumberIndex + 2)
-//            } else if randDirection == 2 {
-//              tiles.append(combination.bNumberIndex + 1)
-//              tiles.append(combination.bNumberIndex + 2)
-//            } else {
-//              tiles.append(combination.sumNumberIndex + 1)
-//              tiles.append(combination.sumNumberIndex + 2)
-//            }
-//          }
-//        case .Horizontal:
-//          // in the middle
-//          if combination.xNumberIndex == 3 || combination.xNumberIndex == 5 {
-//            let horMidRandDirection = Int.random(0...4)
-//            switch horMidRandDirection {
-//            case 0:
-//              tiles.append(0)
-//              tiles.append(8)
-//            case 1:
-//              tiles.append(2)
-//              tiles.append(6)
-//            case 2:
-//              tiles.append(0)
-//              tiles.append(6)
-//            case 3:
-//              tiles.append(1)
-//              tiles.append(7)
-//            case 4:
-//              tiles.append(2)
-//              tiles.append(8)
-//            default:
-//              break
-//            }
-//            // on the bottom
-//          } else if combination.xNumberIndex == 6 || combination.xNumberIndex == 7 || combination.xNumberIndex == 8 {
-//            let randDirection = Int.random(0...2)
-//            if randDirection == 0 {
-//              tiles.append(combination.xNumberIndex - 3)
-//              tiles.append(combination.xNumberIndex - 6)
-//            } else if randDirection == 1 {
-//              tiles.append(combination.bNumberIndex - 3)
-//              tiles.append(combination.bNumberIndex - 6)
-//            } else {
-//              tiles.append(combination.sumNumberIndex - 3)
-//              tiles.append(combination.sumNumberIndex - 6)
-//            }
-//          } else {
-//            // on the top
-//            let randDirection = Int.random(0...2)
-//            if randDirection == 0 {
-//              tiles.append(combination.xNumberIndex + 3)
-//              tiles.append(combination.xNumberIndex + 6)
-//            } else if randDirection == 1 {
-//              tiles.append(combination.bNumberIndex + 3)
-//              tiles.append(combination.bNumberIndex + 6)
-//            } else {
-//              tiles.append(combination.sumNumberIndex + 3)
-//              tiles.append(combination.sumNumberIndex + 6)
-//            }
-//          }
-//        }
-//        
-//      
-//      }
-////      else if numberOfTiles == 7 {
-////        switch direction {
-////        case .Diagonal:
-////          if combination.xNumberIndex == 0 {
-////            
-////            // blank number tiles either go on
-////          } else {
-////            
-////          }
-////          break
-////        case .Vertical:
-////          break
-////        case .Horizontal:
-////          break
-////        }
-////      }
-//    }
-  
-    // Add any indexes that aren't used to omitted tiles
-    for gridIndex in 0...8 {
-      if !tiles.contains(gridIndex) {
-        omittedTiles.append(gridIndex)
-      }
-    }
-    return omittedTiles
-  }
-
   
 }
 
