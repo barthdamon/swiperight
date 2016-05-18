@@ -66,9 +66,8 @@ class GridNumberLayout: NSObject {
   func injectFillerNumbers() {
     //TODO: Refactor the shit out of this so that it is smart enough to place tiles so that they confuse player, and so that it checks for no other existing solutions
     resetPopulatedTiles()
-    calculateTileFillerIndexes() { (success) in
-      self.fillFillers(self.populatedTiles)
-    }
+    calculateTileFillerIndexes()
+    fillFillers(populatedTiles)
   }
   
   func fillFillers(populated: Array<Int>) {
@@ -83,27 +82,14 @@ class GridNumberLayout: NSObject {
     }
   }
   
-  /*
- 
-   012
-   345
-   678
- 
-  */
   
-  
-  
-  
-  func calculateTileFillerIndexes(callback: (success: Bool) -> ()) {
-    // is this number of tiles right? Seems like the set isn't getting in as it should
-    
-    // need more connections not working it seems......Also only have one combo dont load ahead of time cause then the effects are old
+  func calculateTileFillerIndexes() {
     let numberOfExtraTiles = ProgressionManager.sharedManager.numberOfExtraTiles
     var requiredConnections = 1
     if numberOfExtraTiles == 6 {
-      requiredConnections = 8
+      requiredConnections = 16
     } else {
-      requiredConnections = numberOfExtraTiles
+      requiredConnections = numberOfExtraTiles * 2
     }
     guard numberOfExtraTiles > 0 else { return }
     var emptyTiles: Array<Int> = []
@@ -127,9 +113,7 @@ class GridNumberLayout: NSObject {
     if numberOfConnections(populatedTiles) != requiredConnections {
       print("Need more connections in filler...")
       resetPopulatedTiles()
-      calculateTileFillerIndexes(callback)
-    } else {
-      callback(success: true)
+      calculateTileFillerIndexes()
     }
   }
   
