@@ -83,34 +83,42 @@ class GridNumberLayout: NSObject {
     }
   }
   
+  /*
+ 
+   012
+   345
+   678
+ 
+  */
+  
+  
+  
+  
   func calculateTileFillerIndexes() {
     // is this number of tiles right? Seems like the set isn't getting in as it should
-    let setsOfExtraTiles = ProgressionManager.sharedManager.setsOfExtraTiles
+    let numberOfExtraTiles = ProgressionManager.sharedManager.numberOfExtraTiles
     var requiredConnections = 1
-    switch setsOfExtraTiles {
-    case 1:
-      requiredConnections = 2
-    case 2:
-      requiredConnections = 4
-    case 3:
+    if numberOfExtraTiles == 6 {
       requiredConnections = 8
-    default:
-      break
+    } else {
+      requiredConnections = numberOfExtraTiles
     }
+    guard numberOfExtraTiles > 0 else { return }
     var emptyTiles: Array<Int> = []
     for tileIndex in 0...8 {
       if !populatedTiles.contains(tileIndex) {
         emptyTiles.append(tileIndex)
       }
     }
-    let numberOfExtraTiles = setsOfExtraTiles * 2
-    if numberOfExtraTiles > 0 {
-      for _ in 0...numberOfExtraTiles - 1 {
-        let numberEmpty = emptyTiles.count - 1
-        let randTileIndex = Int.random(0...numberEmpty)
-        populatedTiles.append(emptyTiles[randTileIndex])
-      }
-    }
+    // fill up the tiles
+    var currentTile = 1
+    repeat {
+      let numberEmpty = emptyTiles.count - 1
+      let randTileIndex = Int.random(0...numberEmpty)
+      populatedTiles.append(emptyTiles[randTileIndex])
+      emptyTiles.removeAtIndex(randTileIndex)
+      currentTile += 1
+    } while currentTile <= numberOfExtraTiles
     guard numberOfConnections(populatedTiles) != requiredConnections else {
       print("Need more connections in filler...")
       resetPopulatedTiles()
