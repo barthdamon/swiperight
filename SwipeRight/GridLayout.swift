@@ -64,7 +64,6 @@ class GridNumberLayout: NSObject {
   }
   
   func injectFillerNumbers() {
-    //TODO: Refactor the shit out of this so that it is smart enough to place tiles so that they confuse player, and so that it checks for no other existing solutions
     resetPopulatedTiles()
     calculateTileFillerIndexes()
     fillFillers(populatedTiles)

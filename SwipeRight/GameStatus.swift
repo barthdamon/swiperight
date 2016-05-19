@@ -24,6 +24,7 @@ class GameStatus: NSObject {
   }
   
   var gameActive = false
+  var betweenRounds = false
   var selectedMode: GameMode = .Normal
   
 }

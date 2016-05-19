@@ -31,6 +31,8 @@ class ProgressionManager: NSObject {
   static var sharedManager = ProgressionManager()
   
   // MARK: General
+  var currentRound = 1
+  var currentRoundPosition = 1
   let roundLength: Int = 4
   
   // MARK: Operations

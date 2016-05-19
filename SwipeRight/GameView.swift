@@ -182,22 +182,25 @@ class GameView: UIView {
       if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
         if checkForCorrect(operations, start: startNumber, mid: midNumber, end: endNumber) {
           delegate.scoreChange(true)
-          
-          
-          ProgressionManager.sharedManager.increaseNumberOfTiles()
-          
           startTile.backgroundColor = UIColor.greenColor()
           endTile.backgroundColor = UIColor.greenColor()
           middleTile.backgroundColor = UIColor.greenColor()
           self.userInteractionEnabled = false
           delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
-          resetTiles()
         } else {
           delegate.scoreChange(false)
           startTile.backgroundColor = UIColor.redColor()
           endTile.backgroundColor = UIColor.redColor()
           middleTile.backgroundColor = UIColor.redColor()
           self.userInteractionEnabled = false
+        }
+        
+        if ProgressionManager.sharedManager.currentRoundPosition == ProgressionManager.sharedManager.roundLength {
+          // show round options, then start new round
+          GameStatus.status.betweenRounds = true
+          newRound()
+        } else {
+          ProgressionManager.sharedManager.currentRoundPosition += 1
           resetTiles()
         }
       }
@@ -211,26 +214,33 @@ class GameView: UIView {
     }
   }
   
-  func animateTileReset() {
-    func fadeInTiles() {
-      tileViews.forEach { (tile) -> () in
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-          tile.numberLabel?.alpha = 1
-          }, completion: { (complete) -> Void in
-            self.userInteractionEnabled = true
-            self.delegate.beginGame()
-        })
-      }
-    }
-    
+  func fadeOutTiles(callback: (complete: Bool) -> ()) {
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(0.2, animations: { () -> Void in
         tile.backgroundColor = UIColor.clearColor()
         tile.numberLabel?.alpha = 0
         }, completion: { (complete) -> Void in
-          self.applyNumberLayoutToTiles(false)
-          fadeInTiles()
+          callback(complete: true)
       })
+    }
+
+  }
+  
+  func fadeInTiles() {
+    tileViews.forEach { (tile) -> () in
+      UIView.animateWithDuration(0.2, animations: { () -> Void in
+        tile.numberLabel?.alpha = 1
+        }, completion: { (complete) -> Void in
+          self.userInteractionEnabled = true
+          self.delegate.beginGame()
+      })
+    }
+  }
+  
+  func animateTileReset() {
+    fadeOutTiles { (complete) in
+      self.applyNumberLayoutToTiles(false)
+      self.fadeInTiles()
     }
   }
   
@@ -262,29 +272,57 @@ class GameView: UIView {
     }
   }
   
+  func newRound() {
+    self.fadeOutTiles { (complete) in
+      ProgressionManager.sharedManager.currentRound += 1
+      let yCoord = self.tileWidth / 2
+      self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
+      self.gameOverView?.backgroundColor = UIColor.clearColor()
+      
+      let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
+      gameOverLabel.text = "Round \(ProgressionManager.sharedManager.currentRound)"
+      gameOverLabel.font = UIFont.systemFontOfSize(30)
+      gameOverLabel.textAlignment = .Center
+      gameOverLabel.textColor = UIColor.whiteColor()
+      
+      
+      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
+      scoreLabel.text = "Pick Your Posion:"
+      scoreLabel.textColor = UIColor.whiteColor()
+      scoreLabel.textAlignment = .Center
+      
+      //add top score label or w/e
+      self.gameOverView?.addSubview(gameOverLabel)
+      self.gameOverView?.addSubview(scoreLabel)
+      self.addSubview(self.gameOverView!)
+      self.delegate.toggleClientView()
+    }
+  }
+  
   func gameOver(score: Int) {
-    self.applyNumberLayoutToTiles(true)
-    let yCoord = tileWidth / 2
-    gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
-    gameOverView?.backgroundColor = UIColor.clearColor()
-
-    let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,tileWidth * 3, 50))
-    gameOverLabel.text = "Game Over"
-    gameOverLabel.font = UIFont.systemFontOfSize(30)
-    gameOverLabel.textAlignment = .Center
-    gameOverLabel.textColor = UIColor.whiteColor()
-    
-    
-    let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,tileWidth * 3, 50))
-    scoreLabel.text = "Your Score: \(score)"
-    scoreLabel.textColor = UIColor.whiteColor()
-    scoreLabel.textAlignment = .Center
-    
-    //add top score label or w/e
-    gameOverView?.addSubview(gameOverLabel)
-    gameOverView?.addSubview(scoreLabel)
-    self.addSubview(gameOverView!)
-    delegate.toggleClientView()
+    self.fadeOutTiles { (complete) in
+      let yCoord = self.tileWidth / 2
+      self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
+      self.gameOverView?.backgroundColor = UIColor.clearColor()
+      
+      let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
+      gameOverLabel.text = "Game Over"
+      gameOverLabel.font = UIFont.systemFontOfSize(30)
+      gameOverLabel.textAlignment = .Center
+      gameOverLabel.textColor = UIColor.whiteColor()
+      
+      
+      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
+      scoreLabel.text = "Your Score: \(score)"
+      scoreLabel.textColor = UIColor.whiteColor()
+      scoreLabel.textAlignment = .Center
+      
+      //add top score label or w/e
+      self.gameOverView?.addSubview(gameOverLabel)
+      self.gameOverView?.addSubview(scoreLabel)
+      self.addSubview(self.gameOverView!)
+      self.delegate.toggleClientView()
+    }
   }
   
 }
