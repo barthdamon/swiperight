@@ -32,6 +32,9 @@ class GameView: UIView {
   var startLoc: CGPoint?
   var endLoc: CGPoint?
   
+  var modOne: Modification?
+  var modTwo: Modification?
+  
   var currentLayout: GridNumberLayout? {
     didSet {
       self.delegate.resetClientOperations(currentLayout?.operations)
@@ -294,26 +297,55 @@ class GameView: UIView {
       
       let modifications = ProgressionManager.sharedManager.generateRoundModifications()
       guard modifications.count == 2 else { return }
-      let modOne = modifications[0]
-      let modTwo = modifications[1]
+      self.modOne = modifications[0]
+      self.modTwo = modifications[1]
+      guard let modOne = self.modOne, modTwo = self.modTwo else { return }
       
-      let modOneLabel = UILabel(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 4, 50))
-      modOneLabel.text = "\(modOne.type.rawValue) (\(modOne.remaining))"
-      modOneLabel.textColor = UIColor.whiteColor()
-      modOneLabel.textAlignment = .Center
-
-      let modTwoLabel = UILabel(frame: CGRectMake(0,yCoord + 150,self.tileWidth * 4, 50))
-      modTwoLabel.text = "\(modTwo.type.rawValue) (\(modTwo.remaining))"
-      modTwoLabel.textColor = UIColor.whiteColor()
-      modTwoLabel.textAlignment = .Center
+      let modOneButton = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
+      modOneButton.setTitle("\(modOne.type.rawValue) (\(modOne.remaining)", forState: .Normal)
+      modOneButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+      modOneButton.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
+      modOneButton.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
+      modOneButton.titleLabel?.font = UIFont.systemFontOfSize(30)
+      modOneButton.addTarget(self, action: #selector(GameView.modOneButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+      
+      let modTwoButton = UIButton(frame: CGRectMake(0,yCoord + 150,self.tileWidth * 3, 50))
+      modTwoButton.setTitle("\(modTwo.type.rawValue) (\(modTwo.remaining)", forState: .Normal)
+      modTwoButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+      modTwoButton.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
+      modTwoButton.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
+      modTwoButton.titleLabel?.font = UIFont.systemFontOfSize(30)
+      modTwoButton.addTarget(self, action: #selector(GameView.modTwoButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+      
+//      let modOneLabel = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
+//      modOneLabel.text = "\(modOne.type.rawValue) (\(modOne.remaining))"
+//      modOneLabel.textColor = UIColor.whiteColor()
+//      modOneLabel.textAlignment = .Center
+//
+//      let modTwoLabel = UILabel(frame: CGRectMake(0,yCoord + 150,self.tileWidth * 4, 50))
+//      modTwoLabel.text = "\(modTwo.type.rawValue) (\(modTwo.remaining))"
+//      modTwoLabel.textColor = UIColor.whiteColor()
+//      modTwoLabel.textAlignment = .Center
       
       //add top score label or w/e
       self.gameOverView?.addSubview(roundOverLabel)
       self.gameOverView?.addSubview(scoreLabel)
-      self.gameOverView?.addSubview(modOneLabel)
-      self.gameOverView?.addSubview(modTwoLabel)
+      self.gameOverView?.addSubview(modOneButton)
+      self.gameOverView?.addSubview(modTwoButton)
       self.addSubview(self.gameOverView!)
       self.delegate.toggleClientView()
+    }
+  }
+  
+  func modOneButtonPressed() {
+    if let modOne = modOne {
+      ProgressionManager.sharedManager.newModificationSelected(modOne)
+    }
+  }
+  
+  func modTwoButtonPressed() {
+    if let modTwo = modTwo {
+      ProgressionManager.sharedManager.newModificationSelected(modTwo)
     }
   }
   
@@ -344,3 +376,4 @@ class GameView: UIView {
   }
   
 }
+
