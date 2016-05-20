@@ -25,6 +25,35 @@ import Foundation
 // Range: Increase range of answers (5) check
 // Helper points (get 3 each round, let them stack)
 
+enum ModificationType : Int {
+  case Tile
+  case BoostTime
+  case RoundTime
+  case Operation
+  case Range
+}
+
+struct Modification {
+  
+  var type: ModificationType = .Tile
+  var remaining: Int = 0
+  
+  init(type: ModificationType) {
+    self.type = type
+    switch type {
+    case .Tile:
+      remaining = 5
+    case .RoundTime:
+      remaining = 5
+    case .BoostTime:
+      remaining = 4
+    case .Operation:
+      remaining = 4
+    case .Range :
+      remaining = 5
+    }
+  }
+}
 
 class ProgressionManager: NSObject {
   
@@ -34,6 +63,54 @@ class ProgressionManager: NSObject {
   var currentRound = 1
   var currentRoundPosition = 1
   let roundLength: Int = 4
+  var modificationTypes: Array<ModificationType> = [.Tile, .BoostTime, .RoundTime, .Operation, .Range]
+  var modifications: Array<Modification> = []
+  
+  
+  override init() {
+    super.init()
+    modificationTypes.forEach { (mod) in
+      modifications.append(Modification(type: mod))
+    }
+  }
+  
+  func generateRoundModifications() -> Array<Modification> {
+    var newMods: Array<Modification> = []
+    var numberOfMods = 0
+    var modsRemaining = modifications.filter({$0.remaining > 0})
+    repeat {
+      let randModIndex = Int.random(0...modsRemaining.count)
+      let newMod = modsRemaining[randModIndex]
+      newMods.append(newMod)
+      modsRemaining.removeAtIndex(randModIndex)
+      if modsRemaining.count > 0 {
+        numberOfMods += 1
+      } else {
+        newMods.append(newMod)
+        numberOfMods = 2
+      }
+    } while numberOfMods < 2
+    
+    return newMods
+  }
+  
+  func newModificationSelected(mod: Modification) {
+    guard mod.remaining > 0 else { return }
+    switch mod.type {
+    case .Tile:
+      increaseNumberOfTiles()
+    case .RoundTime:
+      decreaseStandardRoundDuration()
+    case .BoostTime:
+      decreaseStandardBoostTime()
+    case .Operation:
+      addRandomOperation()
+    case .Range :
+      MultipleHelper.defaultHelper.increaseRange()
+    }
+  }
+  
+  
   
   // MARK: Operations
   // get a random one for this, but then get random other when progression at that level for the UI
@@ -43,9 +120,13 @@ class ProgressionManager: NSObject {
     let operationsLeft = Grid.operations.filter { (operation) -> Bool in
       return !activeOperations.contains(operation)
     }
-    let operationCount = operationsLeft.count - 1
-    let randNew = Int.random(0...operationCount)
-    self.activeOperations.append(operationsLeft[randNew])
+    let operationLeftCount = operationsLeft.count - 1
+    if operationLeftCount >= 0 {
+      let randNew = Int.random(0...operationLeftCount)
+      self.activeOperations.append(operationsLeft[randNew])
+    } else {
+      multipleOperationsDisplayActive = true
+    }
   }
   
   func randomActiveOperations() -> Array<Operation> {
@@ -73,7 +154,7 @@ class ProgressionManager: NSObject {
   
   
   // MARK: Tiles
-  var numberOfExtraTiles = 2
+  var numberOfExtraTiles = 0
   func increaseNumberOfTiles() {
     if numberOfExtraTiles == 0 {
       numberOfExtraTiles += 2
@@ -84,22 +165,17 @@ class ProgressionManager: NSObject {
   
   // MARK: Range
   var range: Int {
-    get {
-      return MultipleHelper.defaultHelper.range
-    }
-    set {
-      MultipleHelper.defaultHelper.increaseRange()
-    }
+    return MultipleHelper.defaultHelper.range
   }
   
-  // MARK: Time (should time stack? - no each round is different, just need to get to the end)
+  // MARK: Time
   var standardRoundDuration: Int = 120
-  var standardBoostTime: Int = 15
   func decreaseStandardRoundDuration() {
     standardRoundDuration -= 20
   }
+  var standardBoostTime: Int = 15
   func decreaseStandardBoostTime() {
-    standardBoostTime -= 5
+    standardBoostTime -= 3
   }
   
   // MARK: Helper Points

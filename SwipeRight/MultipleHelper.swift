@@ -20,7 +20,7 @@ class MultipleHelper: NSObject {
   
   var range = 10
   func increaseRange() {
-    range += 10
+    range += 15
   }
   var allCombinations: Array<MultipleCombination> = []
 

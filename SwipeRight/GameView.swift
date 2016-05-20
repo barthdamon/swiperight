@@ -148,35 +148,35 @@ class GameView: UIView {
     }
   }
   
-  func tileRespond(startTile: TileView, middleTile: TileView, endTile: TileView) {
-    
-    func checkForCorrect(operations: Array<Operation>, start: Int, mid: Int, end: Int) -> Bool {
-      var found = false
-      for operation in operations {
-        switch operation {
-        case .Add:
-          if start + mid == end {
-            found = true
-          }
-        case .Subtract:
-          if start - mid == end {
-            found = true
-          }
-        case .Divide:
-          if start != 0 && mid != 0 && end != 0 {
-            if start / mid == end {
-              found = true
-            }
-          }
-        case .Multiply:
-          if start * mid == end {
+  func checkForCorrect(operations: Array<Operation>, start: Int, mid: Int, end: Int) -> Bool {
+    var found = false
+    for operation in operations {
+      switch operation {
+      case .Add:
+        if start + mid == end {
+          found = true
+        }
+      case .Subtract:
+        if start - mid == end {
+          found = true
+        }
+      case .Divide:
+        if start != 0 && mid != 0 && end != 0 {
+          if start / mid == end {
             found = true
           }
         }
+      case .Multiply:
+        if start * mid == end {
+          found = true
+        }
       }
-      return found
     }
-    
+    return found
+  }
+
+  
+  func tileRespond(startTile: TileView, middleTile: TileView, endTile: TileView) {
     if GameStatus.status.gameActive {
       print("TILE RESPOND TIME")
       if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
@@ -197,7 +197,7 @@ class GameView: UIView {
         
         if ProgressionManager.sharedManager.currentRoundPosition == ProgressionManager.sharedManager.roundLength {
           // show round options, then start new round
-          GameStatus.status.betweenRounds = true
+          GameStatus.status.gameActive = false
           newRound()
         } else {
           ProgressionManager.sharedManager.currentRoundPosition += 1
@@ -215,15 +215,16 @@ class GameView: UIView {
   }
   
   func fadeOutTiles(callback: (complete: Bool) -> ()) {
-    tileViews.forEach { (tile) -> () in
+    for (i, tile) in tileViews.enumerate() {
       UIView.animateWithDuration(0.2, animations: { () -> Void in
         tile.backgroundColor = UIColor.clearColor()
         tile.numberLabel?.alpha = 0
         }, completion: { (complete) -> Void in
-          callback(complete: true)
+          if i == self.tileViews.count - 1 {
+            callback(complete: true)
+          }
       })
     }
-
   }
   
   func fadeInTiles() {
@@ -287,9 +288,21 @@ class GameView: UIView {
       
       
       let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
-      scoreLabel.text = "Pick Your Posion:"
+      scoreLabel.text = "Pick A Difficulty Modification:"
       scoreLabel.textColor = UIColor.whiteColor()
       scoreLabel.textAlignment = .Center
+      
+//      let modifications = ProgressionManager.
+      
+//      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
+//      scoreLabel.text = "Pick A Difficulty Modification:"
+//      scoreLabel.textColor = UIColor.whiteColor()
+//      scoreLabel.textAlignment = .Center
+//      
+//      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
+//      scoreLabel.text = "Pick A Difficulty Modification:"
+//      scoreLabel.textColor = UIColor.whiteColor()
+//      scoreLabel.textAlignment = .Center
       
       //add top score label or w/e
       self.gameOverView?.addSubview(gameOverLabel)
