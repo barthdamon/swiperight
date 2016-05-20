@@ -280,11 +280,11 @@ class GameView: UIView {
       self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
       self.gameOverView?.backgroundColor = UIColor.clearColor()
       
-      let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
-      gameOverLabel.text = "Round \(ProgressionManager.sharedManager.currentRound)"
-      gameOverLabel.font = UIFont.systemFontOfSize(30)
-      gameOverLabel.textAlignment = .Center
-      gameOverLabel.textColor = UIColor.whiteColor()
+      let roundOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
+      roundOverLabel.text = "Round \(ProgressionManager.sharedManager.currentRound)"
+      roundOverLabel.font = UIFont.systemFontOfSize(30)
+      roundOverLabel.textAlignment = .Center
+      roundOverLabel.textColor = UIColor.whiteColor()
       
       
       let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
@@ -292,21 +292,26 @@ class GameView: UIView {
       scoreLabel.textColor = UIColor.whiteColor()
       scoreLabel.textAlignment = .Center
       
-//      let modifications = ProgressionManager.
+      let modifications = ProgressionManager.sharedManager.generateRoundModifications()
+      guard modifications.count == 2 else { return }
+      let modOne = modifications[0]
+      let modTwo = modifications[1]
       
-//      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
-//      scoreLabel.text = "Pick A Difficulty Modification:"
-//      scoreLabel.textColor = UIColor.whiteColor()
-//      scoreLabel.textAlignment = .Center
-//      
-//      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
-//      scoreLabel.text = "Pick A Difficulty Modification:"
-//      scoreLabel.textColor = UIColor.whiteColor()
-//      scoreLabel.textAlignment = .Center
+      let modOneLabel = UILabel(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 4, 50))
+      modOneLabel.text = "\(modOne.type.rawValue) (\(modOne.remaining))"
+      modOneLabel.textColor = UIColor.whiteColor()
+      modOneLabel.textAlignment = .Center
+
+      let modTwoLabel = UILabel(frame: CGRectMake(0,yCoord + 150,self.tileWidth * 4, 50))
+      modTwoLabel.text = "\(modTwo.type.rawValue) (\(modTwo.remaining))"
+      modTwoLabel.textColor = UIColor.whiteColor()
+      modTwoLabel.textAlignment = .Center
       
       //add top score label or w/e
-      self.gameOverView?.addSubview(gameOverLabel)
+      self.gameOverView?.addSubview(roundOverLabel)
       self.gameOverView?.addSubview(scoreLabel)
+      self.gameOverView?.addSubview(modOneLabel)
+      self.gameOverView?.addSubview(modTwoLabel)
       self.addSubview(self.gameOverView!)
       self.delegate.toggleClientView()
     }

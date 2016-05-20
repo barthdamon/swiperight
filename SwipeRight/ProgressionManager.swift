@@ -25,12 +25,12 @@ import Foundation
 // Range: Increase range of answers (5) check
 // Helper points (get 3 each round, let them stack)
 
-enum ModificationType : Int {
-  case Tile
-  case BoostTime
-  case RoundTime
-  case Operation
-  case Range
+enum ModificationType : String {
+  case Tile = "Extra Tiles"
+  case BoostTime = "Boost Time"
+  case RoundTime = "Round Time"
+  case Operation = "Operations"
+  case Range = "Number Range"
 }
 
 struct Modification {
@@ -79,7 +79,8 @@ class ProgressionManager: NSObject {
     var numberOfMods = 0
     var modsRemaining = modifications.filter({$0.remaining > 0})
     repeat {
-      let randModIndex = Int.random(0...modsRemaining.count)
+      let remainingCount = modsRemaining.count - 1
+      let randModIndex = Int.random(0...remainingCount)
       let newMod = modsRemaining[randModIndex]
       newMods.append(newMod)
       modsRemaining.removeAtIndex(randModIndex)
