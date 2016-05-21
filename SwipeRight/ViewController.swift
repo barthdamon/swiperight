@@ -117,6 +117,7 @@ class ViewController: UIViewController, GameViewDelegate {
   func resetGameState() {
     score = 0
     time = gameDuration
+    gameView?.intermissionTimer.invalidate()
     gameView?.roundOverView?.removeFromSuperview()
     gameView?.roundOverView = nil
     gameView?.gameOverView?.removeFromSuperview()

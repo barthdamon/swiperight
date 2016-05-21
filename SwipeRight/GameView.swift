@@ -245,7 +245,7 @@ class GameView: UIView {
   func fadeInTiles() {
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(0.2, animations: { () -> Void in
-        tile.numberLabel?.alpha = 1
+          tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
         }, completion: { (complete) -> Void in
           self.userInteractionEnabled = true
           self.delegate.beginGame()
@@ -266,8 +266,8 @@ class GameView: UIView {
         if reset {
           tileViews[i].numberLabel?.alpha = 0
         } else {
-          tileViews[i].numberLabel?.alpha = 1
           tileViews[i].number = layout.numbers[i]
+          tileViews[i].numberLabel?.alpha = 0
         }
       }
     }

@@ -10,7 +10,11 @@ import UIKit
 
 class TileView: UIView {
   
-  var numberLabel: UILabel?
+  var numberLabel: UILabel? {
+    didSet {
+      self.userInteractionEnabled = numberLabel == -1 ? false : true
+    }
+  }
   var number: Int? {
     didSet {
       numberLabel?.text = String(number!)
