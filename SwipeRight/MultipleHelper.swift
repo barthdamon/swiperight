@@ -22,6 +22,9 @@ class MultipleHelper: NSObject {
   func increaseRange() {
     range += 15
   }
+  func resetRange() {
+    range = 10
+  }
   var allCombinations: Array<MultipleCombination> = []
 
   func initializeCombinations() {

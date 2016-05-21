@@ -18,6 +18,8 @@ protocol GameViewDelegate {
   func resetClientOperations(currentOperations: Array<Operation>?)
   func addTime(seconds: Int)
   func resetTime()
+  func gameOver()
+  func setRound(number: Int)
 }
 
 class GameView: UIView {
@@ -26,6 +28,7 @@ class GameView: UIView {
   var tileWidth: CGFloat!
   var viewWidth: CGFloat!
   var tileViews: Array<TileView> = []
+  var intermissionTimer: NSTimer = NSTimer()
   
   var gameOverView: UIView?
   var roundOverView: UIView?
@@ -35,9 +38,14 @@ class GameView: UIView {
   
   var modOne: Modification?
   var modTwo: Modification?
-  
   var modOneButton: UIButton?
   var modTwoButton: UIButton?
+  var intermissionTimeLabel: UILabel?
+  var intermissionTime: Int = 5 {
+    didSet {
+      intermissionTimeLabel?.text = "Next Round Starts: \(intermissionTime)"
+    }
+  }
   
   var currentLayout: GridNumberLayout? {
     didSet {
@@ -202,7 +210,7 @@ class GameView: UIView {
           self.userInteractionEnabled = false
         }
         
-        if ProgressionManager.sharedManager.currentRoundPosition == ProgressionManager.sharedManager.roundLength {
+        if ProgressionManager.sharedManager.currentRoundPosition == ProgressionManager.sharedManager.roundLength && ProgressionManager.sharedManager.currentRound < 23 {
           // show round options, then start new round
           GameStatus.status.gameActive = false
           newRound()
@@ -301,16 +309,16 @@ class GameView: UIView {
       scoreLabel.textColor = UIColor.whiteColor()
       scoreLabel.textAlignment = .Center
       
+      self.intermissionTimeLabel = UILabel(frame: CGRectMake(0,yCoord + 225,self.tileWidth * 3, 50))
+      self.intermissionTimeLabel!.text = "Next Round Starts: 5"
+      self.intermissionTimeLabel!.textColor = UIColor.whiteColor()
+      self.intermissionTimeLabel!.textAlignment = .Center
+      
       let modifications = ProgressionManager.sharedManager.generateRoundModifications()
       guard modifications.count == 2 else { return }
       self.modOne = modifications[0]
       self.modTwo = modifications[1]
       guard let modOne = self.modOne, modTwo = self.modTwo else { return }
-      
-      let Recognizer = UITapGestureRecognizer(target: self, action: #selector(GameView.modOneButtonPressed))
-      Recognizer.numberOfTapsRequired = 1
-      Recognizer.numberOfTouchesRequired = 1
-      self.roundOverView!.addGestureRecognizer(Recognizer)
       
       self.modOneButton = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
       self.modOneButton!.setTitle("\(modOne.type.rawValue) (\(modOne.remaining))", forState: .Normal)
@@ -328,13 +336,23 @@ class GameView: UIView {
       self.modTwoButton!.addTarget(self, action: #selector(GameView.modTwoButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
       
       //add top score label or w/e
+      self.intermissionTime = 5
+      self.intermissionTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameView.intermissionTickTock), userInfo: nil, repeats: true)
       self.roundOverView?.addSubview(roundOverLabel)
       self.roundOverView?.addSubview(scoreLabel)
+      self.roundOverView?.addSubview(self.intermissionTimeLabel!)
       self.roundOverView?.addSubview(self.modOneButton!)
       self.roundOverView?.addSubview(self.modTwoButton!)
       self.addSubview(self.roundOverView!)
       self.userInteractionEnabled = true
 //      self.delegate.toggleClientView()
+    }
+  }
+  
+  func intermissionTickTock() {
+    intermissionTime -= 1
+    if intermissionTime == 0 {
+      delegate?.gameOver()
     }
   }
   
@@ -355,9 +373,11 @@ class GameView: UIView {
   }
   
   func resetRound() {
+    self.intermissionTimer.invalidate()
     self.roundOverView?.removeFromSuperview()
     self.gameOverView = nil
     self.delegate?.resetTime()
+    self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
     resetTiles()
   }
   
@@ -372,7 +392,6 @@ class GameView: UIView {
       gameOverLabel.font = UIFont.systemFontOfSize(30)
       gameOverLabel.textAlignment = .Center
       gameOverLabel.textColor = UIColor.whiteColor()
-      
       
       let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
       scoreLabel.text = "Your Score: \(score)"

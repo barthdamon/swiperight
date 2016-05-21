@@ -13,6 +13,7 @@ class ViewController: UIViewController, GameViewDelegate {
   //HUD
   var scoreLabel: UILabel?
   var timeLabel: UILabel?
+  var roundLabel: UILabel?
   var componentView: UIView?
   var time: Int = 0 {
     didSet {
@@ -93,12 +94,17 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func beginGame() {
     if !GameStatus.status.gameActive {
+      setRound(0)
       gameView?.animateBeginGame()
     }
   }
   
-  func resumeGame() {
-    
+  func setRound(number: Int) {
+    if number >= 23 {
+      roundLabel?.text = "MAX"
+    } else {
+      roundLabel?.text = "Round: \(number)"
+    }
   }
   
   func startGameplay() {
@@ -111,7 +117,9 @@ class ViewController: UIViewController, GameViewDelegate {
   func resetGameState() {
     score = 0
     time = gameDuration
-    gameView?.gameOverView?.hidden = true
+    gameView?.roundOverView?.removeFromSuperview()
+    gameView?.roundOverView = nil
+    gameView?.gameOverView?.removeFromSuperview()
     gameView?.gameOverView = nil
     gameView?.applyNumberLayoutToTiles(true)
     resetClientOperations(nil)
@@ -145,6 +153,12 @@ class ViewController: UIViewController, GameViewDelegate {
     componentView?.addSubview(scoreLabel!)
     
     let negativeOffset = viewWidth - (offset + viewWidth / 4.4)
+    
+    roundLabel = UILabel(frame: CGRectMake(negativeOffset - 100, -10, 100, 50))
+    roundLabel?.text = "Round: 0"
+    roundLabel?.textColor = UIColor.whiteColor()
+    componentView?.addSubview(roundLabel!)
+    
     timeLabel = UILabel(frame: CGRectMake(negativeOffset, -10, 50, 50))
     timeLabel?.text = "0:00"
     timeLabel?.textColor = UIColor.whiteColor()
@@ -165,6 +179,8 @@ class ViewController: UIViewController, GameViewDelegate {
     timer?.invalidate()
     timer = nil
     GameStatus.status.gameActive = false
+    gameView?.roundOverView?.removeFromSuperview()
+    gameView?.roundOverView = nil
     self.gameView?.userInteractionEnabled = false
     self.gameView?.gameOver(score)
 //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")

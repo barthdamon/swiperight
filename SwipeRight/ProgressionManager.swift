@@ -49,7 +49,7 @@ struct Modification {
       remaining = 4
     case .Operation:
       remaining = 4
-    case .Range :
+    case .Range:
       remaining = 5
     }
   }
@@ -74,20 +74,34 @@ class ProgressionManager: NSObject {
     }
   }
   
+  func reset() {
+    modifications.removeAll()
+    modificationTypes.forEach { (mod) in
+      modifications.append(Modification(type: mod))
+    }
+    currentRound = 1
+    standardRoundDuration = 120
+    standardBoostTime = 15
+    MultipleHelper.defaultHelper.resetRange()
+    numberOfExtraTiles = 0
+  }
+  
   func generateRoundModifications() -> Array<Modification> {
     modifications.forEach { (mod) in
       print("Type: \(mod.type), remaining: \(mod.remaining)")
     }
     var newMods: Array<Modification> = []
     var modsRemaining = modifications.filter({$0.remaining > 0})
-    for _ in 0...1 {
-      let remainingCount = modsRemaining.count - 1
-      let randModIndex = Int.random(0...remainingCount)
-      let newMod = modsRemaining[randModIndex]
-      newMods.append(newMod)
-      modsRemaining.removeAtIndex(randModIndex)
-      if modsRemaining.count <= 0 {
+    if modsRemaining.count < 2 {
+      newMods.append(modsRemaining[0])
+      newMods.append(modsRemaining[0])
+    } else {
+      for _ in 0...1 {
+        let remainingCount = modsRemaining.count - 1
+        let randModIndex = Int.random(0...remainingCount)
+        let newMod = modsRemaining[randModIndex]
         newMods.append(newMod)
+        modsRemaining.removeAtIndex(randModIndex)
       }
     }
     
