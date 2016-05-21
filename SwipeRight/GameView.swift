@@ -17,6 +17,7 @@ protocol GameViewDelegate {
   func toggleClientView()
   func resetClientOperations(currentOperations: Array<Operation>?)
   func addTime(seconds: Int)
+  func resetTime()
 }
 
 class GameView: UIView {
@@ -26,14 +27,17 @@ class GameView: UIView {
   var viewWidth: CGFloat!
   var tileViews: Array<TileView> = []
   
-  //gameOver
   var gameOverView: UIView?
+  var roundOverView: UIView?
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
   
   var modOne: Modification?
   var modTwo: Modification?
+  
+  var modOneButton: UIButton?
+  var modTwoButton: UIButton?
   
   var currentLayout: GridNumberLayout? {
     didSet {
@@ -279,9 +283,11 @@ class GameView: UIView {
   func newRound() {
     self.fadeOutTiles { (complete) in
       ProgressionManager.sharedManager.currentRound += 1
+      ProgressionManager.sharedManager.currentRoundPosition = 1
       let yCoord = self.tileWidth / 2
-      self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
-      self.gameOverView?.backgroundColor = UIColor.clearColor()
+      self.roundOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
+      self.roundOverView?.backgroundColor = UIColor.clearColor()
+      self.roundOverView?.userInteractionEnabled = true
       
       let roundOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
       roundOverLabel.text = "Round \(ProgressionManager.sharedManager.currentRound)"
@@ -301,52 +307,58 @@ class GameView: UIView {
       self.modTwo = modifications[1]
       guard let modOne = self.modOne, modTwo = self.modTwo else { return }
       
-      let modOneButton = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
-      modOneButton.setTitle("\(modOne.type.rawValue) (\(modOne.remaining)", forState: .Normal)
-      modOneButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-      modOneButton.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
-      modOneButton.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
-      modOneButton.titleLabel?.font = UIFont.systemFontOfSize(30)
-      modOneButton.addTarget(self, action: #selector(GameView.modOneButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+      let Recognizer = UITapGestureRecognizer(target: self, action: #selector(GameView.modOneButtonPressed))
+      Recognizer.numberOfTapsRequired = 1
+      Recognizer.numberOfTouchesRequired = 1
+      self.roundOverView!.addGestureRecognizer(Recognizer)
       
-      let modTwoButton = UIButton(frame: CGRectMake(0,yCoord + 150,self.tileWidth * 3, 50))
-      modTwoButton.setTitle("\(modTwo.type.rawValue) (\(modTwo.remaining)", forState: .Normal)
-      modTwoButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-      modTwoButton.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
-      modTwoButton.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
-      modTwoButton.titleLabel?.font = UIFont.systemFontOfSize(30)
-      modTwoButton.addTarget(self, action: #selector(GameView.modTwoButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+      self.modOneButton = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
+      self.modOneButton!.setTitle("\(modOne.type.rawValue) (\(modOne.remaining))", forState: .Normal)
+      self.modOneButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+      self.modOneButton!.backgroundColor = UIColor.blackColor()
+      self.modOneButton!.titleLabel?.font = UIFont.systemFontOfSize(30)
+      self.modOneButton!.addTarget(self, action: #selector(GameView.modOneButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
       
-//      let modOneLabel = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
-//      modOneLabel.text = "\(modOne.type.rawValue) (\(modOne.remaining))"
-//      modOneLabel.textColor = UIColor.whiteColor()
-//      modOneLabel.textAlignment = .Center
-//
-//      let modTwoLabel = UILabel(frame: CGRectMake(0,yCoord + 150,self.tileWidth * 4, 50))
-//      modTwoLabel.text = "\(modTwo.type.rawValue) (\(modTwo.remaining))"
-//      modTwoLabel.textColor = UIColor.whiteColor()
-//      modTwoLabel.textAlignment = .Center
+      self.modTwoButton = UIButton(frame: CGRectMake(0,yCoord + 175,self.tileWidth * 3, 50))
+      self.modTwoButton!.setTitle("\(modTwo.type.rawValue) (\(modTwo.remaining))", forState: .Normal)
+      self.modTwoButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+      self.modTwoButton!.backgroundColor = UIColor.blackColor()
+      self.modTwoButton!.titleLabel?.font = UIFont.systemFontOfSize(30)
+      
+      self.modTwoButton!.addTarget(self, action: #selector(GameView.modTwoButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
       
       //add top score label or w/e
-      self.gameOverView?.addSubview(roundOverLabel)
-      self.gameOverView?.addSubview(scoreLabel)
-      self.gameOverView?.addSubview(modOneButton)
-      self.gameOverView?.addSubview(modTwoButton)
-      self.addSubview(self.gameOverView!)
-      self.delegate.toggleClientView()
+      self.roundOverView?.addSubview(roundOverLabel)
+      self.roundOverView?.addSubview(scoreLabel)
+      self.roundOverView?.addSubview(self.modOneButton!)
+      self.roundOverView?.addSubview(self.modTwoButton!)
+      self.addSubview(self.roundOverView!)
+      self.userInteractionEnabled = true
+//      self.delegate.toggleClientView()
     }
   }
   
-  func modOneButtonPressed() {
+  func modOneButtonPressed(button: UIButton) {
     if let modOne = modOne {
       ProgressionManager.sharedManager.newModificationSelected(modOne)
+      GameStatus.status.gameActive = true
+      resetRound()
     }
   }
   
-  func modTwoButtonPressed() {
+  func modTwoButtonPressed(button: UIButton) {
     if let modTwo = modTwo {
       ProgressionManager.sharedManager.newModificationSelected(modTwo)
+      GameStatus.status.gameActive = true
+      resetRound()
     }
+  }
+  
+  func resetRound() {
+    self.roundOverView?.removeFromSuperview()
+    self.gameOverView = nil
+    self.delegate?.resetTime()
+    resetTiles()
   }
   
   func gameOver(score: Int) {

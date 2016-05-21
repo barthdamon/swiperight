@@ -52,6 +52,11 @@ class ViewController: UIViewController, GameViewDelegate {
   let multiplyImageGray = UIImage(named: "multiplyGray")
   let divideImageGray = UIImage(named: "divideGray")
   
+  let addImageGrayInactive = UIImage(named: "addGrayInactive")
+  let subtractImageGrayInactive = UIImage(named: "subtractGrayInactive")
+  let multiplyImageGrayInactive = UIImage(named: "multiplyGrayInactive")
+  let divideImageGrayInactive = UIImage(named: "divideGrayInactive")
+  
   
   //Game View
   var gameView: GameView?
@@ -92,6 +97,10 @@ class ViewController: UIViewController, GameViewDelegate {
     }
   }
   
+  func resumeGame() {
+    
+  }
+  
   func startGameplay() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
@@ -107,6 +116,10 @@ class ViewController: UIViewController, GameViewDelegate {
     gameView?.applyNumberLayoutToTiles(true)
     resetClientOperations(nil)
     GameStatus.status.gameActive = false
+  }
+  
+  func resetTime() {
+    time = gameDuration
   }
   
   
@@ -217,16 +230,16 @@ class ViewController: UIViewController, GameViewDelegate {
       
       let operationWidth = buttonsView.frame.width / 4
       addView = UIImageView(frame: CGRectMake(0,0,operationWidth, 30))
-      addView?.image = addImageGray
+      addView?.image = addImageGrayInactive
       addView?.contentMode = .ScaleAspectFill
       subtractView = UIImageView(frame: CGRectMake(operationWidth,0,operationWidth, 30))
-      subtractView?.image = subtractImageGray
+      subtractView?.image = subtractImageGrayInactive
       subtractView?.contentMode = .ScaleAspectFill
       multiplyView = UIImageView(frame: CGRectMake(operationWidth * 2,0,operationWidth, 30))
       multiplyView?.contentMode = .ScaleAspectFill
-      multiplyView?.image = multiplyImageGray
+      multiplyView?.image = multiplyImageGrayInactive
       divideView = UIImageView(frame: CGRectMake(operationWidth * 3,0,operationWidth, 30))
-      divideView?.image = divideImageGray
+      divideView?.image = divideImageGrayInactive
       divideView?.contentMode = .ScaleAspectFill
       
       buttonsView.addSubview(addView!)
@@ -275,15 +288,15 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func hideButtonPressed(sender:UIButton) {
-    
+    print("Button pressed")
   }
   
   func removeButtonPressed(sender:UIButton) {
-    
+    print("Button pressed")
   }
   
   func revealButtonPressed(sender:UIButton) {
-    
+    print("Button pressed")
   }
   
   
@@ -331,10 +344,11 @@ class ViewController: UIViewController, GameViewDelegate {
   func resetClientOperations(currentOperations: Array<Operation>?) {
     
     func resetImages() {
-      self.multiplyView?.image = multiplyImageGray
-      self.divideView?.image = divideImageGray
-      self.addView?.image = addImageGray
-      self.subtractView?.image = subtractImageGray
+      let active = ProgressionManager.sharedManager.activeOperations
+      self.multiplyView?.image = active.contains(.Multiply) ? multiplyImageGray : multiplyImageGrayInactive
+      self.divideView?.image = active.contains(.Divide) ? divideImageGray : divideImageGrayInactive
+      self.addView?.image = active.contains(.Add) ? addImageGray : addImageGrayInactive
+      self.subtractView?.image = active.contains(.Subtract) ? subtractImageGray : subtractImageGrayInactive
     }
     if let currentOperations = currentOperations {
       resetImages()

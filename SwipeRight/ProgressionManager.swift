@@ -62,7 +62,7 @@ class ProgressionManager: NSObject {
   // MARK: General
   var currentRound = 1
   var currentRoundPosition = 1
-  let roundLength: Int = 4
+  let roundLength: Int = 3
   var modificationTypes: Array<ModificationType> = [.Tile, .BoostTime, .RoundTime, .Operation, .Range]
   var modifications: Array<Modification> = []
   
@@ -75,28 +75,32 @@ class ProgressionManager: NSObject {
   }
   
   func generateRoundModifications() -> Array<Modification> {
+    modifications.forEach { (mod) in
+      print("Type: \(mod.type), remaining: \(mod.remaining)")
+    }
     var newMods: Array<Modification> = []
-    var numberOfMods = 0
     var modsRemaining = modifications.filter({$0.remaining > 0})
-    repeat {
+    for _ in 0...1 {
       let remainingCount = modsRemaining.count - 1
       let randModIndex = Int.random(0...remainingCount)
       let newMod = modsRemaining[randModIndex]
       newMods.append(newMod)
       modsRemaining.removeAtIndex(randModIndex)
-      if modsRemaining.count > 0 {
-        numberOfMods += 1
-      } else {
+      if modsRemaining.count <= 0 {
         newMods.append(newMod)
-        numberOfMods = 2
       }
-    } while numberOfMods < 2
+    }
     
     return newMods
   }
   
   func newModificationSelected(mod: Modification) {
     guard mod.remaining > 0 else { return }
+    for (index, modification) in self.modifications.enumerate() {
+      if mod.type == modification.type {
+        self.modifications[index].remaining -= 1
+      }
+    }
     switch mod.type {
     case .Tile:
       increaseNumberOfTiles()
