@@ -20,6 +20,7 @@ class TileView: UIView {
       numberLabel?.text = String(number!)
     }
   }
+  var partOfSolution = false
   
   convenience init(xCoord: CGFloat, yCoord: CGFloat, tileWidth: CGFloat, overlay: Bool) {
     self.init()

@@ -20,6 +20,7 @@ protocol GameViewDelegate {
   func resetTime()
   func gameOver()
   func setRound(number: Int)
+  func setHelperButtons()
 }
 
 class GameView: UIView {
@@ -41,7 +42,7 @@ class GameView: UIView {
   var modOneButton: UIButton?
   var modTwoButton: UIButton?
   var intermissionTimeLabel: UILabel?
-  var intermissionTime: Int = 5 {
+  var intermissionTime: Int = 20 {
     didSet {
       intermissionTimeLabel?.text = "Next Round Starts: \(intermissionTime)"
     }
@@ -290,8 +291,10 @@ class GameView: UIView {
   
   func newRound() {
     self.fadeOutTiles { (complete) in
+      ProgressionManager.sharedManager.helperPointsForNewRound()
       ProgressionManager.sharedManager.currentRound += 1
       ProgressionManager.sharedManager.currentRoundPosition = 1
+      self.delegate?.setHelperButtons()
       let yCoord = self.tileWidth / 2
       self.roundOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
       self.roundOverView?.backgroundColor = UIColor.clearColor()
@@ -336,7 +339,7 @@ class GameView: UIView {
       self.modTwoButton!.addTarget(self, action: #selector(GameView.modTwoButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
       
       //add top score label or w/e
-      self.intermissionTime = 5
+      self.intermissionTime = 20
       self.intermissionTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameView.intermissionTickTock), userInfo: nil, repeats: true)
       self.roundOverView?.addSubview(roundOverLabel)
       self.roundOverView?.addSubview(scoreLabel)
@@ -379,6 +382,33 @@ class GameView: UIView {
     self.delegate?.resetTime()
     self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
     resetTiles()
+  }
+  
+  func helperSelected(helperPoint: HelperPoint) {
+    ProgressionManager.sharedManager.helperPointUtilized(helperPoint)
+//    switch helperPoint {
+//    case .Hide:
+//      // pick random tile to hide
+//      let extraTiles = self.tileViews.filter({ (tile) -> Bool in
+//        if tile.alpha == 1 && tile.partOfSolution {
+//          return true
+//        } else {
+//          return false
+//        }
+//      })
+//      let extraCount = extraTiles.count - 1
+//      let randTileIndex = Int.random(0...extraCount)
+//      let randTile = extraTiles[randTileIndex]
+//      // do some kind of fadeout here
+//      randTile.alpha = 0
+//    case .Remove:
+//      break
+//      // remove the operation that isn't showing
+//    case .Reveal:
+//      break
+//      // highlight one of the three tiles in the answer
+//    }
+    
   }
   
   func gameOver(score: Int) {

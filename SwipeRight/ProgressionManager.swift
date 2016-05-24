@@ -33,6 +33,12 @@ enum ModificationType : String {
   case Range = "Number Range"
 }
 
+enum HelperPoint {
+  case Hide
+  case Remove
+  case Reveal
+}
+
 struct Modification {
   
   var type: ModificationType = .Tile
@@ -199,12 +205,19 @@ class ProgressionManager: NSObject {
   
   // MARK: Helper Points
   var currentHelperPoints: Int = 3
-  func helperPointUtilized() {
-    currentHelperPoints -= 1
+  func helperPointUtilized(helperPoint: HelperPoint) {
+    switch helperPoint {
+    case .Hide:
+      currentHelperPoints -= 1
+    case .Remove:
+      currentHelperPoints -= 2
+    case .Reveal:
+      currentHelperPoints -= 3
+    }
   }
   
   func helperPointsForNewRound() {
-    currentHelperPoints += 3
+    currentHelperPoints += 1
   }
   
   

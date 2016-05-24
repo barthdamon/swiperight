@@ -34,9 +34,9 @@ class ViewController: UIViewController, GameViewDelegate {
   var clientView: UIView?
   var beginButton: UIButton?
   var resetButton: UIButton?
-  var puzzleButton: UIButton?
-  var normalButton: UIButton?
-  var speedButton: UIButton?
+  var hideButton: UIButton?
+  var removeButton: UIButton?
+  var revealButton: UIButton?
   
   var multiplyView: UIImageView?
   var divideView: UIImageView?
@@ -268,25 +268,40 @@ class ViewController: UIViewController, GameViewDelegate {
     }
   }
   
+  func setHelperButtons() {
+    let points = ProgressionManager.sharedManager.currentHelperPoints
+    let showRemove = points >= 2
+    let showHide = points >= 1
+    let showReveal = points >= 3
+    if showRemove {
+      if ProgressionManager.sharedManager.multipleOperationsDisplayActive {
+        
+      } else {
+        
+      }
+    }
+
+  }
+  
   func configureHelperOptionUI() {
     let buttonWidth = (viewWidth / 1.25) / 3
-    puzzleButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
-    puzzleButton?.setTitle("Hide", forState: .Normal)
-    puzzleButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    puzzleButton?.backgroundColor = UIColor.lightGrayColor()
-    puzzleButton?.addTarget(self, action: #selector(ViewController.hideButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    hideButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
+    hideButton?.setTitle("Hide", forState: .Normal)
+    hideButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    hideButton?.backgroundColor = UIColor.lightGrayColor()
+    hideButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
-    normalButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
-    normalButton?.setTitle("Remove", forState: .Normal)
-    normalButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    normalButton?.backgroundColor = UIColor.lightGrayColor()
-    normalButton?.addTarget(self, action: #selector(ViewController.removeButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    removeButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
+    removeButton?.setTitle("Remove", forState: .Normal)
+    removeButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    removeButton?.backgroundColor = UIColor.lightGrayColor()
+    removeButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
-    speedButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
-    speedButton?.setTitle("Reveal", forState: .Normal)
-    speedButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    speedButton?.backgroundColor = UIColor.lightGrayColor()
-    speedButton?.addTarget(self, action: #selector(ViewController.revealButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    revealButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
+    revealButton?.setTitle("Reveal", forState: .Normal)
+    revealButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    revealButton?.backgroundColor = UIColor.lightGrayColor()
+    revealButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     
     
     
@@ -299,42 +314,22 @@ class ViewController: UIViewController, GameViewDelegate {
 //      speedButton?.backgroundColor = UIColor.darkGrayColor()
 //    }
     
-    clientView?.addSubview(puzzleButton!)
-    clientView?.addSubview(normalButton!)
-    clientView?.addSubview(speedButton!)
-  }
-  
-  func hideButtonPressed(sender:UIButton) {
-    print("Button pressed")
-  }
-  
-  func removeButtonPressed(sender:UIButton) {
-    print("Button pressed")
-  }
-  
-  func revealButtonPressed(sender:UIButton) {
-    print("Button pressed")
+    clientView?.addSubview(hideButton!)
+    clientView?.addSubview(removeButton!)
+    clientView?.addSubview(revealButton!)
   }
   
   
-  func modeButtonPressed(sender: UIButton) {
-    if let puzzleButton = self.puzzleButton, speedButton = self.speedButton, normalButton = self.normalButton {
+  func helperButtonPressed(sender: UIButton) {
+    if let hideButton = self.hideButton, revealButton = self.revealButton, removeButton = self.removeButton {
       switch sender {
-      case puzzleButton:
-        self.normalButton?.backgroundColor = UIColor.lightGrayColor()
-        self.speedButton?.backgroundColor = UIColor.lightGrayColor()
-        self.puzzleButton?.backgroundColor = UIColor.darkGrayColor()
-        GameStatus.status.selectedMode = .Puzzle
-      case normalButton:
-        self.normalButton?.backgroundColor = UIColor.darkGrayColor()
-        self.speedButton?.backgroundColor = UIColor.lightGrayColor()
-        self.puzzleButton?.backgroundColor = UIColor.lightGrayColor()
-        GameStatus.status.selectedMode = .Normal
-      case speedButton:
-        self.normalButton?.backgroundColor = UIColor.lightGrayColor()
-        self.speedButton?.backgroundColor = UIColor.darkGrayColor()
-        self.puzzleButton?.backgroundColor = UIColor.lightGrayColor()
-        GameStatus.status.selectedMode = .Speed
+      case hideButton:
+        gameView?.helperSelected(.Hide)
+      case revealButton:
+        gameView?.helperSelected(.Reveal)
+      case removeButton:
+        
+        gameView?.helperSelected(.Remove)
       default:
         break
       }
