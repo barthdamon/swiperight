@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 // What to let people buy.... Art? Maybe they can buy their own tiles or boards. Then you can play with your friends or on an online tournament on your own boards.

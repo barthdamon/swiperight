@@ -226,6 +226,14 @@ class GameView: UIView {
   func resetTiles() {
     if GameStatus.status.gameActive {
       self.currentLayout = GridNumberLayout()
+      guard let layout = currentLayout else { return }
+      var color: UIColor = UIColor.darkGrayColor()
+      if layout.operations.count == 1 {
+        color = layout.operations[0].color
+      } else {
+        //half and half
+      }
+      self.backgroundColor = color
       animateTileReset()
     }
   }
@@ -290,6 +298,7 @@ class GameView: UIView {
   }
   
   func newRound() {
+    self.backgroundColor = UIColor.darkGrayColor()
     self.fadeOutTiles { (complete) in
       ProgressionManager.sharedManager.helperPointsForNewRound()
       ProgressionManager.sharedManager.currentRound += 1
@@ -413,35 +422,11 @@ class GameView: UIView {
       // reveal one
       self.tileViews[randSolutionIndex].backgroundColor = UIColor.greenColor()
     }
-    
-    
-//    switch helperPoint {
-//    case .Hide:
-//      // pick random tile to hide
-//      let extraTiles = self.tileViews.filter({ (tile) -> Bool in
-//        if tile.alpha == 1 && tile.partOfSolution {
-//          return true
-//        } else {
-//          return false
-//        }
-//      })
-//      let extraCount = extraTiles.count - 1
-//      let randTileIndex = Int.random(0...extraCount)
-//      let randTile = extraTiles[randTileIndex]
-//      // do some kind of fadeout here
-//      randTile.alpha = 0
-//    case .Remove:
-//      break
-//      // remove the operation that isn't showing
-//    case .Reveal:
-//      break
-//      // highlight one of the three tiles in the answer
-//    }
-    
   }
   
   func gameOver(score: Int) {
     self.fadeOutTiles { (complete) in
+      self.backgroundColor = UIColor.darkGrayColor()
       let yCoord = self.tileWidth / 2
       self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
       self.gameOverView?.backgroundColor = UIColor.clearColor()
