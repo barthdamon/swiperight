@@ -14,6 +14,7 @@ class ViewController: UIViewController, GameViewDelegate {
   var scoreLabel: UILabel?
   var timeLabel: UILabel?
   var roundLabel: UILabel?
+  var helperPointLabel: UILabel?
   var componentView: UIView?
   var time: Int = 0 {
     didSet {
@@ -95,6 +96,7 @@ class ViewController: UIViewController, GameViewDelegate {
   func beginGame() {
     if !GameStatus.status.gameActive {
       setRound(0)
+      setHelperButtons()
       gameView?.animateBeginGame()
     }
   }
@@ -163,6 +165,12 @@ class ViewController: UIViewController, GameViewDelegate {
     timeLabel = UILabel(frame: CGRectMake(negativeOffset, -10, 50, 50))
     timeLabel?.text = "0:00"
     timeLabel?.textColor = UIColor.whiteColor()
+    
+    helperPointLabel = UILabel(frame: CGRectMake(80, -10, 100, 50))
+    helperPointLabel?.text = "Helpers: 0"
+    helperPointLabel?.textColor = UIColor.whiteColor()
+    componentView?.addSubview(helperPointLabel!)
+    
     componentView?.addSubview(timeLabel!)
     self.view.addSubview(componentView!)
   }
@@ -270,17 +278,36 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func setHelperButtons() {
     let points = ProgressionManager.sharedManager.currentHelperPoints
+    guard let layout = gameView?.currentLayout, combo = layout.winningCombination else { return }
+    self.helperPointLabel?.text = "Helpers: \(points)"
+    // need to know the index of all of th
     let showRemove = points >= 2
     let showHide = points >= 1
     let showReveal = points >= 3
-    if showRemove {
-      if ProgressionManager.sharedManager.multipleOperationsDisplayActive {
-        
-      } else {
-        
-      }
+    // need the active operation of the current solution and all of the number indexes
+    if showRemove && ProgressionManager.sharedManager.multipleOperationsDisplayActive  {
+      removeButton?.enabled = true
+      removeButton?.backgroundColor = .lightGrayColor()
+    } else {
+      removeButton?.enabled = false
+      removeButton?.backgroundColor = .darkGrayColor()
     }
-
+    
+    if showHide && ProgressionManager.sharedManager.numberOfExtraTiles > 0 {
+      hideButton?.enabled = true
+      hideButton?.backgroundColor = .lightGrayColor()
+    } else {
+      hideButton?.enabled = false
+      hideButton?.backgroundColor = .darkGrayColor()
+    }
+    
+    if showReveal {
+      revealButton?.enabled = true
+      revealButton?.backgroundColor = .lightGrayColor()
+    } else {
+      revealButton?.enabled = false
+      revealButton?.backgroundColor = .darkGrayColor()
+    }
   }
   
   func configureHelperOptionUI() {
@@ -288,31 +315,23 @@ class ViewController: UIViewController, GameViewDelegate {
     hideButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
     hideButton?.setTitle("Hide", forState: .Normal)
     hideButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    hideButton?.backgroundColor = UIColor.lightGrayColor()
+    hideButton?.backgroundColor = UIColor.darkGrayColor()
     hideButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    hideButton?.enabled = false
     
     removeButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
     removeButton?.setTitle("Remove", forState: .Normal)
     removeButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    removeButton?.backgroundColor = UIColor.lightGrayColor()
+    removeButton?.backgroundColor = UIColor.darkGrayColor()
     removeButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    removeButton?.enabled = false
     
     revealButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
     revealButton?.setTitle("Reveal", forState: .Normal)
     revealButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    revealButton?.backgroundColor = UIColor.lightGrayColor()
+    revealButton?.backgroundColor = UIColor.darkGrayColor()
     revealButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-    
-    
-    
-//    switch GameStatus.status.selectedMode {
-//    case .Puzzle:
-//      puzzleButton?.backgroundColor = UIColor.darkGrayColor()
-//    case .Normal:
-//      normalButton?.backgroundColor = UIColor.darkGrayColor()
-//    case .Speed:
-//      speedButton?.backgroundColor = UIColor.darkGrayColor()
-//    }
+    revealButton?.enabled = false
     
     clientView?.addSubview(hideButton!)
     clientView?.addSubview(removeButton!)
@@ -321,20 +340,25 @@ class ViewController: UIViewController, GameViewDelegate {
   
   
   func helperButtonPressed(sender: UIButton) {
+    guard let layout = gameView?.currentLayout, combo = layout.winningCombination else { return }
     if let hideButton = self.hideButton, revealButton = self.revealButton, removeButton = self.removeButton {
       switch sender {
       case hideButton:
         gameView?.helperSelected(.Hide)
+        // hide a tile that is extra
       case revealButton:
         gameView?.helperSelected(.Reveal)
+        // light up a tile selected
       case removeButton:
-        
+        let filteredOperations = ProgressionManager.sharedManager.activeOperations.filter({$0 == combo.operation})
+        resetClientOperations(filteredOperations)
         gameView?.helperSelected(.Remove)
       default:
         break
       }
     }
     time = gameDuration
+    setHelperButtons()
   }
   
   func toggleClientView() {

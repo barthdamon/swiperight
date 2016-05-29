@@ -204,7 +204,7 @@ class ProgressionManager: NSObject {
   }
   
   // MARK: Helper Points
-  var currentHelperPoints: Int = 3
+  var currentHelperPoints: Int = 0
   func helperPointUtilized(helperPoint: HelperPoint) {
     switch helperPoint {
     case .Hide:

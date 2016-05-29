@@ -364,6 +364,7 @@ class GameView: UIView {
       ProgressionManager.sharedManager.newModificationSelected(modOne)
       GameStatus.status.gameActive = true
       resetRound()
+      self.delegate?.setHelperButtons()
     }
   }
   
@@ -372,6 +373,7 @@ class GameView: UIView {
       ProgressionManager.sharedManager.newModificationSelected(modTwo)
       GameStatus.status.gameActive = true
       resetRound()
+      self.delegate?.setHelperButtons()
     }
   }
   
@@ -385,7 +387,34 @@ class GameView: UIView {
   }
   
   func helperSelected(helperPoint: HelperPoint) {
+    guard let layout = self.currentLayout, indexes = layout.solutionIndexes else { return }
     ProgressionManager.sharedManager.helperPointUtilized(helperPoint)
+    switch helperPoint {
+    case .Remove:
+      // remove dealt with on view controller
+      break
+    case .Hide:
+      // get all the indexes that arent in
+      let possibleIndexes = Grid.indexes.filter({!indexes.contains($0)})
+      // index of the tile view needs to be the samiae
+      var possibleRemovals: Array<TileView> = []
+      for (index, tile) in tileViews.enumerate() {
+        if possibleIndexes.contains(index) && tile.numberLabel!.hidden == false {
+          possibleRemovals.append(tile)
+        }
+      }
+      let removalCount = possibleRemovals.count - 1
+      let randRemovalIndex = Int.random(0...removalCount)
+      // hide one
+      possibleRemovals[randRemovalIndex].backgroundColor = UIColor.redColor()
+    case .Reveal:
+      let randIndex = Int.random(0...2)
+      let randSolutionIndex = indexes[randIndex]
+      // reveal one
+      self.tileViews[randSolutionIndex].backgroundColor = UIColor.greenColor()
+    }
+    
+    
 //    switch helperPoint {
 //    case .Hide:
 //      // pick random tile to hide

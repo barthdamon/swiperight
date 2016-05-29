@@ -38,7 +38,7 @@
 		0232DC911C2386360039E5CE /* CenterOfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterOfView.swift; sourceTree = "<group>"; };
 		0232DC931C23A9830039E5CE /* GameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
 		0232DC951C25D7E90039E5CE /* OperationCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCompletion.swift; sourceTree = "<group>"; };
-		0240B9511C18EF86004B48BA /* SwipeRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0240B9511C18EF86004B48BA /* SwipedRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipedRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0240B9541C18EF86004B48BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0240B9561C18EF86004B48BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0240B9591C18EF86004B48BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		0240B9521C18EF86004B48BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0240B9511C18EF86004B48BA /* SwipeRight.app */,
+				0240B9511C18EF86004B48BA /* SwipedRight.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,9 +143,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0240B9501C18EF86004B48BA /* SwipeRight */ = {
+		0240B9501C18EF86004B48BA /* SwipedRight */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipeRight" */;
+			buildConfigurationList = 0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipedRight" */;
 			buildPhases = (
 				0240B94D1C18EF86004B48BA /* Sources */,
 				0240B94E1C18EF86004B48BA /* Frameworks */,
@@ -155,9 +155,9 @@
 			);
 			dependencies = (
 			);
-			name = SwipeRight;
+			name = SwipedRight;
 			productName = SwipeRight;
-			productReference = 0240B9511C18EF86004B48BA /* SwipeRight.app */;
+			productReference = 0240B9511C18EF86004B48BA /* SwipedRight.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,10 +172,11 @@
 				TargetAttributes = {
 					0240B9501C18EF86004B48BA = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = JQA825VVQR;
 					};
 				};
 			};
-			buildConfigurationList = 0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipeRight" */;
+			buildConfigurationList = 0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipedRight" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -188,7 +189,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0240B9501C18EF86004B48BA /* SwipeRight */,
+				0240B9501C18EF86004B48BA /* SwipedRight */,
 			);
 		};
 /* End PBXProject section */
@@ -335,11 +336,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwipeRight/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawnofindustry.SwipeRight;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortyhandsgames.SwipedRight;
+				PRODUCT_NAME = SwipedRight;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -348,11 +350,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwipeRight/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawnofindustry.SwipeRight;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortyhandsgames.SwipedRight;
+				PRODUCT_NAME = SwipedRight;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -360,7 +363,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipeRight" */ = {
+		0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipedRight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0240B9611C18EF86004B48BA /* Debug */,
@@ -369,7 +372,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipeRight" */ = {
+		0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipedRight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0240B9641C18EF86004B48BA /* Debug */,
