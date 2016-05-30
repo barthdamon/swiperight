@@ -25,6 +25,8 @@ protocol GameViewDelegate {
 
 class GameView: UIView {
   
+  
+  var gradientLayer: CAGradientLayer?
   var delegate: GameViewDelegate!
   var tileWidth: CGFloat!
   var viewWidth: CGFloat!
@@ -211,14 +213,11 @@ class GameView: UIView {
           self.userInteractionEnabled = false
         }
         
-        if ProgressionManager.sharedManager.currentRoundPosition == ProgressionManager.sharedManager.roundLength && ProgressionManager.sharedManager.currentRound < 23 {
-          // show round options, then start new round
-          GameStatus.status.gameActive = false
+        ProgressionManager.sharedManager.currentRoundPosition += 1
+        if ProgressionManager.sharedManager.currentRoundPosition == ProgressionManager.sharedManager.roundLength {
           newRound()
-        } else {
-          ProgressionManager.sharedManager.currentRoundPosition += 1
-          resetTiles()
         }
+        resetTiles()
       }
     }
   }
@@ -226,14 +225,26 @@ class GameView: UIView {
   func resetTiles() {
     if GameStatus.status.gameActive {
       self.currentLayout = GridNumberLayout()
+      self.gradientLayer?.removeFromSuperlayer()
       guard let layout = currentLayout else { return }
       var color: UIColor = UIColor.darkGrayColor()
       if layout.operations.count == 1 {
         color = layout.operations[0].color
+        self.backgroundColor = color
       } else {
-        //half and half
+        let firstOperation = layout.operations.filter({if $0 == .Add || $0 == .Subtract {
+          return true
+        } else {
+          return false
+        }})
+        let firstColor = firstOperation[0].color
+        let secondOperation = layout.operations.filter({$0 == .Multiply || $0 == .Divide})
+        let secondColor = secondOperation[0].color
+        gradientLayer = CAGradientLayer.gradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor))
+        self.layer.hidden = false
+        self.layer.insertSublayer(gradientLayer!, atIndex: 0)
+        // half and half
       }
-      self.backgroundColor = color
       animateTileReset()
     }
   }
@@ -297,7 +308,123 @@ class GameView: UIView {
     }
   }
   
+  func resetRound() {
+    self.intermissionTimer.invalidate()
+    self.roundOverView?.removeFromSuperview()
+    self.gameOverView = nil
+    self.delegate?.resetTime()
+    self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
+    resetTiles()
+  }
+  
+  func helperSelected(helperPoint: HelperPoint) {
+    guard let layout = self.currentLayout, indexes = layout.solutionIndexes else { return }
+    ProgressionManager.sharedManager.helperPointUtilized(helperPoint)
+    switch helperPoint {
+    case .Remove:
+      // remove dealt with on view controller
+      break
+    case .Hide:
+      // get all the indexes that arent in
+      let possibleIndexes = Grid.indexes.filter({!indexes.contains($0)})
+      // index of the tile view needs to be the samiae
+      var possibleRemovals: Array<TileView> = []
+      for (index, tile) in tileViews.enumerate() {
+        if possibleIndexes.contains(index) && tile.numberLabel!.hidden == false {
+          possibleRemovals.append(tile)
+        }
+      }
+      let removalCount = possibleRemovals.count - 1
+      let randRemovalIndex = Int.random(0...removalCount)
+      // hide one
+      possibleRemovals[randRemovalIndex].backgroundColor = UIColor.redColor()
+    case .Reveal:
+      let randIndex = Int.random(0...2)
+      let randSolutionIndex = indexes[randIndex]
+      // reveal one
+      self.tileViews[randSolutionIndex].backgroundColor = UIColor.greenColor()
+    }
+  }
+  
+  func gameOver(score: Int) {
+    self.fadeOutTiles { (complete) in
+      self.backgroundColor = UIColor.darkGrayColor()
+      self.gradientLayer?.removeFromSuperlayer()
+      let yCoord = self.tileWidth / 2
+      self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
+      self.gameOverView?.backgroundColor = UIColor.clearColor()
+      
+      let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
+      gameOverLabel.text = "Game Over"
+      gameOverLabel.font = UIFont.systemFontOfSize(30)
+      gameOverLabel.textAlignment = .Center
+      gameOverLabel.textColor = UIColor.whiteColor()
+      
+      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
+      scoreLabel.text = "Your Score: \(score)"
+      scoreLabel.textColor = UIColor.whiteColor()
+      scoreLabel.textAlignment = .Center
+      
+      //add top score label or w/e
+      self.gameOverView?.addSubview(gameOverLabel)
+      self.gameOverView?.addSubview(scoreLabel)
+      self.addSubview(self.gameOverView!)
+      self.delegate.toggleClientView()
+    }
+  }
+  
+  
+  
   func newRound() {
+    ProgressionManager.sharedManager.currentRound += 1
+    ProgressionManager.sharedManager.currentRoundPosition = 1
+    
+    if ProgressionManager.sharedManager.currentRound < 15 {
+      let modifications = ProgressionManager.sharedManager.generateRoundModifications()
+      let randModIndex = Int.random(0...1)
+      let randMod = modifications[randModIndex]
+      ProgressionManager.sharedManager.newModificationSelected(randMod)
+//      GameStatus.status.gameActive = true
+//      resetRound()
+    }
+    
+    self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
+    ProgressionManager.sharedManager.helperPointsForNewRound()
+    self.delegate?.setHelperButtons()
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  //MARK: OLD ROUND CODE
+  func newRoundOld() {
     self.backgroundColor = UIColor.darkGrayColor()
     self.fadeOutTiles { (complete) in
       ProgressionManager.sharedManager.helperPointsForNewRound()
@@ -310,7 +437,7 @@ class GameView: UIView {
       self.roundOverView?.userInteractionEnabled = true
       
       let roundOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
-      roundOverLabel.text = "Round \(ProgressionManager.sharedManager.currentRound)"
+      roundOverLabel.text = "Level \(ProgressionManager.sharedManager.currentRound)"
       roundOverLabel.font = UIFont.systemFontOfSize(30)
       roundOverLabel.textAlignment = .Center
       roundOverLabel.textColor = UIColor.whiteColor()
@@ -357,9 +484,10 @@ class GameView: UIView {
       self.roundOverView?.addSubview(self.modTwoButton!)
       self.addSubview(self.roundOverView!)
       self.userInteractionEnabled = true
-//      self.delegate.toggleClientView()
+      //      self.delegate.toggleClientView()
     }
   }
+  
   
   func intermissionTickTock() {
     intermissionTime -= 1
@@ -386,69 +514,6 @@ class GameView: UIView {
     }
   }
   
-  func resetRound() {
-    self.intermissionTimer.invalidate()
-    self.roundOverView?.removeFromSuperview()
-    self.gameOverView = nil
-    self.delegate?.resetTime()
-    self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
-    resetTiles()
-  }
-  
-  func helperSelected(helperPoint: HelperPoint) {
-    guard let layout = self.currentLayout, indexes = layout.solutionIndexes else { return }
-    ProgressionManager.sharedManager.helperPointUtilized(helperPoint)
-    switch helperPoint {
-    case .Remove:
-      // remove dealt with on view controller
-      break
-    case .Hide:
-      // get all the indexes that arent in
-      let possibleIndexes = Grid.indexes.filter({!indexes.contains($0)})
-      // index of the tile view needs to be the samiae
-      var possibleRemovals: Array<TileView> = []
-      for (index, tile) in tileViews.enumerate() {
-        if possibleIndexes.contains(index) && tile.numberLabel!.hidden == false {
-          possibleRemovals.append(tile)
-        }
-      }
-      let removalCount = possibleRemovals.count - 1
-      let randRemovalIndex = Int.random(0...removalCount)
-      // hide one
-      possibleRemovals[randRemovalIndex].backgroundColor = UIColor.redColor()
-    case .Reveal:
-      let randIndex = Int.random(0...2)
-      let randSolutionIndex = indexes[randIndex]
-      // reveal one
-      self.tileViews[randSolutionIndex].backgroundColor = UIColor.greenColor()
-    }
-  }
-  
-  func gameOver(score: Int) {
-    self.fadeOutTiles { (complete) in
-      self.backgroundColor = UIColor.darkGrayColor()
-      let yCoord = self.tileWidth / 2
-      self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
-      self.gameOverView?.backgroundColor = UIColor.clearColor()
-      
-      let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
-      gameOverLabel.text = "Game Over"
-      gameOverLabel.font = UIFont.systemFontOfSize(30)
-      gameOverLabel.textAlignment = .Center
-      gameOverLabel.textColor = UIColor.whiteColor()
-      
-      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
-      scoreLabel.text = "Your Score: \(score)"
-      scoreLabel.textColor = UIColor.whiteColor()
-      scoreLabel.textAlignment = .Center
-      
-      //add top score label or w/e
-      self.gameOverView?.addSubview(gameOverLabel)
-      self.gameOverView?.addSubview(scoreLabel)
-      self.addSubview(self.gameOverView!)
-      self.delegate.toggleClientView()
-    }
-  }
   
 }
 

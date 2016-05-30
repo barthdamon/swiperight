@@ -26,9 +26,9 @@ enum Operation {
       return UIColor(red: 0.97, green: 0.45, blue: 0.39, alpha: 1.0)
     case Subtract:
 //      return "Kookaburra"
-      return UIColor(red: 1, green: 0.76, blue: 0.44, alpha: 1.0)
-    case Add:
       return UIColor(red: 0.76, green: 0.85, blue: 0.46, alpha: 1.0)
+    case Add:
+      return UIColor(red: 1, green: 0.76, blue: 0.44, alpha: 1.0)
 //      return "Other"
     case Multiply:
       return UIColor(red: 0.67, green: 0.88, blue: 0.95, alpha: 1.0)

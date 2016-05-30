@@ -18,6 +18,11 @@ class TileView: UIView {
   var number: Int? {
     didSet {
       numberLabel?.text = String(number!)
+      if number == -1 {
+        self.numberLabel?.hidden = true
+      } else {
+        self.numberLabel?.hidden = false
+      }
     }
   }
   var partOfSolution = false

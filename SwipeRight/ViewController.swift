@@ -102,11 +102,11 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func setRound(number: Int) {
-    if number >= 23 {
-      roundLabel?.text = "MAX"
-    } else {
-      roundLabel?.text = "Round: \(number)"
-    }
+//    if number >= 15 {
+//      roundLabel?.text = "MAX"
+//    } else {
+      roundLabel?.text = "Level: \(number)"
+//    }
   }
   
   func startGameplay() {
@@ -125,8 +125,9 @@ class ViewController: UIViewController, GameViewDelegate {
     gameView?.gameOverView?.removeFromSuperview()
     gameView?.gameOverView = nil
     gameView?.applyNumberLayoutToTiles(true)
-    resetClientOperations(nil)
     GameStatus.status.gameActive = false
+    ProgressionManager.sharedManager.reset()
+    resetGameUI()
   }
   
   func resetTime() {
@@ -192,6 +193,7 @@ class ViewController: UIViewController, GameViewDelegate {
     gameView?.roundOverView = nil
     self.gameView?.userInteractionEnabled = false
     self.gameView?.gameOver(score)
+    resetGameState()
 //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
   }
 
@@ -264,8 +266,8 @@ class ViewController: UIViewController, GameViewDelegate {
       multiplyView?.contentMode = .ScaleAspectFill
       multiplyView?.image = multiplyImageGrayInactive
       divideView = UIImageView(frame: CGRectMake(operationWidth * 3,0,operationWidth, 30))
-      divideView?.image = divideImageGrayInactive
       divideView?.contentMode = .ScaleAspectFill
+      divideView?.image = divideImageGrayInactive
       
       buttonsView.addSubview(addView!)
       buttonsView.addSubview(subtractView!)
@@ -308,6 +310,16 @@ class ViewController: UIViewController, GameViewDelegate {
       revealButton?.enabled = false
       revealButton?.backgroundColor = .darkGrayColor()
     }
+  }
+  
+  func resetGameUI() {
+    revealButton?.backgroundColor = .darkGrayColor()
+    hideButton?.backgroundColor = .darkGrayColor()
+    removeButton?.backgroundColor = .darkGrayColor()
+    multiplyView?.image = multiplyImageGrayInactive
+    divideView?.image = divideImageGrayInactive
+    subtractView?.image = subtractImageGrayInactive
+    addView?.image = addImageGrayInactive
   }
   
   func configureHelperOptionUI() {

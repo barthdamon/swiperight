@@ -70,7 +70,7 @@ class ProgressionManager: NSObject {
   var currentRound = 1
   var currentRoundPosition = 1
   let roundLength: Int = 3
-  var modificationTypes: Array<ModificationType> = [.Tile, .BoostTime, .RoundTime, .Operation, .Range]
+  var modificationTypes: Array<ModificationType> = [.Tile, .Operation, .Range]
   var modifications: Array<Modification> = []
   
   
@@ -87,10 +87,13 @@ class ProgressionManager: NSObject {
       modifications.append(Modification(type: mod))
     }
     currentRound = 1
-    standardRoundDuration = 120
-    standardBoostTime = 15
+    standardRoundDuration = 20
+    standardBoostTime = 5
     MultipleHelper.defaultHelper.resetRange()
+    currentHelperPoints = 0
     numberOfExtraTiles = 0
+    self.activeOperations = [.Add]
+    multipleOperationsDisplayActive = false
   }
   
   func generateRoundModifications() -> Array<Modification> {
@@ -199,7 +202,7 @@ class ProgressionManager: NSObject {
   func decreaseStandardRoundDuration() {
     standardRoundDuration -= 20
   }
-  var standardBoostTime: Int = 15
+  var standardBoostTime: Int = 5
   func decreaseStandardBoostTime() {
     standardBoostTime -= 3
   }

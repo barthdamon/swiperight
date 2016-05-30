@@ -23,6 +23,7 @@
 		0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B9581C18EF86004B48BA /* Main.storyboard */; };
 		0240B95C1C18EF86004B48BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95B1C18EF86004B48BA /* Assets.xcassets */; };
 		0240B95F1C18EF86004B48BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95D1C18EF86004B48BA /* LaunchScreen.storyboard */; };
+		0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269CD681CFCF512004184E5 /* GradientLayer.swift */; };
 		02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		0240B95B1C18EF86004B48BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0240B95E1C18EF86004B48BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0240B9601C18EF86004B48BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0269CD681CFCF512004184E5 /* GradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				0220981B1C1DC796005155E6 /* Grid.swift */,
+				0269CD681CFCF512004184E5 /* GradientLayer.swift */,
 				022098181C1DC005005155E6 /* RandomNumber.swift */,
 				02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */,
 				0232DC911C2386360039E5CE /* CenterOfView.swift */,
@@ -223,6 +226,7 @@
 				0220981C1C1DC796005155E6 /* Grid.swift in Sources */,
 				022D4B201CE92885004EFFC7 /* ProgressionManager.swift in Sources */,
 				022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */,
+				0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */,
 				0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */,
 				022098191C1DC005005155E6 /* RandomNumber.swift in Sources */,
 				0220981E1C1DC808005155E6 /* MultipleHelper.swift in Sources */,
