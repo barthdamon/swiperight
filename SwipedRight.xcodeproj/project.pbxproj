@@ -25,6 +25,15 @@
 		0240B95F1C18EF86004B48BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95D1C18EF86004B48BA /* LaunchScreen.storyboard */; };
 		0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269CD681CFCF512004184E5 /* GradientLayer.swift */; };
 		02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */; };
+		02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */; };
+		02ADE4D21CFE7157000AB183 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D11CFE7157000AB183 /* LoginViewController.swift */; };
+		02ADE4D41CFE7218000AB183 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D31CFE7218000AB183 /* APIService.swift */; };
+		02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */; };
+		02ADE4D81CFE7375000AB183 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D71CFE7375000AB183 /* CurrentUser.swift */; };
+		02ADE4DA1CFE73E1000AB183 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D91CFE73E1000AB183 /* User.swift */; };
+		02ADE4DD1CFE77E1000AB183 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */; };
+		02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */; };
+		02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E01CFE8B1C000AB183 /* Score.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +57,15 @@
 		0240B9601C18EF86004B48BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0269CD681CFCF512004184E5 /* GradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
+		02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		02ADE4D11CFE7157000AB183 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		02ADE4D31CFE7218000AB183 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		02ADE4D71CFE7375000AB183 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		02ADE4D91CFE73E1000AB183 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardViewController.swift; path = ../LeaderboardViewController.swift; sourceTree = "<group>"; };
+		02ADE4E01CFE8B1C000AB183 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +82,7 @@
 		0220981A1C1DC00A005155E6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */,
 				0220981B1C1DC796005155E6 /* Grid.swift */,
 				0269CD681CFCF512004184E5 /* GradientLayer.swift */,
 				022098181C1DC005005155E6 /* RandomNumber.swift */,
@@ -77,9 +96,7 @@
 		022098211C1DCA73005155E6 /* DataObjects */ = {
 			isa = PBXGroup;
 			children = (
-				022098161C1DBFD2005155E6 /* GridLayout.swift */,
-				022098261C1E107B005155E6 /* GameView.swift */,
-				022098241C1DFDEB005155E6 /* TileView.swift */,
+				02ADE4DB1CFE7770000AB183 /* Services */,
 				022D4B211CE9288D004EFFC7 /* Models */,
 			);
 			name = DataObjects;
@@ -106,10 +123,12 @@
 		022D4B211CE9288D004EFFC7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				022D4B1F1CE92885004EFFC7 /* ProgressionManager.swift */,
-				0220981D1C1DC808005155E6 /* MultipleHelper.swift */,
-				0232DC931C23A9830039E5CE /* GameStatus.swift */,
+				022098161C1DBFD2005155E6 /* GridLayout.swift */,
+				02ADE4E01CFE8B1C000AB183 /* Score.swift */,
+				022098261C1E107B005155E6 /* GameView.swift */,
+				022098241C1DFDEB005155E6 /* TileView.swift */,
 				0220981F1C1DCA6C005155E6 /* NumberCombination.swift */,
+				02ADE4D91CFE73E1000AB183 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -136,11 +155,35 @@
 				022098231C1DCABC005155E6 /* Admin */,
 				0220981A1C1DC00A005155E6 /* Extensions */,
 				022098211C1DCA73005155E6 /* DataObjects */,
-				0240B9561C18EF86004B48BA /* ViewController.swift */,
+				02ADE4CC1CFE710B000AB183 /* ViewControllers */,
 				022098221C1DCAA9005155E6 /* Interface */,
 				0240B95B1C18EF86004B48BA /* Assets.xcassets */,
 			);
 			path = SwipeRight;
+			sourceTree = "<group>";
+		};
+		02ADE4CC1CFE710B000AB183 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */,
+				0240B9561C18EF86004B48BA /* ViewController.swift */,
+				02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */,
+				02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */,
+				02ADE4D11CFE7157000AB183 /* LoginViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		02ADE4DB1CFE7770000AB183 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				02ADE4D71CFE7375000AB183 /* CurrentUser.swift */,
+				0220981D1C1DC808005155E6 /* MultipleHelper.swift */,
+				0232DC931C23A9830039E5CE /* GameStatus.swift */,
+				022D4B1F1CE92885004EFFC7 /* ProgressionManager.swift */,
+				02ADE4D31CFE7218000AB183 /* APIService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +258,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02ADE4D21CFE7157000AB183 /* LoginViewController.swift in Sources */,
+				02ADE4D41CFE7218000AB183 /* APIService.swift in Sources */,
 				022098171C1DBFD2005155E6 /* GridLayout.swift in Sources */,
 				0232DC941C23A9830039E5CE /* GameStatus.swift in Sources */,
 				02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */,
@@ -223,12 +268,19 @@
 				0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
 				022098271C1E107B005155E6 /* GameView.swift in Sources */,
+				02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */,
+				02ADE4DA1CFE73E1000AB183 /* User.swift in Sources */,
 				0220981C1C1DC796005155E6 /* Grid.swift in Sources */,
 				022D4B201CE92885004EFFC7 /* ProgressionManager.swift in Sources */,
 				022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */,
+				02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */,
 				0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */,
+				02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */,
+				02ADE4DD1CFE77E1000AB183 /* ScoreTableViewCell.swift in Sources */,
 				0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */,
 				022098191C1DC005005155E6 /* RandomNumber.swift in Sources */,
+				02ADE4D81CFE7375000AB183 /* CurrentUser.swift in Sources */,
+				02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */,
 				0220981E1C1DC808005155E6 /* MultipleHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
