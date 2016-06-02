@@ -25,17 +25,17 @@ class APIService: NSObject {
   // if we are running on a device use the production server
   #if (arch(i386) || arch(x86_64)) && os(iOS)
   //     DEVELOPMENT
-  let baseURL = "http://localhost:3000"
+  let baseURL = "http://localhost:1337"
   #else
   // PRODUCTION
-  let baseURL = "https://peat-api.herokuapp.com"
+  let baseURL = "https://sw-server.herokuapp.com"
   #endif
   
   var authToken: String? {
     return CurrentUser.info.token()
   }
   var apiURL: String { return "\(baseURL)/" }
-  private let api_pw = "fartpoop"
+  private let api_pw = "DLSdiAlup0x0dkrCLizbn9GnJtdS08K4"
   
   class var sharedService: APIService {
     return _sharedService
@@ -104,11 +104,10 @@ class APIService: NSObject {
       }
       
       if let res = response as! NSHTTPURLResponse! {
-        //Use this notification for when user makes any request but gets unauthorized, means token is expired, send them back to login
-        //        if res.statusCode == 401 { // unauthorized
-        //          print("Error server responded with 401: Unauthorized")
-        //          NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "errorUnauthorizedNotification", object: nil))
-        //        }
+        if res.statusCode == 401 { // unauthorized
+          print("Error server responded with 401: Unauthorized")
+          NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "errorUnauthorizedNotification", object: nil))
+        }
         if res.statusCode != 200 && res.statusCode != 201 {
           print("Error, server responded with: \(res.statusCode) to request for \(url)" )
           let errorMessage = self.parseError(data!)

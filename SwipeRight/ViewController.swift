@@ -69,6 +69,7 @@ class ViewController: UIViewController, GameViewDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+ //   self.navigationController?.navigationBarHidden = true
     MultipleHelper.defaultHelper.initializeCombinations()
     viewWidth = self.view.frame.width
     viewHeight = self.view.frame.height
@@ -76,6 +77,10 @@ class ViewController: UIViewController, GameViewDelegate {
     gameView = GameView(viewWidth: viewWidth, viewHeight: viewHeight, delegate: self)
     self.view.addSubview(gameView!)
     configureStartOptions()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+ //   self.navigationController?.navigationBarHidden = false
   }
   
   
@@ -185,7 +190,10 @@ class ViewController: UIViewController, GameViewDelegate {
     }
   }
   
-  func gameOver() {
+  func gameOver(finished: Bool = true) {
+    if finished && GameStatus.status.selectedMode == .Ranked {
+      reportScore()
+    }
     timer?.invalidate()
     timer = nil
     GameStatus.status.gameActive = false
@@ -195,6 +203,16 @@ class ViewController: UIViewController, GameViewDelegate {
     self.gameView?.gameOver(score)
     resetGameState()
 //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
+  }
+  
+  func reportScore() {
+    APIService.sharedService.post(["value": score], url: "score/register") { (res, err) in
+      if let e = err {
+        print("Error reporting score: \(e)")
+      } else {
+        print("score reported successfully")
+      }
+    }
   }
 
 //  func alertShow(alertText :String, alertMessage :String) {
@@ -419,7 +437,7 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func resetButtonPressed() {
-    gameOver()
+    gameOver(false)
     resetGameState()
   }
   

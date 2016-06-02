@@ -18,7 +18,7 @@ protocol GameViewDelegate {
   func resetClientOperations(currentOperations: Array<Operation>?)
   func addTime(seconds: Int)
   func resetTime()
-  func gameOver()
+  func gameOver(finished: Bool)
   func setRound(number: Int)
   func setHelperButtons()
 }
@@ -492,7 +492,7 @@ class GameView: UIView {
   func intermissionTickTock() {
     intermissionTime -= 1
     if intermissionTime == 0 {
-      delegate?.gameOver()
+      delegate?.gameOver(true)
     }
   }
   

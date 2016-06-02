@@ -32,7 +32,17 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
   }
   
   func loadCurrentRankings(grouping: Grouping) {
-    
+    APIService.sharedService.get(nil, authType: .Basic, url: "rankings/\(currentGrouping.rawValue)", callback: { (data, err) in
+      if let e = err {
+        print("Error: \(e)")
+      } else if let json = data as? jsonObject, scoresJson = json["scores"] as? Array<jsonObject> {
+        print("Scores: \(scoresJson)")
+        scoresJson.forEach({ (scoreJson) in
+          self.scores.append(Score.scoreFromJson(scoreJson))
+        })
+        self.reload()
+      }
+    })
   }
   
   @IBAction func dayButtonPressed(sender: AnyObject) {

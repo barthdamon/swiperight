@@ -1,14 +1,14 @@
 //
-//  LoginViewController.swift
+//  ProfileViewController.swift
 //  SwipedRight
 //
-//  Created by Matthew Barth on 5/31/16.
+//  Created by Matthew Barth on 6/1/16.
 //  Copyright © 2016 Matthew Barth. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

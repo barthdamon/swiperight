@@ -23,10 +23,11 @@
 		0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B9581C18EF86004B48BA /* Main.storyboard */; };
 		0240B95C1C18EF86004B48BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95B1C18EF86004B48BA /* Assets.xcassets */; };
 		0240B95F1C18EF86004B48BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95D1C18EF86004B48BA /* LaunchScreen.storyboard */; };
+		0247A3601CFFD30A00FC52B9 /* UIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */; };
+		0247A3621CFFD45600FC52B9 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247A3611CFFD45600FC52B9 /* AuthViewController.swift */; };
 		0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269CD681CFCF512004184E5 /* GradientLayer.swift */; };
 		02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */; };
 		02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */; };
-		02ADE4D21CFE7157000AB183 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D11CFE7157000AB183 /* LoginViewController.swift */; };
 		02ADE4D41CFE7218000AB183 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D31CFE7218000AB183 /* APIService.swift */; };
 		02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */; };
 		02ADE4D81CFE7375000AB183 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D71CFE7375000AB183 /* CurrentUser.swift */; };
@@ -34,6 +35,7 @@
 		02ADE4DD1CFE77E1000AB183 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */; };
 		02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */; };
 		02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E01CFE8B1C000AB183 /* Score.swift */; };
+		02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,10 +57,11 @@
 		0240B95B1C18EF86004B48BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0240B95E1C18EF86004B48BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0240B9601C18EF86004B48BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpers.swift; sourceTree = "<group>"; };
+		0247A3611CFFD45600FC52B9 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0269CD681CFCF512004184E5 /* GradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
 		02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		02ADE4D11CFE7157000AB183 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		02ADE4D31CFE7218000AB183 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		02ADE4D71CFE7375000AB183 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardViewController.swift; path = ../LeaderboardViewController.swift; sourceTree = "<group>"; };
 		02ADE4E01CFE8B1C000AB183 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			children = (
 				02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */,
 				0220981B1C1DC796005155E6 /* Grid.swift */,
+				0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */,
 				0269CD681CFCF512004184E5 /* GradientLayer.swift */,
 				022098181C1DC005005155E6 /* RandomNumber.swift */,
 				02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */,
@@ -162,14 +167,23 @@
 			path = SwipeRight;
 			sourceTree = "<group>";
 		};
+		0247A35E1CFFD26D00FC52B9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */,
+				0247A3611CFFD45600FC52B9 /* AuthViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		02ADE4CC1CFE710B000AB183 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */,
+				0247A35E1CFFD26D00FC52B9 /* Profile */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
 				02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */,
 				02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */,
-				02ADE4D11CFE7157000AB183 /* LoginViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -258,14 +272,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02ADE4D21CFE7157000AB183 /* LoginViewController.swift in Sources */,
 				02ADE4D41CFE7218000AB183 /* APIService.swift in Sources */,
 				022098171C1DBFD2005155E6 /* GridLayout.swift in Sources */,
+				0247A3601CFFD30A00FC52B9 /* UIHelpers.swift in Sources */,
 				0232DC941C23A9830039E5CE /* GameStatus.swift in Sources */,
 				02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
 				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
 				0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */,
+				0247A3621CFFD45600FC52B9 /* AuthViewController.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
 				022098271C1E107B005155E6 /* GameView.swift in Sources */,
 				02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */,
@@ -280,6 +295,7 @@
 				0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */,
 				022098191C1DC005005155E6 /* RandomNumber.swift in Sources */,
 				02ADE4D81CFE7375000AB183 /* CurrentUser.swift in Sources */,
+				02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */,
 				02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */,
 				0220981E1C1DC808005155E6 /* MultipleHelper.swift in Sources */,
 			);

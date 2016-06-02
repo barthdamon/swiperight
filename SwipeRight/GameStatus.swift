@@ -8,14 +8,13 @@
 
 import Foundation
 
-enum GameMode: Int {
-  case Puzzle = 2
-  case Normal = 1
-  case Speed = 0
+enum GameMode {
+  case Practice
+  case Ranked
+  case Standard
 }
 
 private var _status = GameStatus()
-
 
 class GameStatus: NSObject {
   
@@ -24,6 +23,6 @@ class GameStatus: NSObject {
   }
   
   var gameActive = false
-  var selectedMode: GameMode = .Normal
+  var selectedMode: GameMode = .Standard
   
 }
