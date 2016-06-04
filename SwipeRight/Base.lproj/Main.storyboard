@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cgQ-YZ-Cgq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -206,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIT-h2-OPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-518" y="346"/>
+            <point key="canvasLocation" x="-480" y="346"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -258,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="237" y="346"/>
+            <point key="canvasLocation" x="289" y="309"/>
         </scene>
         <!--Leaderboard View Controller-->
         <scene sceneID="sWn-O3-loL">
@@ -727,10 +727,10 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="ga0-xL-BN5"/>
-                                        <exclude reference="cLe-4e-5tx"/>
                                         <exclude reference="Eeu-G6-DEg"/>
                                         <exclude reference="PTY-Ue-8AX"/>
+                                        <exclude reference="cLe-4e-5tx"/>
+                                        <exclude reference="ga0-xL-BN5"/>
                                         <exclude reference="mBt-Z5-ZHt"/>
                                     </mask>
                                 </variation>
@@ -757,8 +757,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="p29-70-NKK"/>
                                 <exclude reference="JHd-qB-T40"/>
+                                <exclude reference="p29-70-NKK"/>
                                 <exclude reference="OjF-zR-yXf"/>
                                 <exclude reference="iOR-eQ-igo"/>
                             </mask>
@@ -787,6 +787,6 @@
         <image name="header" width="1659" height="316"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2X8-Cq-Cwc"/>
+        <segue reference="K5p-SO-msa"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,7 +23,7 @@ protocol GameViewDelegate {
   func setHelperButtons()
 }
 
-class GameView: UIView {
+class GameView: UIView, UIGestureRecognizerDelegate {
   
   
   var gradientLayer: CAGradientLayer?
@@ -68,14 +68,7 @@ class GameView: UIView {
     tileWidth = self.frame.width / 3
     self.backgroundColor = UIColor.darkGrayColor()
     self.userInteractionEnabled = false
-    addGestureRecognizers()
     configureGameViewComponents()
-  }
-
-  func addGestureRecognizers() {
-    let swipeRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GameView.gameViewSwiped(_:)))
-    swipeRecognizer.minimumNumberOfTouches = 1
-    self.addGestureRecognizer(swipeRecognizer)
   }
   
   func configureGameViewComponents() {
@@ -97,18 +90,25 @@ class GameView: UIView {
     }
   }
   
-  func gameViewSwiped(sender: UIGestureRecognizer) {
-    let loc = sender.locationInView(self)
-    if sender.state == .Began {
-      startLoc = loc
-      print("Gesture Began: \(loc)")
-      resolveUserInteraction()
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    guard let touch = touches.first else { return }
+    startLoc = touch.locationInView(self)
+    print("Touches began")
+  }
+  
+  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    guard let touch = touches.first else { return }
+    endLoc = touch.locationInView(self)
+  }
+  
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    guard let touch = touches.first else { return }
+    let end = touch.locationInView(self)
+    if (end.x > 0 && end.y > 0) && (end.x < self.frame.width && end.y < self.frame.height) {
+      endLoc = end
     }
-    if sender.state == .Ended {
-      endLoc = loc
-      print("Gesture Ended \(loc)")
-      resolveUserInteraction()
-    }
+    resolveUserInteraction()
+    print("Touches ended")
   }
   
   func resolveUserInteraction() {
@@ -119,11 +119,25 @@ class GameView: UIView {
         var midTile: TileView?
         var tileIndexes: Array<Int> = []
         //Int floors the cgfloat
-        let start = (x: Int(startLoc.x / tileWidth), y: Int(startLoc.y / tileWidth))
+        var start = (x: Int(startLoc.x / tileWidth), y: Int(startLoc.y / tileWidth))
+        if start.x == -1 { start.x = 0 }
+        if start.x == 3 { start.x = 2 }
+        if start.y == -1 { start.y = 0 }
+        if start.y == 3 { start.y = 2 }
         print("START: \(start.x), \(start.y)")
-        let end = (x: Int(endLoc.x / tileWidth), y: Int(endLoc.y / tileWidth))
+        
+        var end = (x: Int(endLoc.x / tileWidth), y: Int(endLoc.y / tileWidth))
+        if end.x == -1 { end.x = 0 }
+        if end.x == 3 { end.x = 2 }
+        if end.y == -1 { end.y = 0 }
+        if end.y == 3 { end.y = 2 }
         print("END: \(end.x), \(end.y)")
-        let mid = (x: (start.x + end.x) / 2, y: (start.y + end.y) / 2)
+        
+        var mid = (x: (start.x + end.x) / 2, y: (start.y + end.y) / 2)
+        if mid.x == -1 { mid.x = 0 }
+        if mid.x == 3 { mid.x = 2 }
+        if mid.y == -1 { mid.y = 0 }
+        if mid.y == 3 { mid.y = 2 }
         print("MIDDLE: \(mid.x), \(mid.y)")
         
         for i in 0 ..< Grid.tileCoordinates.count {
