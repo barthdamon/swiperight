@@ -21,12 +21,10 @@ func alertShow(vc: UIViewController, alertText :String, alertMessage :String) {
   })
 }
 
-//let normalFont = UIFont(name: "DIN-Medium", size: 13)
-
 extension UILabel {
   
   func boldRange(range: Range<String.Index>) {
-    if let text = self.attributedText, boldFont = UIFont(name: "DIN-Bold", size: 13) {
+    if let text = self.attributedText, boldFont = ThemeHelper.defaultHelper.sw_bold_font {
       let attr = NSMutableAttributedString(attributedString: text)
       let start = text.string.startIndex.distanceTo(range.startIndex)
       let length = range.startIndex.distanceTo(range.endIndex)

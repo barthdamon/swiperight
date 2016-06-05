@@ -20,7 +20,7 @@ class MultipleHelper: NSObject {
   
   var range = 10
   func increaseRange() {
-    range += 15
+    range += 10
   }
   func resetRange() {
     range = 10

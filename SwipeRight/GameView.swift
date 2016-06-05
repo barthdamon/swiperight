@@ -13,11 +13,11 @@ protocol GameViewDelegate {
   func scoreChange(correct: Bool)
   func startGameplay()
   func resetGameState()
+  func setStartTime()
   func configureStartOptions()
   func toggleClientView()
   func resetClientOperations(currentOperations: Array<Operation>?)
   func addTime(seconds: Int)
-  func resetTime()
   func gameOver(finished: Bool)
   func setRound(number: Int)
   func setHelperButtons()
@@ -220,9 +220,8 @@ class GameView: UIView, UIGestureRecognizerDelegate {
           middleTile.backgroundColor = UIColor.redColor()
           self.userInteractionEnabled = false
         }
-        
         ProgressionManager.sharedManager.currentRoundPosition += 1
-        if ProgressionManager.sharedManager.currentRoundPosition == ProgressionManager.sharedManager.roundLength {
+        if ProgressionManager.sharedManager.currentRoundPosition > ProgressionManager.sharedManager.roundLength {
           newRound()
         }
         resetTiles()
@@ -307,8 +306,11 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     let coords = Coordinates(x: 0, y: 0)
     let overlayView = TileView(xCoord: coords.x + tileWidth, yCoord: coords.y + tileWidth, tileWidth: tileWidth, overlay: true)
     self.addSubview(overlayView)
+    gameOverView?.removeFromSuperview()
+    gameOverView = nil
     overlayView.animateCountdown() { (res) in
       if res {
+        self.delegate?.setStartTime()
         overlayView.removeFromSuperview()
         GameStatus.status.gameActive = true
         self.resetTiles()
@@ -316,15 +318,6 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         self.delegate.toggleClientView()
       }
     }
-  }
-  
-  func resetRound() {
-    self.intermissionTimer.invalidate()
-    self.roundOverView?.removeFromSuperview()
-    self.gameOverView = nil
-    self.delegate?.resetTime()
-    self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
-    resetTiles()
   }
   
   func helperSelected(helperPoint: HelperPoint) {
@@ -358,7 +351,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
   
   func gameOver(score: Int) {
     self.fadeOutTiles { (complete) in
-      self.backgroundColor = UIColor.darkGrayColor()
+      self.backgroundColor = ThemeHelper.defaultHelper.sw_gameview_background_color
       self.gradientLayer?.removeFromSuperlayer()
       let yCoord = self.tileWidth / 2
       self.gameOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
@@ -366,13 +359,14 @@ class GameView: UIView, UIGestureRecognizerDelegate {
       
       let gameOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
       gameOverLabel.text = "Game Over"
-      gameOverLabel.font = UIFont.systemFontOfSize(30)
+      gameOverLabel.font = ThemeHelper.defaultHelper.sw_font_large
       gameOverLabel.textAlignment = .Center
-      gameOverLabel.textColor = UIColor.whiteColor()
+      gameOverLabel.textColor = UIColor.blackColor()
       
       let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
       scoreLabel.text = "Your Score: \(score)"
-      scoreLabel.textColor = UIColor.whiteColor()
+      scoreLabel.font = ThemeHelper.defaultHelper.sw_font
+      scoreLabel.textColor = UIColor.blackColor()
       scoreLabel.textAlignment = .Center
       
       //add top score label or w/e
@@ -389,11 +383,10 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     ProgressionManager.sharedManager.currentRound += 1
     ProgressionManager.sharedManager.currentRoundPosition = 1
     
-    if ProgressionManager.sharedManager.currentRound < 15 {
-      let modifications = ProgressionManager.sharedManager.generateRoundModifications()
-      let randModIndex = Int.random(0...1)
-      let randMod = modifications[randModIndex]
-      ProgressionManager.sharedManager.newModificationSelected(randMod)
+    if ProgressionManager.sharedManager.currentRound < 19 {
+      if let modification = ProgressionManager.sharedManager.generateRandomModification() {
+        ProgressionManager.sharedManager.newModificationSelected(modification)
+      }
 //      GameStatus.status.gameActive = true
 //      resetRound()
     }
@@ -434,95 +427,105 @@ class GameView: UIView, UIGestureRecognizerDelegate {
   
   
   //MARK: OLD ROUND CODE
-  func newRoundOld() {
-    self.backgroundColor = UIColor.darkGrayColor()
-    self.fadeOutTiles { (complete) in
-      ProgressionManager.sharedManager.helperPointsForNewRound()
-      ProgressionManager.sharedManager.currentRound += 1
-      ProgressionManager.sharedManager.currentRoundPosition = 1
-      self.delegate?.setHelperButtons()
-      let yCoord = self.tileWidth / 2
-      self.roundOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
-      self.roundOverView?.backgroundColor = UIColor.clearColor()
-      self.roundOverView?.userInteractionEnabled = true
-      
-      let roundOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
-      roundOverLabel.text = "Level \(ProgressionManager.sharedManager.currentRound)"
-      roundOverLabel.font = UIFont.systemFontOfSize(30)
-      roundOverLabel.textAlignment = .Center
-      roundOverLabel.textColor = UIColor.whiteColor()
-      
-      
-      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
-      scoreLabel.text = "Pick A Difficulty Modification:"
-      scoreLabel.textColor = UIColor.whiteColor()
-      scoreLabel.textAlignment = .Center
-      
-      self.intermissionTimeLabel = UILabel(frame: CGRectMake(0,yCoord + 225,self.tileWidth * 3, 50))
-      self.intermissionTimeLabel!.text = "Next Round Starts: 5"
-      self.intermissionTimeLabel!.textColor = UIColor.whiteColor()
-      self.intermissionTimeLabel!.textAlignment = .Center
-      
-      let modifications = ProgressionManager.sharedManager.generateRoundModifications()
-      guard modifications.count == 2 else { return }
-      self.modOne = modifications[0]
-      self.modTwo = modifications[1]
-      guard let modOne = self.modOne, modTwo = self.modTwo else { return }
-      
-      self.modOneButton = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
-      self.modOneButton!.setTitle("\(modOne.type.rawValue) (\(modOne.remaining))", forState: .Normal)
-      self.modOneButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-      self.modOneButton!.backgroundColor = UIColor.blackColor()
-      self.modOneButton!.titleLabel?.font = UIFont.systemFontOfSize(30)
-      self.modOneButton!.addTarget(self, action: #selector(GameView.modOneButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-      
-      self.modTwoButton = UIButton(frame: CGRectMake(0,yCoord + 175,self.tileWidth * 3, 50))
-      self.modTwoButton!.setTitle("\(modTwo.type.rawValue) (\(modTwo.remaining))", forState: .Normal)
-      self.modTwoButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-      self.modTwoButton!.backgroundColor = UIColor.blackColor()
-      self.modTwoButton!.titleLabel?.font = UIFont.systemFontOfSize(30)
-      
-      self.modTwoButton!.addTarget(self, action: #selector(GameView.modTwoButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-      
-      //add top score label or w/e
-      self.intermissionTime = 20
-      self.intermissionTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameView.intermissionTickTock), userInfo: nil, repeats: true)
-      self.roundOverView?.addSubview(roundOverLabel)
-      self.roundOverView?.addSubview(scoreLabel)
-      self.roundOverView?.addSubview(self.intermissionTimeLabel!)
-      self.roundOverView?.addSubview(self.modOneButton!)
-      self.roundOverView?.addSubview(self.modTwoButton!)
-      self.addSubview(self.roundOverView!)
-      self.userInteractionEnabled = true
-      //      self.delegate.toggleClientView()
-    }
-  }
-  
-  
-  func intermissionTickTock() {
-    intermissionTime -= 1
-    if intermissionTime == 0 {
-      delegate?.gameOver(true)
-    }
-  }
-  
-  func modOneButtonPressed(button: UIButton) {
-    if let modOne = modOne {
-      ProgressionManager.sharedManager.newModificationSelected(modOne)
-      GameStatus.status.gameActive = true
-      resetRound()
-      self.delegate?.setHelperButtons()
-    }
-  }
-  
-  func modTwoButtonPressed(button: UIButton) {
-    if let modTwo = modTwo {
-      ProgressionManager.sharedManager.newModificationSelected(modTwo)
-      GameStatus.status.gameActive = true
-      resetRound()
-      self.delegate?.setHelperButtons()
-    }
-  }
+//  func resetRound() {
+//    self.intermissionTimer.invalidate()
+//    self.roundOverView?.removeFromSuperview()
+//    gameOverView?.removeFromSuperview()
+//    self.gameOverView = nil
+//    self.delegate?.setStartTime()
+//    self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
+//    resetTiles()
+//  }
+//  
+//  func newRoundOld() {
+//    self.backgroundColor = UIColor.darkGrayColor()
+//    self.fadeOutTiles { (complete) in
+//      ProgressionManager.sharedManager.helperPointsForNewRound()
+//      ProgressionManager.sharedManager.currentRound += 1
+//      ProgressionManager.sharedManager.currentRoundPosition = 1
+//      self.delegate?.setHelperButtons()
+//      let yCoord = self.tileWidth / 2
+//      self.roundOverView = UIView(frame: CGRectMake(0,0, self.frame.width, self.frame.height))
+//      self.roundOverView?.backgroundColor = UIColor.clearColor()
+//      self.roundOverView?.userInteractionEnabled = true
+//      
+//      let roundOverLabel = UILabel(frame: CGRectMake(0,yCoord,self.tileWidth * 3, 50))
+//      roundOverLabel.text = "Level \(ProgressionManager.sharedManager.currentRound)"
+//      roundOverLabel.font = UIFont.systemFontOfSize(30)
+//      roundOverLabel.textAlignment = .Center
+//      roundOverLabel.textColor = UIColor.whiteColor()
+//      
+//      
+//      let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
+//      scoreLabel.text = "Pick A Difficulty Modification:"
+//      scoreLabel.textColor = UIColor.whiteColor()
+//      scoreLabel.textAlignment = .Center
+//      
+//      self.intermissionTimeLabel = UILabel(frame: CGRectMake(0,yCoord + 225,self.tileWidth * 3, 50))
+//      self.intermissionTimeLabel!.text = "Next Round Starts: 5"
+//      self.intermissionTimeLabel!.textColor = UIColor.whiteColor()
+//      self.intermissionTimeLabel!.textAlignment = .Center
+//      
+//      let modifications = ProgressionManager.sharedManager.generateRoundModifications()
+//      guard modifications.count == 2 else { return }
+//      self.modOne = modifications[0]
+//      self.modTwo = modifications[1]
+//      guard let modOne = self.modOne, modTwo = self.modTwo else { return }
+//      
+//      self.modOneButton = UIButton(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
+//      self.modOneButton!.setTitle("\(modOne.type.rawValue) (\(modOne.remaining))", forState: .Normal)
+//      self.modOneButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//      self.modOneButton!.backgroundColor = UIColor.blackColor()
+//      self.modOneButton!.titleLabel?.font = UIFont.systemFontOfSize(30)
+//      self.modOneButton!.addTarget(self, action: #selector(GameView.modOneButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//      
+//      self.modTwoButton = UIButton(frame: CGRectMake(0,yCoord + 175,self.tileWidth * 3, 50))
+//      self.modTwoButton!.setTitle("\(modTwo.type.rawValue) (\(modTwo.remaining))", forState: .Normal)
+//      self.modTwoButton!.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//      self.modTwoButton!.backgroundColor = UIColor.blackColor()
+//      self.modTwoButton!.titleLabel?.font = UIFont.systemFontOfSize(30)
+//      
+//      self.modTwoButton!.addTarget(self, action: #selector(GameView.modTwoButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//      
+//      //add top score label or w/e
+//      self.intermissionTime = 20
+//      self.intermissionTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameView.intermissionTickTock), userInfo: nil, repeats: true)
+//      self.roundOverView?.addSubview(roundOverLabel)
+//      self.roundOverView?.addSubview(scoreLabel)
+//      self.roundOverView?.addSubview(self.intermissionTimeLabel!)
+//      self.roundOverView?.addSubview(self.modOneButton!)
+//      self.roundOverView?.addSubview(self.modTwoButton!)
+//      self.addSubview(self.roundOverView!)
+//      self.userInteractionEnabled = true
+//      //      self.delegate.toggleClientView()
+//    }
+//  }
+//  
+//  
+//  func intermissionTickTock() {
+//    intermissionTime -= 1
+//    if intermissionTime == 0 {
+//      delegate?.gameOver(true)
+//    }
+//  }
+//  
+//  func modOneButtonPressed(button: UIButton) {
+//    if let modOne = modOne {
+//      ProgressionManager.sharedManager.newModificationSelected(modOne)
+//      GameStatus.status.gameActive = true
+//      resetRound()
+//      self.delegate?.setHelperButtons()
+//    }
+//  }
+//  
+//  func modTwoButtonPressed(button: UIButton) {
+//    if let modTwo = modTwo {
+//      ProgressionManager.sharedManager.newModificationSelected(modTwo)
+//      GameStatus.status.gameActive = true
+//      resetRound()
+//      self.delegate?.setHelperButtons()
+//    }
+//  }
   
   
 }

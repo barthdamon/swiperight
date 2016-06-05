@@ -78,11 +78,11 @@ class ViewController: UIViewController, GameViewDelegate {
     super.viewDidLoad()
  //   self.navigationController?.navigationBarHidden = true
     configureViewStyles()
-
+    setRound(0)
     MultipleHelper.defaultHelper.initializeCombinations()
     viewWidth = self.view.frame.width
     viewHeight = self.view.frame.height
-    configureHUD()
+    resetGameState()
     gameView = GameView(container: gameViewContainer, delegate: self)
     configureStartOptions()
   }
@@ -131,6 +131,11 @@ class ViewController: UIViewController, GameViewDelegate {
     }
   }
   
+  func setStartTime() {
+    time = gameDuration
+    setRound(ProgressionManager.sharedManager.currentRound)
+  }
+  
   func setRound(number: Int) {
 //    if number >= 15 {
 //      roundLabel?.text = "MAX"
@@ -148,7 +153,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func resetGameState() {
     score = 0
-    time = gameDuration
+    time = 0
     gameView?.intermissionTimer.invalidate()
     gameView?.roundOverView?.removeFromSuperview()
     gameView?.roundOverView = nil
@@ -160,15 +165,8 @@ class ViewController: UIViewController, GameViewDelegate {
     resetGameUI()
   }
   
-  func resetTime() {
-    time = gameDuration
-  }
-  
   
   //MARK: HUD
-  func configureHUD() {
-    resetGameState()
-  }
   
   func tickTock() {
     if GameStatus.status.gameActive {
@@ -240,7 +238,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func setHelperButtons() {
     let points = ProgressionManager.sharedManager.currentHelperPoints
-    guard let layout = gameView?.currentLayout, combo = layout.winningCombination else { return }
+    guard let layout = gameView?.currentLayout, _ = layout.winningCombination else { return }
     self.helperPointLabel?.text = "Helpers: \(points)"
     // need to know the index of all of th
     let showRemove = points >= 2
@@ -329,7 +327,7 @@ class ViewController: UIViewController, GameViewDelegate {
         break
       }
     }
-    time = gameDuration
+//    time = gameDuration
     setHelperButtons()
   }
   
@@ -385,7 +383,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func beginButtonPressed() {
     beginButton?.enabled = false
-    resetGameState()
+//    resetGameState()
     beginGame()
   }
   

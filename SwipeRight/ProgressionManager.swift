@@ -57,7 +57,7 @@ struct Modification {
     case .Operation:
       remaining = 4
     case .Range:
-      remaining = 5
+      remaining = 9
     }
   }
 }
@@ -72,7 +72,7 @@ class ProgressionManager: NSObject {
   let roundLength: Int = 3
   var modificationTypes: Array<ModificationType> = [.Tile, .Operation, .Range]
   var modifications: Array<Modification> = []
-  
+  var previousModificationTypes: Array<ModificationType> = []
   
   override init() {
     super.init()
@@ -96,26 +96,40 @@ class ProgressionManager: NSObject {
     multipleOperationsDisplayActive = false
   }
   
-  func generateRoundModifications() -> Array<Modification> {
-    modifications.forEach { (mod) in
-      print("Type: \(mod.type), remaining: \(mod.remaining)")
-    }
-    var newMods: Array<Modification> = []
-    var modsRemaining = modifications.filter({$0.remaining > 0})
-    if modsRemaining.count < 2 {
-      newMods.append(modsRemaining[0])
-      newMods.append(modsRemaining[0])
-    } else {
-      for _ in 0...1 {
-        let remainingCount = modsRemaining.count - 1
-        let randModIndex = Int.random(0...remainingCount)
-        let newMod = modsRemaining[randModIndex]
-        newMods.append(newMod)
-        modsRemaining.removeAtIndex(randModIndex)
+  func generateRandomModification() -> Modification? {
+    // make sure they are getting a balance so its fair
+    // maybe take the past 4 and make sure there is at least one of each type....
+    let modsRemaining = modifications.filter({$0.remaining > 0})
+    // use the remaining...
+    let maxIndex: Int = modsRemaining.count - 1
+    let sortedMods = modsRemaining.sort({$0.remaining > $1.remaining})
+    var newMod: Modification?
+    
+    
+    func generateMod() {
+      let randModIndex = Int.random(0...maxIndex)
+      newMod = sortedMods[randModIndex]
+      let neededMods = modsRemaining.filter({!previousModificationTypes.contains($0.type)})
+      if neededMods.count > 0 {
+        let randModIndexNeeded = Int.random(0...neededMods.count - 1)
+        newMod = neededMods[randModIndexNeeded]
       }
     }
+    print("Previous Modifications:")
+    for prevMod in previousModificationTypes {
+      print("\(prevMod.rawValue)")
+    }
     
-    return newMods
+    generateMod()
+    if let type = newMod?.type {
+      previousModificationTypes.insert(type, atIndex: 0)
+    }
+
+    if (previousModificationTypes.count == modificationTypes.count) || (previousModificationTypes.count > modsRemaining.count) {
+      previousModificationTypes.popLast()
+    }
+    
+    return newMod
   }
   
   func newModificationSelected(mod: Modification) {
