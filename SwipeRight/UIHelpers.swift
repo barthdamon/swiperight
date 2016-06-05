@@ -42,8 +42,17 @@ extension UILabel {
 }
 
 extension UIView {
-  static func becomeButtonForGameView(selector: Selector) {
+  func becomeButtonForGameView(target: UIViewController, selector: Selector) {
+    let tapRecognizer = UITapGestureRecognizer(target: target, action: selector)
+    tapRecognizer.numberOfTapsRequired = 1
+    tapRecognizer.numberOfTouchesRequired = 1
+    self.addGestureRecognizer(tapRecognizer)
     
+    self.layer.cornerRadius = self.frame.height / 2
+    self.layer.shadowColor = UIColor.darkGrayColor().CGColor
+    self.layer.shadowOpacity = 0.3
+    self.layer.shadowOffset = CGSizeZero
+    self.layer.shadowRadius = 10
   }
 }
 

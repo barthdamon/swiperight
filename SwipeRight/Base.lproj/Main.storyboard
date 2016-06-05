@@ -573,7 +573,7 @@
                                     <constraint firstAttribute="width" secondItem="Dvc-gp-5A3" secondAttribute="height" multiplier="207:203" id="Adb-nC-nmM"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="2fl-HP-Wke" kind="embed" id="zYc-iN-5FX"/>
+                                    <segue destination="2fl-HP-Wke" kind="embed" identifier="gameViewEmbed" id="zYc-iN-5FX"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -856,6 +856,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Lg1-cV-37c"/>
                     <connections>
+                        <outlet property="beginButtonView" destination="1tg-n0-d9J" id="Rac-Iz-Hv5"/>
+                        <outlet property="highScoreLabel" destination="l9S-bo-9aT" id="ZoI-Dl-Ugo"/>
+                        <outlet property="scoreLabel" destination="cxJ-Z5-f2O" id="yui-HX-Acv"/>
                         <segue destination="Gke-k0-e9L" kind="show" identifier="showGameController" id="JfZ-bb-BLy"/>
                     </connections>
                 </viewController>
@@ -882,7 +885,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yf8-1o-fiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="1025"/>
+            <point key="canvasLocation" x="575" y="1082"/>
         </scene>
         <!--Helper Point View Controller-->
         <scene sceneID="Yph-cg-u2X">

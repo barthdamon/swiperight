@@ -23,6 +23,8 @@ protocol GameViewDelegate {
   func getWidth() -> CGFloat
   func toggleHelperMode(on: Bool)
   func setHelperPoints(points: Int)
+  
+  func setGameViewController(controller: GameViewController)
 }
 
 class GameView: UIView, UIGestureRecognizerDelegate {
@@ -388,32 +390,32 @@ class GameView: UIView, UIGestureRecognizerDelegate {
   
   //MARK: Helpers
   func configureHelperOptionUI() {
-    helperView = UIView(frame: CGRectMake(0,0,self.frame.width, self.frame.height))
-    let buttonWidth = (viewWidth / 1.25) / 3
-    hideButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
-    hideButton?.setTitle("Hide", forState: .Normal)
-    hideButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    hideButton?.backgroundColor = UIColor.darkGrayColor()
-    hideButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-    hideButton?.enabled = false
-    
-    removeButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
-    removeButton?.setTitle("Remove", forState: .Normal)
-    removeButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    removeButton?.backgroundColor = UIColor.darkGrayColor()
-    removeButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-    removeButton?.enabled = false
-    
-    revealButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
-    revealButton?.setTitle("Reveal", forState: .Normal)
-    revealButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    revealButton?.backgroundColor = UIColor.darkGrayColor()
-    revealButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-    revealButton?.enabled = false
-    
-    helperView?.addSubview(hideButton!)
-    helperView?.addSubview(removeButton!)
-    helperView?.addSubview(revealButton!)
+//    helperView = UIView(frame: CGRectMake(0,0,self.frame.width, self.frame.height))
+//    let buttonWidth = (viewWidth / 1.25) / 3
+//    hideButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
+//    hideButton?.setTitle("Hide", forState: .Normal)
+//    hideButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//    hideButton?.backgroundColor = UIColor.darkGrayColor()
+//    hideButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//    hideButton?.enabled = false
+//    
+//    removeButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
+//    removeButton?.setTitle("Remove", forState: .Normal)
+//    removeButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//    removeButton?.backgroundColor = UIColor.darkGrayColor()
+//    removeButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//    removeButton?.enabled = false
+//    
+//    revealButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
+//    revealButton?.setTitle("Reveal", forState: .Normal)
+//    revealButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//    revealButton?.backgroundColor = UIColor.darkGrayColor()
+//    revealButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//    revealButton?.enabled = false
+//    
+//    helperView?.addSubview(hideButton!)
+//    helperView?.addSubview(removeButton!)
+//    helperView?.addSubview(revealButton!)
   }
   
   func setHelperButtons() {
