@@ -20,8 +20,9 @@ protocol GameViewDelegate {
   func addTime(seconds: Int)
   func gameOver(finished: Bool)
   func setRound(number: Int)
-  func setHelperButtons()
   func getWidth() -> CGFloat
+  func toggleHelperMode(on: Bool)
+  func setHelperPoints(points: Int)
 }
 
 class GameView: UIView, UIGestureRecognizerDelegate {
@@ -37,9 +38,14 @@ class GameView: UIView, UIGestureRecognizerDelegate {
   
   var gameOverView: UIView?
   var roundOverView: UIView?
+  var helperView: UIView?
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
+  
+  var hideButton: UIButton?
+  var removeButton: UIButton?
+  var revealButton: UIButton?
   
   var modOne: Modification?
   var modTwo: Modification?
@@ -320,36 +326,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
   }
   
-  func helperSelected(helperPoint: HelperPoint) {
-    guard let layout = self.currentLayout, indexes = layout.solutionIndexes else { return }
-    ProgressionManager.sharedManager.helperPointUtilized(helperPoint)
-    switch helperPoint {
-    case .Remove:
-      // remove dealt with on view controller
-      break
-    case .Hide:
-      // get all the indexes that arent in
-      let possibleIndexes = Grid.indexes.filter({!indexes.contains($0)})
-      // index of the tile view needs to be the samiae
-      var possibleRemovals: Array<TileView> = []
-      for (index, tile) in tileViews.enumerate() {
-        if possibleIndexes.contains(index) && tile.numberLabel!.hidden == false {
-          possibleRemovals.append(tile)
-        }
-      }
-      let removalCount = possibleRemovals.count - 1
-      let randRemovalIndex = Int.random(0...removalCount)
-      // hide one
-      possibleRemovals[randRemovalIndex].backgroundColor = UIColor.redColor()
-    case .Reveal:
-      let randIndex = Int.random(0...2)
-      let randSolutionIndex = indexes[randIndex]
-      // reveal one
-      self.tileViews[randSolutionIndex].backgroundColor = UIColor.greenColor()
-    }
-  }
-  
-  func gameOver(score: Int) {
+  func gameOver(score: Int, highScore: Bool) {
     self.fadeOutTiles { (complete) in
       self.backgroundColor = ThemeHelper.defaultHelper.sw_gameview_background_color
       self.gradientLayer?.removeFromSuperlayer()
@@ -362,6 +339,16 @@ class GameView: UIView, UIGestureRecognizerDelegate {
       gameOverLabel.font = ThemeHelper.defaultHelper.sw_font_large
       gameOverLabel.textAlignment = .Center
       gameOverLabel.textColor = UIColor.blackColor()
+      
+      if highScore {
+        print("HIGH SCORE RECOGNIZEDD")
+        let highScoreLabel = UILabel(frame: CGRectMake(0,yCoord + 100,self.tileWidth * 3, 50))
+        highScoreLabel.text = "NEW HIGH SCORE: \(score)"
+        highScoreLabel.font = ThemeHelper.defaultHelper.sw_font
+        highScoreLabel.textColor = UIColor.blackColor()
+        highScoreLabel.textAlignment = .Center
+        self.gameOverView?.addSubview(highScoreLabel)
+      }
       
       let scoreLabel = UILabel(frame: CGRectMake(0,yCoord + 50,self.tileWidth * 3, 50))
       scoreLabel.text = "Your Score: \(score)"
@@ -393,8 +380,119 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
     self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
     ProgressionManager.sharedManager.helperPointsForNewRound()
-    self.delegate?.setHelperButtons()
   }
+  
+  
+  
+  
+  
+  //MARK: Helpers
+  func configureHelperOptionUI() {
+    helperView = UIView(frame: CGRectMake(0,0,self.frame.width, self.frame.height))
+    let buttonWidth = (viewWidth / 1.25) / 3
+    hideButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
+    hideButton?.setTitle("Hide", forState: .Normal)
+    hideButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    hideButton?.backgroundColor = UIColor.darkGrayColor()
+    hideButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    hideButton?.enabled = false
+    
+    removeButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
+    removeButton?.setTitle("Remove", forState: .Normal)
+    removeButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    removeButton?.backgroundColor = UIColor.darkGrayColor()
+    removeButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    removeButton?.enabled = false
+    
+    revealButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
+    revealButton?.setTitle("Reveal", forState: .Normal)
+    revealButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    revealButton?.backgroundColor = UIColor.darkGrayColor()
+    revealButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    revealButton?.enabled = false
+    
+    helperView?.addSubview(hideButton!)
+    helperView?.addSubview(removeButton!)
+    helperView?.addSubview(revealButton!)
+  }
+  
+  func setHelperButtons() {
+    let points = ProgressionManager.sharedManager.currentHelperPoints
+    guard let layout = currentLayout, _ = layout.winningCombination else { return }
+    delegate?.setHelperPoints(points)
+    // need to know the index of all of th
+    let showRemove = points >= 2
+    let showHide = points >= 1
+    let showReveal = points >= 3
+    // need the active operation of the current solution and all of the number indexes
+    if showRemove && ProgressionManager.sharedManager.multipleOperationsDisplayActive  {
+      removeButton?.enabled = true
+      removeButton?.backgroundColor = .lightGrayColor()
+    } else {
+      removeButton?.enabled = false
+      removeButton?.backgroundColor = .darkGrayColor()
+    }
+    
+    if showHide && ProgressionManager.sharedManager.numberOfExtraTiles > 0 {
+      hideButton?.enabled = true
+      hideButton?.backgroundColor = .lightGrayColor()
+    } else {
+      hideButton?.enabled = false
+      hideButton?.backgroundColor = .darkGrayColor()
+    }
+    
+    if showReveal {
+      revealButton?.enabled = true
+      revealButton?.backgroundColor = .lightGrayColor()
+    } else {
+      revealButton?.enabled = false
+      revealButton?.backgroundColor = .darkGrayColor()
+    }
+  }
+  
+  func helperSelected(sender: UIButton) {
+    guard let layout = currentLayout, combo = layout.winningCombination, indexes = layout.solutionIndexes else { return }
+    if let hideButton = self.hideButton, revealButton = self.revealButton, removeButton = self.removeButton {
+      switch sender {
+      case hideButton:
+        // get all the indexes that arent in
+        let possibleIndexes = Grid.indexes.filter({!indexes.contains($0)})
+        // index of the tile view needs to be the samiae
+        var possibleRemovals: Array<TileView> = []
+        for (index, tile) in tileViews.enumerate() {
+          if possibleIndexes.contains(index) && tile.numberLabel!.hidden == false {
+            possibleRemovals.append(tile)
+          }
+        }
+        let removalCount = possibleRemovals.count - 1
+        let randRemovalIndex = Int.random(0...removalCount)
+        // hide one
+        possibleRemovals[randRemovalIndex].backgroundColor = UIColor.redColor()
+        ProgressionManager.sharedManager.helperPointUtilized(.Hide)
+      case revealButton:
+        let randIndex = Int.random(0...2)
+        let randSolutionIndex = indexes[randIndex]
+        // reveal one
+        self.tileViews[randSolutionIndex].backgroundColor = UIColor.greenColor()
+      // light up a tile selected
+        ProgressionManager.sharedManager.helperPointUtilized(.Reveal)
+      case removeButton:
+        let filteredOperations = ProgressionManager.sharedManager.activeOperations.filter({$0 == combo.operation})
+        delegate?.resetClientOperations(filteredOperations)
+        ProgressionManager.sharedManager.helperPointUtilized(.Remove)
+      default:
+        break
+      }
+    }
+  }
+  
+  func helperButtonPressed(sender: UIButton) {
+
+    //    time = gameDuration
+    setHelperButtons()
+  }
+
+  
   
   
   

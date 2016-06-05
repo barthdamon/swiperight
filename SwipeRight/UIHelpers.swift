@@ -41,6 +41,12 @@ extension UILabel {
   }
 }
 
+extension UIView {
+  static func becomeButtonForGameView(selector: Selector) {
+    
+  }
+}
+
 
 
 

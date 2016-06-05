@@ -19,6 +19,22 @@ class CurrentUser: NSObject {
   
   var API = APIService.sharedService
   
+  var highScore: Int {
+    get {
+      if let keychain = NSUserDefaults.standardUserDefaults().objectForKey("scores") as? Dictionary<String, AnyObject>, highScore = keychain["highScore"] as? Int {
+        return highScore
+      } else {
+        return 0
+      }
+    }
+    set (newValue) {
+      let scores = [
+        "highScore" : newValue
+      ]
+      NSUserDefaults.standardUserDefaults().setObject(scores, forKey: "scores")
+    }
+  }
+  
   var model: User?
   var friends: Array<User>?
   //store to keychain and when called return from the keychain
