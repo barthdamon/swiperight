@@ -25,7 +25,7 @@ func stringToGameTime(time: Int) -> String {
   }
   
   if minutes < 10 {
-    tenMinutes = "0"
+    tenMinutes = ""
   }
 
   return "\(tenMinutes)\(String(minutes)):\(tenSeconds)\(String(seconds))"

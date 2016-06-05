@@ -21,10 +21,12 @@ protocol GameViewDelegate {
   func gameOver(finished: Bool)
   func setRound(number: Int)
   func setHelperButtons()
+  func getWidth() -> CGFloat
 }
 
 class GameView: UIView, UIGestureRecognizerDelegate {
   
+  var container: UIView?
   
   var gradientLayer: CAGradientLayer?
   var delegate: GameViewDelegate!
@@ -56,22 +58,23 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
   }
   
-  convenience init(viewWidth: CGFloat, viewHeight: CGFloat, delegate: GameViewDelegate) {
+  convenience init(container: UIView, delegate: GameViewDelegate) {
     self.init()
-    self.viewWidth = viewWidth
+    self.container = container
+    self.viewWidth = delegate.getWidth()
     self.delegate = delegate
-    
-    let offset = (viewWidth - (viewWidth / 1.25)) / 2
-    self.frame = CGRectMake(offset, viewHeight / 2.5, viewWidth / 1.25, viewWidth / 1.25)
+    self.frame = container.bounds
     // KEEP return this as var: gameViewWidth = gameView!.frame.width
     //also need tileWidth to be a var based off this view
-    tileWidth = self.frame.width / 3
-    self.backgroundColor = UIColor.darkGrayColor()
+    tileWidth = delegate.getWidth() / 3
+    self.backgroundColor = ThemeHelper.defaultHelper.sw_gameview_background_color
     self.userInteractionEnabled = false
     configureGameViewComponents()
+    container.addSubview(self)
   }
   
   func configureGameViewComponents() {
+    
     var coords = Coordinates(x: 0, y: 0)
     
     func adjustCoords(i: Int) {
@@ -259,6 +262,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
       UIView.animateWithDuration(0.2, animations: { () -> Void in
         tile.backgroundColor = UIColor.clearColor()
         tile.numberLabel?.alpha = 0
+        tile.layer.borderWidth = 0
         }, completion: { (complete) -> Void in
           if i == self.tileViews.count - 1 {
             callback(complete: true)
@@ -271,6 +275,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(0.2, animations: { () -> Void in
           tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
+          tile.layer.borderWidth = 1
         }, completion: { (complete) -> Void in
           self.userInteractionEnabled = true
           self.delegate.beginGame()

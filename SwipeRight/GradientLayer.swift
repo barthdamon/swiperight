@@ -29,6 +29,24 @@ extension CAGradientLayer {
     
     return layer
   }
+  
+  static func verticalGradientLayerForBounds(bounds: CGRect, colors: (start: UIColor, end: UIColor)) -> CAGradientLayer {
+    
+    let layer = CAGradientLayer()
+    layer.frame = bounds
+    
+    layer.startPoint = CGPoint(x: 0, y: 0)
+    layer.endPoint = CGPoint(x: 0, y: 1)
+    let colors: [CGColorRef] = [
+      colors.start.CGColor,
+      colors.end.CGColor,
+      ]
+    layer.colors = colors
+    layer.opaque = false
+    layer.locations = [0.0, 1.0]
+    
+    return layer
+  }
 }
 
   

@@ -36,6 +36,20 @@
 		02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */; };
 		02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E01CFE8B1C000AB183 /* Score.swift */; };
 		02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */; };
+		02DB529D1D036CB10052D72A /* DIN Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52901D036CB10052D72A /* DIN Black.ttf */; };
+		02DB529E1D036CB10052D72A /* DINB____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52911D036CB10052D72A /* DINB____.TTF */; };
+		02DB529F1D036CB10052D72A /* DINBA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52921D036CB10052D72A /* DINBA___.TTF */; };
+		02DB52A01D036CB10052D72A /* DINE1.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52931D036CB10052D72A /* DINE1.TTF */; };
+		02DB52A11D036CB10052D72A /* DINL____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52941D036CB10052D72A /* DINL____.TTF */; };
+		02DB52A21D036CB10052D72A /* DINLA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52951D036CB10052D72A /* DINLA___.TTF */; };
+		02DB52A31D036CB10052D72A /* DINM____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52961D036CB10052D72A /* DINM____.TTF */; };
+		02DB52A41D036CB10052D72A /* DINM2.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52971D036CB10052D72A /* DINM2.TTF */; };
+		02DB52A51D036CB10052D72A /* DINMA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52981D036CB10052D72A /* DINMA___.TTF */; };
+		02DB52A61D036CB10052D72A /* DINNGBC3.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52991D036CB10052D72A /* DINNGBC3.TTF */; };
+		02DB52A71D036CB10052D72A /* DINNGL4.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB529A1D036CB10052D72A /* DINNGL4.TTF */; };
+		02DB52A81D036CB10052D72A /* DINR____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB529B1D036CB10052D72A /* DINR____.TTF */; };
+		02DB52A91D036CB10052D72A /* DINRA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB529C1D036CB10052D72A /* DINRA___.TTF */; };
+		02DB52AB1D03961E0052D72A /* ThemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52AA1D03961E0052D72A /* ThemeHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +84,20 @@
 		02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardViewController.swift; path = ../LeaderboardViewController.swift; sourceTree = "<group>"; };
 		02ADE4E01CFE8B1C000AB183 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		02DB52901D036CB10052D72A /* DIN Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Black.ttf"; sourceTree = "<group>"; };
+		02DB52911D036CB10052D72A /* DINB____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINB____.TTF"; sourceTree = "<group>"; };
+		02DB52921D036CB10052D72A /* DINBA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINBA___.TTF"; sourceTree = "<group>"; };
+		02DB52931D036CB10052D72A /* DINE1.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINE1.TTF; sourceTree = "<group>"; };
+		02DB52941D036CB10052D72A /* DINL____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINL____.TTF"; sourceTree = "<group>"; };
+		02DB52951D036CB10052D72A /* DINLA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINLA___.TTF"; sourceTree = "<group>"; };
+		02DB52961D036CB10052D72A /* DINM____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINM____.TTF"; sourceTree = "<group>"; };
+		02DB52971D036CB10052D72A /* DINM2.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINM2.TTF; sourceTree = "<group>"; };
+		02DB52981D036CB10052D72A /* DINMA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINMA___.TTF"; sourceTree = "<group>"; };
+		02DB52991D036CB10052D72A /* DINNGBC3.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINNGBC3.TTF; sourceTree = "<group>"; };
+		02DB529A1D036CB10052D72A /* DINNGL4.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINNGL4.TTF; sourceTree = "<group>"; };
+		02DB529B1D036CB10052D72A /* DINR____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINR____.TTF"; sourceTree = "<group>"; };
+		02DB529C1D036CB10052D72A /* DINRA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRA___.TTF"; sourceTree = "<group>"; };
+		02DB52AA1D03961E0052D72A /* ThemeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +147,7 @@
 		022098231C1DCABC005155E6 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				02DB528F1D036C980052D72A /* Resources */,
 				0240B9601C18EF86004B48BA /* Info.plist */,
 				0240B9541C18EF86004B48BA /* AppDelegate.swift */,
 			);
@@ -192,12 +221,33 @@
 			isa = PBXGroup;
 			children = (
 				02ADE4D71CFE7375000AB183 /* CurrentUser.swift */,
+				02DB52AA1D03961E0052D72A /* ThemeHelper.swift */,
 				0220981D1C1DC808005155E6 /* MultipleHelper.swift */,
 				0232DC931C23A9830039E5CE /* GameStatus.swift */,
 				022D4B1F1CE92885004EFFC7 /* ProgressionManager.swift */,
 				02ADE4D31CFE7218000AB183 /* APIService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		02DB528F1D036C980052D72A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				02DB52901D036CB10052D72A /* DIN Black.ttf */,
+				02DB52911D036CB10052D72A /* DINB____.TTF */,
+				02DB52921D036CB10052D72A /* DINBA___.TTF */,
+				02DB52931D036CB10052D72A /* DINE1.TTF */,
+				02DB52941D036CB10052D72A /* DINL____.TTF */,
+				02DB52951D036CB10052D72A /* DINLA___.TTF */,
+				02DB52961D036CB10052D72A /* DINM____.TTF */,
+				02DB52971D036CB10052D72A /* DINM2.TTF */,
+				02DB52981D036CB10052D72A /* DINMA___.TTF */,
+				02DB52991D036CB10052D72A /* DINNGBC3.TTF */,
+				02DB529A1D036CB10052D72A /* DINNGL4.TTF */,
+				02DB529B1D036CB10052D72A /* DINR____.TTF */,
+				02DB529C1D036CB10052D72A /* DINRA___.TTF */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +309,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02DB529E1D036CB10052D72A /* DINB____.TTF in Resources */,
+				02DB52A41D036CB10052D72A /* DINM2.TTF in Resources */,
 				0240B95F1C18EF86004B48BA /* LaunchScreen.storyboard in Resources */,
+				02DB52A91D036CB10052D72A /* DINRA___.TTF in Resources */,
+				02DB52A21D036CB10052D72A /* DINLA___.TTF in Resources */,
+				02DB529D1D036CB10052D72A /* DIN Black.ttf in Resources */,
+				02DB52A31D036CB10052D72A /* DINM____.TTF in Resources */,
+				02DB52A61D036CB10052D72A /* DINNGBC3.TTF in Resources */,
+				02DB52A11D036CB10052D72A /* DINL____.TTF in Resources */,
+				02DB52A01D036CB10052D72A /* DINE1.TTF in Resources */,
+				02DB52A81D036CB10052D72A /* DINR____.TTF in Resources */,
+				02DB529F1D036CB10052D72A /* DINBA___.TTF in Resources */,
 				0240B95C1C18EF86004B48BA /* Assets.xcassets in Resources */,
+				02DB52A71D036CB10052D72A /* DINNGL4.TTF in Resources */,
+				02DB52A51D036CB10052D72A /* DINMA___.TTF in Resources */,
 				0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +344,7 @@
 				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
 				0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */,
 				0247A3621CFFD45600FC52B9 /* AuthViewController.swift in Sources */,
+				02DB52AB1D03961E0052D72A /* ThemeHelper.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
 				022098271C1E107B005155E6 /* GameView.swift in Sources */,
 				02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */,

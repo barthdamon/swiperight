@@ -39,6 +39,8 @@ class TileView: UIView {
       self.backgroundColor = UIColor.clearColor()
       self.numberLabel?.font = UIFont.systemFontOfSize(25)
     }
+    self.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
+    self.layer.borderWidth = 0
   }
   
   func animateCountdown(callback: (Bool) -> () ) {

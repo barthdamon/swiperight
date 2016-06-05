@@ -10,10 +10,22 @@ import UIKit
 
 class ViewController: UIViewController, GameViewDelegate {
 
+  @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var gameViewContainer: UIView!
+  @IBOutlet weak var scoreLabel: UILabel!
+  @IBOutlet weak var roundLabel: UILabel!
+  @IBOutlet weak var highScoreLabel: UILabel!
+  @IBOutlet weak var operationIndicatorView: UIView!
+  @IBOutlet weak var divideView: UIImageView!
+  @IBOutlet weak var multiplyView: UIImageView!
+  @IBOutlet weak var subtractView: UIImageView!
+  @IBOutlet weak var addView: UIImageView!
+  
+  
   //HUD
-  var scoreLabel: UILabel?
-  var timeLabel: UILabel?
-  var roundLabel: UILabel?
+//  var scoreLabel: UILabel?
+
+//  var roundLabel: UILabel?
   var helperPointLabel: UILabel?
   var componentView: UIView?
   var time: Int = 0 {
@@ -23,7 +35,7 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   var score: Int = 0 {
     didSet {
-      scoreLabel?.text = String(score)
+      scoreLabel?.text = "\(score)"
     }
   }
   var gameDuration: Int {
@@ -38,11 +50,6 @@ class ViewController: UIViewController, GameViewDelegate {
   var hideButton: UIButton?
   var removeButton: UIButton?
   var revealButton: UIButton?
-  
-  var multiplyView: UIImageView?
-  var divideView: UIImageView?
-  var addView: UIImageView?
-  var subtractView: UIImageView?
   
   let addImage = UIImage(named: "add")
   let subtractImage = UIImage(named: "subtract")
@@ -70,17 +77,31 @@ class ViewController: UIViewController, GameViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
  //   self.navigationController?.navigationBarHidden = true
+    configureViewStyles()
+
     MultipleHelper.defaultHelper.initializeCombinations()
     viewWidth = self.view.frame.width
     viewHeight = self.view.frame.height
     configureHUD()
-    gameView = GameView(viewWidth: viewWidth, viewHeight: viewHeight, delegate: self)
-    self.view.addSubview(gameView!)
+    gameView = GameView(container: gameViewContainer, delegate: self)
     configureStartOptions()
   }
   
   override func viewWillDisappear(animated: Bool) {
  //   self.navigationController?.navigationBarHidden = false
+  }
+  
+  func configureViewStyles() {
+    gameViewContainer.layer.shadowColor = ThemeHelper.defaultHelper.sw_gameview_shadow_color.CGColor
+    gameViewContainer.layer.shadowOpacity = 1
+    gameViewContainer.layer.shadowOffset = CGSizeZero
+    gameViewContainer.layer.shadowRadius = 2
+    
+    let firstColor = ThemeHelper.defaultHelper.sw_blue_color
+    let secondColor = ThemeHelper.defaultHelper.sw_green_color
+    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor))
+    self.view.layer.hidden = false
+    self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
   }
   
   
@@ -98,6 +119,10 @@ class ViewController: UIViewController, GameViewDelegate {
     //some fancy animation
   }
   
+  func getWidth() -> CGFloat {
+    return self.view.frame.width
+  }
+  
   func beginGame() {
     if !GameStatus.status.gameActive {
       setRound(0)
@@ -110,7 +135,7 @@ class ViewController: UIViewController, GameViewDelegate {
 //    if number >= 15 {
 //      roundLabel?.text = "MAX"
 //    } else {
-      roundLabel?.text = "Level: \(number)"
+      roundLabel?.text = "LEVEL \(number)"
 //    }
   }
   
@@ -142,43 +167,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   //MARK: HUD
   func configureHUD() {
-    configureScoreElements()
     resetGameState()
-  }
-  
-  func configureScoreElements() {
-    let offset = (viewWidth - (viewWidth / 1.25)) / 2
-    componentView = UIView(frame: CGRectMake(offset, viewHeight / 2.8, viewWidth / 1.25, 30))
-    componentView?.backgroundColor = UIColor.clearColor()
-    
-    let scoreTagLabel = UILabel(frame: CGRectMake(0, -10, 50, 50))
-    scoreTagLabel.text = "Score:"
-    scoreTagLabel.textColor = UIColor.whiteColor()
-    componentView?.addSubview(scoreTagLabel)
-    
-    scoreLabel = UILabel(frame: CGRectMake(60, -10, 50, 50))
-    scoreLabel?.text = "0"
-    scoreLabel?.textColor = UIColor.whiteColor()
-    componentView?.addSubview(scoreLabel!)
-    
-    let negativeOffset = viewWidth - (offset + viewWidth / 4.4)
-    
-    roundLabel = UILabel(frame: CGRectMake(negativeOffset - 100, -10, 100, 50))
-    roundLabel?.text = "Round: 0"
-    roundLabel?.textColor = UIColor.whiteColor()
-    componentView?.addSubview(roundLabel!)
-    
-    timeLabel = UILabel(frame: CGRectMake(negativeOffset, -10, 50, 50))
-    timeLabel?.text = "0:00"
-    timeLabel?.textColor = UIColor.whiteColor()
-    
-    helperPointLabel = UILabel(frame: CGRectMake(80, -10, 100, 50))
-    helperPointLabel?.text = "Helpers: 0"
-    helperPointLabel?.textColor = UIColor.whiteColor()
-    componentView?.addSubview(helperPointLabel!)
-    
-    componentView?.addSubview(timeLabel!)
-    self.view.addSubview(componentView!)
   }
   
   func tickTock() {
@@ -214,21 +203,6 @@ class ViewController: UIViewController, GameViewDelegate {
       }
     }
   }
-
-//  func alertShow(alertText :String, alertMessage :String) {
-//    let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-//    alert.addAction(UIAlertAction(title: "AGAIN!", style: .Default, handler: { (action) -> Void in
-//      self.dismissViewControllerAnimated(true, completion: nil)
-//      self.resetGameState()
-//      self.beginGame()
-//    }))
-//    alert.addAction(UIAlertAction(title: "Please, no more", style: .Default, handler: { (action) -> Void in
-//      self.dismissViewControllerAnimated(true, completion: nil)
-//      self.resetGameState()
-//    }))
-//    self.presentViewController(alert, animated: true, completion: nil)
-//  }
-  
   
   //MARK: Game Client
   func configureStartOptions() {
@@ -260,40 +234,8 @@ class ViewController: UIViewController, GameViewDelegate {
     
     clientView?.addSubview(beginButton!)
     clientView?.addSubview(resetButton!)
-    configureHelperOptionUI()
-    configureOperationFeedback()
+//    configureHelperOptionUI()
     
-  }
-  
-  func configureOperationFeedback() {
-    if let clientView = clientView {
-      let width = clientView.frame.width / 2
-      let height = clientView.frame.height
-      let offset = width / 2
-      
-      let buttonsView = UIView(frame: CGRectMake(offset,height - 30,width,30))
-      
-      let operationWidth = buttonsView.frame.width / 4
-      addView = UIImageView(frame: CGRectMake(0,0,operationWidth, 30))
-      addView?.image = addImageGrayInactive
-      addView?.contentMode = .ScaleAspectFill
-      subtractView = UIImageView(frame: CGRectMake(operationWidth,0,operationWidth, 30))
-      subtractView?.image = subtractImageGrayInactive
-      subtractView?.contentMode = .ScaleAspectFill
-      multiplyView = UIImageView(frame: CGRectMake(operationWidth * 2,0,operationWidth, 30))
-      multiplyView?.contentMode = .ScaleAspectFill
-      multiplyView?.image = multiplyImageGrayInactive
-      divideView = UIImageView(frame: CGRectMake(operationWidth * 3,0,operationWidth, 30))
-      divideView?.contentMode = .ScaleAspectFill
-      divideView?.image = divideImageGrayInactive
-      
-      buttonsView.addSubview(addView!)
-      buttonsView.addSubview(subtractView!)
-      buttonsView.addSubview(multiplyView!)
-      buttonsView.addSubview(divideView!)
-      
-      clientView.addSubview(buttonsView)
-    }
   }
   
   func setHelperButtons() {
@@ -447,5 +389,8 @@ class ViewController: UIViewController, GameViewDelegate {
     beginGame()
   }
   
+  @IBAction func menuButtonPressed(sender: AnyObject) {
+    print("Menu Button Pressed")
+  }
 }
 
