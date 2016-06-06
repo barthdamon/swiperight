@@ -234,8 +234,15 @@ class ProgressionManager: NSObject {
     }
   }
   
-  func helperPointsForNewRound() {
+  var currentStreakNeeded = 3
+  var currentStreak = 0
+  func helperPointsForReachedStreak() {
+//    let additionalPoints = currentStreakNeeded * 2
     currentHelperPoints += 1
+  }
+  func resetStreak() {
+    currentStreak = 0
+    currentStreakNeeded = 3
   }
   
   

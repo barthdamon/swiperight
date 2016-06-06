@@ -179,10 +179,14 @@ class NumberCombination : NSObject {
       secondNumber = combo.b
       solution = combo.x
     }
-
-    self.x = firstNumber
-    self.b = secondNumber
-    self.sum = solution
+    
+    if solution == 0 || secondNumber == 0 || firstNumber == 0 {
+      setNumberValues()
+    } else {
+      self.x = firstNumber
+      self.b = secondNumber
+      self.sum = solution
+    }
   }
 }
 

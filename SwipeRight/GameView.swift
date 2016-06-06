@@ -9,6 +9,7 @@
 import UIKit
 
 protocol GameViewDelegate {
+  func setStreakLabel()
   func beginGame()
   func scoreChange(correct: Bool)
   func startGameplay()
@@ -382,7 +383,6 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
-    ProgressionManager.sharedManager.helperPointsForNewRound()
   }
   
   

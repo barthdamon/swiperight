@@ -187,7 +187,7 @@ class GameViewController: UIViewController {
   
   
   func tileRespond(startTile: TileView, middleTile: TileView, endTile: TileView) {
-    if GameStatus.status.gameActive {
+    if GameStatus.status.gameActive && tilesActive(startTile, middleTile: middleTile, endTile: endTile) {
       print("TILE RESPOND TIME")
       if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
         if checkForCorrect(operations, start: startNumber, mid: midNumber, end: endNumber) {
@@ -197,12 +197,14 @@ class GameViewController: UIViewController {
           middleTile.backgroundColor = UIColor.greenColor()
           self.view.userInteractionEnabled = false
           delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
+          helperStreakActivity(true)
         } else {
           delegate?.scoreChange(false)
           startTile.backgroundColor = UIColor.redColor()
           endTile.backgroundColor = UIColor.redColor()
           middleTile.backgroundColor = UIColor.redColor()
           self.view.userInteractionEnabled = false
+          helperStreakActivity(false)
         }
         ProgressionManager.sharedManager.currentRoundPosition += 1
         if ProgressionManager.sharedManager.currentRoundPosition > ProgressionManager.sharedManager.roundLength {
@@ -210,6 +212,14 @@ class GameViewController: UIViewController {
         }
         resetTiles()
       }
+    }
+  }
+  
+  func tilesActive(startTile: TileView, middleTile: TileView, endTile: TileView) -> Bool {
+    if startTile.userInteractionEnabled && middleTile.userInteractionEnabled && endTile.userInteractionEnabled {
+      return true
+    } else {
+      return false
     }
   }
   
@@ -319,7 +329,22 @@ class GameViewController: UIViewController {
     }
     
     self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
-    ProgressionManager.sharedManager.helperPointsForNewRound()
+  }
+  
+  func helperStreakActivity(correct: Bool) {
+    if correct {
+      ProgressionManager.sharedManager.currentStreak += 1
+      if ProgressionManager.sharedManager.currentStreak == ProgressionManager.sharedManager.currentStreakNeeded {
+        ProgressionManager.sharedManager.helperPointsForReachedStreak()
+        ProgressionManager.sharedManager.resetStreak()
+        delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
+      } else {
+        delegate?.setStreakLabel()
+      }
+    } else {
+      ProgressionManager.sharedManager.resetStreak()
+      delegate?.setStreakLabel()
+    }
   }
   
   

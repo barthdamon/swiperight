@@ -44,6 +44,7 @@ class HelperPointViewController: UIViewController {
   }
   
   override func viewWillDisappear(animated: Bool) {
+    GameStatus.status.gameActive = true
     delegate?.deactivateHelperPointButton(false, deactivate: false)
   }
   

@@ -10,14 +10,11 @@ import UIKit
 
 class TileView: UIView {
   
-  var numberLabel: UILabel? {
-    didSet {
-      self.userInteractionEnabled = numberLabel == -1 ? false : true
-    }
-  }
+  var numberLabel: UILabel?
   var number: Int? {
     didSet {
       numberLabel?.text = String(number!)
+      self.userInteractionEnabled = number == -1 ? false : true
       if number == -1 {
         self.numberLabel?.hidden = true
       } else {
@@ -34,10 +31,10 @@ class TileView: UIView {
     self.addSubview(numberLabel!)
     if overlay {
       self.backgroundColor = UIColor.clearColor()
-      self.numberLabel?.font = UIFont.systemFontOfSize(40)
+      self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_overlay_font
     } else {
       self.backgroundColor = UIColor.clearColor()
-      self.numberLabel?.font = UIFont.systemFontOfSize(25)
+      self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_font
     }
     self.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
     self.layer.borderWidth = 0

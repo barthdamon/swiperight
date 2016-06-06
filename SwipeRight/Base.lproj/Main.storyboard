@@ -36,6 +36,7 @@
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
+            <string>DIN-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -427,7 +428,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACTIVE OPERATIONS:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-Iz-leA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACTIVE OPERATIONS:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-Iz-leA">
                                 <rect key="frame" x="154" y="250" width="107" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="0rh-Xh-riv"/>
@@ -438,9 +439,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-5R-pZq">
-                                <rect key="frame" x="146" y="159" width="128" height="30"/>
+                                <rect key="frame" x="143" y="159" width="128" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zj-7s-nu2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zj-7s-nu2">
                                         <rect key="frame" x="98" y="4" width="22" height="22"/>
                                         <color key="backgroundColor" red="0.41568627450980389" green="0.83529411764705885" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -577,6 +578,22 @@
                                     <segue destination="2fl-HP-Wke" kind="embed" identifier="gameViewEmbed" id="zYc-iN-5FX"/>
                                 </connections>
                             </containerView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPER STREAK: 0/3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXf-eH-dRU">
+                                <rect key="frame" x="143" y="188" width="128" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="107" id="7Eq-Ei-mDO"/>
+                                    <constraint firstAttribute="height" constant="14" id="mff-GW-3xz"/>
+                                    <constraint firstAttribute="width" constant="128" id="x4z-Rd-I3K"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="11"/>
+                                <color key="textColor" red="0.74117647060000003" green="0.99215686270000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Eq-Ei-mDO"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.35686274509803922" green="0.77496130030959742" blue="0.90146756482197843" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -593,10 +610,12 @@
                             <constraint firstItem="gbT-Iz-leA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S04-hO-DKN"/>
                             <constraint firstItem="cg5-m4-P2b" firstAttribute="top" secondItem="d0r-v1-Kww" secondAttribute="bottom" constant="8" id="XpW-vh-sCn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cg5-m4-P2b" secondAttribute="trailing" constant="-20" id="Y1I-IV-G8F"/>
+                            <constraint firstItem="WXf-eH-dRU" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="bottom" constant="-1" id="fEb-Fd-6dZ"/>
+                            <constraint firstItem="WXf-eH-dRU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ftT-d7-AhJ"/>
                             <constraint firstItem="d0r-v1-Kww" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="ibt-OK-Naj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="67Q-5K-lYM" secondAttribute="trailing" constant="-20" id="jm0-Uu-dAm"/>
                             <constraint firstItem="d0r-v1-Kww" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="kba-lE-aY0"/>
-                            <constraint firstItem="oVt-5R-pZq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="3" id="l7o-Xz-gdg"/>
+                            <constraint firstItem="oVt-5R-pZq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l7o-Xz-gdg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d0r-v1-Kww" secondAttribute="trailing" constant="-20" id="l9E-en-kct"/>
                             <constraint firstItem="Dvc-gp-5A3" firstAttribute="top" secondItem="67Q-5K-lYM" secondAttribute="bottom" constant="8" id="mbC-4k-z5Z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Dvc-gp-5A3" secondAttribute="trailing" priority="750" constant="-20" id="rom-Kj-QzL"/>
@@ -620,6 +639,7 @@
                         <outlet property="gameContainerView" destination="Dvc-gp-5A3" id="7QI-8Y-eAw"/>
                         <outlet property="helperButtonView" destination="oVt-5R-pZq" id="DSv-nw-03G"/>
                         <outlet property="helperButtonViewIndicator" destination="4Zj-7s-nu2" id="Y2X-vq-mqf"/>
+                        <outlet property="helperStreakLabel" destination="WXf-eH-dRU" id="f8f-fi-rZx"/>
                         <outlet property="highScoreLabel" destination="xCV-I3-Ju5" id="Ijq-wS-k1w"/>
                         <outlet property="multiplyView" destination="Q5o-NE-XQ0" id="NFb-8A-ckZ"/>
                         <outlet property="operationIndicatorView" destination="67Q-5K-lYM" id="fXj-Vp-QYP"/>

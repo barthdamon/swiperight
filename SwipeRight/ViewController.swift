@@ -25,6 +25,7 @@ class ViewController: UIViewController, GameViewDelegate {
   @IBOutlet weak var helperButtonView: UIView!
   @IBOutlet weak var helperButtonViewIndicator: UILabel!
   
+  @IBOutlet weak var helperStreakLabel: UILabel!
   //HUD
   //  var scoreLabel: UILabel?
   
@@ -123,6 +124,13 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func setHelperPoints(points: Int) {
     helperButtonViewIndicator.text = "\(points)"
+    setStreakLabel()
+  }
+  
+  func setStreakLabel() {
+    let streak = ProgressionManager.sharedManager.currentStreak
+    let needed = ProgressionManager.sharedManager.currentStreakNeeded
+    helperStreakLabel.text = "HELPER STREAK: \(streak)/\(needed)"
   }
   
 
@@ -150,11 +158,8 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func setRound(number: Int) {
-    //    if number >= 15 {
-    //      roundLabel?.text = "MAX"
-    //    } else {
+    setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
     roundLabel?.text = "LEVEL \(number)"
-    //    }
   }
   
   func startGameplay() {
@@ -311,6 +316,7 @@ class ViewController: UIViewController, GameViewDelegate {
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool) {
       helperButtonView.hidden = remove
       helperButtonViewEnabled = !deactivate
+      helperStreakLabel.hidden = remove
   }
   
   func resetButtonPressed() {
