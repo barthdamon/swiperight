@@ -128,6 +128,9 @@ class HelperPointViewController: UIViewController {
   }
   
   
+  @IBAction func backToGameButtonPressed(sender: AnyObject) {
+    self.navigationController?.popViewControllerAnimated(true)
+  }
   /*
    // MARK: - Navigation
    
