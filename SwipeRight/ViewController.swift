@@ -68,6 +68,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   
   //Game View
+  var gameLaunchView: GameLaunchViewController?
   var gameView: GameViewController?
   var countdownOverlayView: TileView?
   var viewWidth: CGFloat = 0
@@ -123,17 +124,7 @@ class ViewController: UIViewController, GameViewDelegate {
     helperButtonViewIndicator.text = "\(points)"
   }
   
-  func setHighScore() -> Bool {
-    var newHighScore: Bool = false
-    if CurrentUser.info.highScore < score {
-      CurrentUser.info.highScore = score
-      newHighScore = true
-    } else {
-      newHighScore = false
-    }
-    self.highScoreLabel.text = "HIGH SCORE: \(CurrentUser.info.highScore)"
-    return newHighScore
-  }
+
   
   func addTime(seconds: Int) {
     time += seconds
@@ -209,9 +200,21 @@ class ViewController: UIViewController, GameViewDelegate {
     gameView?.roundOverView = nil
     let highScore = setHighScore()
     self.gameView?.view.userInteractionEnabled = false
-    self.gameView?.gameOver(score, highScore: highScore)
+    self.gameLaunchView?.gameOver(score, highScore: highScore)
     resetGameState()
     //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
+  }
+  
+  func setHighScore() -> Bool {
+    var newHighScore: Bool = false
+    if CurrentUser.info.highScore < score {
+      CurrentUser.info.highScore = score
+      newHighScore = true
+    } else {
+      newHighScore = false
+    }
+    self.highScoreLabel.text = "HIGH SCORE: \(CurrentUser.info.highScore)"
+    return newHighScore
   }
   
   func reportScore() {
@@ -224,61 +227,33 @@ class ViewController: UIViewController, GameViewDelegate {
     }
   }
   
-  //MARK: Game Client
   func configureStartOptions() {
-    
-    let buttonY = view.frame.width  / 4
-    let buttonX = view.frame.width / 4
-    
-    
-    beginButton = UIButton(frame: CGRectMake(buttonX, buttonY, 100, 50))
-    beginButton?.setTitle("START", forState: .Normal)
-    beginButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    beginButton?.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
-    beginButton?.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
-    beginButton?.titleLabel?.font = UIFont.systemFontOfSize(30)
-    beginButton?.addTarget(self, action: #selector(ViewController.beginButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-    
-    //    var helperButtonView: UIView?
-    //    var helperButtonText: UITextField?
-    //    var helperButtonNumberIndicator: UITextField?
+
     helperButtonView.becomeButtonForGameView(self, selector: #selector(ViewController.helperButtonPressed(_:)))
     //TOOD: Set helper button Target to gameView
     helperButtonViewIndicator.text = "\(0)"
     helperButtonViewIndicator.layer.cornerRadius = helperButtonViewIndicator.frame.width / 2
     helperButtonViewIndicator.clipsToBounds = true
     
-    //    resetButton = UIButton(frame: CGRectMake(buttonX, buttonY, 100, 70))
-    //    resetButton?.setTitle("Reset", forState: .Normal)
-    //    resetButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    //    resetButton?.setTitleColor(UIColor.darkGrayColor(), forState: .Highlighted)
-    //    resetButton?.titleLabel?.font = UIFont.systemFontOfSize(30)
-    //    resetButton?.addTarget(self, action: #selector(ViewController.resetButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-    //    resetButton?.hidden = true
-    
-    
-    //    clientView?.addSubview(beginButton!)
-    //    clientView?.addSubview(resetButton!)
-    //    clientView?.addSubview(helperButton!)
-    //    configureHelperOptionUI()
-    
   }
   
   func helperButtonPressed(sender: UIGestureRecognizer) {
-    gameView?.helperButtonPressed(sender)
+    gameView?.helperButtonPressed()
     toggleHelperMode(true)
     // stop the clock, show pause button overlay
   }
   
+  //DELEGATE METHOD DON'T DELETE:
   func toggleHelperMode(on: Bool) {
-    
+    if on {
+      GameStatus.status.gameActive = false
+    } else {
+      GameStatus.status.gameActive = true
+    }
   }
   
   
   func resetGameUI() {
-    //    revealButton?.backgroundColor = .darkGrayColor()
-    //    hideButton?.backgroundColor = .darkGrayColor()
-    //    removeButton?.backgroundColor = .darkGrayColor()
     multiplyView?.image = multiplyImageGrayInactive
     divideView?.image = divideImageGrayInactive
     subtractView?.image = subtractImageGrayInactive
@@ -350,6 +325,7 @@ class ViewController: UIViewController, GameViewDelegate {
     if segue.identifier == "gameViewEmbed" {
       if let topNav = segue.destinationViewController as? UINavigationController, vc = topNav.topViewController as? GameLaunchViewController {
         vc.delegate = self
+        self.gameLaunchView = vc
       }
     }
   }

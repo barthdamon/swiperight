@@ -10,6 +10,7 @@ import UIKit
 
 class GameLaunchViewController: UIViewController {
   
+  @IBOutlet weak var gameOverLabel: UILabel!
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var highScoreLabel: UILabel!
   @IBOutlet weak var beginButtonView: UIView!
@@ -30,6 +31,18 @@ class GameLaunchViewController: UIViewController {
   
   func beginButtonSelected(sender: UIGestureRecognizer) {
     self.performSegueWithIdentifier("showGameController", sender: self)
+  }
+  
+  func gameOver(score: Int, highScore: Bool) {
+    self.gameOverLabel.hidden = false
+    self.scoreLabel.text = "SCORE: \(score)"
+    self.scoreLabel.hidden = false
+    if highScore {
+      print("HIGH SCORE RECOGNIZED")
+      highScoreLabel.text = "NEW HIGH SCORE: \(score)"
+      self.highScoreLabel.hidden = false
+    }
+    self.navigationController?.popToRootViewControllerAnimated(false)
   }
   
   

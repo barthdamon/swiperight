@@ -630,7 +630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="321"/>
+            <point key="canvasLocation" x="245" y="318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dw0-Er-Fbb">
@@ -660,7 +660,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="406"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHZ-XO-PEO">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHZ-XO-PEO">
                                 <rect key="frame" x="113" y="27" width="188" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0Gl-Il-d1Y"/>
@@ -694,7 +694,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxJ-Z5-f2O">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxJ-Z5-f2O">
                                 <rect key="frame" x="113" y="67" width="188" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="188" id="2tg-KE-ZiD"/>
@@ -724,7 +724,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW HIGH SCORE: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9S-bo-9aT">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW HIGH SCORE: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9S-bo-9aT">
                                 <rect key="frame" x="113" y="95" width="188" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="1CF-kx-Hy8"/>
@@ -857,9 +857,10 @@
                     <navigationItem key="navigationItem" id="Lg1-cV-37c"/>
                     <connections>
                         <outlet property="beginButtonView" destination="1tg-n0-d9J" id="Rac-Iz-Hv5"/>
+                        <outlet property="gameOverLabel" destination="mHZ-XO-PEO" id="dzr-uU-SV7"/>
                         <outlet property="highScoreLabel" destination="l9S-bo-9aT" id="ZoI-Dl-Ugo"/>
                         <outlet property="scoreLabel" destination="cxJ-Z5-f2O" id="yui-HX-Acv"/>
-                        <segue destination="Gke-k0-e9L" kind="show" identifier="showGameController" id="JfZ-bb-BLy"/>
+                        <segue destination="Gke-k0-e9L" kind="show" identifier="showGameController" customClass="PushNoAnimationSegue" customModule="SwipedRight" customModuleProvider="target" id="JfZ-bb-BLy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6X-2d-RqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1285,10 +1286,13 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="hideHelperTextLabel" destination="6H0-XF-NxD" id="doi-cL-PJ0"/>
                         <outlet property="hideTileHelperIndicator" destination="0Xp-YT-ZnP" id="8Ef-oJ-mpf"/>
                         <outlet property="hideTileHelperView" destination="DTu-aK-nMF" id="HyP-mz-amj"/>
+                        <outlet property="removeHelperTextLabel" destination="s2m-Vf-BNd" id="Znq-72-Tef"/>
                         <outlet property="removeOperationHelperIndicator" destination="ck5-6S-6gU" id="Ygq-Fr-18x"/>
                         <outlet property="removeOperationHelperView" destination="Cys-bp-98k" id="YMz-qC-h71"/>
+                        <outlet property="revealHelperTextLabel" destination="hfc-kn-5sP" id="eMP-q1-jF2"/>
                         <outlet property="revealTileHelperIndicator" destination="PTu-Ly-GBq" id="zXw-HW-cC6"/>
                         <outlet property="revealTileHelperView" destination="X8Y-7S-hNP" id="GdE-Oo-ZGL"/>
                     </connections>

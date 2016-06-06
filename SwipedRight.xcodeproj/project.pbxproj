@@ -54,6 +54,7 @@
 		02DB52AF1D04BF0C0052D72A /* HelperPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */; };
 		02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */; };
 		02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B21D04C8C10052D72A /* GameViewController.swift */; };
+		02DB52B51D04FE530052D72A /* SegueHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B41D04FE530052D72A /* SegueHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperPointViewController.swift; sourceTree = "<group>"; };
 		02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLaunchViewController.swift; sourceTree = "<group>"; };
 		02DB52B21D04C8C10052D72A /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		02DB52B41D04FE530052D72A /* SegueHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */,
 				0232DC911C2386360039E5CE /* CenterOfView.swift */,
 				0232DC951C25D7E90039E5CE /* OperationCompletion.swift */,
+				02DB52B41D04FE530052D72A /* SegueHelper.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				0247A3601CFFD30A00FC52B9 /* UIHelpers.swift in Sources */,
 				0232DC941C23A9830039E5CE /* GameStatus.swift in Sources */,
 				02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */,
+				02DB52B51D04FE530052D72A /* SegueHelper.swift in Sources */,
 				02DB52AD1D04858B0052D72A /* HelperPointView.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
 				02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */,
