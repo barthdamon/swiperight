@@ -45,6 +45,7 @@ class ViewController: UIViewController, GameViewDelegate {
     return ProgressionManager.sharedManager.standardRoundDuration
   }
   var timer: NSTimer?
+  var helperButtonViewEnabled: Bool = true
   
   //Game Client
   var beginButton: UIButton?
@@ -158,6 +159,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func startGameplay() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.deactivateHelperPointButton(false, deactivate: false)
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       GameStatus.status.gameActive = true
     })
@@ -222,13 +224,12 @@ class ViewController: UIViewController, GameViewDelegate {
       if let e = err {
         print("Error reporting score: \(e)")
       } else {
-        print("score reported successfully")
+        print("Score reported successfully")
       }
     }
   }
   
   func configureStartOptions() {
-
     helperButtonView.becomeButtonForGameView(self, selector: #selector(ViewController.helperButtonPressed(_:)))
     //TOOD: Set helper button Target to gameView
     helperButtonViewIndicator.text = "\(0)"
@@ -238,9 +239,11 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func helperButtonPressed(sender: UIGestureRecognizer) {
-    gameView?.helperButtonPressed()
-    toggleHelperMode(true)
-    // stop the clock, show pause button overlay
+    if helperButtonViewEnabled {
+      gameView?.helperButtonPressed()
+      toggleHelperMode(true)
+      // stop the clock, show pause button overlay
+    }
   }
   
   //DELEGATE METHOD DON'T DELETE:
@@ -303,6 +306,11 @@ class ViewController: UIViewController, GameViewDelegate {
     } else {
       resetImages()
     }
+  }
+  
+  func deactivateHelperPointButton(remove: Bool, deactivate: Bool) {
+      helperButtonView.hidden = remove
+      helperButtonViewEnabled = !deactivate
   }
   
   func resetButtonPressed() {

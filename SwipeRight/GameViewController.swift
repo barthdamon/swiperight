@@ -420,6 +420,7 @@ class GameViewController: UIViewController {
       delegate?.resetClientOperations(filteredOperations)
       ProgressionManager.sharedManager.helperPointUtilized(.Remove)
     }
+    delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
   }
   
   func helperButtonPressed() {
