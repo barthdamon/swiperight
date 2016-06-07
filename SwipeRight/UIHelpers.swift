@@ -48,11 +48,19 @@ extension UIView {
     tapRecognizer.numberOfTouchesRequired = 1
     self.addGestureRecognizer(tapRecognizer)
     
+    let firstColor = ThemeHelper.defaultHelper.sw_button_top_color
+    let secondColor = ThemeHelper.defaultHelper.sw_button_bottom_color
+    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor), rounded: true)
+//    self.layer.hidden = false
+    self.layer.insertSublayer(gradientLayer, atIndex: 0)
+    
     self.layer.cornerRadius = self.frame.height / 2
     self.layer.shadowColor = UIColor.darkGrayColor().CGColor
     self.layer.shadowOpacity = 0.3
     self.layer.shadowOffset = CGSizeZero
     self.layer.shadowRadius = 10
+    
+//    self.clipsToBounds = true
   }
 }
 

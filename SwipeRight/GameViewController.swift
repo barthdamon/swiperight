@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
   var gameLaunchController: GameLaunchViewController?
   var helperPointController: HelperPointViewController?
   var delegate: GameViewDelegate?
+  var containerView: UIView?
   
   var gradientLayer: CAGradientLayer?
   var tileWidth: CGFloat!
@@ -49,8 +50,10 @@ class GameViewController: UIViewController {
   }
   
   override func viewDidLoad() {
-    self.viewWidth = delegate?.getWidth()
-    tileWidth = self.view.frame.width / 3
+    if let container = self.containerView {
+      self.viewWidth = container.bounds.width
+      tileWidth = container.bounds.width / 3
+    }
     self.view.backgroundColor = ThemeHelper.defaultHelper.sw_gameview_background_color
     self.view.userInteractionEnabled = false
     configureGameViewComponents()

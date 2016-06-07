@@ -30,10 +30,13 @@ extension CAGradientLayer {
     return layer
   }
   
-  static func verticalGradientLayerForBounds(bounds: CGRect, colors: (start: UIColor, end: UIColor)) -> CAGradientLayer {
+  static func verticalGradientLayerForBounds(bounds: CGRect, colors: (start: UIColor, end: UIColor), rounded: Bool) -> CAGradientLayer {
     
     let layer = CAGradientLayer()
     layer.frame = bounds
+    if rounded {
+      layer.cornerRadius = bounds.height / 2
+    }
     
     layer.startPoint = CGPoint(x: 0, y: 0)
     layer.endPoint = CGPoint(x: 0, y: 1)

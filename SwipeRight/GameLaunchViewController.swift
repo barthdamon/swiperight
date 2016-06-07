@@ -16,6 +16,7 @@ class GameLaunchViewController: UIViewController {
   @IBOutlet weak var beginButtonView: UIView!
   
   var gameViewController: GameViewController?
+  var containerView: UIView?
   var delegate: GameViewDelegate?
   
   override func viewDidLoad() {
@@ -54,6 +55,7 @@ class GameLaunchViewController: UIViewController {
         delegate?.setGameViewController(vc)
         self.gameViewController = vc
         vc.delegate = delegate
+        vc.containerView = containerView
       }
     }
   }

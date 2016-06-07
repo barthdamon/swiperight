@@ -19,6 +19,9 @@ class ThemeHelper: NSObject {
   let sw_gameview_background_color: UIColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
   let sw_blue_color: UIColor = UIColor(red: 0.35, green: 0.71, blue: 0.85, alpha: 1)
   let sw_green_color: UIColor = UIColor(red: 0.42, green: 0.84, blue: 0.73, alpha: 1)
+  
+  let sw_button_top_color: UIColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+  let sw_button_bottom_color: UIColor = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.00)
 
   // Fonts
   let sw_font = UIFont(name: "DIN-Medium", size: 16)

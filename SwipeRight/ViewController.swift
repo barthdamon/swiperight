@@ -79,6 +79,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    timeLabel.adjustsFontSizeToFitWidth = true
     //   self.navigationController?.navigationBarHidden = true
     setHighScore()
     configureViewStyles()
@@ -103,7 +104,7 @@ class ViewController: UIViewController, GameViewDelegate {
     
     let firstColor = ThemeHelper.defaultHelper.sw_blue_color
     let secondColor = ThemeHelper.defaultHelper.sw_green_color
-    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor))
+    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
     self.view.layer.hidden = false
     self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
   }
@@ -200,6 +201,7 @@ class ViewController: UIViewController, GameViewDelegate {
     if finished && GameStatus.status.selectedMode == .Ranked {
       reportScore()
     }
+    deactivateHelperPointButton(true, deactivate: false)
     timer?.invalidate()
     timer = nil
     GameStatus.status.gameActive = false
@@ -244,7 +246,7 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func helperButtonPressed(sender: UIGestureRecognizer) {
-    if helperButtonViewEnabled {
+    if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 {
       gameView?.helperButtonPressed()
       toggleHelperMode(true)
       // stop the clock, show pause button overlay
@@ -340,6 +342,7 @@ class ViewController: UIViewController, GameViewDelegate {
       if let topNav = segue.destinationViewController as? UINavigationController, vc = topNav.topViewController as? GameLaunchViewController {
         vc.delegate = self
         self.gameLaunchView = vc
+        vc.containerView = gameContainerView
       }
     }
   }
