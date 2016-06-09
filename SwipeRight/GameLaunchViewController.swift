@@ -19,10 +19,16 @@ class GameLaunchViewController: UIViewController {
   var containerView: UIView?
   var delegate: GameViewDelegate?
   
+  var shouldPlayImmediately: Bool = false
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     beginButtonView.becomeButtonForGameView(self, selector: #selector(GameLaunchViewController.beginButtonSelected(_:)))
-    self.performSegueWithIdentifier("showGameController", sender: self)
+    
+    if shouldPlayImmediately {
+      beginButtonSelected(nil)
+      shouldPlayImmediately = false
+    }
     // Do any additional setup after loading the view.
   }
   
@@ -31,8 +37,10 @@ class GameLaunchViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  func beginButtonSelected(sender: UIGestureRecognizer) {
-    self.performSegueWithIdentifier("showGameController", sender: self)
+  func beginButtonSelected(sender: UIGestureRecognizer?) {
+    dispatch_async(dispatch_get_main_queue()) {
+      self.performSegueWithIdentifier("showGameController", sender: self)
+    }
   }
   
   func gameOver(score: Int, highScore: Bool) {

@@ -50,6 +50,7 @@ class GameViewController: UIViewController {
   }
   
   override func viewDidLoad() {
+    super.viewDidLoad()
     if let container = self.containerView {
       self.viewWidth = container.bounds.width
       tileWidth = container.bounds.width / 3

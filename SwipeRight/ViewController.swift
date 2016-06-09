@@ -32,6 +32,8 @@ class ViewController: UIViewController, GameViewDelegate {
   //  var roundLabel: UILabel?
   var helperPointLabel: UILabel?
   var componentView: UIView?
+  var shouldPlayImmediately: Bool = false
+  
   var time: Int = 0 {
     didSet {
       timeLabel?.text = stringToGameTime(time)
@@ -94,6 +96,8 @@ class ViewController: UIViewController, GameViewDelegate {
   
   override func viewWillDisappear(animated: Bool) {
     //   self.navigationController?.navigationBarHidden = false
+    self.timer?.invalidate()
+    super.viewWillDisappear(true)
   }
   
   func configureViewStyles() {
@@ -174,6 +178,7 @@ class ViewController: UIViewController, GameViewDelegate {
   func resetGameState() {
     score = 0
     time = 0
+    self.timer?.invalidate()
     gameView?.intermissionTimer.invalidate()
     gameView?.roundOverView?.removeFromSuperview()
     gameView?.roundOverView = nil
@@ -190,15 +195,10 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func tickTock() {
     if GameStatus.status.gameActive {
-      self.timeLabel.alpha = 1
-      self.pausedView.hidden = true
       time -= 1
       if time == 0 {
         gameOver()
       }
-    } else {
-      self.pausedView.hidden = false
-      self.timeLabel.alpha = 0.4
     }
   }
   
@@ -351,7 +351,9 @@ class ViewController: UIViewController, GameViewDelegate {
   
   @IBAction func menuButtonPressed(sender: AnyObject) {
     print("Menu Button Pressed")
+    self.timer?.invalidate()
     GameStatus.status.gameActive = false
+    ProgressionManager.sharedManager.reset()
     self.navigationController?.popViewControllerAnimated(true)
   }
   
@@ -362,6 +364,10 @@ class ViewController: UIViewController, GameViewDelegate {
         vc.delegate = self
         self.gameLaunchView = vc
         vc.containerView = gameContainerView
+        if shouldPlayImmediately {
+          gameLaunchView?.shouldPlayImmediately = true
+          shouldPlayImmediately = false
+        }
       }
     }
   }
