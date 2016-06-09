@@ -323,8 +323,6 @@ class GameViewController: UIViewController {
     }
   }
   
-  
-  
   func newRound() {
     ProgressionManager.sharedManager.currentRound += 1
     ProgressionManager.sharedManager.currentRoundPosition = 1
@@ -466,6 +464,7 @@ class GameViewController: UIViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showHelperPointController" {
       if let vc = segue.destinationViewController as? HelperPointViewController {
+        delegate?.togglePaused(true)
         vc.delegate = delegate
         helperPointController = vc
         vc.gameViewController = self

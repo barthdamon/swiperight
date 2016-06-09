@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, GameViewDelegate {
   
   @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var pausedView: UIView!
   
   @IBOutlet weak var gameContainerView: UIView!
   @IBOutlet weak var scoreLabel: UILabel!
@@ -189,10 +190,26 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func tickTock() {
     if GameStatus.status.gameActive {
+      self.timeLabel.alpha = 1
+      self.pausedView.hidden = true
       time -= 1
       if time == 0 {
         gameOver()
       }
+    } else {
+      self.pausedView.hidden = false
+      self.timeLabel.alpha = 0.4
+    }
+  }
+  
+  
+  func togglePaused(paused: Bool) {
+    if paused {
+      self.pausedView.hidden = false
+      self.timeLabel.alpha = 0.4
+    } else {
+      self.timeLabel.alpha = 1
+      self.pausedView.hidden = true
     }
   }
   

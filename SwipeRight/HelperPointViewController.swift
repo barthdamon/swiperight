@@ -48,6 +48,7 @@ class HelperPointViewController: UIViewController {
     if !showingHelp {
       GameStatus.status.gameActive = true
       delegate?.deactivateHelperPointButton(false, deactivate: false)
+      delegate?.togglePaused(false)
     }
   }
   
@@ -70,6 +71,7 @@ class HelperPointViewController: UIViewController {
       removeHelperTextLabel.alpha = 1
       removeOperationHelperView.layer.shadowRadius = 10
     } else {
+      showRemove = false
       removeHelperTextLabel.alpha = 0.4
       removeOperationHelperView.layer.shadowRadius = 0
     }
@@ -78,6 +80,7 @@ class HelperPointViewController: UIViewController {
       hideHelperTextLabel.alpha = 1
       hideTileHelperView.layer.shadowRadius = 10
     } else {
+      showHide = false
       hideHelperTextLabel.alpha = 0.4
       hideTileHelperView.layer.shadowRadius = 0
     }
