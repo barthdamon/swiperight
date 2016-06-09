@@ -14,7 +14,6 @@ class ViewController: UIViewController, GameViewDelegate {
   
   @IBOutlet weak var gameContainerView: UIView!
   @IBOutlet weak var scoreLabel: UILabel!
-  @IBOutlet weak var roundLabel: UILabel!
   @IBOutlet weak var highScoreLabel: UILabel!
   @IBOutlet weak var operationIndicatorView: UIView!
   @IBOutlet weak var divideView: UIImageView!
@@ -160,7 +159,7 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func setRound(number: Int) {
     setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
-    roundLabel?.text = "LEVEL \(number)"
+//    roundLabel?.text = "LEVEL \(number)"
   }
   
   func startGameplay() {
@@ -227,13 +226,14 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func reportScore() {
-    APIService.sharedService.post(["value": score], url: "score/register") { (res, err) in
-      if let e = err {
-        print("Error reporting score: \(e)")
-      } else {
-        print("Score reported successfully")
-      }
-    }
+    print("REPORT SCORE")
+//    APIService.sharedService.post(["value": score], url: "score/register") { (res, err) in
+//      if let e = err {
+//        print("Error reporting score: \(e)")
+//      } else {
+//        print("Score reported successfully")
+//      }
+//    }
   }
   
   func configureStartOptions() {
@@ -334,6 +334,8 @@ class ViewController: UIViewController, GameViewDelegate {
   
   @IBAction func menuButtonPressed(sender: AnyObject) {
     print("Menu Button Pressed")
+    GameStatus.status.gameActive = false
+    self.navigationController?.popViewControllerAnimated(true)
   }
   
   //MARK: Navigation

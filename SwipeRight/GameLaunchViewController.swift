@@ -22,6 +22,7 @@ class GameLaunchViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     beginButtonView.becomeButtonForGameView(self, selector: #selector(GameLaunchViewController.beginButtonSelected(_:)))
+    self.performSegueWithIdentifier("showGameController", sender: self)
     // Do any additional setup after loading the view.
   }
   
@@ -38,6 +39,7 @@ class GameLaunchViewController: UIViewController {
     self.gameOverLabel.hidden = false
     self.scoreLabel.text = "SCORE: \(score)"
     self.scoreLabel.hidden = false
+    self.beginButtonView.hidden = false
     if highScore {
       print("HIGH SCORE RECOGNIZED")
       highScoreLabel.text = "NEW HIGH SCORE: \(score)"

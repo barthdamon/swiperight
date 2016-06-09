@@ -35,7 +35,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     APIService.sharedService.get(nil, authType: .Basic, url: "rankings/\(currentGrouping.rawValue)", callback: { (data, err) in
       if let e = err {
         print("Error: \(e)")
-      } else if let json = data as? jsonObject, scoresJson = json["scores"] as? Array<jsonObject> {
+      } else if let json = data as? jsonObject, scoresJson = json["saved"] as? Array<jsonObject> {
         print("Scores: \(scoresJson)")
         scoresJson.forEach({ (scoreJson) in
           self.scores.append(Score.scoreFromJson(scoreJson))

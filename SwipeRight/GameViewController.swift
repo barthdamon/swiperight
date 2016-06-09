@@ -231,26 +231,32 @@ class GameViewController: UIViewController {
       self.currentLayout = GridNumberLayout()
       self.gradientLayer?.removeFromSuperlayer()
       guard let layout = currentLayout else { return }
-      var color: UIColor = UIColor.darkGrayColor()
-      if layout.operations.count == 1 {
-        color = layout.operations[0].color
-        self.view.backgroundColor = color
-      } else {
-        let firstOperation = layout.operations.filter({if $0 == .Add || $0 == .Subtract {
-          return true
-        } else {
-          return false
-          }})
-        let firstColor = firstOperation[0].color
-        let secondOperation = layout.operations.filter({$0 == .Multiply || $0 == .Divide})
-        let secondColor = secondOperation[0].color
-        gradientLayer = CAGradientLayer.gradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor))
-        self.view.layer.hidden = false
-        self.view.layer.insertSublayer(gradientLayer!, atIndex: 0)
-        // half and half
-      }
+      setGameViewBackground(layout.operations)
       animateTileReset()
     }
+  }
+  
+  func setGameViewBackground(operations: Array<Operation>) {
+    self.gradientLayer?.removeFromSuperlayer()
+    var color: UIColor = UIColor.darkGrayColor()
+    if operations.count == 1 {
+      color = operations[0].color
+      self.view.backgroundColor = color
+    } else {
+      let firstOperation = operations.filter({if $0 == .Add || $0 == .Subtract {
+        return true
+      } else {
+        return false
+        }})
+      let firstColor = firstOperation[0].color
+      let secondOperation = operations.filter({$0 == .Multiply || $0 == .Divide})
+      let secondColor = secondOperation[0].color
+      gradientLayer = CAGradientLayer.gradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor))
+      self.view.layer.hidden = false
+      self.view.layer.insertSublayer(gradientLayer!, atIndex: 0)
+      // half and half
+    }
+
   }
   
   func fadeOutTiles(callback: (complete: Bool) -> ()) {
@@ -446,6 +452,7 @@ class GameViewController: UIViewController {
     case .Remove:
       let filteredOperations = ProgressionManager.sharedManager.activeOperations.filter({$0 == combo.operation})
       delegate?.resetClientOperations(filteredOperations)
+      setGameViewBackground(filteredOperations)
       ProgressionManager.sharedManager.helperPointUtilized(.Remove)
     }
     delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)

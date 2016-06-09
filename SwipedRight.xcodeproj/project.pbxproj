@@ -55,6 +55,9 @@
 		02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */; };
 		02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B21D04C8C10052D72A /* GameViewController.swift */; };
 		02DB52B51D04FE530052D72A /* SegueHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B41D04FE530052D72A /* SegueHelper.swift */; };
+		02E6FCE21D07B6A9007A98EE /* GameKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */; };
+		02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */; };
+		02E6FCE61D08EB91007A98EE /* HowToPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +111,9 @@
 		02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLaunchViewController.swift; sourceTree = "<group>"; };
 		02DB52B21D04C8C10052D72A /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		02DB52B41D04FE530052D72A /* SegueHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHelper.swift; sourceTree = "<group>"; };
+		02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameKitViewController.swift; sourceTree = "<group>"; };
+		02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperHelpViewController.swift; sourceTree = "<group>"; };
+		02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToPlayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,9 @@
 		02ADE4CC1CFE710B000AB183 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */,
+				02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */,
+				02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
 				02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */,
 				02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */,
@@ -357,7 +366,9 @@
 				02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */,
 				02DB52B51D04FE530052D72A /* SegueHelper.swift in Sources */,
 				02DB52AD1D04858B0052D72A /* HelperPointView.swift in Sources */,
+				02E6FCE21D07B6A9007A98EE /* GameKitViewController.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
+				02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */,
 				02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */,
 				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
 				0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */,
@@ -372,6 +383,7 @@
 				022D4B201CE92885004EFFC7 /* ProgressionManager.swift in Sources */,
 				022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */,
 				02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */,
+				02E6FCE61D08EB91007A98EE /* HowToPlayViewController.swift in Sources */,
 				0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */,
 				02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */,
 				02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */,

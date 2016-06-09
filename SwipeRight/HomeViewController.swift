@@ -10,15 +10,37 @@ import UIKit
 
 class HomeViewController: UIViewController {
   
+  @IBOutlet weak var firstTimeButton: UIButton!
+  @IBOutlet weak var howToPlayButtonView: UIView!
+  @IBOutlet weak var beginGameButtonView: UIView!
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     // Do any additional setup after loading the view.
+    configureBackground()
+    setupButtons()
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  func configureBackground() {
+    let firstColor = ThemeHelper.defaultHelper.sw_blue_color
+    let secondColor = ThemeHelper.defaultHelper.sw_green_color
+    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
+    self.view.layer.hidden = false
+    self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
+  }
+  
+  func setupButtons() {
+    beginGameButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.playButtonPressed(_:)))
+    let lineView = UIView(frame: CGRectMake(0, firstTimeButton.frame.height, firstTimeButton.frame.size.width, 1))
+    lineView.backgroundColor=UIColor.whiteColor()
+    firstTimeButton.addSubview(lineView)
+//    howToPlayButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.howToButtonPressed(_:)))
+//    leaderboardsButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.leaderboardsButtonPressed(_:)))
+//    self.leaderboardsButtonView.alpha = 0.4
   }
   
   
@@ -31,31 +53,18 @@ class HomeViewController: UIViewController {
    // Pass the selected object to the new view controller.
    }
    */
-  @IBAction func leaderboardsButtonPressed(sender: AnyObject) {
-    self.performSegueWithIdentifier("showLeaderboard", sender: self)
+  func leaderboardsButtonPressed(sender: AnyObject) {
+    print("show leaderboards")
+//    self.performSegueWithIdentifier("showLeaderboard", sender: self)
   }
-  @IBAction func settingsButtonPressed(sender: AnyObject) {
-    if let _ = CurrentUser.info.token() {
-      self.performSegueWithIdentifier("showProfile", sender: self)
-    } else {
-      self.performSegueWithIdentifier("showAuth", sender: self)
-    }
-  }
-  @IBAction func rankedPlayButtonPressed(sender: AnyObject) {
-    if let _ = CurrentUser.info.token() {
-      GameStatus.status.selectedMode = .Ranked
-      self.performSegueWithIdentifier("showGameSegue", sender: self)
-    } else {
-      self.performSegueWithIdentifier("showAuth", sender: self)
-    }
-  }
-  @IBAction func standardPlayButtonPressed(sender: AnyObject) {
-    GameStatus.status.selectedMode = .Standard
-    self.performSegueWithIdentifier("showGameSegue", sender: self)
-  }
-  @IBAction func practiceButtonPressed(sender: AnyObject) {
-    GameStatus.status.selectedMode = .Practice
+  
+  func playButtonPressed(sender: AnyObject) {
+    GameStatus.status.selectedMode = .Ranked
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
   
+  @IBAction func howToButtonPressed(sender: AnyObject) {
+    self.performSegueWithIdentifier("howToSegue", sender: self)
+  }
+
 }

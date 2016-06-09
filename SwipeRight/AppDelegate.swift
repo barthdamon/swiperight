@@ -46,9 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
     let savedKeychain = [
       "highScore" : 0,
+      "firstPlay" : false
     ]
-    
-    let registrationDictionary = ["scores": savedKeychain]
+
+    let registrationDictionary = ["saved": savedKeychain]
     defaults.registerDefaults(registrationDictionary)
   }
 

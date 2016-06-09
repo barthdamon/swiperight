@@ -31,3 +31,16 @@ class ThemeHelper: NSObject {
   let sw_game_font = UIFont(name: "DIN-Medium", size: 25)
   let sw_game_overlay_font = UIFont(name: "DIN-Medium", size: 40)
 }
+
+@IBDesignable class TIFAttributedLabel: UILabel {
+  
+  @IBInspectable var fontSize: CGFloat = 17.0
+  
+  @IBInspectable var fontFamily: String = "DIN Medium"
+  
+  override func awakeFromNib() {
+    let attrString = NSMutableAttributedString(attributedString: self.attributedText!)
+    attrString.addAttribute(NSFontAttributeName, value: UIFont(name: self.fontFamily, size: self.fontSize)!, range: NSMakeRange(0, attrString.length))
+    self.attributedText = attrString
+  }
+}
