@@ -207,7 +207,9 @@ class ViewController: UIViewController, GameViewDelegate {
     if paused {
       self.pausedView.hidden = false
       self.timeLabel.alpha = 0.4
+      self.timer?.invalidate()
     } else {
+      self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       self.timeLabel.alpha = 1
       self.pausedView.hidden = true
     }
