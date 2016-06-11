@@ -744,7 +744,7 @@ Cg
                                 </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XKE-nQ-xjL">
-                                <rect key="frame" x="114" y="90" width="373" height="169"/>
+                                <rect key="frame" x="114" y="74" width="373" height="169"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="169" id="7bZ-Kl-exd"/>
                                     <constraint firstAttribute="width" constant="200" id="GuO-VC-HBh"/>
@@ -763,7 +763,7 @@ Cg
                                 </variation>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6R-7b-O5h">
-                                <rect key="frame" x="114" y="90" width="373" height="169"/>
+                                <rect key="frame" x="114" y="74" width="373" height="169"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ag2-v4-QWJ">
                                         <rect key="frame" x="0.0" y="0.0" width="373" height="89"/>
@@ -824,7 +824,7 @@ Cg
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="tg3-51-ZMx"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xYe-bN-WP8" secondAttribute="leadingMargin" constant="20" id="tqg-Zv-1ON"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="width" secondItem="XKE-nQ-xjL" secondAttribute="width" id="wxb-SI-gVC"/>
-                            <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="16" id="xd4-j0-OMn"/>
+                            <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="32" id="xd4-j0-OMn"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="XKE-nQ-xjL" secondAttribute="trailing" constant="20" id="yI8-Hl-bU0"/>
                         </constraints>
                         <variation key="default">
