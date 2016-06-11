@@ -25,7 +25,6 @@ protocol GameViewDelegate {
   func toggleHelperMode(on: Bool)
   func setHelperPoints(points: Int)
   func togglePaused(paused: Bool)
-  
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool)
   func setGameViewController(controller: GameViewController)
 }

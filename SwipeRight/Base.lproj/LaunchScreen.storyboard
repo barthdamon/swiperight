@@ -32,7 +32,7 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.25098039215686274" green="0.34901960784313724" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.81568627449999997" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="rrS-6F-OEg" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3Ju-c6-Zf3"/>
                             <constraint firstItem="rrS-6F-OEg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="111" id="63g-pk-o8I"/>
@@ -70,6 +70,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SwipeSplash" width="1171" height="880"/>
+        <image name="SwipeSplash" width="575" height="262"/>
     </resources>
 </document>

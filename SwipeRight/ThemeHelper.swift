@@ -13,12 +13,17 @@ class ThemeHelper: NSObject {
   
   static var defaultHelper = ThemeHelper()
   
+  let addImage = UIImage(named: "addition")
+  let subtractImage = UIImage(named: "subtraction")
+  let multiplyImage = UIImage(named: "multiplication")
+  let divideImage = UIImage(named: "division")
+  
   // Colors
   let sw_tile_separator_color: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1)
   let sw_gameview_shadow_color: UIColor = UIColor(red:0.33, green:0.69, blue:0.78, alpha:1.00)
   let sw_gameview_background_color: UIColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-  let sw_blue_color: UIColor = UIColor(red: 0.35, green: 0.71, blue: 0.85, alpha: 1)
-  let sw_green_color: UIColor = UIColor(red: 0.42, green: 0.84, blue: 0.73, alpha: 1)
+  let sw_background_color: UIColor = UIColor(red:0.82, green:0.85, blue:0.85, alpha:1.00)
+  let sw_background_glow_color: UIColor = UIColor(red:0.98, green:0.99, blue:0.99, alpha:1.00)
   
   let sw_button_top_color: UIColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
   let sw_button_bottom_color: UIColor = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.00)
@@ -35,7 +40,6 @@ class ThemeHelper: NSObject {
 @IBDesignable class TIFAttributedLabel: UILabel {
   
   @IBInspectable var fontSize: CGFloat = 17.0
-  
   @IBInspectable var fontFamily: String = "DIN Medium"
   
   override func awakeFromNib() {

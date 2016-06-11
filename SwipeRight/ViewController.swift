@@ -55,22 +55,6 @@ class ViewController: UIViewController, GameViewDelegate {
   //  var resetButton: UIButton?
   var helperButton: UIButton?
   
-  let addImage = UIImage(named: "add")
-  let subtractImage = UIImage(named: "subtract")
-  let multiplyImage = UIImage(named: "multiply")
-  let divideImage = UIImage(named: "divide")
-  
-  let addImageGray = UIImage(named: "addGray")
-  let subtractImageGray = UIImage(named: "subtractGray")
-  let multiplyImageGray = UIImage(named: "multiplyGray")
-  let divideImageGray = UIImage(named: "divideGray")
-  
-  let addImageGrayInactive = UIImage(named: "addGrayInactive")
-  let subtractImageGrayInactive = UIImage(named: "subtractGrayInactive")
-  let multiplyImageGrayInactive = UIImage(named: "multiplyGrayInactive")
-  let divideImageGrayInactive = UIImage(named: "divideGrayInactive")
-  
-  
   //Game View
   var gameLaunchView: GameLaunchViewController?
   var gameView: GameViewController?
@@ -106,8 +90,8 @@ class ViewController: UIViewController, GameViewDelegate {
     gameContainerView.layer.shadowOffset = CGSizeZero
     gameContainerView.layer.shadowRadius = 2
     
-    let firstColor = ThemeHelper.defaultHelper.sw_blue_color
-    let secondColor = ThemeHelper.defaultHelper.sw_green_color
+    let firstColor = ThemeHelper.defaultHelper.sw_background_color
+    let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
     let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
     self.view.layer.hidden = false
     self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
@@ -128,6 +112,7 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func setHelperPoints(points: Int) {
+    
     helperButtonViewIndicator.text = "\(points)"
     setStreakLabel()
   }
@@ -135,7 +120,7 @@ class ViewController: UIViewController, GameViewDelegate {
   func setStreakLabel() {
     let streak = ProgressionManager.sharedManager.currentStreak
     let needed = ProgressionManager.sharedManager.currentStreakNeeded
-    helperStreakLabel.text = "HELPER STREAK: \(streak)/\(needed)"
+    helperStreakLabel.text = "BONUS STREAK: \(streak)/\(needed)"
   }
   
 
@@ -283,10 +268,10 @@ class ViewController: UIViewController, GameViewDelegate {
   
   
   func resetGameUI() {
-    multiplyView?.image = multiplyImageGrayInactive
-    divideView?.image = divideImageGrayInactive
-    subtractView?.image = subtractImageGrayInactive
-    addView?.image = addImageGrayInactive
+//    multiplyView?.image = multiplyImageGrayInactive
+//    divideView?.image = divideImageGrayInactive
+//    subtractView?.image = subtractImageGrayInactive
+//    addView?.image = addImageGrayInactive
   }
   
   func toggleClientView() {
@@ -307,31 +292,31 @@ class ViewController: UIViewController, GameViewDelegate {
   
   func resetClientOperations(currentOperations: Array<Operation>?) {
     
-    func resetImages() {
-      let active = ProgressionManager.sharedManager.activeOperations
-      self.multiplyView?.image = active.contains(.Multiply) ? multiplyImageGray : multiplyImageGrayInactive
-      self.divideView?.image = active.contains(.Divide) ? divideImageGray : divideImageGrayInactive
-      self.addView?.image = active.contains(.Add) ? addImageGray : addImageGrayInactive
-      self.subtractView?.image = active.contains(.Subtract) ? subtractImageGray : subtractImageGrayInactive
-    }
-    if let currentOperations = currentOperations {
-      resetImages()
-      self.operations = currentOperations
-      for operation in currentOperations {
-        switch operation {
-        case .Add:
-          self.addView?.image = addImage
-        case .Subtract:
-          self.subtractView?.image = subtractImage
-        case .Multiply:
-          self.multiplyView?.image = multiplyImage
-        case .Divide:
-          self.divideView?.image = divideImage
-        }
-      }
-    } else {
-      resetImages()
-    }
+//    func resetImages() {
+//      let active = ProgressionManager.sharedManager.activeOperations
+//      self.multiplyView?.image = active.contains(.Multiply) ? multiplyImageGray : multiplyImageGrayInactive
+//      self.divideView?.image = active.contains(.Divide) ? divideImageGray : divideImageGrayInactive
+//      self.addView?.image = active.contains(.Add) ? addImageGray : addImageGrayInactive
+//      self.subtractView?.image = active.contains(.Subtract) ? subtractImageGray : subtractImageGrayInactive
+//    }
+//    if let currentOperations = currentOperations {
+//      resetImages()
+//      self.operations = currentOperations
+//      for operation in currentOperations {
+//        switch operation {
+//        case .Add:
+//          self.addView?.image = addImage
+//        case .Subtract:
+//          self.subtractView?.image = subtractImage
+//        case .Multiply:
+//          self.multiplyView?.image = multiplyImage
+//        case .Divide:
+//          self.divideView?.image = divideImage
+//        }
+//      }
+//    } else {
+//      resetImages()
+//    }
   }
   
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool) {

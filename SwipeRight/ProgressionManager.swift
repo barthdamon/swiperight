@@ -87,6 +87,8 @@ class ProgressionManager: NSObject {
       modifications.append(Modification(type: mod))
     }
     currentRound = 1
+    currentStreak = 0
+    currentStreakNeeded = 3
     standardRoundDuration = 20
     standardBoostTime = 5
     MultipleHelper.defaultHelper.resetRange()

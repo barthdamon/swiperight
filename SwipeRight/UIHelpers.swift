@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+enum OperationStatus {
+  case Current
+  case Active
+  case Inactive
+}
+
+
+
 func alertShow(vc: UIViewController, alertText :String, alertMessage :String) {
   let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
   
@@ -61,6 +69,10 @@ extension UIView {
     self.layer.shadowRadius = 10
     
 //    self.clipsToBounds = true
+  }
+  
+  func setAsOperation(operation: Operation, status: OperationStatus) {
+    
   }
 }
 

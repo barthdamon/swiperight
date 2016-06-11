@@ -26,8 +26,8 @@ class HomeViewController: UIViewController {
   }
   
   func configureBackground() {
-    let firstColor = ThemeHelper.defaultHelper.sw_blue_color
-    let secondColor = ThemeHelper.defaultHelper.sw_green_color
+    let firstColor = ThemeHelper.defaultHelper.sw_background_color
+    let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
     let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
     self.view.layer.hidden = false
     self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
   func setupButtons() {
     beginGameButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.playButtonPressed(_:)))
     let lineView = UIView(frame: CGRectMake(0, firstTimeButton.frame.height, firstTimeButton.frame.size.width, 1))
-    lineView.backgroundColor=UIColor.whiteColor()
+    lineView.backgroundColor=UIColor.blackColor()
     firstTimeButton.addSubview(lineView)
 //    howToPlayButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.howToButtonPressed(_:)))
 //    leaderboardsButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.leaderboardsButtonPressed(_:)))
