@@ -10,27 +10,34 @@ import UIKit
 
 class HomeViewController: UIViewController {
   
+  @IBOutlet weak var logoView: UIImageView!
   @IBOutlet weak var firstTimeButton: UIButton!
-  @IBOutlet weak var howToPlayButtonView: UIView!
   @IBOutlet weak var beginGameButtonView: UIView!
   override func viewDidLoad() {
     super.viewDidLoad()
+    beginGameButtonView.alpha = 0
+    firstTimeButton.alpha = 0
+    logoView.alpha = 0
     // Do any additional setup after loading the view.
     configureBackground()
     setupButtons()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  override func viewDidAppear(animated: Bool) {
+    UIView.animateWithDuration(0.5) { 
+      self.beginGameButtonView.alpha = 1
+      self.firstTimeButton.alpha = 1
+      self.logoView.alpha = 1
+    }
   }
   
+  
   func configureBackground() {
-    let firstColor = ThemeHelper.defaultHelper.sw_background_color
-    let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
-    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
-    self.view.layer.hidden = false
-    self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
+//    let firstColor = ThemeHelper.defaultHelper.sw_background_color
+//    let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
+//    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
+//    self.view.layer.hidden = false
+//    self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
   }
   
   func setupButtons() {
