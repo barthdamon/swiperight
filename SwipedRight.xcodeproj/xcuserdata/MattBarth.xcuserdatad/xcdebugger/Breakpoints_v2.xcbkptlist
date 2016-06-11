@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwipeRight/GameLaunchViewController.swift"
-            timestampString = "487167497.401845"
+            timestampString = "487377574.946014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "beginButtonSelected(_:)"
             landmarkType = "5">
          </BreakpointContent>

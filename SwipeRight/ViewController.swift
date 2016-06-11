@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, GameViewDelegate {
+class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var pausedView: UIView!
@@ -22,8 +22,9 @@ class ViewController: UIViewController, GameViewDelegate {
   @IBOutlet weak var subtractView: UIImageView!
   @IBOutlet weak var addView: UIImageView!
   
-  @IBOutlet weak var helperButtonView: UIView!
+  @IBOutlet weak var helperButtonView: ButtonView!
   @IBOutlet weak var helperButtonViewIndicator: UILabel!
+  @IBOutlet weak var helperButtonLabel: UILabel!
   
   @IBOutlet weak var helperStreakLabel: UILabel!
   //HUD
@@ -85,10 +86,10 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func configureViewStyles() {
-//    gameContainerView.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
-//    gameContainerView.layer.shadowOpacity = 0.3
-//    gameContainerView.layer.shadowOffset = CGSizeZero
-//    gameContainerView.layer.shadowRadius = 2
+    gameContainerView.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
+    gameContainerView.layer.shadowOpacity = 0.3
+    gameContainerView.layer.shadowOffset = CGSizeZero
+    gameContainerView.layer.shadowRadius = 10
     
     let firstColor = ThemeHelper.defaultHelper.sw_background_color
     let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
@@ -240,7 +241,7 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func configureStartOptions() {
-    helperButtonView.becomeButtonForGameView(self, selector: #selector(ViewController.helperButtonPressed(_:)))
+    helperButtonView.becomeButtonForGameView(self, label: helperButtonLabel, delegate: self)
     //TOOD: Set helper button Target to gameView
     helperButtonViewIndicator.text = "\(0)"
     helperButtonViewIndicator.layer.cornerRadius = helperButtonViewIndicator.frame.width / 2
@@ -248,7 +249,7 @@ class ViewController: UIViewController, GameViewDelegate {
     
   }
   
-  func helperButtonPressed(sender: UIGestureRecognizer) {
+  func buttonPressed(sender: ButtonView) {
     if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 {
       gameView?.helperButtonPressed()
       toggleHelperMode(true)

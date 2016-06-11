@@ -8,12 +8,13 @@
 
 import UIKit
 
-class GameLaunchViewController: UIViewController {
+class GameLaunchViewController: UIViewController, ButtonDelegate {
   
   @IBOutlet weak var gameOverLabel: UILabel!
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var highScoreLabel: UILabel!
-  @IBOutlet weak var beginButtonView: UIView!
+  @IBOutlet weak var beginButtonView: ButtonView!
+  @IBOutlet weak var beginButtonLabel: UILabel!
   
   var gameViewController: GameViewController?
   var containerView: UIView?
@@ -23,10 +24,12 @@ class GameLaunchViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    beginButtonView.becomeButtonForGameView(self, selector: #selector(GameLaunchViewController.beginButtonSelected(_:)))
+    beginButtonView.becomeButtonForGameView(self, label: beginButtonLabel, delegate: self)
     
     if shouldPlayImmediately {
-      beginButtonSelected(nil)
+      dispatch_async(dispatch_get_main_queue()) {
+        self.performSegueWithIdentifier("showGameController", sender: self)
+      }
       shouldPlayImmediately = false
     }
     // Do any additional setup after loading the view.
@@ -37,7 +40,7 @@ class GameLaunchViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  func beginButtonSelected(sender: UIGestureRecognizer?) {
+  func buttonPressed(sender: ButtonView) {
     dispatch_async(dispatch_get_main_queue()) {
       self.performSegueWithIdentifier("showGameController", sender: self)
     }

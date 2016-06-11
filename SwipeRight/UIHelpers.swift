@@ -15,6 +15,10 @@ enum OperationStatus {
   case Inactive
 }
 
+protocol ButtonDelegate {
+  func buttonPressed(sender: ButtonView)
+}
+
 
 
 func alertShow(vc: UIViewController, alertText :String, alertMessage :String) {
@@ -49,12 +53,15 @@ extension UILabel {
   }
 }
 
-extension UIView {
-  func becomeButtonForGameView(target: UIViewController, selector: Selector) {
-    let tapRecognizer = UITapGestureRecognizer(target: target, action: selector)
-    tapRecognizer.numberOfTapsRequired = 1
-    tapRecognizer.numberOfTouchesRequired = 1
-    self.addGestureRecognizer(tapRecognizer)
+class ButtonView: UIView, UIGestureRecognizerDelegate {
+  
+  var delegate: ButtonDelegate?
+  var label: UILabel?
+  
+  func becomeButtonForGameView(target: UIViewController, label: UILabel, delegate: ButtonDelegate) {
+    self.userInteractionEnabled = true
+    self.label = label
+    self.delegate = delegate
     
     let firstColor = ThemeHelper.defaultHelper.sw_button_top_color
     let secondColor = ThemeHelper.defaultHelper.sw_button_bottom_color
@@ -71,8 +78,31 @@ extension UIView {
 //    self.clipsToBounds = true
   }
   
+  func togglePressed(down: Bool) {
+    if down {
+      self.label?.alpha = 0.4
+      self.layer.shadowRadius = 0
+    } else {
+      self.label?.alpha = 1
+      self.layer.shadowRadius = 10
+    }
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    print("BUTTON TOUCH START")
+    togglePressed(true)
+  }
+  
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    print("BUTTON TOUCH END")
+    togglePressed(false)
+    delegate?.buttonPressed(self)
+  }
+  
+  
+  
   func setAsOperation(operation: Operation, status: OperationStatus) {
-    
+    self.userInteractionEnabled = false
   }
 }
 

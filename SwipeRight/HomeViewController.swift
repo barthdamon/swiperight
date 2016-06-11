@@ -8,11 +8,14 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ButtonDelegate {
   
   @IBOutlet weak var logoView: UIImageView!
   @IBOutlet weak var firstTimeButton: UIButton!
-  @IBOutlet weak var beginGameButtonView: UIView!
+  @IBOutlet weak var beginGameButtonView: ButtonView!
+  
+  @IBOutlet weak var beginGameLabel: UILabel!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     beginGameButtonView.alpha = 0
@@ -41,7 +44,7 @@ class HomeViewController: UIViewController {
   }
   
   func setupButtons() {
-    beginGameButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.playButtonPressed(_:)))
+    beginGameButtonView.becomeButtonForGameView(self, label: beginGameLabel, delegate: self)
     let lineView = UIView(frame: CGRectMake(0, firstTimeButton.frame.height, firstTimeButton.frame.size.width, 1))
     lineView.backgroundColor=UIColor.blackColor()
     firstTimeButton.addSubview(lineView)
@@ -68,7 +71,7 @@ class HomeViewController: UIViewController {
 //    self.performSegueWithIdentifier("showLeaderboard", sender: self)
   }
   
-  func playButtonPressed(sender: AnyObject) {
+  func buttonPressed(sender: ButtonView) {
     GameStatus.status.selectedMode = .Ranked
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }

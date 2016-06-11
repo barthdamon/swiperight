@@ -8,14 +8,16 @@
 
 import UIKit
 
-class HelperPointViewController: UIViewController {
+class HelperPointViewController: UIViewController, ButtonDelegate {
   
   @IBOutlet weak var removeHelperTextLabel: UILabel!
   @IBOutlet weak var revealHelperTextLabel: UILabel!
   @IBOutlet weak var hideHelperTextLabel: UILabel!
-  @IBOutlet weak var revealTileHelperView: UIView!
-  @IBOutlet weak var hideTileHelperView: UIView!
-  @IBOutlet weak var removeOperationHelperView: UIView!
+  
+  @IBOutlet weak var revealTileHelperView: ButtonView!
+  @IBOutlet weak var hideTileHelperView: ButtonView!
+  @IBOutlet weak var removeOperationHelperView: ButtonView!
+  
   @IBOutlet weak var hideTileHelperIndicator: UILabel!
   @IBOutlet weak var revealTileHelperIndicator: UILabel!
   @IBOutlet weak var removeOperationHelperIndicator: UILabel!
@@ -55,9 +57,9 @@ class HelperPointViewController: UIViewController {
   }
   
   func setupHelperButtons() {
-    revealTileHelperView.becomeButtonForGameView(self, selector: #selector(HelperPointViewController.revealTileSelected))
-    hideTileHelperView.becomeButtonForGameView(self, selector: #selector(HelperPointViewController.hideTileSelected))
-    removeOperationHelperView.becomeButtonForGameView(self, selector: #selector(HelperPointViewController.removeOperationSelected))
+    revealTileHelperView.becomeButtonForGameView(self, label: revealHelperTextLabel, delegate: self)
+    hideTileHelperView.becomeButtonForGameView(self, label: hideHelperTextLabel, delegate: self)
+    removeOperationHelperView.becomeButtonForGameView(self, label: removeHelperTextLabel, delegate: self)
   }
   
   func activateHelperButtons() {
@@ -66,34 +68,12 @@ class HelperPointViewController: UIViewController {
     delegate?.setHelperPoints(points)
     // need to know the index of all of th
     showRemove = points >= 2
-    showHide = points >= 1
-    showReveal = points >= 3
-    // need the active operation of the current solution and all of the number indexes
-    if showRemove && ProgressionManager.sharedManager.multipleOperationsDisplayActive  {
-      removeHelperTextLabel.alpha = 1
-      removeOperationHelperView.layer.shadowRadius = 10
-    } else {
-      showRemove = false
-      removeHelperTextLabel.alpha = 0.4
-      removeOperationHelperView.layer.shadowRadius = 0
-    }
+    showHide = points >= 1 && ProgressionManager.sharedManager.numberOfExtraTiles > 0
+    showReveal = points >= 3 && ProgressionManager.sharedManager.multipleOperationsDisplayActive
     
-    if showHide && ProgressionManager.sharedManager.numberOfExtraTiles > 0 {
-      hideHelperTextLabel.alpha = 1
-      hideTileHelperView.layer.shadowRadius = 10
-    } else {
-      showHide = false
-      hideHelperTextLabel.alpha = 0.4
-      hideTileHelperView.layer.shadowRadius = 0
-    }
-    
-    if showReveal {
-      revealHelperTextLabel.alpha = 1
-      revealTileHelperView.layer.shadowRadius = 10
-    } else {
-      revealHelperTextLabel.alpha = 0.4
-      revealTileHelperView.layer.shadowRadius = 0
-    }
+    revealTileHelperView.togglePressed(showReveal)
+    removeOperationHelperView.togglePressed(showRemove)
+    hideTileHelperView.togglePressed(showHide)
     
     if points != 0 {
       let revA = Int(points / 3)
@@ -109,6 +89,18 @@ class HelperPointViewController: UIViewController {
       removeOperationHelperIndicator.text = "0 AVAILABLE"
     }
     
+  }
+  
+  func buttonPressed(sender: ButtonView) {
+    if sender == revealTileHelperView {
+      revealTileSelected()
+    }
+    if sender == hideTileHelperView {
+      hideTileSelected()
+    }
+    if sender == removeOperationHelperView {
+      removeOperationSelected()
+    }
   }
 
   

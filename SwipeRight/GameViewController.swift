@@ -27,14 +27,6 @@ class GameViewController: UIViewController {
   var startLoc: CGPoint?
   var endLoc: CGPoint?
   
-  var hideButton: UIButton?
-  var removeButton: UIButton?
-  var revealButton: UIButton?
-  
-  var modOne: Modification?
-  var modTwo: Modification?
-  var modOneButton: UIButton?
-  var modTwoButton: UIButton?
   var intermissionTimeLabel: UILabel?
   var intermissionTime: Int = 20 {
     didSet {
@@ -358,70 +350,7 @@ class GameViewController: UIViewController {
   
   
   
-  //MARK: Helpers
-  func configureHelperOptionUI() {
-//    helperView = UIView(frame: CGRectMake(0,0,self.view.frame.width, self.view.frame.height))
-//    let buttonWidth = (viewWidth / 1.25) / 3
-//    hideButton = UIButton(frame: CGRectMake(0,0,buttonWidth, 20))
-//    hideButton?.setTitle("Hide", forState: .Normal)
-//    hideButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//    hideButton?.backgroundColor = UIColor.darkGrayColor()
-//    hideButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-//    hideButton?.enabled = false
-//    
-//    removeButton = UIButton(frame: CGRectMake(buttonWidth,0,buttonWidth, 20))
-//    removeButton?.setTitle("Remove", forState: .Normal)
-//    removeButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//    removeButton?.backgroundColor = UIColor.darkGrayColor()
-//    removeButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-//    removeButton?.enabled = false
-//    
-//    revealButton = UIButton(frame: CGRectMake(buttonWidth * 2,0,buttonWidth, 20))
-//    revealButton?.setTitle("Reveal", forState: .Normal)
-//    revealButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//    revealButton?.backgroundColor = UIColor.darkGrayColor()
-//    revealButton?.addTarget(self, action: #selector(ViewController.helperButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-//    revealButton?.enabled = false
-//    
-//    helperView?.addSubview(hideButton!)
-//    helperView?.addSubview(removeButton!)
-//    helperView?.addSubview(revealButton!)
-  }
-  
-  func setHelperButtons() {
-    let points = ProgressionManager.sharedManager.currentHelperPoints
-    guard let layout = currentLayout, _ = layout.winningCombination else { return }
-    delegate?.setHelperPoints(points)
-    // need to know the index of all of th
-    let showRemove = points >= 2
-    let showHide = points >= 1
-    let showReveal = points >= 3
-    // need the active operation of the current solution and all of the number indexes
-    if showRemove && ProgressionManager.sharedManager.multipleOperationsDisplayActive  {
-      removeButton?.enabled = true
-      removeButton?.backgroundColor = .lightGrayColor()
-    } else {
-      removeButton?.enabled = false
-      removeButton?.backgroundColor = .darkGrayColor()
-    }
-    
-    if showHide && ProgressionManager.sharedManager.numberOfExtraTiles > 0 {
-      hideButton?.enabled = true
-      hideButton?.backgroundColor = .lightGrayColor()
-    } else {
-      hideButton?.enabled = false
-      hideButton?.backgroundColor = .darkGrayColor()
-    }
-    
-    if showReveal {
-      revealButton?.enabled = true
-      revealButton?.backgroundColor = .lightGrayColor()
-    } else {
-      revealButton?.enabled = false
-      revealButton?.backgroundColor = .darkGrayColor()
-    }
-  }
-  
+ // MARK: Helpers
   func helperSelected(helper: HelperPoint) {
     guard let layout = currentLayout, combo = layout.winningCombination, indexes = layout.solutionIndexes else { return }
     switch helper {
