@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021BD8D21D0C9C5D0017FC49 /* GameViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BD8D11D0C9C5D0017FC49 /* GameViewDelegate.swift */; };
 		022098171C1DBFD2005155E6 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098161C1DBFD2005155E6 /* GridLayout.swift */; };
 		022098191C1DC005005155E6 /* RandomNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098181C1DC005005155E6 /* RandomNumber.swift */; };
 		0220981C1C1DC796005155E6 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220981B1C1DC796005155E6 /* Grid.swift */; };
 		0220981E1C1DC808005155E6 /* MultipleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220981D1C1DC808005155E6 /* MultipleHelper.swift */; };
 		022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220981F1C1DCA6C005155E6 /* NumberCombination.swift */; };
 		022098251C1DFDEB005155E6 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098241C1DFDEB005155E6 /* TileView.swift */; };
-		022098271C1E107B005155E6 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098261C1E107B005155E6 /* GameView.swift */; };
 		022D4B201CE92885004EFFC7 /* ProgressionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022D4B1F1CE92885004EFFC7 /* ProgressionManager.swift */; };
 		0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232DC911C2386360039E5CE /* CenterOfView.swift */; };
 		0232DC941C23A9830039E5CE /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232DC931C23A9830039E5CE /* GameStatus.swift */; };
@@ -61,13 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021BD8D11D0C9C5D0017FC49 /* GameViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewDelegate.swift; sourceTree = "<group>"; };
 		022098161C1DBFD2005155E6 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		022098181C1DC005005155E6 /* RandomNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumber.swift; sourceTree = "<group>"; };
 		0220981B1C1DC796005155E6 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = ../Grid.swift; sourceTree = "<group>"; };
 		0220981D1C1DC808005155E6 /* MultipleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleHelper.swift; sourceTree = "<group>"; };
 		0220981F1C1DCA6C005155E6 /* NumberCombination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberCombination.swift; sourceTree = "<group>"; };
 		022098241C1DFDEB005155E6 /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
-		022098261C1E107B005155E6 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		022D4B1F1CE92885004EFFC7 /* ProgressionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressionManager.swift; sourceTree = "<group>"; };
 		0232DC911C2386360039E5CE /* CenterOfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterOfView.swift; sourceTree = "<group>"; };
 		0232DC931C23A9830039E5CE /* GameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			children = (
 				022098161C1DBFD2005155E6 /* GridLayout.swift */,
 				02ADE4E01CFE8B1C000AB183 /* Score.swift */,
-				022098261C1E107B005155E6 /* GameView.swift */,
+				021BD8D11D0C9C5D0017FC49 /* GameViewDelegate.swift */,
 				022098241C1DFDEB005155E6 /* TileView.swift */,
 				02DB52AC1D04858B0052D72A /* HelperPointView.swift */,
 				0220981F1C1DCA6C005155E6 /* NumberCombination.swift */,
@@ -375,7 +375,6 @@
 				0247A3621CFFD45600FC52B9 /* AuthViewController.swift in Sources */,
 				02DB52AB1D03961E0052D72A /* ThemeHelper.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
-				022098271C1E107B005155E6 /* GameView.swift in Sources */,
 				02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */,
 				02ADE4DA1CFE73E1000AB183 /* User.swift in Sources */,
 				02DB52AF1D04BF0C0052D72A /* HelperPointViewController.swift in Sources */,
@@ -394,6 +393,7 @@
 				02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */,
 				02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */,
 				0220981E1C1DC808005155E6 /* MultipleHelper.swift in Sources */,
+				021BD8D21D0C9C5D0017FC49 /* GameViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

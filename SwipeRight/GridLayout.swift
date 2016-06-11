@@ -23,15 +23,15 @@ enum Operation {
   var color: UIColor {
     switch self {
     case Divide:
-      return UIColor(red: 0.97, green: 0.45, blue: 0.39, alpha: 1.0)
+      return UIColor(red:0.56, green:0.29, blue:0.60, alpha:1.00)
     case Subtract:
 //      return "Kookaburra"
-      return UIColor(red: 0.76, green: 0.85, blue: 0.46, alpha: 1.0)
+      return UIColor(red:0.95, green:0.89, blue:0.43, alpha:1.00)
     case Add:
-      return UIColor(red: 1, green: 0.76, blue: 0.44, alpha: 1.0)
+      return UIColor(red:0.99, green:0.60, blue:0.36, alpha:1.00)
 //      return "Other"
     case Multiply:
-      return UIColor(red: 0.67, green: 0.88, blue: 0.95, alpha: 1.0)
+      return UIColor(red:0.22, green:0.31, blue:0.61, alpha:1.00)
     }
   }
   

@@ -63,7 +63,7 @@ extension UIView {
     self.layer.insertSublayer(gradientLayer, atIndex: 0)
     
     self.layer.cornerRadius = self.frame.height / 2
-    self.layer.shadowColor = UIColor.darkGrayColor().CGColor
+    self.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
     self.layer.shadowOpacity = 0.3
     self.layer.shadowOffset = CGSizeZero
     self.layer.shadowRadius = 10

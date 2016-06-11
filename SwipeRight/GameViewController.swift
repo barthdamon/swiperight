@@ -19,7 +19,6 @@ class GameViewController: UIViewController {
   var tileWidth: CGFloat!
   var viewWidth: CGFloat!
   var tileViews: Array<TileView> = []
-  var intermissionTimer: NSTimer = NSTimer()
   
   var gameOverView: UIView?
   var roundOverView: UIView?

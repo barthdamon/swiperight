@@ -85,10 +85,10 @@ class ViewController: UIViewController, GameViewDelegate {
   }
   
   func configureViewStyles() {
-    gameContainerView.layer.shadowColor = ThemeHelper.defaultHelper.sw_gameview_shadow_color.CGColor
-    gameContainerView.layer.shadowOpacity = 1
-    gameContainerView.layer.shadowOffset = CGSizeZero
-    gameContainerView.layer.shadowRadius = 2
+//    gameContainerView.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
+//    gameContainerView.layer.shadowOpacity = 0.3
+//    gameContainerView.layer.shadowOffset = CGSizeZero
+//    gameContainerView.layer.shadowRadius = 2
     
     let firstColor = ThemeHelper.defaultHelper.sw_background_color
     let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
@@ -164,7 +164,6 @@ class ViewController: UIViewController, GameViewDelegate {
     score = 0
     time = 0
     self.timer?.invalidate()
-    gameView?.intermissionTimer.invalidate()
     gameView?.roundOverView?.removeFromSuperview()
     gameView?.roundOverView = nil
     gameView?.gameOverView?.removeFromSuperview()
