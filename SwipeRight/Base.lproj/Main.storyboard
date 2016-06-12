@@ -1588,11 +1588,41 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="386" height="386"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tO2-2f-GWm">
+                                <rect key="frame" x="20" y="0.0" width="346" height="386"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWv-9S-hYY">
+                                        <rect key="frame" x="-20" y="129" width="386" height="128"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNZ-Lc-m1h">
+                                        <rect key="frame" x="115" y="-20" width="116" height="426"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kNZ-Lc-m1h" secondAttribute="bottom" constant="-20" id="5q3-71-AbZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="wWv-9S-hYY" secondAttribute="trailing" constant="-20" id="EJy-oV-Fgf"/>
+                                    <constraint firstItem="wWv-9S-hYY" firstAttribute="width" secondItem="tO2-2f-GWm" secondAttribute="height" multiplier="385:386" id="HJI-5d-lZ2"/>
+                                    <constraint firstItem="wWv-9S-hYY" firstAttribute="height" secondItem="tO2-2f-GWm" secondAttribute="height" multiplier="1/3" id="MkK-SJ-Nbl"/>
+                                    <constraint firstItem="kNZ-Lc-m1h" firstAttribute="width" secondItem="tO2-2f-GWm" secondAttribute="width" multiplier="1/3" id="VVS-dO-6QD"/>
+                                    <constraint firstItem="wWv-9S-hYY" firstAttribute="centerY" secondItem="tO2-2f-GWm" secondAttribute="centerY" id="XSO-El-gus"/>
+                                    <constraint firstItem="kNZ-Lc-m1h" firstAttribute="centerX" secondItem="tO2-2f-GWm" secondAttribute="centerX" id="dvL-wS-KDZ"/>
+                                    <constraint firstItem="wWv-9S-hYY" firstAttribute="leading" secondItem="tO2-2f-GWm" secondAttribute="leading" constant="-20" id="pPC-4J-xaR"/>
+                                    <constraint firstItem="kNZ-Lc-m1h" firstAttribute="top" secondItem="tO2-2f-GWm" secondAttribute="top" constant="-20" id="qD2-wq-oEh"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="HJI-5d-lZ2"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iaj-Gm-Tzo" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
+                                <rect key="frame" x="20" y="0.0" width="115" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrl-d4-q1D">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
+                                        <rect key="frame" x="-20" y="0.0" width="135" height="129"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1601,16 +1631,16 @@ Cg
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="zrl-d4-q1D" secondAttribute="trailing" id="Ise-AT-7qY"/>
-                                    <constraint firstItem="zrl-d4-q1D" firstAttribute="leading" secondItem="Iaj-Gm-Tzo" secondAttribute="leading" id="YBR-yd-oKc"/>
+                                    <constraint firstItem="zrl-d4-q1D" firstAttribute="leading" secondItem="Iaj-Gm-Tzo" secondAttribute="leading" constant="-20" id="YBR-yd-oKc"/>
                                     <constraint firstItem="zrl-d4-q1D" firstAttribute="top" secondItem="Iaj-Gm-Tzo" secondAttribute="top" id="j7u-Mj-RbL"/>
                                     <constraint firstAttribute="bottom" secondItem="zrl-d4-q1D" secondAttribute="bottom" id="zYJ-4d-NJl"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKn-8w-Alb" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="129" y="0.0" width="128" height="129"/>
+                                <rect key="frame" x="135" y="0.0" width="116" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfB-pq-9k9">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="129"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="129"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1625,10 +1655,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-Mz-frG" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="257" y="0.0" width="129" height="129"/>
+                                <rect key="frame" x="251" y="0.0" width="115" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4G-wc-Dnn">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="129"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1642,11 +1672,29 @@ Cg
                                     <constraint firstAttribute="bottom" secondItem="g4G-wc-Dnn" secondAttribute="bottom" id="wLu-fX-TDu"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-an-gFn" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                <rect key="frame" x="20" y="129" width="115" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQW-Mb-txS">
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="128"/>
+                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yQW-Mb-txS" secondAttribute="trailing" id="69u-dl-EZx"/>
+                                    <constraint firstAttribute="bottom" secondItem="yQW-Mb-txS" secondAttribute="bottom" id="WcS-hL-TqQ"/>
+                                    <constraint firstItem="yQW-Mb-txS" firstAttribute="top" secondItem="3hc-an-gFn" secondAttribute="top" id="bFf-Fj-pKH"/>
+                                    <constraint firstItem="yQW-Mb-txS" firstAttribute="leading" secondItem="3hc-an-gFn" secondAttribute="leading" id="wSd-qX-PGZ"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K72-Lf-kyU" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="257" width="129" height="129"/>
+                                <rect key="frame" x="20" y="257" width="115" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWb-Be-e5P">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="129"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1661,10 +1709,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFi-dD-WKG" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="129" y="129" width="128" height="128"/>
+                                <rect key="frame" x="135" y="129" width="116" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqW-wu-qcB">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="128"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1679,10 +1727,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4y-4S-9qd" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="257" y="129" width="129" height="128"/>
+                                <rect key="frame" x="251" y="129" width="115" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c01-cj-XJV">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="128"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1697,10 +1745,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-ua-aeW" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="257" y="257" width="129" height="129"/>
+                                <rect key="frame" x="251" y="257" width="115" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUq-5L-jJ0">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="129"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1715,10 +1763,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXO-J1-Ojj" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="129" y="257" width="128" height="129"/>
+                                <rect key="frame" x="135" y="257" width="116" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gH-ws-BfU">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="129"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="129"/>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1732,28 +1780,10 @@ Cg
                                     <constraint firstItem="3gH-ws-BfU" firstAttribute="top" secondItem="uXO-J1-Ojj" secondAttribute="top" id="Zvh-QQ-N2L"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-an-gFn" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="129" width="129" height="128"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQW-Mb-txS">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="128"/>
-                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="yQW-Mb-txS" secondAttribute="trailing" id="69u-dl-EZx"/>
-                                    <constraint firstAttribute="bottom" secondItem="yQW-Mb-txS" secondAttribute="bottom" id="WcS-hL-TqQ"/>
-                                    <constraint firstItem="yQW-Mb-txS" firstAttribute="top" secondItem="3hc-an-gFn" secondAttribute="top" id="bFf-Fj-pKH"/>
-                                    <constraint firstItem="yQW-Mb-txS" firstAttribute="leading" secondItem="3hc-an-gFn" secondAttribute="leading" id="wSd-qX-PGZ"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3hc-an-gFn" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" constant="-20" id="23S-df-58K"/>
+                            <constraint firstItem="3hc-an-gFn" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" id="23S-df-58K"/>
                             <constraint firstItem="uXO-J1-Ojj" firstAttribute="leading" secondItem="K72-Lf-kyU" secondAttribute="trailing" id="6Gr-qw-SMS"/>
                             <constraint firstItem="3hc-an-gFn" firstAttribute="top" secondItem="Iaj-Gm-Tzo" secondAttribute="bottom" id="6p4-qo-gkl"/>
                             <constraint firstItem="wWs-BB-dP4" firstAttribute="top" secondItem="uXO-J1-Ojj" secondAttribute="bottom" id="6zc-dq-37a"/>
@@ -1762,6 +1792,7 @@ Cg
                             <constraint firstItem="nFi-dD-WKG" firstAttribute="leading" secondItem="3hc-an-gFn" secondAttribute="trailing" id="8UN-9o-91A"/>
                             <constraint firstItem="uXO-J1-Ojj" firstAttribute="top" secondItem="nFi-dD-WKG" secondAttribute="bottom" id="8uh-Cf-D7v"/>
                             <constraint firstItem="gX8-ua-aeW" firstAttribute="leading" secondItem="uXO-J1-Ojj" secondAttribute="trailing" id="CXu-da-YE8"/>
+                            <constraint firstItem="tO2-2f-GWm" firstAttribute="top" secondItem="wQG-oj-V51" secondAttribute="bottom" id="DMy-BW-m1A"/>
                             <constraint firstItem="K72-Lf-kyU" firstAttribute="height" secondItem="3hc-an-gFn" secondAttribute="height" id="F0Q-ar-A9g"/>
                             <constraint firstItem="nFi-dD-WKG" firstAttribute="width" secondItem="v4y-4S-9qd" secondAttribute="width" id="FRV-g1-edc"/>
                             <constraint firstItem="gX8-ua-aeW" firstAttribute="height" secondItem="v4y-4S-9qd" secondAttribute="height" id="M5r-e7-28j"/>
@@ -1771,15 +1802,18 @@ Cg
                             <constraint firstItem="Iaj-Gm-Tzo" firstAttribute="top" secondItem="wQG-oj-V51" secondAttribute="bottom" id="UAh-Eo-8wU"/>
                             <constraint firstItem="v4y-4S-9qd" firstAttribute="leading" secondItem="nFi-dD-WKG" secondAttribute="trailing" id="W5J-aR-Eac"/>
                             <constraint firstItem="uXO-J1-Ojj" firstAttribute="top" secondItem="nFi-dD-WKG" secondAttribute="bottom" id="YVG-rh-CBt"/>
+                            <constraint firstItem="tO2-2f-GWm" firstAttribute="trailing" secondItem="I9N-kr-DZV" secondAttribute="trailingMargin" id="aUS-49-x1e"/>
                             <constraint firstItem="jKn-8w-Alb" firstAttribute="width" secondItem="Iaj-Gm-Tzo" secondAttribute="width" id="aua-i9-bgg"/>
                             <constraint firstItem="uXO-J1-Ojj" firstAttribute="width" secondItem="nFi-dD-WKG" secondAttribute="width" id="bcc-kr-t1K"/>
+                            <constraint firstItem="wWs-BB-dP4" firstAttribute="top" secondItem="tO2-2f-GWm" secondAttribute="bottom" id="cdf-k0-pba"/>
                             <constraint firstItem="3hc-an-gFn" firstAttribute="width" secondItem="Iaj-Gm-Tzo" secondAttribute="width" id="dL7-6e-tFS"/>
                             <constraint firstItem="HLT-Mz-frG" firstAttribute="top" secondItem="wQG-oj-V51" secondAttribute="bottom" id="daD-ei-RY0"/>
-                            <constraint firstItem="Iaj-Gm-Tzo" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" constant="-20" id="eAB-Gn-ENK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gX8-ua-aeW" secondAttribute="trailing" constant="-20" id="evR-vq-ecr"/>
-                            <constraint firstItem="K72-Lf-kyU" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" constant="-20" id="ffC-PE-9bO"/>
+                            <constraint firstItem="Iaj-Gm-Tzo" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" id="eAB-Gn-ENK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gX8-ua-aeW" secondAttribute="trailing" id="evR-vq-ecr"/>
+                            <constraint firstItem="K72-Lf-kyU" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" id="ffC-PE-9bO"/>
                             <constraint firstItem="v4y-4S-9qd" firstAttribute="width" secondItem="HLT-Mz-frG" secondAttribute="width" id="g0x-aE-k8F"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HLT-Mz-frG" secondAttribute="trailing" constant="-20" id="geK-0a-GLc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HLT-Mz-frG" secondAttribute="trailing" id="geK-0a-GLc"/>
+                            <constraint firstItem="tO2-2f-GWm" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" id="gpI-Hh-zN5"/>
                             <constraint firstItem="K72-Lf-kyU" firstAttribute="top" secondItem="3hc-an-gFn" secondAttribute="bottom" id="hlc-VR-W8k"/>
                             <constraint firstItem="nFi-dD-WKG" firstAttribute="height" secondItem="v4y-4S-9qd" secondAttribute="height" id="k45-bF-V5E"/>
                             <constraint firstItem="wWs-BB-dP4" firstAttribute="top" secondItem="K72-Lf-kyU" secondAttribute="bottom" id="k9J-tH-bbd"/>
@@ -1795,6 +1829,9 @@ Cg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="borderOne" destination="wWv-9S-hYY" id="jSb-8t-NIQ"/>
+                        <outlet property="borderTwo" destination="kNZ-Lc-m1h" id="dEc-p6-ZlK"/>
+                        <outlet property="borderView" destination="tO2-2f-GWm" id="bDC-dt-2Ne"/>
                         <outlet property="label00" destination="zrl-d4-q1D" id="alK-OI-R6I"/>
                         <outlet property="label01" destination="yQW-Mb-txS" id="ok1-cx-gJz"/>
                         <outlet property="label02" destination="bWb-Be-e5P" id="dbM-g9-2UB"/>
@@ -1818,7 +1855,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yf8-1o-fiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="1087"/>
+            <point key="canvasLocation" x="413" y="1087"/>
         </scene>
         <!--Helper Point View Controller-->
         <scene sceneID="Yph-cg-u2X">
@@ -2291,7 +2328,7 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
-                                <rect key="frame" x="0.0" y="0.0" width="386" height="386"/>
+                                <rect key="frame" x="20" y="0.0" width="346" height="386"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Hide an Incorrect Tile ">
@@ -2370,7 +2407,7 @@ Cg
                                 </constraints>
                                 <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="12"/>
                                 <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.3294117647" green="0.68627450980000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -2390,8 +2427,8 @@ Cg
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="Ww7-Ft-0U8"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="UfL-oY-K1A" secondAttribute="bottom" id="acH-HG-9sX"/>
                             <constraint firstItem="wat-z4-b4V" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" constant="-20" id="iZn-aZ-A7L"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="UfL-oY-K1A" secondAttribute="trailing" constant="-20" id="wSx-6O-Fpk"/>
-                            <constraint firstItem="UfL-oY-K1A" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" constant="-20" id="xqS-sx-xdH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UfL-oY-K1A" secondAttribute="trailing" id="wSx-6O-Fpk"/>
+                            <constraint firstItem="UfL-oY-K1A" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" id="xqS-sx-xdH"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

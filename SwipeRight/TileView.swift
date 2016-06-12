@@ -44,7 +44,7 @@ class TileView: UIView {
       gradient?.removeFromSuperlayer()
       self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_font
     }
-    setBorder()
+//    setBorder()
     //todo: setup border depending on placement
 //    self.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
 //    self.layer.borderWidth = 0
@@ -150,34 +150,30 @@ class TileView: UIView {
     tickTock()
   }
   
-  func setBorder() {
-    guard let coordinates = coordinates else { return }
-    if coordinates.x != 0 {
-      let lineView = UIView(frame: CGRectMake(0, 0, borderWidth, self.bounds.size.height))
-      lineView.backgroundColor = ThemeHelper.defaultHelper.sw_tile_separator_color
-      lineView.hidden = true
-      self.addSubview(lineView)
-      borderViews.append(lineView)
-    }
-    if coordinates.y != 0 {
-      let lineView = UIView(frame: CGRectMake(0, 0, self.bounds.size.width, borderWidth))
-      lineView.backgroundColor = ThemeHelper.defaultHelper.sw_tile_separator_color
-      lineView.hidden = true
-      self.addSubview(lineView)
-      borderViews.append(lineView)
-    }
-    if coordinates.y != 2 {
-      let lineView = UIView(frame: CGRectMake(0, self.bounds.size.height, self.bounds.size.width, borderWidth))
-      lineView.backgroundColor = ThemeHelper.defaultHelper.sw_tile_separator_color
-      lineView.hidden = true
-      self.addSubview(lineView)
-      borderViews.append(lineView)
-    }
-  }
-  
-  func hideBorders(hidden: Bool) {
-    borderViews.forEach({$0.hidden = hidden})
-  }
+//  func setBorder() {
+//    guard let coordinates = coordinates else { return }
+//    if coordinates.x != 0 {
+//      let lineView = UIView(frame: CGRectMake(0, 0, borderWidth, self.frame.size.height))
+//      lineView.backgroundColor = ThemeHelper.defaultHelper.sw_tile_separator_color
+//      lineView.hidden = true
+//      self.addSubview(lineView)
+//      borderViews.append(lineView)
+//    }
+//    if coordinates.y != 0 {
+//      let lineView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, borderWidth))
+//      lineView.backgroundColor = ThemeHelper.defaultHelper.sw_tile_separator_color
+//      lineView.hidden = true
+//      self.addSubview(lineView)
+//      borderViews.append(lineView)
+//    }
+//    if coordinates.y != 2 {
+//      let lineView = UIView(frame: CGRectMake(0, self.frame.size.height, self.frame.size.width, borderWidth))
+//      lineView.backgroundColor = ThemeHelper.defaultHelper.sw_tile_separator_color
+//      lineView.hidden = true
+//      self.addSubview(lineView)
+//      borderViews.append(lineView)
+//    }
+//  }
 
     /*
     // Only override drawRect: if you perform custom drawing.

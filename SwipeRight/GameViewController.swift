@@ -11,6 +11,11 @@ import UIKit
 class GameViewController: UIViewController {
   
   
+  
+  @IBOutlet weak var borderView: UIView!
+  @IBOutlet weak var borderTwo: UIView!
+  @IBOutlet weak var borderOne: UIView!
+  
   @IBOutlet weak var view00: TileView!
   @IBOutlet weak var view10: TileView!
   @IBOutlet weak var view20: TileView!
@@ -99,6 +104,11 @@ class GameViewController: UIViewController {
     for (i, tile) in tileViews.enumerate() {
       tile.setup(numberLabels[i], overlay: false, coordinates: Grid.tileCoordinates[i])
     }
+    
+    borderOne.layer.borderWidth = 2
+    borderOne.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
+    borderTwo.layer.borderWidth = 2
+    borderTwo.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
     
   }
   
@@ -282,11 +292,11 @@ class GameViewController: UIViewController {
   }
   
   func fadeOutTiles(callback: (complete: Bool) -> ()) {
-    self.tileViews.forEach({$0.hideBorders(true)})
     for (i, tile) in tileViews.enumerate() {
       UIView.animateWithDuration(0.2, animations: { () -> Void in
         tile.drawNormal()
         tile.numberLabel?.alpha = 0
+        self.borderView.alpha = 0
         }, completion: { (complete) -> Void in
           if i == self.tileViews.count - 1 {
             callback(complete: true)
@@ -299,8 +309,8 @@ class GameViewController: UIViewController {
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(0.2, animations: { () -> Void in
         tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
+        self.borderView.alpha = 1
         }, completion: { (complete) -> Void in
-          self.tileViews.forEach({$0.hideBorders(false)})
           self.view.userInteractionEnabled = true
           self.delegate?.beginGame()
       })

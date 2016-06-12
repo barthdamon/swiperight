@@ -26,18 +26,21 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
     super.viewDidLoad()
     beginButtonView.becomeButtonForGameView(self, label: beginButtonLabel, delegate: self)
     
-    if shouldPlayImmediately {
-      dispatch_async(dispatch_get_main_queue()) {
-        self.performSegueWithIdentifier("showGameController", sender: self)
-      }
-      shouldPlayImmediately = false
-    }
     // Do any additional setup after loading the view.
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  override func viewDidLayoutSubviews() {
+    if shouldPlayImmediately {
+      dispatch_async(dispatch_get_main_queue()) {
+        self.performSegueWithIdentifier("showGameController", sender: self)
+      }
+      shouldPlayImmediately = false
+    }
   }
   
   func buttonPressed(sender: ButtonView) {
