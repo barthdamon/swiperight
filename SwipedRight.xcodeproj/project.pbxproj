@@ -50,7 +50,6 @@
 		02DB52A81D036CB10052D72A /* DINR____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB529B1D036CB10052D72A /* DINR____.TTF */; };
 		02DB52A91D036CB10052D72A /* DINRA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB529C1D036CB10052D72A /* DINRA___.TTF */; };
 		02DB52AB1D03961E0052D72A /* ThemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52AA1D03961E0052D72A /* ThemeHelper.swift */; };
-		02DB52AD1D04858B0052D72A /* HelperPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52AC1D04858B0052D72A /* HelperPointView.swift */; };
 		02DB52AF1D04BF0C0052D72A /* HelperPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */; };
 		02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */; };
 		02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B21D04C8C10052D72A /* GameViewController.swift */; };
@@ -106,7 +105,6 @@
 		02DB529B1D036CB10052D72A /* DINR____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINR____.TTF"; sourceTree = "<group>"; };
 		02DB529C1D036CB10052D72A /* DINRA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRA___.TTF"; sourceTree = "<group>"; };
 		02DB52AA1D03961E0052D72A /* ThemeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeHelper.swift; sourceTree = "<group>"; };
-		02DB52AC1D04858B0052D72A /* HelperPointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperPointView.swift; sourceTree = "<group>"; };
 		02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperPointViewController.swift; sourceTree = "<group>"; };
 		02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLaunchViewController.swift; sourceTree = "<group>"; };
 		02DB52B21D04C8C10052D72A /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				02ADE4E01CFE8B1C000AB183 /* Score.swift */,
 				021BD8D11D0C9C5D0017FC49 /* GameViewDelegate.swift */,
 				022098241C1DFDEB005155E6 /* TileView.swift */,
-				02DB52AC1D04858B0052D72A /* HelperPointView.swift */,
 				0220981F1C1DCA6C005155E6 /* NumberCombination.swift */,
 				02ADE4D91CFE73E1000AB183 /* User.swift */,
 			);
@@ -365,7 +362,6 @@
 				0232DC941C23A9830039E5CE /* GameStatus.swift in Sources */,
 				02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */,
 				02DB52B51D04FE530052D72A /* SegueHelper.swift in Sources */,
-				02DB52AD1D04858B0052D72A /* HelperPointView.swift in Sources */,
 				02E6FCE21D07B6A9007A98EE /* GameKitViewController.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
 				02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */,

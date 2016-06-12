@@ -67,13 +67,13 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     guard let layout = gameViewController?.currentLayout, _ = layout.winningCombination else { return }
     delegate?.setHelperPoints(points)
     // need to know the index of all of th
-    showRemove = points >= 2
+    showRemove = points >= 2 && ProgressionManager.sharedManager.multipleOperationsDisplayActive
     showHide = points >= 1 && ProgressionManager.sharedManager.numberOfExtraTiles > 0
-    showReveal = points >= 3 && ProgressionManager.sharedManager.multipleOperationsDisplayActive
+    showReveal = points >= 3
     
-    revealTileHelperView.togglePressed(showReveal)
-    removeOperationHelperView.togglePressed(showRemove)
-    hideTileHelperView.togglePressed(showHide)
+    revealTileHelperView.togglePressed(!showReveal)
+    removeOperationHelperView.togglePressed(!showRemove)
+    hideTileHelperView.togglePressed(!showHide)
     
     if points != 0 {
       let revA = Int(points / 3)

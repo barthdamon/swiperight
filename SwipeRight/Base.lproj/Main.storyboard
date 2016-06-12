@@ -1199,7 +1199,7 @@ Cg
                                 <rect key="frame" x="0.0" y="54" width="414" height="121"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="52r-ra-kd0">
-                                        <rect key="frame" x="179" y="26" width="56" height="55"/>
+                                        <rect key="frame" x="179" y="16" width="56" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="43x-SQ-NC9"/>
                                             <constraint firstAttribute="width" constant="56" id="Aav-VH-wys"/>
@@ -1209,7 +1209,7 @@ Cg
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAUSED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="wse-2A-YZo">
-                                        <rect key="frame" x="165" y="89" width="85" height="24"/>
+                                        <rect key="frame" x="165" y="74" width="85" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="7sZ-Pj-218"/>
                                             <constraint firstAttribute="width" constant="85" id="LhZ-eq-hmE"/>
@@ -1228,15 +1228,17 @@ Cg
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="52r-ra-kd0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4q7-9u-Uh5" secondAttribute="top" constant="8" id="5Lr-Le-rxg"/>
-                                    <constraint firstAttribute="bottom" secondItem="wse-2A-YZo" secondAttribute="bottom" constant="8" id="77D-mY-ypm"/>
-                                    <constraint firstItem="wse-2A-YZo" firstAttribute="top" secondItem="52r-ra-kd0" secondAttribute="bottom" constant="8" id="HqS-Ni-Dps"/>
+                                    <constraint firstAttribute="bottom" secondItem="wse-2A-YZo" secondAttribute="bottom" constant="23" id="77D-mY-ypm"/>
+                                    <constraint firstItem="52r-ra-kd0" firstAttribute="top" secondItem="4q7-9u-Uh5" secondAttribute="top" constant="16" id="Gee-uL-sgE"/>
+                                    <constraint firstItem="wse-2A-YZo" firstAttribute="top" secondItem="52r-ra-kd0" secondAttribute="bottom" constant="18" id="HqS-Ni-Dps"/>
                                     <constraint firstItem="wse-2A-YZo" firstAttribute="centerX" secondItem="4q7-9u-Uh5" secondAttribute="centerX" id="aDk-u5-yqS"/>
-                                    <constraint firstAttribute="bottom" secondItem="wse-2A-YZo" secondAttribute="bottom" constant="8" id="eGn-l0-5Py"/>
+                                    <constraint firstAttribute="bottom" secondItem="wse-2A-YZo" secondAttribute="bottom" constant="23" id="eGn-l0-5Py"/>
                                     <constraint firstItem="52r-ra-kd0" firstAttribute="centerX" secondItem="4q7-9u-Uh5" secondAttribute="centerX" id="nr3-A5-ydt"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="5Lr-Le-rxg"/>
+                                        <exclude reference="HqS-Ni-Dps"/>
                                     </mask>
                                 </variation>
                             </view>

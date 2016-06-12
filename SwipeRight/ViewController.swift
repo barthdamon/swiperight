@@ -196,7 +196,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func togglePaused(paused: Bool) {
     if paused {
       self.pausedView.hidden = false
-      self.timeLabel.alpha = 0.4
+      self.timeLabel.alpha = 0.2
       invalidateTimer()
     } else {
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)

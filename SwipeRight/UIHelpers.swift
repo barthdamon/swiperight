@@ -57,6 +57,10 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
   
   var delegate: ButtonDelegate?
   var label: UILabel?
+  var offsetX: Double?
+  var offsetY: Double?
+  var negOffsetX: Double?
+  var negOffsetY: Double?
   
   func becomeButtonForGameView(target: UIViewController, label: UILabel, delegate: ButtonDelegate) {
     self.userInteractionEnabled = true
@@ -74,8 +78,10 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
     self.layer.shadowOpacity = 0.3
     self.layer.shadowOffset = CGSizeZero
     self.layer.shadowRadius = 10
-    
-//    self.clipsToBounds = true
+    offsetX = Double(self.frame.width * 1.2)
+    offsetY = Double(self.frame.height * 1.8)
+    negOffsetX = Double(self.frame.width * -0.2)
+    negOffsetY = Double(self.frame.height * -0.8)
   }
   
   func togglePressed(down: Bool) {
@@ -89,12 +95,24 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    print("BUTTON TOUCH START")
+    print("Button touch start")
     togglePressed(true)
   }
   
+  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    guard let touch = touches.first else { return }
+    let loc = touch.locationInView(self)
+    if let offsetX = offsetX, offsetY = offsetY, negOffsetX = negOffsetX, negOffsetY = negOffsetY {
+      let locX = Double(loc.x)
+      let locY = Double(loc.y)
+      if (locX > offsetX || locX < negOffsetX) || (locY > offsetY || locY < negOffsetY) {
+        togglePressed(false)
+      }
+    }
+  }
+  
   override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    print("BUTTON TOUCH END")
+    print("Button touch end")
     guard let touch = touches.first else { return }
     let loc = touch.locationInView(self)
     if (loc.x < self.frame.width && loc.x > 0) && (loc.y < self.frame.height && loc.y > 0) {
