@@ -74,6 +74,9 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     revealTileHelperView.togglePressed(!showReveal)
     removeOperationHelperView.togglePressed(!showRemove)
     hideTileHelperView.togglePressed(!showHide)
+    revealTileHelperView.toggleActive(showReveal)
+    removeOperationHelperView.toggleActive(showRemove)
+    hideTileHelperView.toggleActive(showHide)
     
     if points != 0 {
       let revA = Int(points / 3)

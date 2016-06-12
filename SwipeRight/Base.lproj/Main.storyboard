@@ -1227,12 +1227,13 @@ Cg
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="wse-2A-YZo" firstAttribute="top" secondItem="52r-ra-kd0" secondAttribute="bottom" constant="3" id="2LY-6k-QvB"/>
                                     <constraint firstItem="52r-ra-kd0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4q7-9u-Uh5" secondAttribute="top" constant="8" id="5Lr-Le-rxg"/>
-                                    <constraint firstAttribute="bottom" secondItem="wse-2A-YZo" secondAttribute="bottom" constant="23" id="77D-mY-ypm"/>
-                                    <constraint firstItem="52r-ra-kd0" firstAttribute="top" secondItem="4q7-9u-Uh5" secondAttribute="top" constant="16" id="Gee-uL-sgE"/>
+                                    <constraint firstAttribute="bottom" secondItem="wse-2A-YZo" secondAttribute="bottom" priority="250" constant="23" id="77D-mY-ypm"/>
+                                    <constraint firstItem="52r-ra-kd0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4q7-9u-Uh5" secondAttribute="top" constant="2" id="Gee-uL-sgE"/>
                                     <constraint firstItem="wse-2A-YZo" firstAttribute="top" secondItem="52r-ra-kd0" secondAttribute="bottom" constant="18" id="HqS-Ni-Dps"/>
                                     <constraint firstItem="wse-2A-YZo" firstAttribute="centerX" secondItem="4q7-9u-Uh5" secondAttribute="centerX" id="aDk-u5-yqS"/>
-                                    <constraint firstAttribute="bottom" secondItem="wse-2A-YZo" secondAttribute="bottom" constant="23" id="eGn-l0-5Py"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wse-2A-YZo" secondAttribute="bottom" constant="2" id="eGn-l0-5Py"/>
                                     <constraint firstItem="52r-ra-kd0" firstAttribute="centerX" secondItem="4q7-9u-Uh5" secondAttribute="centerX" id="nr3-A5-ydt"/>
                                 </constraints>
                                 <variation key="default">

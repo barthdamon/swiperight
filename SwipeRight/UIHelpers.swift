@@ -61,6 +61,7 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
   var offsetY: Double?
   var negOffsetX: Double?
   var negOffsetY: Double?
+  var active: Bool = true
   
   func becomeButtonForGameView(target: UIViewController, label: UILabel, delegate: ButtonDelegate) {
     self.userInteractionEnabled = true
@@ -85,13 +86,19 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
   }
   
   func togglePressed(down: Bool) {
-    if down {
-      self.label?.alpha = 0.4
-      self.layer.shadowRadius = 0
-    } else {
-      self.label?.alpha = 1
-      self.layer.shadowRadius = 10
+    if active {
+      if down {
+        self.label?.alpha = 0.4
+        self.layer.shadowRadius = 0
+      } else {
+        self.label?.alpha = 1
+        self.layer.shadowRadius = 10
+      }
     }
+  }
+  
+  func toggleActive(active: Bool) {
+    self.active = active
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
