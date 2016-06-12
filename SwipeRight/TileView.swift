@@ -24,16 +24,13 @@ class TileView: UIView {
   }
   var partOfSolution = false
   var coordinates: TileCoordinates?
-  var gradient: RadialGradientLayer?
+  var gradient: CAGradientLayer?
   var borderViews: Array<UIView> = []
   let borderWidth: CGFloat = 2.0
   
   func setup(label: UILabel, overlay: Bool, coordinates: TileCoordinates) {
-//    self.frame = CGRectMake(xCoord, yCoord, tileWidth, tileWidth)
-//    numberLabel = UILabel(frame: CGRectMake(tileWidth / 2.1, tileWidth / 5.2, tileWidth / 1.5, tileWidth / 1.5))
     self.numberLabel = label
     self.coordinates = coordinates
-//    self.addSubview(numberLabel!)
     if overlay {
       self.backgroundColor = UIColor.clearColor()
       gradient?.removeFromSuperlayer()
@@ -43,20 +40,22 @@ class TileView: UIView {
       gradient?.removeFromSuperlayer()
       self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_font
     }
-//    setBorder()
-    //todo: setup border depending on placement
-//    self.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
-//    self.layer.borderWidth = 0
-    
 
+  }
+  
+  func setTileForOperation(operation: Operation) {
+    let cornerRadius = bounds.height / 1.5
+    self.layer.cornerRadius = cornerRadius
+    gradient = CAGradientLayer.verticalGradientLayerForBounds(self.frame, colors: (start: ThemeHelper.defaultHelper.sw_button_top_color, end: operation.color), rounded: cornerRadius)
+    
+//    self.numberLabel.backgroundColor =
   }
 
   func drawShadowLayer(correct: Bool) {
-//      gradient = CAGradientLayer.verticalGradientLayerForBounds(self.frame, colors: (start: ThemeHelper.defaultHelper.sw_button_top_color, end: ThemeHelper.defaultHelper.sw_button_bottom_color), rounded: false)
-    let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_shadow_color.CGColor : ThemeHelper.defaultHelper.sw_tile_incorrect_shadow_color.CGColor
-    let colors = [color, UIColor.clearColor().CGColor]
-    gradient = RadialGradientLayer(center: self.center, radius: self.frame.size.width / 2, colors: colors)
-    self.layer.insertSublayer(gradient!, atIndex: 0)
+
+//    let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_shadow_color.CGColor : ThemeHelper.defaultHelper.sw_tile_incorrect_shadow_color.CGColor
+//    let colors = [color, UIColor.clearColor().CGColor]
+//    self.layer.insertSublayer(gradient!, atIndex: 0)
   }
   
   
@@ -98,24 +97,6 @@ class TileView: UIView {
       countdownForCenter(callback)
     } else {
       callback(false)
-    }
-  }
-  
-  func pickRandomNumber(sender: AnyObject) {
-    if let label = numberLabel {
-      let newLabel = UILabel(frame: CGRectMake(0,0,label.frame.width, label.frame.height))
-      newLabel.backgroundColor = UIColor.clearColor()
-      newLabel.font = ThemeHelper.defaultHelper.sw_game_font
-      let random = Int.random(0...99)
-      newLabel.text = "\(random)"
-      newLabel.alpha = 0
-      self.addSubview(newLabel)
-      UIView.animateWithDuration(0.15, animations: { 
-        newLabel.alpha = 1
-        UIView.animateWithDuration(0.15, animations: { 
-          newLabel.alpha = 0
-        })
-      })
     }
   }
   

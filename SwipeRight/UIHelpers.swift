@@ -70,7 +70,7 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
     
     let firstColor = ThemeHelper.defaultHelper.sw_button_top_color
     let secondColor = ThemeHelper.defaultHelper.sw_button_bottom_color
-    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor), rounded: true)
+    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor), rounded: self.bounds.height / 2)
 //    self.layer.hidden = false
     self.layer.insertSublayer(gradientLayer, atIndex: 0)
     

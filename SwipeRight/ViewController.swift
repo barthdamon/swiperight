@@ -98,7 +98,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     
     let firstColor = ThemeHelper.defaultHelper.sw_background_color
     let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
-    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
+    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: 0)
     self.view.layer.hidden = false
     self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
   }
