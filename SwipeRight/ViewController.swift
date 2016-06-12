@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
+  
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var pausedView: UIView!
   
@@ -17,10 +18,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var highScoreLabel: UILabel!
   @IBOutlet weak var operationIndicatorView: UIView!
-  @IBOutlet weak var divideView: UIImageView!
-  @IBOutlet weak var multiplyView: UIImageView!
-  @IBOutlet weak var subtractView: UIImageView!
-  @IBOutlet weak var addView: UIImageView!
+  @IBOutlet weak var divideView: OperationImageView!
+  @IBOutlet weak var multiplyView: OperationImageView!
+  @IBOutlet weak var subtractView: OperationImageView!
+  @IBOutlet weak var addView: OperationImageView!
   
   @IBOutlet weak var helperButtonView: ButtonView!
   @IBOutlet weak var helperButtonViewIndicator: UILabel!
@@ -67,6 +68,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     timeLabel.adjustsFontSizeToFitWidth = true
+    multiplyView.operation = .Multiply
+    addView.operation = .Add
+    subtractView.operation = .Subtract
+    divideView.operation = .Divide
     //   self.navigationController?.navigationBarHidden = true
     setHighScore()
     configureViewStyles()
@@ -81,7 +86,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   override func viewWillDisappear(animated: Bool) {
     //   self.navigationController?.navigationBarHidden = false
-    self.timer?.invalidate()
+    invalidateTimer()
     super.viewWillDisappear(true)
   }
   
@@ -164,7 +169,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func resetGameState() {
     score = 0
     time = 0
-    self.timer?.invalidate()
+    invalidateTimer()
     gameView?.roundOverView?.removeFromSuperview()
     gameView?.roundOverView = nil
     gameView?.gameOverView?.removeFromSuperview()
@@ -192,7 +197,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     if paused {
       self.pausedView.hidden = false
       self.timeLabel.alpha = 0.4
-      self.timer?.invalidate()
+      invalidateTimer()
     } else {
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       self.timeLabel.alpha = 1
@@ -205,7 +210,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
       reportScore()
     }
     deactivateHelperPointButton(true, deactivate: false)
-    timer?.invalidate()
+    invalidateTimer()
     timer = nil
     GameStatus.status.gameActive = false
     gameView?.roundOverView?.removeFromSuperview()
@@ -268,10 +273,14 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   
   func resetGameUI() {
-//    multiplyView?.image = multiplyImageGrayInactive
-//    divideView?.image = divideImageGrayInactive
-//    subtractView?.image = subtractImageGrayInactive
-//    addView?.image = addImageGrayInactive
+    multiplyView.image = ThemeHelper.defaultHelper.multiplyImageGray
+    divideView.image = ThemeHelper.defaultHelper.divideImageGray
+    subtractView.image = ThemeHelper.defaultHelper.subtractImageGray
+    addView.image = ThemeHelper.defaultHelper.addImageGray
+    multiplyView.displayOperationStatus([])
+    subtractView.displayOperationStatus([])
+    addView.displayOperationStatus([])
+    divideView.displayOperationStatus([])
   }
   
   func toggleClientView() {
@@ -292,31 +301,21 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   func resetClientOperations(currentOperations: Array<Operation>?) {
     
-//    func resetImages() {
-//      let active = ProgressionManager.sharedManager.activeOperations
-//      self.multiplyView?.image = active.contains(.Multiply) ? multiplyImageGray : multiplyImageGrayInactive
-//      self.divideView?.image = active.contains(.Divide) ? divideImageGray : divideImageGrayInactive
-//      self.addView?.image = active.contains(.Add) ? addImageGray : addImageGrayInactive
-//      self.subtractView?.image = active.contains(.Subtract) ? subtractImageGray : subtractImageGrayInactive
-//    }
-//    if let currentOperations = currentOperations {
-//      resetImages()
-//      self.operations = currentOperations
-//      for operation in currentOperations {
-//        switch operation {
-//        case .Add:
-//          self.addView?.image = addImage
-//        case .Subtract:
-//          self.subtractView?.image = subtractImage
-//        case .Multiply:
-//          self.multiplyView?.image = multiplyImage
-//        case .Divide:
-//          self.divideView?.image = divideImage
-//        }
-//      }
-//    } else {
-//      resetImages()
-//    }
+    func resetImages() {
+      let active = ProgressionManager.sharedManager.activeOperations
+      self.multiplyView?.image = active.contains(.Multiply) ? ThemeHelper.defaultHelper.multiplyImage : ThemeHelper.defaultHelper.multiplyImageGray
+      self.divideView?.image = active.contains(.Divide) ? ThemeHelper.defaultHelper.divideImage : ThemeHelper.defaultHelper.divideImageGray
+      self.addView?.image = active.contains(.Add) ? ThemeHelper.defaultHelper.addImage : ThemeHelper.defaultHelper.addImageGray
+      self.subtractView?.image = active.contains(.Subtract) ? ThemeHelper.defaultHelper.subtractImage : ThemeHelper.defaultHelper.subtractImageGray
+    }
+    if let currentOperations = currentOperations {
+      resetImages()
+      self.operations = currentOperations
+      let views: Array<OperationImageView> = [addView, multiplyView, subtractView, divideView]
+      views.forEach({$0.displayOperationStatus(currentOperations)})
+    } else {
+      resetImages()
+    }
   }
   
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool) {
@@ -336,9 +335,14 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     beginGame()
   }
   
+  func invalidateTimer() {
+    self.timer?.invalidate()
+    self.timer = nil
+  }
+  
   @IBAction func menuButtonPressed(sender: AnyObject) {
     print("Menu Button Pressed")
-    self.timer?.invalidate()
+    invalidateTimer()
     GameStatus.status.gameActive = false
     ProgressionManager.sharedManager.reset()
     self.navigationController?.popViewControllerAnimated(true)

@@ -18,6 +18,11 @@ class ThemeHelper: NSObject {
   let multiplyImage = UIImage(named: "multiplication")
   let divideImage = UIImage(named: "division")
   
+  let addImageGray = UIImage(named: "additionGray")
+  let subtractImageGray = UIImage(named: "subtractionGray")
+  let multiplyImageGray = UIImage(named: "multiplicationGray")
+  let divideImageGray = UIImage(named: "divisionGray")
+  
   // Colors
   let sw_tile_separator_color: UIColor = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1)
   let sw_shadow_color: UIColor = UIColor.darkGrayColor()

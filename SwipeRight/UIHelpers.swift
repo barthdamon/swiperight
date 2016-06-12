@@ -95,14 +95,42 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
   
   override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     print("BUTTON TOUCH END")
+    guard let touch = touches.first else { return }
+    let loc = touch.locationInView(self)
+    if (loc.x < self.frame.width && loc.x > 0) && (loc.y < self.frame.height && loc.y > 0) {
+      delegate?.buttonPressed(self)
+    }
     togglePressed(false)
-    delegate?.buttonPressed(self)
   }
   
   
   
   func setAsOperation(operation: Operation, status: OperationStatus) {
     self.userInteractionEnabled = false
+  }
+}
+
+class OperationImageView: UIImageView {
+  
+  var operation: Operation?
+  
+  func displayOperationStatus(activeOperations: Array<Operation>) {
+    if let operation = operation {
+      if activeOperations.contains(operation) {
+        UIView.animateWithDuration(0.3, animations: { 
+          self.transform = CGAffineTransformMakeScale(1.5, 1.5)
+          self.layer.shadowColor = operation.color.CGColor
+          self.layer.shadowOpacity = 1
+          self.layer.shadowOffset = CGSizeZero
+          self.layer.shadowRadius = 10
+        })
+      } else {
+        UIView.animateWithDuration(0.3, animations: {
+          self.transform = CGAffineTransformIdentity
+          self.layer.shadowRadius = 0
+        })
+      }
+    }
   }
 }
 
