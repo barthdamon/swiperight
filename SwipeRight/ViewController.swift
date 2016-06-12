@@ -170,10 +170,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     score = 0
     time = 0
     invalidateTimer()
-    gameView?.roundOverView?.removeFromSuperview()
-    gameView?.roundOverView = nil
-    gameView?.gameOverView?.removeFromSuperview()
-    gameView?.gameOverView = nil
     gameView?.applyNumberLayoutToTiles(true)
     GameStatus.status.gameActive = false
     ProgressionManager.sharedManager.reset()
@@ -213,8 +209,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     invalidateTimer()
     timer = nil
     GameStatus.status.gameActive = false
-    gameView?.roundOverView?.removeFromSuperview()
-    gameView?.roundOverView = nil
     let highScore = setHighScore()
     self.gameView?.view.userInteractionEnabled = false
     self.gameLaunchView?.gameOver(score, highScore: highScore)

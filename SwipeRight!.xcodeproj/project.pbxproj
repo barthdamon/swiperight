@@ -274,9 +274,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0240B9501C18EF86004B48BA /* SwipedRight */ = {
+		0240B9501C18EF86004B48BA /* SwipeRight! */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipedRight" */;
+			buildConfigurationList = 0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipeRight!" */;
 			buildPhases = (
 				0240B94D1C18EF86004B48BA /* Sources */,
 				0240B94E1C18EF86004B48BA /* Frameworks */,
@@ -286,7 +286,7 @@
 			);
 			dependencies = (
 			);
-			name = SwipedRight;
+			name = "SwipeRight!";
 			productName = SwipeRight;
 			productReference = 0240B9511C18EF86004B48BA /* SwipedRight.app */;
 			productType = "com.apple.product-type.application";
@@ -307,7 +307,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipedRight" */;
+			buildConfigurationList = 0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipeRight!" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -320,7 +320,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0240B9501C18EF86004B48BA /* SwipedRight */,
+				0240B9501C18EF86004B48BA /* SwipeRight! */,
 			);
 		};
 /* End PBXProject section */
@@ -451,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -489,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -527,7 +527,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipedRight" */ = {
+		0240B94C1C18EF86004B48BA /* Build configuration list for PBXProject "SwipeRight!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0240B9611C18EF86004B48BA /* Debug */,
@@ -536,7 +536,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipedRight" */ = {
+		0240B9631C18EF86004B48BA /* Build configuration list for PBXNativeTarget "SwipeRight!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0240B9641C18EF86004B48BA /* Debug */,

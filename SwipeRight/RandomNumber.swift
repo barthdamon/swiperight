@@ -7,8 +7,7 @@
 //
 
 import Foundation
-
-import Foundation
+import UIKit
 
 
 //Random number generator

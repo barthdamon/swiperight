@@ -10,6 +10,29 @@ import UIKit
 
 class GameViewController: UIViewController {
   
+  
+  @IBOutlet weak var view00: TileView!
+  @IBOutlet weak var view10: TileView!
+  @IBOutlet weak var view20: TileView!
+  @IBOutlet weak var view01: TileView!
+  @IBOutlet weak var view11: TileView!
+  @IBOutlet weak var view21: TileView!
+  @IBOutlet weak var view02: TileView!
+  @IBOutlet weak var view12: TileView!
+  @IBOutlet weak var view22: TileView!
+  
+  @IBOutlet weak var label00: UILabel!
+  @IBOutlet weak var label10: UILabel!
+  @IBOutlet weak var label20: UILabel!
+  @IBOutlet weak var label01: UILabel!
+  @IBOutlet weak var label11: UILabel!
+  @IBOutlet weak var label21: UILabel!
+  @IBOutlet weak var label02: UILabel!
+  @IBOutlet weak var label12: UILabel!
+  @IBOutlet weak var label22: UILabel!
+  
+  var numberLabels: Array<UILabel> = []
+  
   var gameLaunchController: GameLaunchViewController?
   var helperPointController: HelperPointViewController?
   var delegate: GameViewDelegate?
@@ -19,10 +42,6 @@ class GameViewController: UIViewController {
   var tileWidth: CGFloat!
   var viewWidth: CGFloat!
   var tileViews: Array<TileView> = []
-  
-  var gameOverView: UIView?
-  var roundOverView: UIView?
-  var helperView: UIView?
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
@@ -52,24 +71,35 @@ class GameViewController: UIViewController {
     animateBeginGame()
   }
   
+  func appendViews() {
+    numberLabels.append(label00)
+    numberLabels.append(label10)
+    numberLabels.append(label20)
+    numberLabels.append(label01)
+    numberLabels.append(label11)
+    numberLabels.append(label21)
+    numberLabels.append(label02)
+    numberLabels.append(label12)
+    numberLabels.append(label22)
+    
+    tileViews.append(view00)
+    tileViews.append(view10)
+    tileViews.append(view20)
+    tileViews.append(view01)
+    tileViews.append(view11)
+    tileViews.append(view21)
+    tileViews.append(view02)
+    tileViews.append(view12)
+    tileViews.append(view22)
+  }
+  
   func configureGameViewComponents() {
+    appendViews()
     
-    var coords = Coordinates(x: 0, y: 0)
-    
-    func adjustCoords(i: Int) {
-      coords.x = coords.x + tileWidth
-      if i == 2 || i == 5  {
-        coords.x = 0
-        coords.y = coords.y + tileWidth
-      }
+    for (i, tile) in tileViews.enumerate() {
+      tile.setup(numberLabels[i], overlay: false, coordinates: Grid.tileCoordinates[i])
     }
     
-    for i in 0 ..< 9 {
-      let tileView = TileView(xCoord: coords.x, yCoord: coords.y, tileWidth: tileWidth, overlay: false)
-      tileViews.append(tileView)
-      adjustCoords(i)
-      self.view.addSubview(tileView)
-    }
   }
   
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -187,17 +217,17 @@ class GameViewController: UIViewController {
       if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
         if checkForCorrect(operations, start: startNumber, mid: midNumber, end: endNumber) {
           delegate?.scoreChange(true)
-          startTile.backgroundColor = UIColor.greenColor()
-          endTile.backgroundColor = UIColor.greenColor()
-          middleTile.backgroundColor = UIColor.greenColor()
+          startTile.drawCorrect()
+          endTile.drawCorrect()
+          middleTile.drawCorrect()
           self.view.userInteractionEnabled = false
           delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
           helperStreakActivity(true)
         } else {
           delegate?.scoreChange(false)
-          startTile.backgroundColor = UIColor.redColor()
-          endTile.backgroundColor = UIColor.redColor()
-          middleTile.backgroundColor = UIColor.redColor()
+          startTile.drawIncorrect()
+          endTile.drawIncorrect()
+          middleTile.drawIncorrect()
           self.view.userInteractionEnabled = false
           helperStreakActivity(false)
         }
@@ -252,11 +282,11 @@ class GameViewController: UIViewController {
   }
   
   func fadeOutTiles(callback: (complete: Bool) -> ()) {
+    self.tileViews.forEach({$0.hideBorders(true)})
     for (i, tile) in tileViews.enumerate() {
       UIView.animateWithDuration(0.2, animations: { () -> Void in
-        tile.backgroundColor = UIColor.clearColor()
+        tile.drawNormal()
         tile.numberLabel?.alpha = 0
-        tile.layer.borderWidth = 0
         }, completion: { (complete) -> Void in
           if i == self.tileViews.count - 1 {
             callback(complete: true)
@@ -269,8 +299,8 @@ class GameViewController: UIViewController {
     tileViews.forEach { (tile) -> () in
       UIView.animateWithDuration(0.2, animations: { () -> Void in
         tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
-        tile.layer.borderWidth = 1
         }, completion: { (complete) -> Void in
+          self.tileViews.forEach({$0.hideBorders(false)})
           self.view.userInteractionEnabled = true
           self.delegate?.beginGame()
       })
@@ -298,20 +328,16 @@ class GameViewController: UIViewController {
   }
   
   func animateBeginGame() {
-    let coords = Coordinates(x: 0, y: 0)
-    let overlayView = TileView(xCoord: coords.x + tileWidth, yCoord: coords.y + tileWidth, tileWidth: tileWidth, overlay: true)
-    self.view.addSubview(overlayView)
-    gameOverView?.removeFromSuperview()
-    gameOverView = nil
-    overlayView.animateCountdown() { (res) in
-      if res {
-        self.delegate?.setStartTime()
-        overlayView.removeFromSuperview()
-        GameStatus.status.gameActive = true
-        self.resetTiles()
-        self.delegate?.startGameplay()
-        self.delegate?.toggleClientView()
-      }
+    tileViews.forEach { (view) in
+      view.animateCountdown({ (done) in
+        if done {
+          self.delegate?.setStartTime()
+          GameStatus.status.gameActive = true
+          self.resetTiles()
+          self.delegate?.startGameplay()
+          self.delegate?.toggleClientView()
+        }
+      })
     }
   }
   
