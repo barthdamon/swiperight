@@ -52,4 +52,46 @@ extension CAGradientLayer {
   }
 }
 
+class RadialGradientLayer: CALayer {
+  
+  override init(){
+    
+    super.init()
+    
+    needsDisplayOnBoundsChange = true
+  }
+  
+  init(center:CGPoint,radius:CGFloat,colors:[CGColor]){
+    
+    self.center = center
+    self.radius = radius
+    self.colors = colors
+    
+    super.init()
+    
+  }
+  
+  required init(coder aDecoder: NSCoder) {
+    
+    super.init()
+    
+  }
+  
+  var center:CGPoint = CGPointMake(50,50)
+  var radius:CGFloat = 20
+  var colors:[CGColor] = [UIColor(red: 251/255, green: 237/255, blue: 33/255, alpha: 1.0).CGColor , UIColor(red: 251/255, green: 179/255, blue: 108/255, alpha: 1.0).CGColor]
+  
+  override func drawInContext(ctx: CGContext) {
+    
+    CGContextSaveGState(ctx)
+    
+    let colorSpace = CGColorSpaceCreateDeviceRGB()
+    let gradient = CGGradientCreateWithColors(colorSpace, colors, [0.0,1.0])
+    
+    CGContextDrawRadialGradient(ctx, gradient, center, 0.0, center, radius, CGGradientDrawingOptions.DrawsAfterEndLocation)
+    
+  }
+  
+}
+
   

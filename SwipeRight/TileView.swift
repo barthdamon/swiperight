@@ -24,8 +24,7 @@ class TileView: UIView {
   }
   var partOfSolution = false
   var coordinates: TileCoordinates?
-  var gradient: CAGradientLayer?
-  var innerShadow: CALayer?
+  var gradient: RadialGradientLayer?
   var borderViews: Array<UIView> = []
   let borderWidth: CGFloat = 2.0
   
@@ -49,26 +48,15 @@ class TileView: UIView {
 //    self.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
 //    self.layer.borderWidth = 0
     
-//    gradient = CAGradientLayer.verticalGradientLayerForBounds(self.frame, colors: (start: ThemeHelper.defaultHelper.sw_button_top_color, end: ThemeHelper.defaultHelper.sw_button_bottom_color), rounded: false)
-//    self.layer.insertSublayer(gradient!, atIndex: 0)
+
   }
 
   func drawShadowLayer(correct: Bool) {
-    innerShadow = CALayer()
-    // Shadow path (1pt ring around bounds)
-    let path = UIBezierPath(rect: innerShadow!.bounds.insetBy(dx: -5, dy: -5))
-    let cutout = UIBezierPath(rect: innerShadow!.bounds).bezierPathByReversingPath()
-    path.appendPath(cutout)
-    innerShadow!.shadowPath = path.CGPath
-    innerShadow!.masksToBounds = true
-    // Shadow properties
+//      gradient = CAGradientLayer.verticalGradientLayerForBounds(self.frame, colors: (start: ThemeHelper.defaultHelper.sw_button_top_color, end: ThemeHelper.defaultHelper.sw_button_bottom_color), rounded: false)
     let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_shadow_color.CGColor : ThemeHelper.defaultHelper.sw_tile_incorrect_shadow_color.CGColor
-    innerShadow!.shadowColor = color
-    innerShadow!.shadowOffset = CGSizeZero
-    innerShadow!.shadowOpacity = 1
-    innerShadow!.shadowRadius = 3
-    // Add
-    layer.insertSublayer(innerShadow!, atIndex:0)
+    let colors = [color, UIColor.clearColor().CGColor]
+    gradient = RadialGradientLayer(center: self.center, radius: self.frame.size.width / 2, colors: colors)
+    self.layer.insertSublayer(gradient!, atIndex: 0)
   }
   
   
@@ -96,7 +84,7 @@ class TileView: UIView {
   }
   
   func drawNormal() {
-    innerShadow?.shadowRadius = 0
+    gradient?.removeFromSuperlayer()
     self.backgroundColor = UIColor.clearColor()
     UIView.animateWithDuration(0.3) {
       self.transform = CGAffineTransformIdentity

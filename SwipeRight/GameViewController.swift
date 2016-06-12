@@ -109,6 +109,8 @@ class GameViewController: UIViewController {
     borderOne.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
     borderTwo.layer.borderWidth = 2
     borderTwo.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
+//    borderView.layer.borderWidth = 2
+//    borderView.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
     
   }
   
