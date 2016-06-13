@@ -118,9 +118,16 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func setHelperPoints(points: Int) {
-    
-    helperButtonViewIndicator.text = "\(points)"
-    setStreakLabel()
+    UIView.animateWithDuration(0.3, animations: { 
+        self.helperButtonViewIndicator.transform = CGAffineTransformMakeScale(1.3,1.3)
+      }) { (done) in
+      self.helperButtonViewIndicator.text = "\(points)"
+      UIView.animateWithDuration(0.3, animations: { 
+          self.helperButtonViewIndicator.transform = CGAffineTransformIdentity
+        }, completion: { (done) in
+          self.setStreakLabel()
+      })
+    }
   }
   
   func setStreakLabel() {
@@ -243,7 +250,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     helperButtonView.becomeButtonForGameView(self, label: helperButtonLabel, delegate: self)
     //TOOD: Set helper button Target to gameView
     helperButtonViewIndicator.text = "\(0)"
-    helperButtonViewIndicator.layer.cornerRadius = helperButtonViewIndicator.frame.width / 2
+    helperButtonViewIndicator.layer.cornerRadius = helperButtonViewIndicator.bounds.height / 2
     helperButtonViewIndicator.clipsToBounds = true
     
   }
