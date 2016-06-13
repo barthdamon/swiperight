@@ -36,6 +36,8 @@
 		02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */; };
 		02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E01CFE8B1C000AB183 /* Score.swift */; };
 		02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */; };
+		02BCF0DB1D0F0FB70083B2F2 /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */; };
+		02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */; };
 		02DB529D1D036CB10052D72A /* DIN Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52901D036CB10052D72A /* DIN Black.ttf */; };
 		02DB529E1D036CB10052D72A /* DINB____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52911D036CB10052D72A /* DINB____.TTF */; };
 		02DB529F1D036CB10052D72A /* DINBA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52921D036CB10052D72A /* DINBA___.TTF */; };
@@ -91,6 +93,11 @@
 		02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardViewController.swift; path = ../LeaderboardViewController.swift; sourceTree = "<group>"; };
 		02ADE4E01CFE8B1C000AB183 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		02BCF0D81D0F0F5B0083B2F2 /* YIInnerShadowLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowLayer.h; sourceTree = "<group>"; };
+		02BCF0D91D0F0FB70083B2F2 /* SwipeRight!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwipeRight!-Bridging-Header.h"; sourceTree = "<group>"; };
+		02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowLayer.m; sourceTree = "<group>"; };
+		02BCF0DC1D0F0FEB0083B2F2 /* YIInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowView.h; sourceTree = "<group>"; };
+		02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowView.m; sourceTree = "<group>"; };
 		02DB52901D036CB10052D72A /* DIN Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Black.ttf"; sourceTree = "<group>"; };
 		02DB52911D036CB10052D72A /* DINB____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINB____.TTF"; sourceTree = "<group>"; };
 		02DB52921D036CB10052D72A /* DINBA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINBA___.TTF"; sourceTree = "<group>"; };
@@ -129,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */,
+				02BCF0D71D0F0F1D0083B2F2 /* objc */,
 				0220981B1C1DC796005155E6 /* Grid.swift */,
 				0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */,
 				0269CD681CFCF512004184E5 /* GradientLayer.swift */,
@@ -251,6 +259,18 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		02BCF0D71D0F0F1D0083B2F2 /* objc */ = {
+			isa = PBXGroup;
+			children = (
+				02BCF0D81D0F0F5B0083B2F2 /* YIInnerShadowLayer.h */,
+				02BCF0DC1D0F0FEB0083B2F2 /* YIInnerShadowView.h */,
+				02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */,
+				02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */,
+				02BCF0D91D0F0FB70083B2F2 /* SwipeRight!-Bridging-Header.h */,
+			);
+			name = objc;
+			sourceTree = "<group>";
+		};
 		02DB528F1D036C980052D72A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,7 +317,7 @@
 		0240B9491C18EF86004B48BA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Matthew Barth";
 				TargetAttributes = {
@@ -367,6 +387,7 @@
 				02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */,
 				02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */,
 				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
+				02BCF0DB1D0F0FB70083B2F2 /* YIInnerShadowLayer.m in Sources */,
 				0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */,
 				0247A3621CFFD45600FC52B9 /* AuthViewController.swift in Sources */,
 				02DB52AB1D03961E0052D72A /* ThemeHelper.swift in Sources */,
@@ -380,6 +401,7 @@
 				02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */,
 				02E6FCE61D08EB91007A98EE /* HowToPlayViewController.swift in Sources */,
 				0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */,
+				02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */,
 				02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */,
 				02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */,
 				02ADE4DD1CFE77E1000AB183 /* ScoreTableViewCell.swift in Sources */,
@@ -500,12 +522,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwipeRight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortyhandsgames.SwipedRight;
 				PRODUCT_NAME = SwipedRight;
+				SWIFT_OBJC_BRIDGING_HEADER = "SwipeRight/SwipeRight!-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -514,12 +539,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwipeRight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortyhandsgames.SwipedRight;
 				PRODUCT_NAME = SwipedRight;
+				SWIFT_OBJC_BRIDGING_HEADER = "SwipeRight/SwipeRight!-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

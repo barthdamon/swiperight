@@ -38,14 +38,23 @@ class TileView: UIView {
       self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_font
     }
     self.numberLabel?.backgroundColor = UIColor.clearColor()
-    self.clipsToBounds = true
+//    self.clipsToBounds = true
+  }
+  
+  func showBorder(show: Bool) {
+    if show {
+      self.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
+      self.layer.borderWidth = 1
+    } else {
+      self.layer.borderWidth = 0
+    }
   }
   
   func drawCorrect(operation: Operation, callback: (Bool) -> ()) {
     UIView.animateWithDuration(0.15, animations: {
-      self.drawShadow(true, operation: operation)
+        self.drawShadow(true, operation: operation)
       }) { (complete) in
-      callback(true)
+        callback(true)
     }
   }
   
@@ -54,14 +63,19 @@ class TileView: UIView {
   }
   
   func drawShadow(correct: Bool, operation: Operation) {
-    let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_color.CGColor: ThemeHelper.defaultHelper.sw_tile_incorrect_color.CGColor
-    guard let subview = subView else { return }
-    subView?.backgroundColor = operation.color
-    subView?.layer.cornerRadius = subview.bounds.height / 2
-    subView?.layer.shadowColor = color
-    subView?.layer.shadowOffset = CGSizeZero
-    subView?.layer.shadowOpacity = 1
-    subView?.layer.shadowRadius = 50
+    let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_color : ThemeHelper.defaultHelper.sw_tile_incorrect_color
+//    guard let subview = subView else { return }
+    self.innerView.backgroundColor = operation.color
+    innerShadow?.shadowColor = color
+    innerShadow?.shadowOpacity = 0.8
+    let radius = self.bounds.width / 4
+    innerShadow?.shadowRadius = radius
+//    subView?.layer.cornerRadius = subview.bounds.height / 2
+//    self.backgroundColor = operation.color
+//    self.layer.shadowColor = color.CGColor
+//    self.layer.shadowOffset = CGSizeZero
+//    self.layer.shadowOpacity = 1
+//    self.layer.shadowRadius = 25
   }
   
   func drawIncorrect(operation: Operation) {
@@ -70,11 +84,14 @@ class TileView: UIView {
   
   func drawNormal(callback: (Bool) -> ()) {
     self.numberLabel?.transform = CGAffineTransformIdentity
-    self.subView?.backgroundColor = UIColor.clearColor()
+    self.innerView.backgroundColor = UIColor.clearColor()
+//    self.backgroundColor = UIColor.clearColor()
     UIView.animateWithDuration(0.2, animations: {
-      self.subView?.layer.shadowOpacity = 0
-      self.subView?.layer.shadowRadius = 0
-      self.numberLabel?.alpha = 0
+      self.innerShadow?.shadowOpacity = 0
+      self.innerShadow?.shadowRadius = 0
+//      self.layer.shadowOpacity = 0
+//      self.layer.shadowRadius = 0
+//      self.numberLabel?.alpha = 0
       }) { (done) in
         callback(done)
     }
@@ -106,6 +123,67 @@ class TileView: UIView {
       })
     }
     tickTock()
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // Mark: shadow inset
+  
+  /*
+   CREDITS FOR SHADOW:
+   https://github.com/inamiy/YIInnerShadowView
+   https://github.com/n8armstrong/fancy-inset-view
+   */
+  
+  
+  
+  var innerShadow: YIInnerShadowView?
+  
+  var innerView: UIView!
+  
+  var cornerRadius: CGFloat = 5.0 {
+    didSet {
+      layer.cornerRadius = cornerRadius
+      innerView.layer.cornerRadius = cornerRadius
+    }
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    setupShadow()
+  }
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupShadow()
+  }
+  
+  func setupShadow() {
+//    clipsToBounds = true
+//    layer.masksToBounds = false
+    
+    innerShadow = YIInnerShadowView(frame: CGRectZero)
+    innerShadow!.shadowRadius = 0
+    innerShadow!.shadowOffset = CGSizeMake(0.0, 1.0)
+    innerShadow!.shadowOpacity = 0.8
+    
+    // inner shadow
+    innerView = UIView()
+    innerView.layer.masksToBounds = true
+    innerView.addSubview(innerShadow!)
+    insertSubview(innerView, atIndex: 0)
+  }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    innerView.frame = bounds
+    innerShadow!.frame = CGRectInset(bounds, -1.0, -1.0)
   }
 
 }
