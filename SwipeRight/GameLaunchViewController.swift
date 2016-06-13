@@ -25,7 +25,7 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     beginButtonView.becomeButtonForGameView(self, label: beginButtonLabel, delegate: self)
-    
+    self.view.backgroundColor = ThemeHelper.defaultHelper.sw_gameview_background_color
     // Do any additional setup after loading the view.
   }
   
