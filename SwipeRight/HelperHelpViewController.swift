@@ -24,7 +24,6 @@ class HelperHelpViewController: UIViewController {
     }
   
   override func viewWillDisappear(animated: Bool) {
-    helperController?.showingHelp = false
     super.viewWillDisappear(true)
   }
     

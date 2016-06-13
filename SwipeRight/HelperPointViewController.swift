@@ -25,7 +25,6 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   var showReveal = false
   var showHide = false
   var showRemove = false
-  var showingHelp = false
   
   var gameViewController: GameViewController?
   var delegate: GameViewDelegate?
@@ -48,11 +47,6 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   }
   
   override func viewWillDisappear(animated: Bool) {
-    if !showingHelp {
-      GameStatus.status.gameActive = true
-      delegate?.deactivateHelperPointButton(false, deactivate: false)
-      delegate?.togglePaused(false)
-    }
     super.viewWillDisappear(true)
   }
   
@@ -132,11 +126,13 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   }
   
   @IBAction func helpButtonPressed(sender: AnyObject) {
-    showingHelp = true
     self.performSegueWithIdentifier("showHelpSegue", sender: self)
   }
   
   @IBAction func backToGameButtonPressed(sender: AnyObject) {
+    GameStatus.status.gameActive = true
+    delegate?.deactivateHelperPointButton(false, deactivate: false)
+    delegate?.togglePaused(false)
     self.navigationController?.popViewControllerAnimated(true)
   }
   
