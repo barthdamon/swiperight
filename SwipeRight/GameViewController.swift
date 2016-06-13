@@ -251,10 +251,10 @@ class GameViewController: UIViewController {
           delegate?.scoreChange(true)
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
+          self.view.userInteractionEnabled = false
           startTile.drawCorrect(winningOp, callback: { (success) in
             middleTile.drawCorrect(winningOp, callback: { (success) in
               endTile.drawCorrect(winningOp, callback: { (success) in
-                self.view.userInteractionEnabled = false
                 self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
                 self.helperStreakActivity(true)
                 self.endResponse()
@@ -267,8 +267,10 @@ class GameViewController: UIViewController {
           endTile.drawIncorrect(winningOp)
           middleTile.drawIncorrect(winningOp)
           self.view.userInteractionEnabled = false
-          helperStreakActivity(false)
-          endResponse()
+          waitASec(0.15, callback: { (done) in
+            self.helperStreakActivity(false)
+            self.endResponse()
+          })
         }
       }
     }
@@ -326,7 +328,7 @@ class GameViewController: UIViewController {
     for (i, tile) in tileViews.enumerate() {
       tile.drawNormal({ (complete) in
         if i == self.tileViews.count - 1 {
-        callback(complete: true)
+          callback(complete: true)
         }
       })
     }
