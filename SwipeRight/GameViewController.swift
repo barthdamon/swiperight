@@ -10,8 +10,6 @@ import UIKit
 
 class GameViewController: UIViewController {
   
-  
-  
   @IBOutlet weak var borderView: UIView!
   @IBOutlet weak var borderTwo: UIView!
   @IBOutlet weak var borderOne: UIView!
@@ -248,11 +246,14 @@ class GameViewController: UIViewController {
     if GameStatus.status.gameActive && tilesActive(startTile, middleTile: middleTile, endTile: endTile) {
       print("TILE RESPOND TIME")
       if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
+        guard let winningOp = currentLayout?.winningCombination?.operation else { return }
         if checkForCorrect(operations, start: startNumber, mid: midNumber, end: endNumber) {
           delegate?.scoreChange(true)
-          startTile.drawCorrect({ (success) in
-            middleTile.drawCorrect({ (success) in
-              endTile.drawCorrect({ (success) in
+          self.view.backgroundColor = winningOp.color
+          self.gradientLayer?.removeFromSuperlayer()
+          startTile.drawCorrect(winningOp, callback: { (success) in
+            middleTile.drawCorrect(winningOp, callback: { (success) in
+              endTile.drawCorrect(winningOp, callback: { (success) in
                 self.view.userInteractionEnabled = false
                 self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
                 self.helperStreakActivity(true)
@@ -262,9 +263,9 @@ class GameViewController: UIViewController {
           })
         } else {
           delegate?.scoreChange(false)
-          startTile.drawIncorrect()
-          endTile.drawIncorrect()
-          middleTile.drawIncorrect()
+          startTile.drawIncorrect(winningOp)
+          endTile.drawIncorrect(winningOp)
+          middleTile.drawIncorrect(winningOp)
           self.view.userInteractionEnabled = false
           helperStreakActivity(false)
           endResponse()

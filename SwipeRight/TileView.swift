@@ -40,8 +40,8 @@ class TileView: UIView {
     self.numberLabel?.backgroundColor = UIColor.clearColor()
   }
   
-  func drawCorrect(callback: (Bool) -> ()) {
-    self.backgroundColor = ThemeHelper.defaultHelper.sw_tile_correct_color
+  func drawCorrect(operation: Operation, callback: (Bool) -> ()) {
+    drawShadow(true, operation: operation)
     UIView.animateWithDuration(0.05, animations: {
       self.transform = CGAffineTransformMakeScale(1.2,1.2)
       }) { (complete) in
@@ -49,15 +49,25 @@ class TileView: UIView {
     }
   }
   
-  func drawIncorrect() {
-    self.backgroundColor = ThemeHelper.defaultHelper.sw_tile_incorrect_color
+  func drawShadow(correct: Bool, operation: Operation) {
+    let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_color.CGColor: ThemeHelper.defaultHelper.sw_tile_incorrect_color.CGColor
+    guard let subview = subView else { return }
+    subView?.backgroundColor = operation.color
+    subView?.layer.cornerRadius = subview.bounds.height / 2
+    subView?.layer.shadowColor = color
+    subView?.layer.shadowOffset = CGSizeZero
+    subView?.layer.shadowOpacity = 0.8
+    subView?.layer.shadowRadius = 20
+  }
+  
+  func drawIncorrect(operation: Operation) {
+    drawShadow(false, operation: operation)
   }
   
   func drawNormal() {
-    if self.number != -1 {
-      self.transform = CGAffineTransformIdentity
-      self.backgroundColor = UIColor.clearColor()
-    }
+    subView?.backgroundColor = UIColor.clearColor()
+    self.transform = CGAffineTransformIdentity
+    subView?.layer.shadowRadius = 0
   }
   
   func animateCountdown(callback: (Bool) -> () ) {
