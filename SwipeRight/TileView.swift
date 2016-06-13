@@ -38,15 +38,19 @@ class TileView: UIView {
       self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_font
     }
     self.numberLabel?.backgroundColor = UIColor.clearColor()
+    self.clipsToBounds = true
   }
   
   func drawCorrect(operation: Operation, callback: (Bool) -> ()) {
-    drawShadow(true, operation: operation)
-    UIView.animateWithDuration(0.05, animations: {
-      self.transform = CGAffineTransformMakeScale(1.2,1.2)
+    UIView.animateWithDuration(0.15, animations: {
+      self.drawShadow(true, operation: operation)
       }) { (complete) in
       callback(true)
     }
+  }
+  
+  func makeBig() {
+    self.numberLabel?.transform = CGAffineTransformMakeScale(1.4,1.4)
   }
   
   func drawShadow(correct: Bool, operation: Operation) {
@@ -56,8 +60,8 @@ class TileView: UIView {
     subView?.layer.cornerRadius = subview.bounds.height / 2
     subView?.layer.shadowColor = color
     subView?.layer.shadowOffset = CGSizeZero
-    subView?.layer.shadowOpacity = 0.8
-    subView?.layer.shadowRadius = 20
+    subView?.layer.shadowOpacity = 1
+    subView?.layer.shadowRadius = 50
   }
   
   func drawIncorrect(operation: Operation) {
@@ -65,7 +69,7 @@ class TileView: UIView {
   }
   
   func drawNormal(callback: (Bool) -> ()) {
-    self.transform = CGAffineTransformIdentity
+    self.numberLabel?.transform = CGAffineTransformIdentity
     self.subView?.backgroundColor = UIColor.clearColor()
     UIView.animateWithDuration(0.2, animations: {
       self.subView?.layer.shadowOpacity = 0

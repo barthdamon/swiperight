@@ -252,12 +252,17 @@ class GameViewController: UIViewController {
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
           self.view.userInteractionEnabled = false
+          startTile.makeBig()
+          middleTile.makeBig()
+          endTile.makeBig()
           startTile.drawCorrect(winningOp, callback: { (success) in
             middleTile.drawCorrect(winningOp, callback: { (success) in
               endTile.drawCorrect(winningOp, callback: { (success) in
                 self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
                 self.helperStreakActivity(true)
-                self.endResponse()
+                waitASec(0.15, callback: { (done) in
+                  self.endResponse()
+                })
               })
             })
           })
