@@ -31,10 +31,10 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="8IO-t0-jFW"/>
+                                        <exclude reference="Dgu-lB-T1i"/>
                                         <exclude reference="dH3-Sh-cp6"/>
                                         <exclude reference="jS1-fe-tdX"/>
-                                        <exclude reference="Dgu-lB-T1i"/>
-                                        <exclude reference="8IO-t0-jFW"/>
                                     </mask>
                                 </variation>
                             </imageView>

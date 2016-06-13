@@ -26,6 +26,16 @@ class GameViewController: UIViewController {
   @IBOutlet weak var view12: TileView!
   @IBOutlet weak var view22: TileView!
   
+  @IBOutlet weak var subview00: UIView!
+  @IBOutlet weak var subview10: UIView!
+  @IBOutlet weak var subview20: UIView!
+  @IBOutlet weak var subview01: UIView!
+  @IBOutlet weak var subview11: UIView!
+  @IBOutlet weak var subview21: UIView!
+  @IBOutlet weak var subview12: UIView!
+  @IBOutlet weak var subview02: UIView!
+  @IBOutlet weak var subview22: UIView!
+  
   @IBOutlet weak var label00: UILabel!
   @IBOutlet weak var label10: UILabel!
   @IBOutlet weak var label20: UILabel!
@@ -37,6 +47,8 @@ class GameViewController: UIViewController {
   @IBOutlet weak var label22: UILabel!
   
   var numberLabels: Array<UILabel> = []
+  var tileViews: Array<TileView> = []
+  var tileSubviews: Array<UIView> = []
   
   var gameLaunchController: GameLaunchViewController?
   var helperPointController: HelperPointViewController?
@@ -46,7 +58,6 @@ class GameViewController: UIViewController {
   var gradientLayer: CAGradientLayer?
   var tileWidth: CGFloat!
   var viewWidth: CGFloat!
-  var tileViews: Array<TileView> = []
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
@@ -96,13 +107,23 @@ class GameViewController: UIViewController {
     tileViews.append(view02)
     tileViews.append(view12)
     tileViews.append(view22)
+    
+    tileSubviews.append(subview00)
+    tileSubviews.append(subview10)
+    tileSubviews.append(subview20)
+    tileSubviews.append(subview01)
+    tileSubviews.append(subview11)
+    tileSubviews.append(subview21)
+    tileSubviews.append(subview02)
+    tileSubviews.append(subview12)
+    tileSubviews.append(subview22)
   }
   
   func configureGameViewComponents() {
     appendViews()
     
     for (i, tile) in tileViews.enumerate() {
-      tile.setup(numberLabels[i], overlay: false, coordinates: Grid.tileCoordinates[i])
+      tile.setup(numberLabels[i], subview: tileSubviews[i], overlay: false, coordinates: Grid.tileCoordinates[i])
     }
     
     borderOne.layer.borderWidth = 2
@@ -229,12 +250,16 @@ class GameViewController: UIViewController {
       if let operations = currentLayout?.operations, startNumber = startTile.number, midNumber = middleTile.number, endNumber = endTile.number {
         if checkForCorrect(operations, start: startNumber, mid: midNumber, end: endNumber) {
           delegate?.scoreChange(true)
-          startTile.drawCorrect()
-          endTile.drawCorrect()
-          middleTile.drawCorrect()
-          self.view.userInteractionEnabled = false
-          delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
-          helperStreakActivity(true)
+          startTile.drawCorrect({ (success) in
+            middleTile.drawCorrect({ (success) in
+              endTile.drawCorrect({ (success) in
+                self.view.userInteractionEnabled = false
+                self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
+                self.helperStreakActivity(true)
+                self.endResponse()
+              })
+            })
+          })
         } else {
           delegate?.scoreChange(false)
           startTile.drawIncorrect()
@@ -242,14 +267,18 @@ class GameViewController: UIViewController {
           middleTile.drawIncorrect()
           self.view.userInteractionEnabled = false
           helperStreakActivity(false)
+          endResponse()
         }
-        ProgressionManager.sharedManager.currentRoundPosition += 1
-        if ProgressionManager.sharedManager.currentRoundPosition > ProgressionManager.sharedManager.roundLength {
-          newRound()
-        }
-        resetTiles()
       }
     }
+  }
+  
+  func endResponse() {
+    ProgressionManager.sharedManager.currentRoundPosition += 1
+    if ProgressionManager.sharedManager.currentRoundPosition > ProgressionManager.sharedManager.roundLength {
+      newRound()
+    }
+    resetTiles()
   }
   
   func tilesActive(startTile: TileView, middleTile: TileView, endTile: TileView) -> Bool {
