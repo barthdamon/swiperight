@@ -82,7 +82,11 @@ class GameViewController: UIViewController {
     self.view.backgroundColor = ThemeHelper.defaultHelper.sw_gameview_background_color
     self.view.userInteractionEnabled = false
     configureGameViewComponents()
-    animateBeginGame()
+    if GameStatus.status.gameMode == .Tutorial {
+      self.performSegueWithIdentifier("showTutorialSegue", sender: self)
+    } else {
+      animateBeginGame()
+    }
   }
   
   func appendViews() {
@@ -441,13 +445,14 @@ class GameViewController: UIViewController {
       let removalCount = possibleRemovals.count - 1
       let randRemovalIndex = Int.random(0...removalCount)
       // hide one
-      possibleRemovals[randRemovalIndex].backgroundColor = UIColor.redColor()
+      possibleRemovals[randRemovalIndex].drawIncorrect(combo.operation)
       ProgressionManager.sharedManager.helperPointUtilized(.Hide)
     case .Reveal:
       let randIndex = Int.random(0...2)
       let randSolutionIndex = indexes[randIndex]
       // reveal one
-      self.tileViews[randSolutionIndex].backgroundColor = UIColor.greenColor()
+      self.tileViews[randSolutionIndex].drawCorrect(combo.operation, callback: { (done) in
+      })
       // light up a tile selected
       ProgressionManager.sharedManager.helperPointUtilized(.Reveal)
     case .Remove:
@@ -456,7 +461,9 @@ class GameViewController: UIViewController {
       setGameViewBackground(filteredOperations)
       ProgressionManager.sharedManager.helperPointUtilized(.Remove)
     }
+    delegate?.deactivateHelperPointButton(false, deactivate: false)
     delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
+    delegate?.togglePaused(false)
   }
   
   func helperButtonPressed() {
@@ -470,6 +477,13 @@ class GameViewController: UIViewController {
         delegate?.togglePaused(true)
         vc.delegate = delegate
         helperPointController = vc
+        vc.gameViewController = self
+      }
+    }
+    
+    if segue.identifier == "showTutorialSegue" {
+      if let vc = segue.destinationViewController as? HelperHelpViewController {
+        vc.delegate = delegate
         vc.gameViewController = self
       }
     }

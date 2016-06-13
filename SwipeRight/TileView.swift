@@ -51,7 +51,8 @@ class TileView: UIView {
   }
   
   func drawCorrect(operation: Operation, callback: (Bool) -> ()) {
-    UIView.animateWithDuration(0.15, animations: {
+    UIView.animateWithDuration(0.1, animations: {
+        self.numberLabel?.transform = CGAffineTransformMakeScale(1.4,1.4)
         self.drawShadow(true, operation: operation)
       }) { (complete) in
         callback(true)
@@ -59,7 +60,7 @@ class TileView: UIView {
   }
   
   func makeBig() {
-    self.numberLabel?.transform = CGAffineTransformMakeScale(1.4,1.4)
+//            self.numberLabel?.transform = CGAffineTransformMakeScale(1.4,1.4)
   }
   
   func drawShadow(correct: Bool, operation: Operation) {
@@ -83,10 +84,11 @@ class TileView: UIView {
   }
   
   func drawNormal(callback: (Bool) -> ()) {
-    self.numberLabel?.transform = CGAffineTransformIdentity
+    self.backgroundColor = UIColor.clearColor()
     self.innerView.backgroundColor = UIColor.clearColor()
-//    self.backgroundColor = UIColor.clearColor()
     UIView.animateWithDuration(0.2, animations: {
+      self.numberLabel?.transform = CGAffineTransformIdentity
+//      self.innerView.backgroundColor = UIColor.clearColor()
       self.innerShadow?.shadowOpacity = 0
       self.innerShadow?.shadowRadius = 0
 //      self.layer.shadowOpacity = 0

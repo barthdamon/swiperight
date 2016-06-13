@@ -17,6 +17,7 @@
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
+            <string>DIN-Bold</string>
         </mutableArray>
         <mutableArray key="DINL____.TTF">
             <string>DIN-Light</string>
@@ -73,7 +74,7 @@
         <!--How To Play View Controller-->
         <scene sceneID="JjW-pc-Jx3">
             <objects>
-                <viewController id="Fse-V2-O1t" customClass="HowToPlayViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Fse-V2-O1t" customClass="HowToPlayViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zqq-wC-xNZ"/>
                         <viewControllerLayoutGuide type="bottom" id="51E-Gi-EBr"/>
@@ -623,7 +624,7 @@ Cg
         <!--Home View Controller-->
         <scene sceneID="yOB-pY-lDM">
             <objects>
-                <viewController id="gcC-dN-XMu" customClass="HomeViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gcC-dN-XMu" customClass="HomeViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ezL-eS-kNw"/>
                         <viewControllerLayoutGuide type="bottom" id="wSD-Mz-bk6"/>
@@ -632,7 +633,7 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7g-nT-De9" customClass="ButtonView" customModule="SwipedRight" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7g-nT-De9" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                 <rect key="frame" x="176" y="275" width="248" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEGIN GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yml-Ch-wis">
@@ -874,7 +875,7 @@ Cg
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -1004,28 +1005,28 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="67Q-5K-lYM">
                                 <rect key="frame" x="43" y="272" width="328" height="58"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addition" translatesAutoresizingMaskIntoConstraints="NO" id="TuB-LD-hXP" customClass="OperationImageView" customModule="SwipedRight" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addition" translatesAutoresizingMaskIntoConstraints="NO" id="TuB-LD-hXP" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="24" y="11" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Ss1-t6-opt"/>
                                             <constraint firstAttribute="width" constant="36" id="jnj-sd-b6u"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subtraction" translatesAutoresizingMaskIntoConstraints="NO" id="9t9-9D-bsM" customClass="OperationImageView" customModule="SwipedRight" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subtraction" translatesAutoresizingMaskIntoConstraints="NO" id="9t9-9D-bsM" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="105" y="11" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="nuC-np-mNS"/>
                                             <constraint firstAttribute="width" constant="36" id="wJG-Zb-H77"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="division" translatesAutoresizingMaskIntoConstraints="NO" id="IYG-cu-bai" customClass="OperationImageView" customModule="SwipedRight" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="division" translatesAutoresizingMaskIntoConstraints="NO" id="IYG-cu-bai" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="268" y="11" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="GRK-YB-IoU"/>
                                             <constraint firstAttribute="width" constant="36" id="XZu-ry-P0z"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="multiplication" translatesAutoresizingMaskIntoConstraints="NO" id="Q5o-NE-XQ0" customClass="OperationImageView" customModule="SwipedRight" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="multiplication" translatesAutoresizingMaskIntoConstraints="NO" id="Q5o-NE-XQ0" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="187" y="11" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="4L5-Jc-psn"/>
@@ -1078,7 +1079,7 @@ Cg
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-5R-pZq" customClass="ButtonView" customModule="SwipedRight" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-5R-pZq" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                 <rect key="frame" x="127" y="183" width="160" height="38"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zj-7s-nu2">
@@ -1359,7 +1360,7 @@ Cg
         <!--Game Launch View Controller-->
         <scene sceneID="PhR-6b-7Kg">
             <objects>
-                <viewController id="kg6-Wk-IrR" customClass="GameLaunchViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kg6-Wk-IrR" customClass="GameLaunchViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k6M-ga-Aep"/>
                         <viewControllerLayoutGuide type="bottom" id="6lO-gW-7bi"/>
@@ -1462,7 +1463,7 @@ Cg
                                     </mask>
                                 </variation>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tg-n0-d9J" customClass="ButtonView" customModule="SwipedRight" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tg-n0-d9J" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                 <rect key="frame" x="69" y="136" width="248" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLAY AGAIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bM-pZ-lVR">
@@ -1579,7 +1580,7 @@ Cg
         <!--Game View Controller-->
         <scene sceneID="1CO-YK-vEN">
             <objects>
-                <viewController id="Gke-k0-e9L" customClass="GameViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Gke-k0-e9L" customClass="GameViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wQG-oj-V51"/>
                         <viewControllerLayoutGuide type="bottom" id="wWs-BB-dP4"/>
@@ -1591,7 +1592,7 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEa-Yo-P69">
                                 <rect key="frame" x="0.0" y="0.0" width="386" height="386"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iaj-Gm-Tzo" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iaj-Gm-Tzo" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-jy-ASh">
@@ -1629,14 +1630,14 @@ Cg
                                             <constraint firstItem="hOl-jy-ASh" firstAttribute="width" secondItem="Iaj-Gm-Tzo" secondAttribute="height" multiplier="23:43" id="opI-s0-fgS"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKn-8w-Alb" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKn-8w-Alb" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="129" y="0.0" width="128" height="129"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VzE-OI-fG1">
-                                                <rect key="frame" x="30" y="30" width="69" height="69"/>
+                                                <rect key="frame" x="30" y="30" width="68" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKM-n7-EY6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="69"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="MKM-n7-EY6" secondAttribute="height" multiplier="1:1" id="jzb-TV-Eu8"/>
                                                         </constraints>
@@ -1667,7 +1668,7 @@ Cg
                                             <constraint firstItem="VzE-OI-fG1" firstAttribute="width" secondItem="jKn-8w-Alb" secondAttribute="height" multiplier="23:43" id="tFE-zN-Mjg"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-Mz-frG" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-Mz-frG" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="257" y="0.0" width="129" height="129"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W30-Ai-BEl">
@@ -1705,14 +1706,14 @@ Cg
                                             <constraint firstItem="W30-Ai-BEl" firstAttribute="centerY" secondItem="HLT-Mz-frG" secondAttribute="centerY" id="g55-xH-Gbb"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-an-gFn" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-an-gFn" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="129" width="129" height="128"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gad-i6-v2C">
-                                                <rect key="frame" x="30" y="29" width="69" height="69"/>
+                                                <rect key="frame" x="30" y="29" width="69" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZd-qt-m3N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="KZd-qt-m3N" secondAttribute="height" multiplier="1:1" id="18l-8h-DYm"/>
                                                         </constraints>
@@ -1743,14 +1744,14 @@ Cg
                                             <constraint firstItem="gad-i6-v2C" firstAttribute="width" secondItem="3hc-an-gFn" secondAttribute="height" multiplier="69:128" id="wHq-64-0vC"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFi-dD-WKG" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFi-dD-WKG" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="129" y="129" width="128" height="128"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMx-gE-9y6">
-                                                <rect key="frame" x="29" y="30" width="69" height="69"/>
+                                                <rect key="frame" x="29" y="29" width="70" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dx-JZ-mXy">
-                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="9dx-JZ-mXy" secondAttribute="height" multiplier="1:1" id="WpW-tU-y3B"/>
                                                         </constraints>
@@ -1781,14 +1782,14 @@ Cg
                                             <constraint firstItem="XMx-gE-9y6" firstAttribute="centerY" secondItem="nFi-dD-WKG" secondAttribute="centerY" id="aF5-d4-YpP"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4y-4S-9qd" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4y-4S-9qd" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="257" y="129" width="129" height="128"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-cj-PAz">
-                                                <rect key="frame" x="30" y="30" width="69" height="69"/>
+                                                <rect key="frame" x="30" y="29" width="69" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rq-ni-tnn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="4rq-ni-tnn" secondAttribute="height" multiplier="1:1" id="9BF-H1-ahA"/>
                                                         </constraints>
@@ -1819,7 +1820,7 @@ Cg
                                             <constraint firstItem="lE8-cj-PAz" firstAttribute="centerY" secondItem="v4y-4S-9qd" secondAttribute="centerY" id="znD-df-UoX"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-ua-aeW" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-ua-aeW" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="257" y="257" width="129" height="129"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izg-ox-JiN">
@@ -1857,14 +1858,14 @@ Cg
                                             <constraint firstItem="izg-ox-JiN" firstAttribute="width" secondItem="gX8-ua-aeW" secondAttribute="height" multiplier="23:43" id="ewQ-C5-56Q"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXO-J1-Ojj" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXO-J1-Ojj" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="129" y="257" width="128" height="129"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGC-AA-5dB">
-                                                <rect key="frame" x="29" y="30" width="69" height="69"/>
+                                                <rect key="frame" x="30" y="30" width="68" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFy-8b-fHU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="69"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="XFy-8b-fHU" secondAttribute="height" multiplier="1:1" id="SES-mi-VWY"/>
                                                         </constraints>
@@ -1895,7 +1896,7 @@ Cg
                                             <constraint firstItem="iGC-AA-5dB" firstAttribute="centerY" secondItem="uXO-J1-Ojj" secondAttribute="centerY" id="TOk-s1-1He"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K72-Lf-kyU" customClass="TileView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K72-Lf-kyU" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="257" width="129" height="129"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-4x-G3R">
@@ -2046,16 +2047,17 @@ Cg
                         <outlet property="view21" destination="v4y-4S-9qd" id="dSD-Dh-Ypa"/>
                         <outlet property="view22" destination="gX8-ua-aeW" id="5ph-CP-3Iu"/>
                         <segue destination="VYx-Qw-j9I" kind="show" identifier="showHelperPointController" id="bzc-Az-wA4"/>
+                        <segue destination="7Uz-ID-kqj" kind="show" identifier="showTutorialSegue" id="jwf-wt-BMJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yf8-1o-fiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="413" y="1087"/>
+            <point key="canvasLocation" x="559" y="1079"/>
         </scene>
         <!--Helper Point View Controller-->
         <scene sceneID="Yph-cg-u2X">
             <objects>
-                <viewController id="VYx-Qw-j9I" customClass="HelperPointViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VYx-Qw-j9I" customClass="HelperPointViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HHS-Me-CqH"/>
                         <viewControllerLayoutGuide type="bottom" id="s69-0h-n3P"/>
@@ -2067,7 +2069,7 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="veK-oh-hwI">
                                 <rect key="frame" x="0.0" y="257" width="386" height="129"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cys-bp-98k" customClass="ButtonView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cys-bp-98k" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="69" y="40" width="248" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REMOVE AN OPERATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2m-Vf-BNd">
@@ -2192,7 +2194,7 @@ Cg
                                 <rect key="frame" x="0.0" y="0.0" width="386" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 AVAILABLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xp-YT-ZnP">
-                                        <rect key="frame" x="124" y="89" width="138" height="21"/>
+                                        <rect key="frame" x="124" y="88" width="138" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="138" id="OjD-7J-AAL"/>
                                             <constraint firstAttribute="height" constant="21" id="RzD-6s-cq3"/>
@@ -2241,8 +2243,8 @@ Cg
                                             <action selector="backToGameButtonPressed:" destination="VYx-Qw-j9I" eventType="touchUpInside" id="ZAv-NT-bkO"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTu-aK-nMF" customClass="ButtonView" customModule="SwipedRight" customModuleProvider="target">
-                                        <rect key="frame" x="69" y="40" width="248" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTu-aK-nMF" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
+                                        <rect key="frame" x="69" y="39" width="248" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIDE AN INCORRECT TILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H0-XF-NxD">
                                                 <rect key="frame" x="30" y="15" width="188" height="20"/>
@@ -2359,7 +2361,7 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFb-XO-zLB">
                                 <rect key="frame" x="0.0" y="129" width="386" height="128"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8Y-7S-hNP" customClass="ButtonView" customModule="SwipedRight" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8Y-7S-hNP" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="69" y="39" width="248" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REVEAL A CORRECT TILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfc-kn-5sP">
@@ -2508,12 +2510,12 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B0z-f2-YWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1070" y="1035"/>
+            <point key="canvasLocation" x="740.5" y="1610.5"/>
         </scene>
         <!--Helper Help View Controller-->
         <scene sceneID="3cn-aM-UGG">
             <objects>
-                <viewController id="7Uz-ID-kqj" customClass="HelperHelpViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7Uz-ID-kqj" customClass="HelperHelpViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tk0-TO-dLB"/>
                         <viewControllerLayoutGuide type="bottom" id="gQq-lP-w7q"/>
@@ -2593,8 +2595,98 @@ Cg
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9d-Rm-LM6">
+                                <rect key="frame" x="20" y="0.0" width="346" height="386"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Hide an Incorrect Tile ">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="(1 point)">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Italic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+- Removes a tile that is not part of the solution to make it easier for you to find the solution.
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Reveal a Correct Tile ">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="(3 points)">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Italic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+- Reveals one of the three tiles that are part of the solution.
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Remove an Operation ">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="(2 points)">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Italic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+- Removes the extra operation that the solution does not use. Only active at higher levels where two operations become active.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzs-no-Gg0">
+                                <rect key="frame" x="147" y="361" width="92" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="BnO-T5-yQK"/>
+                                    <constraint firstAttribute="height" constant="17" id="LBZ-kr-o7z"/>
+                                    <constraint firstAttribute="width" constant="77" id="ogx-jM-v6F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="12"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ogx-jM-v6F"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="continueButtonPressed:" destination="7Uz-ID-kqj" eventType="touchUpInside" id="nP4-Lz-jeX"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wat-z4-b4V">
-                                <rect key="frame" x="274" y="0.0" width="92" height="17"/>
+                                <rect key="frame" x="147" y="361" width="92" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="5wL-Oy-HWi"/>
                                     <constraint firstAttribute="width" constant="92" id="EFn-Jp-kjx"/>
@@ -2610,7 +2702,7 @@ Cg
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="backToHelpersButtonPressed:" destination="7Uz-ID-kqj" eventType="touchUpInside" id="Cef-7y-Rsf"/>
+                                    <action selector="backToHelpersButtonPressed:" destination="7Uz-ID-kqj" eventType="touchUpInside" id="vVd-VN-NGR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2618,29 +2710,45 @@ Cg
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="wat-z4-b4V" secondAttribute="trailing" id="5rp-9C-SyY"/>
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="top" secondItem="wat-z4-b4V" secondAttribute="bottom" constant="3" id="7U6-JN-f4Y"/>
+                            <constraint firstItem="Bzs-no-Gg0" firstAttribute="centerX" secondItem="fKX-Tf-EN9" secondAttribute="centerX" id="AaO-0f-moT"/>
                             <constraint firstItem="wat-z4-b4V" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="C3b-bh-3S1"/>
+                            <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="wat-z4-b4V" secondAttribute="bottom" constant="8" id="Mk1-8U-Jfw"/>
+                            <constraint firstItem="v9d-Rm-LM6" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="TWb-nd-bRw"/>
+                            <constraint firstItem="v9d-Rm-LM6" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" id="Um0-tb-wYg"/>
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="Ww7-Ft-0U8"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="UfL-oY-K1A" secondAttribute="bottom" id="acH-HG-9sX"/>
+                            <constraint firstItem="v9d-Rm-LM6" firstAttribute="trailing" secondItem="fKX-Tf-EN9" secondAttribute="trailingMargin" id="cVj-gO-VQa"/>
                             <constraint firstItem="wat-z4-b4V" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" constant="-20" id="iZn-aZ-A7L"/>
+                            <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="v9d-Rm-LM6" secondAttribute="bottom" id="nq6-el-gdw"/>
+                            <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="Bzs-no-Gg0" secondAttribute="bottom" constant="8" id="smU-SQ-njZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UfL-oY-K1A" secondAttribute="trailing" id="wSx-6O-Fpk"/>
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" id="xqS-sx-xdH"/>
+                            <constraint firstItem="wat-z4-b4V" firstAttribute="centerX" secondItem="fKX-Tf-EN9" secondAttribute="centerX" id="zvK-GP-KNP"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="7U6-JN-f4Y"/>
+                                <exclude reference="5rp-9C-SyY"/>
+                                <exclude reference="C3b-bh-3S1"/>
                                 <exclude reference="iZn-aZ-A7L"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="wat-z4-b4V" id="Zyx-MQ-5OP"/>
+                        <outlet property="continueButton" destination="Bzs-no-Gg0" id="kAw-5e-MY4"/>
+                        <outlet property="helperExplanationView" destination="UfL-oY-K1A" id="gvx-I2-vug"/>
+                        <outlet property="tutorialTextView" destination="v9d-Rm-LM6" id="7Ex-nv-383"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqQ-ex-qxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1587" y="1035"/>
+            <point key="canvasLocation" x="1084" y="1071"/>
         </scene>
         <!--Leaderboard View Controller-->
         <scene sceneID="sWn-O3-loL">
             <objects>
-                <viewController id="fmB-SE-gk3" customClass="LeaderboardViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fmB-SE-gk3" customClass="LeaderboardViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H54-mW-kCv"/>
                         <viewControllerLayoutGuide type="bottom" id="XiV-Zi-JG9"/>
@@ -2653,7 +2761,7 @@ Cg
                                 <rect key="frame" x="0.0" y="135" width="600" height="465"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreCell" rowHeight="32" id="bNv-Hy-D1p" customClass="ScoreTableViewCell" customModule="SwipedRight" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreCell" rowHeight="32" id="bNv-Hy-D1p" customClass="ScoreTableViewCell" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bNv-Hy-D1p" id="7X9-dC-xtQ">
@@ -2912,7 +3020,7 @@ Cg
         <!--Auth View Controller-->
         <scene sceneID="Xxq-mK-ogq">
             <objects>
-                <viewController id="B3z-D7-37P" customClass="AuthViewController" customModule="SwipedRight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="B3z-D7-37P" customClass="AuthViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HRp-RW-dBi"/>
                         <viewControllerLayoutGuide type="bottom" id="Q65-3T-kpA"/>
@@ -3170,5 +3278,6 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="K5p-SO-msa"/>
+        <segue reference="jwf-wt-BMJ"/>
     </inferredMetricsTieBreakers>
 </document>

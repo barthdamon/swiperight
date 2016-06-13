@@ -38,6 +38,7 @@
 		02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */; };
 		02BCF0DB1D0F0FB70083B2F2 /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */; };
 		02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */; };
+		02BCF0E01D0F372A0083B2F2 /* TutorialPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DF1D0F372A0083B2F2 /* TutorialPopoverViewController.swift */; };
 		02DB529D1D036CB10052D72A /* DIN Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52901D036CB10052D72A /* DIN Black.ttf */; };
 		02DB529E1D036CB10052D72A /* DINB____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52911D036CB10052D72A /* DINB____.TTF */; };
 		02DB529F1D036CB10052D72A /* DINBA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52921D036CB10052D72A /* DINBA___.TTF */; };
@@ -98,6 +99,7 @@
 		02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowLayer.m; sourceTree = "<group>"; };
 		02BCF0DC1D0F0FEB0083B2F2 /* YIInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowView.h; sourceTree = "<group>"; };
 		02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowView.m; sourceTree = "<group>"; };
+		02BCF0DF1D0F372A0083B2F2 /* TutorialPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPopoverViewController.swift; sourceTree = "<group>"; };
 		02DB52901D036CB10052D72A /* DIN Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Black.ttf"; sourceTree = "<group>"; };
 		02DB52911D036CB10052D72A /* DINB____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINB____.TTF"; sourceTree = "<group>"; };
 		02DB52921D036CB10052D72A /* DINBA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINBA___.TTF"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */,
 				02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */,
 				02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */,
+				02BCF0DF1D0F372A0083B2F2 /* TutorialPopoverViewController.swift */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
 				02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */,
 				02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */,
@@ -385,6 +388,7 @@
 				02E6FCE21D07B6A9007A98EE /* GameKitViewController.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
 				02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */,
+				02BCF0E01D0F372A0083B2F2 /* TutorialPopoverViewController.swift in Sources */,
 				02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */,
 				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
 				02BCF0DB1D0F0FB70083B2F2 /* YIInnerShadowLayer.m in Sources */,

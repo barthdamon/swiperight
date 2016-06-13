@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   @IBOutlet weak var beginGameLabel: UILabel!
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     beginGameButtonView.alpha = 0
@@ -72,12 +73,12 @@ class HomeViewController: UIViewController, ButtonDelegate {
   }
   
   func buttonPressed(sender: ButtonView) {
-    GameStatus.status.selectedMode = .Ranked
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
   
   @IBAction func howToButtonPressed(sender: AnyObject) {
-    self.performSegueWithIdentifier("howToSegue", sender: self)
+    GameStatus.status.gameMode = .Tutorial
+    self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
 
 }

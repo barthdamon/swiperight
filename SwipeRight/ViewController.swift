@@ -197,6 +197,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   
   func togglePaused(paused: Bool) {
+    GameStatus.status.gameActive = !paused
     if paused {
       self.pausedView.hidden = false
       self.timeLabel.alpha = 0.2
@@ -209,7 +210,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func gameOver(finished: Bool = true) {
-    if finished && GameStatus.status.selectedMode == .Ranked {
+    if finished && GameStatus.status.gameMode == .Standard {
       reportScore()
     }
     deactivateHelperPointButton(true, deactivate: false)
@@ -363,6 +364,23 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
       }
     }
   }
+  
+  
+  
+  
+  //MARK: Tutorial Mode
+  
+  @IBAction func importantButtonPressed(sender: UIButton) {
+    let tableViewController = UITableViewController()
+    tableViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+    tableViewController.preferredContentSize = CGSizeMake(400, 400)
     
+    presentViewController(tableViewController, animated: true, completion: nil)
+    
+    let popoverPresentationController = tableViewController.popoverPresentationController
+    popoverPresentationController?.sourceView = sender
+    popoverPresentationController?.sourceRect = CGRectMake(0, 0, sender.frame.size.width, sender.frame.size.height)
+  }
+  
 }
 
