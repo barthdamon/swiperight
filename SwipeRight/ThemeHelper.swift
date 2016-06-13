@@ -36,7 +36,8 @@ class ThemeHelper: NSObject {
   
   let sw_tile_top_color: UIColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
   let sw_tile_bottom_color: UIColor = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.00)
-  let sw_tile_correct_color = UIColor(red:0.28, green:0.75, blue:0.20, alpha:1.00)
+  let sw_tile_correct_color = UIColor.whiteColor()
+  //UIColor(red:0.28, green:0.75, blue:0.20, alpha:1.00)
   let sw_tile_incorrect_color = UIColor(red:0.90, green:0.00, blue:0.00, alpha:1.00)
   
 

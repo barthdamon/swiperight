@@ -294,8 +294,6 @@ class GameViewController: UIViewController {
     if GameStatus.status.gameActive {
       self.currentLayout = GridNumberLayout()
       self.gradientLayer?.removeFromSuperlayer()
-      guard let layout = currentLayout else { return }
-      setGameViewBackground(layout.operations)
       animateTileReset()
     }
   }
@@ -324,15 +322,12 @@ class GameViewController: UIViewController {
   }
   
   func fadeOutTiles(callback: (complete: Bool) -> ()) {
+    self.borderView.alpha = 0
     for (i, tile) in tileViews.enumerate() {
-      UIView.animateWithDuration(0.2, animations: { () -> Void in
-        tile.drawNormal()
-        tile.numberLabel?.alpha = 0
-        self.borderView.alpha = 0
-        }, completion: { (complete) -> Void in
-          if i == self.tileViews.count - 1 {
-            callback(complete: true)
-          }
+      tile.drawNormal({ (complete) in
+        if i == self.tileViews.count - 1 {
+        callback(complete: true)
+        }
       })
     }
   }
@@ -351,6 +346,8 @@ class GameViewController: UIViewController {
   
   func animateTileReset() {
     fadeOutTiles { (complete) in
+      guard let layout = self.currentLayout else { return }
+      self.setGameViewBackground(layout.operations)
       self.applyNumberLayoutToTiles(false)
       self.fadeInTiles()
     }

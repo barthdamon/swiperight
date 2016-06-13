@@ -64,10 +64,16 @@ class TileView: UIView {
     drawShadow(false, operation: operation)
   }
   
-  func drawNormal() {
-    subView?.backgroundColor = UIColor.clearColor()
+  func drawNormal(callback: (Bool) -> ()) {
     self.transform = CGAffineTransformIdentity
-    subView?.layer.shadowRadius = 0
+    UIView.animateWithDuration(0.2, animations: {
+      self.subView?.layer.shadowOpacity = 0
+      self.subView?.backgroundColor = UIColor.clearColor()
+      self.subView?.layer.shadowRadius = 0
+      self.numberLabel?.alpha = 0
+      }) { (done) in
+        callback(done)
+    }
   }
   
   func animateCountdown(callback: (Bool) -> () ) {
