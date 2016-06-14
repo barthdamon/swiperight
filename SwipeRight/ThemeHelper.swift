@@ -27,7 +27,7 @@ class ThemeHelper: NSObject {
   let sw_tile_separator_color: UIColor = UIColor.darkGrayColor()
   let sw_shadow_color: UIColor = UIColor.darkGrayColor()
   let sw_gameview_background_color: UIColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-  let sw_background_color: UIColor = UIColor(red:0.82, green:0.85, blue:0.85, alpha:1.00)
+  let sw_background_color: UIColor = UIColor(red:0.71, green:0.74, blue:0.74, alpha:1.00)
   let sw_background_glow_color: UIColor = UIColor(red:0.98, green:0.99, blue:0.99, alpha:1.00)
   
   let sw_button_top_color: UIColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)

@@ -264,7 +264,7 @@ class GameViewController: UIViewController {
               endTile.drawCorrect(winningOp, callback: { (success) in
                 self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
                 self.helperStreakActivity(true)
-                waitASec(0.15, callback: { (done) in
+                waitASec(0.05, callback: { (done) in
                   self.endResponse()
                 })
               })
@@ -276,8 +276,8 @@ class GameViewController: UIViewController {
           endTile.drawIncorrect(winningOp)
           middleTile.drawIncorrect(winningOp)
           self.view.userInteractionEnabled = false
-          waitASec(0.15, callback: { (done) in
-            self.helperStreakActivity(false)
+          self.helperStreakActivity(false)
+          waitASec(0.05, callback: { (done) in
             self.endResponse()
           })
         }
@@ -409,18 +409,24 @@ class GameViewController: UIViewController {
   }
   
   func helperStreakActivity(correct: Bool) {
+    guard let operation = self.currentLayout?.winningCombination?.operation else { return }
     if correct {
-      ProgressionManager.sharedManager.currentStreak += 1
-      if ProgressionManager.sharedManager.currentStreak == ProgressionManager.sharedManager.currentStreakNeeded {
+      let streakReached = ProgressionManager.sharedManager.increaseStreak(operation)
+      if streakReached {
         ProgressionManager.sharedManager.helperPointsForReachedStreak()
-        ProgressionManager.sharedManager.resetStreak()
-        delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
+        delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints, callback: { (done) in
+          ProgressionManager.sharedManager.resetStreak(operation)
+          self.delegate?.setStreakLabels({ (done) in
+          })
+        })
       } else {
-        delegate?.setStreakLabel()
+        delegate?.setStreakLabels({ (done) in
+        })
       }
     } else {
-      ProgressionManager.sharedManager.resetStreak()
-      delegate?.setStreakLabel()
+      ProgressionManager.sharedManager.resetStreak(operation)
+      delegate?.setStreakLabels({ (done) in
+      })
     }
   }
   
@@ -446,6 +452,7 @@ class GameViewController: UIViewController {
       let randRemovalIndex = Int.random(0...removalCount)
       // hide one
       possibleRemovals[randRemovalIndex].drawIncorrect(combo.operation)
+      possibleRemovals[randRemovalIndex].numberLabel?.alpha = 0
       ProgressionManager.sharedManager.helperPointUtilized(.Hide)
     case .Reveal:
       let randIndex = Int.random(0...2)
@@ -462,7 +469,7 @@ class GameViewController: UIViewController {
       ProgressionManager.sharedManager.helperPointUtilized(.Remove)
     }
     delegate?.deactivateHelperPointButton(false, deactivate: false)
-    delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
+    delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints, callback: { (done) in })
     delegate?.togglePaused(false)
   }
   

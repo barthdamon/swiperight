@@ -10,7 +10,14 @@ import UIKit
 
 class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
+  @IBOutlet weak var adStreakLabel: UILabel!
+  @IBOutlet weak var subtractStreakLabel: UILabel!
+  @IBOutlet weak var multiplyStreakLabel: UILabel!
+  @IBOutlet weak var divideStreaklabel: UILabel!
   
+  @IBOutlet weak var bonusStreakLabel: UILabel!
+  @IBOutlet weak var bonusStreakView: UIView!
+  @IBOutlet weak var adView: UIView!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var pausedView: UIView!
   
@@ -26,8 +33,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   @IBOutlet weak var helperButtonView: ButtonView!
   @IBOutlet weak var helperButtonViewIndicator: UILabel!
   @IBOutlet weak var helperButtonLabel: UILabel!
-  
-  @IBOutlet weak var helperStreakLabel: UILabel!
   //HUD
   //  var scoreLabel: UILabel?
   
@@ -117,23 +122,85 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     self.gameView = controller
   }
   
-  func setHelperPoints(points: Int) {
-    UIView.animateWithDuration(0.3, animations: { 
-        self.helperButtonViewIndicator.transform = CGAffineTransformMakeScale(1.3,1.3)
+  func setHelperPoints(points: Int, callback: (Bool) -> ()) {
+    self.setStreakLabels({ (done) in
+      UIView.animateWithDuration(0.3, animations: {
+        if let text = self.helperButtonViewIndicator.text, current = Int(text) where current >= points {
+        } else {
+          self.helperButtonViewIndicator.transform = CGAffineTransformMakeScale(1.3,1.3)
+        }
       }) { (done) in
-      self.helperButtonViewIndicator.text = "\(points)"
-      UIView.animateWithDuration(0.3, animations: { 
+        self.helperButtonViewIndicator.text = "\(points)"
+        UIView.animateWithDuration(0.3, animations: {
           self.helperButtonViewIndicator.transform = CGAffineTransformIdentity
-        }, completion: { (done) in
-          self.setStreakLabel()
-      })
-    }
+          self.adStreakLabel.transform = CGAffineTransformIdentity
+          self.subtractStreakLabel.transform = CGAffineTransformIdentity
+          self.multiplyStreakLabel.transform = CGAffineTransformIdentity
+          self.divideStreaklabel.transform = CGAffineTransformIdentity
+          }, completion: { (done) in
+          callback(true)
+        })
+      }
+    })
   }
   
-  func setStreakLabel() {
-    let streak = ProgressionManager.sharedManager.currentStreak
+  func setStreakLabels(callback: (Bool) -> ()) {
+    
+    func placeText(needed: Int) {
+      adStreakLabel.text = "\(ProgressionManager.sharedManager.currentAddStreak)/\(needed)"
+      subtractStreakLabel.text = "\(ProgressionManager.sharedManager.currentSubtractStreak)/\(needed)"
+      multiplyStreakLabel.text = "\(ProgressionManager.sharedManager.currentMultiplyStreak)/\(needed)"
+      divideStreaklabel.text = "\(ProgressionManager.sharedManager.currentDivideStreak)/\(needed)"
+    }
+    
+    let active = ProgressionManager.sharedManager.activeOperations
     let needed = ProgressionManager.sharedManager.currentStreakNeeded
-    helperStreakLabel.text = "BONUS STREAK: \(streak)/\(needed)"
+    // hide the label if it isn't in the active operations
+    // animate it growing if it reaches its max
+    if active.contains(.Add) {
+      adStreakLabel.hidden = false
+    } else {
+      adStreakLabel.hidden = true
+    }
+    if active.contains(.Subtract) {
+      subtractStreakLabel.hidden = false
+    } else {
+      subtractStreakLabel.hidden = true
+    }
+    if active.contains(.Multiply) {
+      multiplyStreakLabel.hidden = false
+    } else {
+      multiplyStreakLabel.hidden = true
+    }
+    if active.contains(.Divide) {
+      divideStreaklabel.hidden = false
+    } else {
+      divideStreaklabel.hidden = true
+    }
+    
+    let manager = ProgressionManager.sharedManager
+    var labelToAnimate: UILabel?
+    if manager.streakReached(.Add) {
+      labelToAnimate = adStreakLabel
+    } else if manager.streakReached(.Subtract) {
+      labelToAnimate = subtractStreakLabel
+    } else if manager.streakReached(.Multiply) {
+      labelToAnimate = multiplyStreakLabel
+    } else if manager.streakReached(.Divide) {
+      labelToAnimate = divideStreaklabel
+    }
+    if let label = labelToAnimate {
+      UIView.animateWithDuration(0.3, animations: { 
+        label.transform = CGAffineTransformMakeScale(1.6, 1.6)
+        }, completion: { (done) in
+          placeText(needed)
+          callback(true)
+      })
+    } else {
+      placeText(needed)
+      callback(true)
+    }
+    
   }
   
 
@@ -161,7 +228,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func setRound(number: Int) {
-    setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints)
+    setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints, callback: { (done) in
+    })
 //    roundLabel?.text = "LEVEL \(number)"
   }
   
@@ -321,9 +389,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool) {
-      helperButtonView.hidden = remove
-      helperButtonViewEnabled = !deactivate
-      helperStreakLabel.hidden = remove
+    helperButtonView.hidden = remove
+    helperButtonViewEnabled = !deactivate
+    bonusStreakLabel.hidden = remove
+    bonusStreakView.hidden = remove
   }
   
   func resetButtonPressed() {

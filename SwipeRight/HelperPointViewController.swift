@@ -59,7 +59,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   func activateHelperButtons() {
     let points = ProgressionManager.sharedManager.currentHelperPoints
     guard let layout = gameViewController?.currentLayout, _ = layout.winningCombination else { return }
-    delegate?.setHelperPoints(points)
+    delegate?.setHelperPoints(points, callback: { (done) in })
     // need to know the index of all of th
     showRemove = points >= 2 && ProgressionManager.sharedManager.multipleOperationsDisplayActive
     showHide = points >= 1 && ProgressionManager.sharedManager.numberOfExtraTiles > 0

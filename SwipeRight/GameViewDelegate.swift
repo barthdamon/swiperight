@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol GameViewDelegate {
-  func setStreakLabel()
+  func setStreakLabels(callback: (Bool) ->())
   func beginGame()
   func scoreChange(correct: Bool)
   func startGameplay()
@@ -24,7 +24,7 @@ protocol GameViewDelegate {
   func setRound(number: Int)
   func getWidth() -> CGFloat
   func toggleHelperMode(on: Bool)
-  func setHelperPoints(points: Int)
+  func setHelperPoints(points: Int, callback: (Bool) -> ())
   func togglePaused(paused: Bool)
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool)
   func setGameViewController(controller: GameViewController)

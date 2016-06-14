@@ -87,7 +87,10 @@ class ProgressionManager: NSObject {
       modifications.append(Modification(type: mod))
     }
     currentRound = 1
-    currentStreak = 0
+    currentAddStreak = 0
+    currentSubtractStreak = 0
+    currentMultiplyStreak = 0
+    currentDivideStreak = 0
     currentStreakNeeded = 3
     standardRoundDuration = 20
     standardBoostTime = 5
@@ -237,13 +240,58 @@ class ProgressionManager: NSObject {
   }
   
   var currentStreakNeeded = 3
-  var currentStreak = 0
+  var currentAddStreak = 0
+  var currentSubtractStreak = 0
+  var currentMultiplyStreak = 0
+  var currentDivideStreak = 0
+  
   func helperPointsForReachedStreak() {
 //    let additionalPoints = currentStreakNeeded * 2
     currentHelperPoints += 1
   }
-  func resetStreak() {
-    currentStreak = 0
+  
+  func streakReached(operation: Operation) -> Bool {
+    switch operation {
+    case .Add:
+     return currentAddStreak == currentStreakNeeded
+    case .Subtract:
+      return currentSubtractStreak == currentStreakNeeded
+    case .Multiply:
+      return currentMultiplyStreak == currentStreakNeeded
+    case .Divide:
+      return currentDivideStreak == currentStreakNeeded
+    }
+  }
+  
+  func increaseStreak(operation: Operation) -> Bool {
+    switch operation {
+    case .Add:
+      currentAddStreak += 1
+      if currentAddStreak == currentStreakNeeded { return true }
+    case .Subtract:
+      currentSubtractStreak += 1
+      if currentSubtractStreak == currentStreakNeeded { return true }
+    case .Multiply:
+      currentMultiplyStreak += 1
+      if currentMultiplyStreak == currentStreakNeeded { return true }
+    case .Divide:
+      currentDivideStreak += 1
+      if currentDivideStreak == currentStreakNeeded { return true }
+    }
+    return false
+  }
+  
+  func resetStreak(operation: Operation) {
+    switch operation {
+    case .Add:
+      currentAddStreak = 0
+    case .Subtract:
+      currentSubtractStreak = 0
+    case .Multiply:
+      currentMultiplyStreak = 0
+    case .Divide:
+      currentDivideStreak = 0
+    }
     currentStreakNeeded = 3
   }
   
