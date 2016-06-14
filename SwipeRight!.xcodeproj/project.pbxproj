@@ -240,11 +240,11 @@
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
 				02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */,
 				02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */,
+				02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */,
 				02DB52B21D04C8C10052D72A /* GameViewController.swift */,
 				02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */,
 				0247A35E1CFFD26D00FC52B9 /* Profile */,
 				02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */,
-				02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
