@@ -20,6 +20,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   @IBOutlet weak var adView: UIView!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var pausedView: UIView!
+  @IBOutlet weak var tutorialLabel: UILabel!
   
   @IBOutlet weak var gameContainerView: UIView!
   @IBOutlet weak var scoreLabel: UILabel!
@@ -353,6 +354,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     subtractView.displayOperationStatus([])
     addView.displayOperationStatus([])
     divideView.displayOperationStatus([])
+    adView.hidden = true
   }
   
   func resetClientOperations(currentOperations: Array<Operation>?) {
@@ -436,16 +438,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   var blinkingOperations: Bool = false
   var blinkingTimer: Bool = false
   var blinkingHelperPoints: Bool = false
-  
-  func dealWithEndOfCurrentRound() {
-    switch GameStatus.status.tutorialStage {
-    case 2:
-      GameStatus.status.tutorialStage += 1
-      gameView?.showTutorialText()
-    default:
-      break
-    }
-  }
   
   func blinkOperations() {
     if blinkingOperations {
@@ -539,6 +531,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
 //      self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImageGray
 //      self.divideView.image = ThemeHelper.defaultHelper.multiplyImageGray
     }
+  }
+  
+  func setTutorialLabelText(text: String) {
+    adView.hidden = false
+    tutorialLabel.text = text
   }
   
   @IBAction func importantButtonPressed(sender: UIButton) {

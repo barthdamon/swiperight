@@ -583,6 +583,16 @@ class GameViewController: UIViewController {
       highlight.highlightForTutorial(operation, callback: { (done) in
       })
     }
+    
+    if tilesToHighlight.count == 3 {
+      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
+    } else if tilesToHighlight.count == 2 {
+      delegate?.setTutorialLabelText("Swipe to the next tile!")
+    } else if tilesToHighlight.count == 1 {
+      delegate?.setTutorialLabelText("Keep swiping!")
+    }else if tilesToHighlight.count == 0 {
+      delegate?.setTutorialLabelText("Now lift your finger!")
+    }
   }
   
   func resetTilesToHighlight(userBlewIt: Bool) {

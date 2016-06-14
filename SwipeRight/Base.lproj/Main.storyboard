@@ -47,6 +47,7 @@
             <string>DIN-Medium</string>
             <string>DIN-Medium</string>
             <string>DIN-Medium</string>
+            <string>DIN-Medium</string>
         </mutableArray>
         <mutableArray key="DINR____.TTF">
             <string>DIN-Regular</string>
@@ -1016,10 +1017,36 @@ Cg
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-Ll-ZIO">
                                 <rect key="frame" x="14" y="183" width="386" height="38"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaa-Bx-WrQ">
+                                        <rect key="frame" x="8" y="8" width="370" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="3S9-ap-FRx"/>
+                                            <constraint firstAttribute="width" constant="107" id="OKz-2K-Ini"/>
+                                            <constraint firstAttribute="width" constant="107" id="Ypi-J5-mKj"/>
+                                            <constraint firstAttribute="width" constant="163" id="gxe-xX-Ze7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="OKz-2K-Ini"/>
+                                                <exclude reference="Ypi-J5-mKj"/>
+                                                <exclude reference="gxe-xX-Ze7"/>
+                                                <exclude reference="3S9-ap-FRx"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="386" id="F5f-eq-PFP"/>
                                     <constraint firstAttribute="height" constant="38" id="HLC-s5-Yo3"/>
+                                    <constraint firstItem="zaa-Bx-WrQ" firstAttribute="leading" secondItem="pT0-Ll-ZIO" secondAttribute="leading" constant="8" id="Jgy-Qr-kCv"/>
+                                    <constraint firstAttribute="trailing" secondItem="zaa-Bx-WrQ" secondAttribute="trailing" constant="8" id="Y8C-N7-7fB"/>
+                                    <constraint firstAttribute="bottom" secondItem="zaa-Bx-WrQ" secondAttribute="bottom" constant="9" id="atx-WI-k6f"/>
+                                    <constraint firstItem="zaa-Bx-WrQ" firstAttribute="top" secondItem="pT0-Ll-ZIO" secondAttribute="top" constant="8" id="dfG-XF-GOd"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0r-v1-Kww">
@@ -1468,6 +1495,7 @@ Cg
                         <outlet property="subtractStreakLabel" destination="X5F-jm-jZj" id="gUd-JM-HVe"/>
                         <outlet property="subtractView" destination="9t9-9D-bsM" id="dwy-xV-Eiq"/>
                         <outlet property="timeLabel" destination="cg5-m4-P2b" id="gXn-tP-1xp"/>
+                        <outlet property="tutorialLabel" destination="zaa-Bx-WrQ" id="9En-xr-QUy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
