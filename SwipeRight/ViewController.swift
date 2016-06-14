@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
-  @IBOutlet weak var adStreakLabel: UILabel!
+  @IBOutlet weak var addStreakLabel: UILabel!
   @IBOutlet weak var subtractStreakLabel: UILabel!
   @IBOutlet weak var multiplyStreakLabel: UILabel!
-  @IBOutlet weak var divideStreaklabel: UILabel!
+  @IBOutlet weak var divideStreakLabel: UILabel!
   
   @IBOutlet weak var bonusStreakLabel: UILabel!
   @IBOutlet weak var bonusStreakView: UIView!
@@ -133,10 +133,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
         self.helperButtonViewIndicator.text = "\(points)"
         UIView.animateWithDuration(0.3, animations: {
           self.helperButtonViewIndicator.transform = CGAffineTransformIdentity
-          self.adStreakLabel.transform = CGAffineTransformIdentity
+          self.addStreakLabel.transform = CGAffineTransformIdentity
           self.subtractStreakLabel.transform = CGAffineTransformIdentity
           self.multiplyStreakLabel.transform = CGAffineTransformIdentity
-          self.divideStreaklabel.transform = CGAffineTransformIdentity
+          self.divideStreakLabel.transform = CGAffineTransformIdentity
           }, completion: { (done) in
           callback(true)
         })
@@ -147,10 +147,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func setStreakLabels(callback: (Bool) -> ()) {
     
     func placeText(needed: Int) {
-      adStreakLabel.text = "\(ProgressionManager.sharedManager.currentAddStreak)/\(needed)"
+      addStreakLabel.text = "\(ProgressionManager.sharedManager.currentAddStreak)/\(needed)"
       subtractStreakLabel.text = "\(ProgressionManager.sharedManager.currentSubtractStreak)/\(needed)"
       multiplyStreakLabel.text = "\(ProgressionManager.sharedManager.currentMultiplyStreak)/\(needed)"
-      divideStreaklabel.text = "\(ProgressionManager.sharedManager.currentDivideStreak)/\(needed)"
+      divideStreakLabel.text = "\(ProgressionManager.sharedManager.currentDivideStreak)/\(needed)"
     }
     
     let active = ProgressionManager.sharedManager.activeOperations
@@ -158,9 +158,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     // hide the label if it isn't in the active operations
     // animate it growing if it reaches its max
     if active.contains(.Add) {
-      adStreakLabel.hidden = false
+      addStreakLabel.hidden = false
     } else {
-      adStreakLabel.hidden = true
+      addStreakLabel.hidden = true
     }
     if active.contains(.Subtract) {
       subtractStreakLabel.hidden = false
@@ -173,21 +173,21 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
       multiplyStreakLabel.hidden = true
     }
     if active.contains(.Divide) {
-      divideStreaklabel.hidden = false
+      divideStreakLabel.hidden = false
     } else {
-      divideStreaklabel.hidden = true
+      divideStreakLabel.hidden = true
     }
     
     let manager = ProgressionManager.sharedManager
     var labelToAnimate: UILabel?
     if manager.streakReached(.Add) {
-      labelToAnimate = adStreakLabel
+      labelToAnimate = addStreakLabel
     } else if manager.streakReached(.Subtract) {
       labelToAnimate = subtractStreakLabel
     } else if manager.streakReached(.Multiply) {
       labelToAnimate = multiplyStreakLabel
     } else if manager.streakReached(.Divide) {
-      labelToAnimate = divideStreaklabel
+      labelToAnimate = divideStreakLabel
     }
     if let label = labelToAnimate {
       UIView.animateWithDuration(0.3, animations: { 

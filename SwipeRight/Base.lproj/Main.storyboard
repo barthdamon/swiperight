@@ -1439,12 +1439,12 @@ Cg
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="adStreakLabel" destination="Fpb-rA-QhU" id="Qu7-Ve-gFP"/>
                         <outlet property="adView" destination="pT0-Ll-ZIO" id="lZf-yF-Ygn"/>
+                        <outlet property="addStreakLabel" destination="Fpb-rA-QhU" id="gy9-zp-nKJ"/>
                         <outlet property="addView" destination="TuB-LD-hXP" id="h92-kK-KFC"/>
                         <outlet property="bonusStreakLabel" destination="46N-EZ-nez" id="HkL-p1-9BE"/>
                         <outlet property="bonusStreakView" destination="I0J-83-QzH" id="JLm-Xc-lFN"/>
-                        <outlet property="divideStreaklabel" destination="hOw-IV-9FC" id="OiR-jp-I3m"/>
+                        <outlet property="divideStreakLabel" destination="hOw-IV-9FC" id="mtT-hM-gQD"/>
                         <outlet property="divideView" destination="IYG-cu-bai" id="1Tj-Ud-rQL"/>
                         <outlet property="gameContainerView" destination="Dvc-gp-5A3" id="7QI-8Y-eAw"/>
                         <outlet property="helperButtonLabel" destination="fDU-CH-OX4" id="5Hd-71-PPw"/>
