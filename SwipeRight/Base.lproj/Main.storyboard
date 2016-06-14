@@ -1239,8 +1239,8 @@ Cg
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="5Lr-Le-rxg"/>
                                         <exclude reference="HqS-Ni-Dps"/>
+                                        <exclude reference="5Lr-Le-rxg"/>
                                     </mask>
                                 </variation>
                             </view>

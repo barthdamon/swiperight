@@ -87,6 +87,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     resetGameState()
 //    gameView = GameView(container: gameContainerView, delegate: self)
     configureStartOptions()
+    adView?.userInteractionEnabled = false
   }
   
   override func viewWillDisappear(animated: Bool) {
