@@ -16,8 +16,8 @@ protocol GameViewDelegate {
   func startGameplay()
   func resetGameState()
   func setStartTime()
+  func resetGameUI()
   func configureStartOptions()
-  func toggleClientView()
   func resetClientOperations(currentOperations: Array<Operation>?)
   func addTime(seconds: Int)
   func gameOver(finished: Bool)
@@ -28,4 +28,10 @@ protocol GameViewDelegate {
   func togglePaused(paused: Bool)
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool)
   func setGameViewController(controller: GameViewController)
+  
+  
+  //MARK: Tutorial
+  func setBlinkingTimerOn(on: Bool)
+  func setBlinkingOperationsOn(on: Bool)
+  func setBlinkingHelperPointsOn(on: Bool)
 }

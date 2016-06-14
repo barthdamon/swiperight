@@ -63,6 +63,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   var helperButton: UIButton?
   
   //Game View
+  var gameViewNav: UINavigationController?
   var gameLaunchView: GameLaunchViewController?
   var gameView: GameViewController?
   var countdownOverlayView: TileView?
@@ -354,22 +355,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     divideView.displayOperationStatus([])
   }
   
-  func toggleClientView() {
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-      if let beginButton = self.beginButton, helperButton = self.helperButton {
-        if beginButton.hidden {
-          helperButton.hidden = true
-          beginButton.enabled = true
-          beginButton.hidden = false
-        } else {
-          beginButton.enabled = false
-          beginButton.hidden = true
-          helperButton.hidden = false
-        }
-      }
-    })
-  }
-  
   func resetClientOperations(currentOperations: Array<Operation>?) {
     
     func resetImages() {
@@ -410,6 +395,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func invalidateTimer() {
     self.timer?.invalidate()
     self.timer = nil
+    self.tutorialBlinkingTimer?.invalidate()
+    self.tutorialBlinkingTimer = nil
+    self.gameView?.highlightTileTimer?.invalidate()
+    self.gameView?.highlightTileTimer = nil
   }
   
   @IBAction func menuButtonPressed(sender: AnyObject) {
@@ -424,6 +413,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "gameViewEmbed" {
       if let topNav = segue.destinationViewController as? UINavigationController, vc = topNav.topViewController as? GameLaunchViewController {
+        self.gameViewNav = topNav
         vc.delegate = self
         self.gameLaunchView = vc
         vc.containerView = gameContainerView
@@ -439,6 +429,117 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   
   //MARK: Tutorial Mode
+  var tutorialBlinkingTimer: NSTimer?
+  let tutorialTimerTime: Double = 1.5
+  let tutorialBlinkTime: Double = 0.75
+  
+  var blinkingOperations: Bool = false
+  var blinkingTimer: Bool = false
+  var blinkingHelperPoints: Bool = false
+  
+  func dealWithEndOfCurrentRound() {
+    switch GameStatus.status.tutorialStage {
+    case 2:
+      GameStatus.status.tutorialStage += 1
+      gameView?.showTutorialText()
+    default:
+      break
+    }
+  }
+  
+  func blinkOperations() {
+    if blinkingOperations {
+      self.addView.image = ThemeHelper.defaultHelper.addImage
+      self.subtractView.image = ThemeHelper.defaultHelper.subtractImage
+      self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImage
+      self.divideView.image = ThemeHelper.defaultHelper.divideImage
+      UIView.animateWithDuration(tutorialBlinkTime, animations: {
+        self.addView.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.subtractView.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.multiplyView.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.divideView.transform = CGAffineTransformMakeScale(1.3, 1.3)
+      }) { (done) in
+        UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
+          self.addView.transform = CGAffineTransformIdentity
+          self.subtractView.transform = CGAffineTransformIdentity
+          self.multiplyView.transform = CGAffineTransformIdentity
+          self.divideView.transform = CGAffineTransformIdentity
+        })
+      }
+    }
+  }
+  
+  func blinkTimer() {
+    if blinkingTimer {
+      UIView.animateWithDuration(tutorialBlinkTime, animations: {
+        self.timeLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+      }) { (done) in
+        UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
+          self.timeLabel.transform = CGAffineTransformIdentity
+        })
+      }
+    }
+  }
+  
+  func blinkHelperPoints() {
+    if blinkingHelperPoints {
+      UIView.animateWithDuration(tutorialBlinkTime, animations: {
+        self.addStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.subtractStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.multiplyStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.divideStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.helperButtonView.transform = CGAffineTransformMakeScale(1.3, 1.3)
+      }) { (done) in
+        UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
+          self.addStreakLabel.transform = CGAffineTransformIdentity
+          self.subtractStreakLabel.transform = CGAffineTransformIdentity
+          self.multiplyStreakLabel.transform = CGAffineTransformIdentity
+          self.divideStreakLabel.transform = CGAffineTransformIdentity
+          self.helperButtonView.transform = CGAffineTransformIdentity
+        })
+      }
+    }
+  }
+  
+  func setBlinkingTimerOn(on: Bool) {
+    blinkingTimer = on
+    self.tutorialBlinkingTimer?.invalidate()
+    self.tutorialBlinkingTimer = nil
+    if on {
+      blinkTimer()
+      self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkTimer), userInfo: nil, repeats: true)
+    }
+  }
+  
+  func setBlinkingOperationsOn(on: Bool) {
+    blinkingOperations = on
+    self.tutorialBlinkingTimer?.invalidate()
+    self.tutorialBlinkingTimer = nil
+    if on {
+      blinkOperations()
+      self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkOperations), userInfo: nil, repeats: true)
+    } else {
+      self.addView.image = ThemeHelper.defaultHelper.multiplyImageGray
+      self.subtractView.image = ThemeHelper.defaultHelper.subtractImageGray
+      self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImageGray
+      self.divideView.image = ThemeHelper.defaultHelper.divideImageGray
+    }
+  }
+  
+  func setBlinkingHelperPointsOn(on: Bool) {
+    blinkingHelperPoints = on
+    self.tutorialBlinkingTimer?.invalidate()
+    self.tutorialBlinkingTimer = nil
+    if on {
+      blinkHelperPoints()
+      self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkHelperPoints), userInfo: nil, repeats: true)
+    } else {
+//      self.addView.image = ThemeHelper.defaultHelper.multiplyImageGray
+//      self.subtractView.image = ThemeHelper.defaultHelper.multiplyImageGray
+//      self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImageGray
+//      self.divideView.image = ThemeHelper.defaultHelper.multiplyImageGray
+    }
+  }
   
   @IBAction func importantButtonPressed(sender: UIButton) {
     let tableViewController = UITableViewController()

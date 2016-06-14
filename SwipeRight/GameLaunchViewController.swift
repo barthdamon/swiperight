@@ -8,6 +8,7 @@
 
 import UIKit
 
+//ALSO MANAGES THE TUTORIAL (Dont have room on any of the others really...)
 class GameLaunchViewController: UIViewController, ButtonDelegate {
   
   @IBOutlet weak var gameOverLabel: UILabel!
@@ -74,6 +75,14 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
         vc.containerView = containerView
       }
     }
+  }
+  
+  
+  
+  //MARK: Tutorial
+  
+  func beginTutorial() {
+    
   }
   
 }

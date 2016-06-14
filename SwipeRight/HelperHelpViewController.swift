@@ -33,6 +33,9 @@ class HelperHelpViewController: UIViewController {
     self.continueButton.hidden = !isTutorial
     self.helperExplanationView.hidden = isTutorial
     self.backButton.hidden = isTutorial
+    if isTutorial {
+      setupForTutorialStage()
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -42,6 +45,59 @@ class HelperHelpViewController: UIViewController {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(true)
+  }
+  
+  func setupForTutorialStage() {
+    switch GameStatus.status.tutorialStage {
+    case 0:
+      self.tutorialTextView.text = "Find the three tiles adjacent or diagonal to each other that complete a mathematical equation."
+    case 1:
+      self.tutorialTextView.text = "Swipe the tiles from the start of the equation to the end to score a point."
+    case 2:
+      // (really stage 3)
+      delegate?.setBlinkingTimerOn(true)
+      self.tutorialTextView.text = "Every equation you swipe right adds five seconds to the countdown timer."
+      GameStatus.status.tutorialStage += 1
+    case 4:
+      self.tutorialTextView.text = "There is only one active equation. Active operations indicate the operation of the equation."
+    case 5:
+      self.tutorialTextView.text = "At higher levels two operations become active to trick you, but there is still only one equation. Give it a try:"
+    case 6:
+      // (really stage 7)
+      delegate?.setBlinkingHelperPointsOn(true)
+      self.tutorialTextView.text = "For every three equations of an operation you swipe right in a row you get a bonus point."
+      GameStatus.status.tutorialStage += 1
+    default:
+      break
+    }
+  }
+  
+  func performActionsForTutorialStage() {
+    switch GameStatus.status.tutorialStage {
+    case 0:
+      GameStatus.status.tutorialStage += 1
+      setupForTutorialStage()
+    case 1:
+      GameStatus.status.tutorialStage += 1
+      gameViewController?.setGameViewForTutorialStage()
+    case 3:
+      GameStatus.status.tutorialStage += 1
+      setupForTutorialStage()
+      delegate?.setBlinkingTimerOn(false)
+      delegate?.setBlinkingOperationsOn(true)
+    case 4:
+      GameStatus.status.tutorialStage += 1
+      delegate?.setBlinkingOperationsOn(false)
+      setupForTutorialStage()
+    case 5:
+      GameStatus.status.tutorialStage += 1
+      gameViewController?.setGameViewForTutorialStage()
+    case 7:
+      //show gameboard to do helper points
+      break
+    default:
+      break
+    }
   }
   
   
@@ -59,6 +115,7 @@ class HelperHelpViewController: UIViewController {
   
   @IBAction func continueButtonPressed(sender: AnyObject) {
     // show the next onboarding info
-    self.navigationController?.popViewControllerAnimated(true)
+    performActionsForTutorialStage()
+//    self.navigationController?.popViewControllerAnimated(true)
   }
 }

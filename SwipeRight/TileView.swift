@@ -59,8 +59,21 @@ class TileView: UIView {
     }
   }
   
-  func makeBig() {
-//            self.numberLabel?.transform = CGAffineTransformMakeScale(1.4,1.4)
+  func highlightForTutorial(operation: Operation, callback: (Bool) -> ()) {
+    UIView.animateWithDuration(0.3, animations: {
+      self.numberLabel?.transform = CGAffineTransformMakeScale(1.25,1.25)
+      self.drawShadow(true, operation: operation)
+    }) { (complete) in
+      UIView.animateWithDuration(0.3, animations: {
+        self.numberLabel?.transform = CGAffineTransformIdentity
+        self.backgroundColor = UIColor.clearColor()
+        self.innerView.backgroundColor = UIColor.clearColor()
+        self.innerShadow?.shadowOpacity = 0
+        self.innerShadow?.shadowRadius = 0
+      }) { (complete) in
+        callback(true)
+      }
+    }
   }
   
   func drawShadow(correct: Bool, operation: Operation) {

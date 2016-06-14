@@ -83,7 +83,7 @@ class GameViewController: UIViewController {
     self.view.userInteractionEnabled = false
     configureGameViewComponents()
     if GameStatus.status.gameMode == .Tutorial {
-      self.performSegueWithIdentifier("showTutorialSegue", sender: self)
+      showTutorialText()
     } else {
       animateBeginGame()
     }
@@ -140,6 +140,10 @@ class GameViewController: UIViewController {
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     guard let touch = touches.first else { return }
     startLoc = touch.locationInView(self.view)
+    endLoc = touch.locationInView(self.view)
+    if inTutorialHighlightMode {
+      tutorialResolveHighlightMovement()
+    }
     print("Touches began")
   }
   
@@ -148,6 +152,10 @@ class GameViewController: UIViewController {
     let end = touch.locationInView(self.view)
     if (end.x > 0 && end.y > 0) && (end.x < self.view.frame.width && end.y < self.view.frame.height) {
       endLoc = touch.locationInView(self.view)
+      if inTutorialHighlightMode {
+        // resolve user interaction?
+        tutorialResolveHighlightMovement()
+      }
     }
   }
   
@@ -156,6 +164,10 @@ class GameViewController: UIViewController {
     let end = touch.locationInView(self.view)
     if (end.x > 0 && end.y > 0) && (end.x < self.view.frame.width && end.y < self.view.frame.height) {
       endLoc = end
+    }
+    if inTutorialHighlightMode {
+      // resolve user interaction?
+      resetTilesToHighlight(true)
     }
     resolveUserInteraction()
     print("Touches ended")
@@ -256,17 +268,18 @@ class GameViewController: UIViewController {
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
           self.view.userInteractionEnabled = false
-          startTile.makeBig()
-          middleTile.makeBig()
-          endTile.makeBig()
           startTile.drawCorrect(winningOp, callback: { (success) in
             middleTile.drawCorrect(winningOp, callback: { (success) in
               endTile.drawCorrect(winningOp, callback: { (success) in
-                self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
-                self.helperStreakActivity(true)
-                waitASec(0.05, callback: { (done) in
-                  self.endResponse()
-                })
+                if GameStatus.status.gameMode == .Standard {
+                  self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
+                  self.helperStreakActivity(true)
+                  waitASec(0.05, callback: { (done) in
+                    self.endResponse()
+                  })
+                } else {
+                  self.tutorialEndResponse()
+                }
               })
             })
           })
@@ -276,10 +289,14 @@ class GameViewController: UIViewController {
           endTile.drawIncorrect(winningOp)
           middleTile.drawIncorrect(winningOp)
           self.view.userInteractionEnabled = false
-          self.helperStreakActivity(false)
-          waitASec(0.05, callback: { (done) in
-            self.endResponse()
-          })
+          if GameStatus.status.gameMode == .Standard {
+            self.helperStreakActivity(false)
+            waitASec(0.05, callback: { (done) in
+              self.endResponse()
+            })
+          } else {
+            self.tutorialEndResponse()
+          }
         }
       }
     }
@@ -302,10 +319,22 @@ class GameViewController: UIViewController {
   }
   
   func resetTiles() {
-    if GameStatus.status.gameActive {
-      self.currentLayout = GridNumberLayout()
-      self.gradientLayer?.removeFromSuperlayer()
-      animateTileReset()
+    if GameStatus.status.gameMode == .Standard {
+      if GameStatus.status.gameActive {
+        self.currentLayout = GridNumberLayout()
+        self.gradientLayer?.removeFromSuperlayer()
+        animateTileReset()
+      }
+    } else {
+      switch GameStatus.status.tutorialStage {
+      case 2:
+        resetTilesToHighlight(false)
+      case 6:
+        // set two operations active with two potential combinations
+        break
+      default:
+        break
+      }
     }
   }
   
@@ -352,7 +381,10 @@ class GameViewController: UIViewController {
 //        self.borderView.alpha = 1
         }, completion: { (complete) -> Void in
           self.view.userInteractionEnabled = true
-          self.delegate?.beginGame()
+          if GameStatus.status.gameMode == .Standard {
+            self.delegate?.beginGame()
+          } else {
+          }
       })
     }
   }
@@ -387,7 +419,6 @@ class GameViewController: UIViewController {
           GameStatus.status.gameActive = true
           self.resetTiles()
           self.delegate?.startGameplay()
-          self.delegate?.toggleClientView()
         }
       })
     }
@@ -492,6 +523,114 @@ class GameViewController: UIViewController {
       if let vc = segue.destinationViewController as? HelperHelpViewController {
         vc.delegate = delegate
         vc.gameViewController = self
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // MARK: Tutorial
+  
+  var highlightTileTimer: NSTimer?
+  var tilesToHighlight: Array<TileView> = []
+  var inTutorialHighlightMode: Bool = false
+  
+  func showTutorialText() {
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.performSegueWithIdentifier("showTutorialSegue", sender: self)
+    })
+  }
+  
+  func highlightNextTile() {
+    if tilesToHighlight.count > 0 {
+      tilesToHighlight.removeFirst()
+      // add it to the highlighted tiles, remove it from the tiles to highlight
+    }
+    // when last one reaced showTutorial text
+  }
+  
+  func tutorialEndResponse() {
+    waitASec(0.15) { (done) in
+      self.inTutorialHighlightMode = false
+      self.highlightTileTimer?.invalidate()
+      self.highlightTileTimer = nil
+      self.delegate?.resetGameUI()
+      self.showTutorialText()
+    }
+  }
+  
+  func highlightTiles() {
+    guard let operation = currentLayout?.winningCombination?.operation else { return }
+    if let highlight = tilesToHighlight.first {
+      highlight.highlightForTutorial(operation, callback: { (done) in
+      })
+    }
+  }
+  
+  func resetTilesToHighlight(userBlewIt: Bool) {
+    highlightTileTimer?.invalidate()
+    highlightTileTimer = nil
+    tilesToHighlight.removeAll()
+    if !userBlewIt {
+      self.currentLayout = GridNumberLayout()
+      self.gradientLayer?.removeFromSuperlayer()
+      animateTileReset()
+    }
+    // set first one to glowing, and respond only when they move to the correct one
+    guard let combo = currentLayout?.winningCombination else { return }
+    tilesToHighlight.append(tileViews[combo.xNumberIndex])
+    tilesToHighlight.append(tileViews[combo.bNumberIndex])
+    tilesToHighlight.append(tileViews[combo.sumNumberIndex])
+    inTutorialHighlightMode = true
+    GameStatus.status.gameActive = true
+    highlightTileTimer = NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector: #selector(GameViewController.highlightTiles), userInfo: nil, repeats: true)
+  }
+  
+  
+  func setGameViewForTutorialStage() {
+    self.navigationController?.popViewControllerAnimated(true)
+    switch GameStatus.status.tutorialStage {
+    case 2:
+      self.resetTiles()
+    case 6:
+      // make two operations active with range still minimal
+      self.resetTiles()
+    default:
+      break
+    }
+  }
+  
+  func tutorialResolveHighlightMovement() {
+    guard let endLoc = endLoc else { return }
+    let end = (x: Int(endLoc.x / tileWidth), y: Int(endLoc.y / tileWidth))
+    var currentTile: TileView?
+    for i in 0 ..< Grid.tileCoordinates.count {
+      let loc = Grid.tileCoordinates[i]
+      if loc.x == end.x && loc.y == end.y {
+        currentTile = tileViews[i]
+      }
+    }
+    if let tile = currentTile {
+      if tilesToHighlight.contains(tile) {
+        highlightNextTile()
       }
     }
   }

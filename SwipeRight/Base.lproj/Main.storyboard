@@ -2180,7 +2180,7 @@ Cg
                         <outlet property="view21" destination="v4y-4S-9qd" id="dSD-Dh-Ypa"/>
                         <outlet property="view22" destination="gX8-ua-aeW" id="5ph-CP-3Iu"/>
                         <segue destination="VYx-Qw-j9I" kind="show" identifier="showHelperPointController" id="bzc-Az-wA4"/>
-                        <segue destination="7Uz-ID-kqj" kind="show" identifier="showTutorialSegue" id="jwf-wt-BMJ"/>
+                        <segue destination="7Uz-ID-kqj" kind="show" identifier="showTutorialSegue" animates="NO" id="jwf-wt-BMJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yf8-1o-fiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2657,7 +2657,7 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="386" height="386"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
                                 <rect key="frame" x="20" y="0.0" width="346" height="386"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
@@ -2728,7 +2728,7 @@ Cg
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9d-Rm-LM6">
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9d-Rm-LM6">
                                 <rect key="frame" x="20" y="0.0" width="346" height="386"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Hide an Incorrect Tile ">

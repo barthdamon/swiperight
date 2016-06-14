@@ -33,7 +33,7 @@ class GameStatus: NSObject {
  2 - GAMEBOARD: Show glowing tiles from start to end when they press start end glows and if they miss start glows again. Send back to text after correct.
  3 - TEXT/ACTION: - blinking timer - "Every equation you swipe right adds five seconds to the countdown timer."
  4 - TEXT/ACTION: - blinking operations - "There is only one active equation. Active operations indicate the operation of the equation."
- 5 - TEXT - "At higher levels two operations become active to trick you, but there is still only one solution."
+ 5 - TEXT - "At higher levels two operations become active to trick you, but there is still only one equation."
  6 - GAMEBOARD - Two operations active with only 10 highest range. Let them swipe then send back to text
  7 - TEXT/ACTION - Flashing bonus point texts - For every three equations of an operation you swipe right in a row you get a bonus point.
  8 - GAMEBOARD/ACTION - Flashing helper button, gameView inactive - They have 1 helper point and there is almost all tiles with range up to 30
