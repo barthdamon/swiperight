@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
 //  @IBOutlet weak var borderView: UIView!
 //  @IBOutlet weak var borderTwo: UIView!
 //  @IBOutlet weak var borderOne: UIView!
+  @IBOutlet weak var tutorialLaunchTextLabel: UILabel!
   
   @IBOutlet weak var view00: TileView!
   @IBOutlet weak var view10: TileView!
@@ -66,6 +67,7 @@ class GameViewController: UIViewController {
       intermissionTimeLabel?.text = "Next Round Starts: \(intermissionTime)"
     }
   }
+  var tutorialText: String?
   
   var currentLayout: GridNumberLayout? {
     didSet {
@@ -285,6 +287,8 @@ class GameViewController: UIViewController {
           })
         } else {
           delegate?.scoreChange(false)
+          self.view.backgroundColor = winningOp.color
+          self.gradientLayer?.removeFromSuperlayer()
           startTile.drawIncorrect(winningOp)
           endTile.drawIncorrect(winningOp)
           middleTile.drawIncorrect(winningOp)
@@ -444,9 +448,15 @@ class GameViewController: UIViewController {
   }
   
   func animateBeginGame() {
+    if let text = tutorialText {
+      self.tutorialLaunchTextLabel.text = text
+      self.tutorialLaunchTextLabel.hidden = false
+    }
     tileViews.forEach { (view) in
       view.animateCountdown({ (done) in
         if done {
+          self.tutorialLaunchTextLabel.hidden = true
+          self.tutorialText = nil
           self.delegate?.setStartTime()
           GameStatus.status.gameActive = true
           self.resetTiles()
@@ -547,6 +557,7 @@ class GameViewController: UIViewController {
     if segue.identifier == "showHelperPointController" {
       if let vc = segue.destinationViewController as? HelperPointViewController {
         delegate?.togglePaused(true)
+        delegate?.hideBonusButtonView()
         vc.delegate = delegate
         helperPointController = vc
         vc.gameViewController = self
@@ -557,6 +568,7 @@ class GameViewController: UIViewController {
       if let vc = segue.destinationViewController as? HelperHelpViewController {
         vc.delegate = delegate
         vc.gameViewController = self
+        vc.fromPointController = false
       }
     }
   }
@@ -587,6 +599,7 @@ class GameViewController: UIViewController {
   var tilesToHighlight: Array<TileView> = []
   var inTutorialHighlightMode: Bool = false
   var tutorialTimeForHelper: Bool = false
+  var backFromTutorialHelper: Bool = false
   
   func showTutorialText() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -616,19 +629,28 @@ class GameViewController: UIViewController {
   
   func tutorialEndResponse(correct: Bool) {
     if GameStatus.status.tutorialStage == 8 && !tutorialTimeForHelper {
-      self.currentLayout = GridNumberLayout()
-      self.gradientLayer?.removeFromSuperlayer()
-      if correct {
-        if helperStreakActivity(true) {
+      if backFromTutorialHelper {
+        waitASec(0.3) { (done) in
           self.delegate?.setTutorialLabelText(nil)
-          tutorialTimeForHelper = true
-          delegate?.deactivateHelperPointButton(false, deactivate: false)
-          delegate?.setBlinkingHelperPointsOn(true, withStreaks: false, hideStreaks: false)
+          self.delegate?.resetGameUI()
+          self.delegate?.deactivateHelperPointButton(true, deactivate: true)
+          self.showTutorialText()
         }
       } else {
-        helperStreakActivity(false)
+        self.currentLayout = GridNumberLayout()
+        self.gradientLayer?.removeFromSuperlayer()
+        if correct {
+          if helperStreakActivity(true) {
+            self.delegate?.setTutorialLabelText(nil)
+            tutorialTimeForHelper = true
+            delegate?.deactivateHelperPointButton(false, deactivate: false)
+            delegate?.setBlinkingHelperPointsOn(true, withStreaks: false, hideStreaks: false)
+          }
+        } else {
+          helperStreakActivity(false)
+        }
+        animateTileReset()
       }
-      animateTileReset()
     } else {
       var text = correct ? "Nice!" : "You'll get it next time!"
       if GameStatus.status.tutorialStage == 6 && correct { text = "You're getting the hang of this!" }

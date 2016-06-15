@@ -22,6 +22,8 @@
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
+            <string>DIN-Bold</string>
+            <string>DIN-Bold</string>
         </mutableArray>
         <mutableArray key="DINL____.TTF">
             <string>DIN-Light</string>
@@ -30,6 +32,7 @@
             <string>DIN-Light</string>
         </mutableArray>
         <mutableArray key="DINM____.TTF">
+            <string>DIN-Medium</string>
             <string>DIN-Medium</string>
             <string>DIN-Medium</string>
             <string>DIN-Medium</string>
@@ -2172,12 +2175,24 @@ Cg
                                     </mask>
                                 </variation>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Got This!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rf-yB-PGB">
+                                <rect key="frame" x="20" y="20" width="346" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="hL8-7H-uRc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eEa-Yo-P69" firstAttribute="centerX" secondItem="I9N-kr-DZV" secondAttribute="centerX" id="9jg-Fz-xYh"/>
+                            <constraint firstItem="0Rf-yB-PGB" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" id="CeF-ph-g5D"/>
                             <constraint firstItem="eEa-Yo-P69" firstAttribute="width" secondItem="I9N-kr-DZV" secondAttribute="width" id="Fmb-Mf-JGv"/>
                             <constraint firstItem="eEa-Yo-P69" firstAttribute="centerY" secondItem="I9N-kr-DZV" secondAttribute="centerY" id="Kmp-rB-Ox9"/>
+                            <constraint firstItem="0Rf-yB-PGB" firstAttribute="trailing" secondItem="I9N-kr-DZV" secondAttribute="trailingMargin" id="LJU-pn-Mby"/>
+                            <constraint firstItem="0Rf-yB-PGB" firstAttribute="top" secondItem="wQG-oj-V51" secondAttribute="bottom" constant="20" id="dkf-VZ-cHf"/>
                             <constraint firstItem="eEa-Yo-P69" firstAttribute="height" secondItem="I9N-kr-DZV" secondAttribute="height" id="hKV-6s-nhN"/>
                         </constraints>
                     </view>
@@ -2200,6 +2215,7 @@ Cg
                         <outlet property="subview20" destination="W30-Ai-BEl" id="IEN-jh-M9b"/>
                         <outlet property="subview21" destination="lE8-cj-PAz" id="tIj-VL-4CT"/>
                         <outlet property="subview22" destination="izg-ox-JiN" id="YQZ-Xx-Gic"/>
+                        <outlet property="tutorialLaunchTextLabel" destination="0Rf-yB-PGB" id="YhX-SB-5v2"/>
                         <outlet property="view00" destination="Iaj-Gm-Tzo" id="wm3-WO-0kF"/>
                         <outlet property="view01" destination="3hc-an-gFn" id="vJ7-bs-X7a"/>
                         <outlet property="view02" destination="K72-Lf-kyU" id="e6c-aM-n3a"/>
@@ -2659,6 +2675,7 @@ Cg
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="nAE-0t-viG" id="mFr-ww-sVj"/>
                         <outlet property="hideHelperTextLabel" destination="6H0-XF-NxD" id="doi-cL-PJ0"/>
                         <outlet property="hideTileHelperIndicator" destination="0Xp-YT-ZnP" id="8Ef-oJ-mpf"/>
                         <outlet property="hideTileHelperView" destination="DTu-aK-nMF" id="HyP-mz-amj"/>
@@ -2706,6 +2723,32 @@ Remove an Operation (2 points)
                                 <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECD-O3-0MW">
+                                <rect key="frame" x="247" y="361" width="30" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="9eR-QH-ldm"/>
+                                    <constraint firstAttribute="height" constant="27" id="D1u-x1-Okn"/>
+                                    <constraint firstAttribute="width" constant="30" id="Gev-bf-4wP"/>
+                                    <constraint firstAttribute="height" constant="17" id="XNy-Hv-ILR"/>
+                                    <constraint firstAttribute="height" constant="17" id="fV9-Nj-SiH"/>
+                                    <constraint firstAttribute="width" constant="77" id="xiF-2O-4jL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="12"/>
+                                <state key="normal" title="NO">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9eR-QH-ldm"/>
+                                        <exclude reference="D1u-x1-Okn"/>
+                                        <exclude reference="fV9-Nj-SiH"/>
+                                        <exclude reference="xiF-2O-4jL"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="noButtonPressed:" destination="7Uz-ID-kqj" eventType="touchUpInside" id="E53-nt-ENC"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzs-no-Gg0">
                                 <rect key="frame" x="147" y="361" width="92" height="17"/>
                                 <constraints>
@@ -2746,11 +2789,37 @@ Remove an Operation (2 points)
                                     <action selector="backToHelpersButtonPressed:" destination="7Uz-ID-kqj" eventType="touchUpInside" id="vVd-VN-NGR"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beo-3h-P3h">
+                                <rect key="frame" x="109" y="360" width="30" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="MQe-A3-U7Y"/>
+                                    <constraint firstAttribute="height" constant="18" id="bVn-H5-ijF"/>
+                                    <constraint firstAttribute="width" constant="77" id="fBd-qO-TGq"/>
+                                    <constraint firstAttribute="width" constant="92" id="jLr-5Q-5kb"/>
+                                    <constraint firstAttribute="height" constant="17" id="wW0-72-8bo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="12"/>
+                                <state key="normal" title="YES">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="fBd-qO-TGq"/>
+                                        <exclude reference="jLr-5Q-5kb"/>
+                                        <exclude reference="wW0-72-8bo"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="yesButtonPressed:" destination="7Uz-ID-kqj" eventType="touchUpInside" id="e8a-VH-VuT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wat-z4-b4V" firstAttribute="leading" secondItem="beo-3h-P3h" secondAttribute="trailing" constant="8" id="2lg-xS-rha"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wat-z4-b4V" secondAttribute="trailing" id="5rp-9C-SyY"/>
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="top" secondItem="wat-z4-b4V" secondAttribute="bottom" constant="3" id="7U6-JN-f4Y"/>
+                            <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="ECD-O3-0MW" secondAttribute="bottom" constant="8" id="8lU-6i-1HG"/>
                             <constraint firstItem="Bzs-no-Gg0" firstAttribute="centerX" secondItem="fKX-Tf-EN9" secondAttribute="centerX" id="AaO-0f-moT"/>
                             <constraint firstItem="wat-z4-b4V" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="C3b-bh-3S1"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="wat-z4-b4V" secondAttribute="bottom" constant="8" id="Mk1-8U-Jfw"/>
@@ -2759,8 +2828,10 @@ Remove an Operation (2 points)
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="Ww7-Ft-0U8"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="UfL-oY-K1A" secondAttribute="bottom" id="acH-HG-9sX"/>
                             <constraint firstItem="v9d-Rm-LM6" firstAttribute="trailing" secondItem="fKX-Tf-EN9" secondAttribute="trailingMargin" id="cVj-gO-VQa"/>
+                            <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="beo-3h-P3h" secondAttribute="bottom" constant="8" id="hXw-Gt-wm9"/>
                             <constraint firstItem="wat-z4-b4V" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" constant="-20" id="iZn-aZ-A7L"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="v9d-Rm-LM6" secondAttribute="bottom" id="nq6-el-gdw"/>
+                            <constraint firstItem="ECD-O3-0MW" firstAttribute="leading" secondItem="wat-z4-b4V" secondAttribute="trailing" constant="8" id="sH8-tt-fwn"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="Bzs-no-Gg0" secondAttribute="bottom" constant="8" id="smU-SQ-njZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UfL-oY-K1A" secondAttribute="trailing" id="wSx-6O-Fpk"/>
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" id="xqS-sx-xdH"/>
@@ -2779,7 +2850,9 @@ Remove an Operation (2 points)
                         <outlet property="backButton" destination="wat-z4-b4V" id="Zyx-MQ-5OP"/>
                         <outlet property="continueButton" destination="Bzs-no-Gg0" id="kAw-5e-MY4"/>
                         <outlet property="helperExplanationView" destination="UfL-oY-K1A" id="gvx-I2-vug"/>
+                        <outlet property="noButton" destination="ECD-O3-0MW" id="4Sn-b3-YA0"/>
                         <outlet property="tutorialTextView" destination="v9d-Rm-LM6" id="7Ex-nv-383"/>
+                        <outlet property="yesButton" destination="beo-3h-P3h" id="CLJ-yt-o7l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqQ-ex-qxM" userLabel="First Responder" sceneMemberID="firstResponder"/>

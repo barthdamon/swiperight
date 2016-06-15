@@ -12,6 +12,8 @@ class HelperHelpViewController: UIViewController {
   
   var helperController: HelperPointViewController?
   
+  @IBOutlet weak var noButton: UIButton!
+  @IBOutlet weak var yesButton: UIButton!
   @IBOutlet weak var helperExplanationView: UITextView!
   @IBOutlet weak var tutorialTextView: UITextView!
   @IBOutlet weak var backButton: UIButton!
@@ -19,6 +21,7 @@ class HelperHelpViewController: UIViewController {
   
   var delegate: GameViewDelegate?
   var gameViewController: GameViewController?
+  var fromPointController: Bool = true
   
   
   override func viewDidLoad() {
@@ -28,7 +31,7 @@ class HelperHelpViewController: UIViewController {
   }
   
   func setForMode() {
-    let isTutorial = GameStatus.status.gameMode == .Tutorial
+    let isTutorial = GameStatus.status.gameMode == .Tutorial && !fromPointController
     self.tutorialTextView.hidden = !isTutorial
     self.continueButton.hidden = !isTutorial
     self.helperExplanationView.hidden = isTutorial
@@ -67,6 +70,12 @@ class HelperHelpViewController: UIViewController {
       delegate?.setBlinkingHelperPointsOn(true, withStreaks: true, hideStreaks: false)
       self.tutorialTextView.text = "For every three equations of an operation you swipe right in a row you get a bonus point."
       GameStatus.status.tutorialStage += 1
+    case 8:
+      // (really the final stage)
+      self.tutorialTextView.text = "Ready for the real thing?"
+      self.continueButton.hidden = true
+      self.yesButton.hidden = false
+      self.noButton.hidden = false
     default:
       break
     }
@@ -115,6 +124,14 @@ class HelperHelpViewController: UIViewController {
   
   @IBAction func backToHelpersButtonPressed(sender: AnyObject) {
     self.navigationController?.popViewControllerAnimated(true)
+  }
+  
+  @IBAction func yesButtonPressed(sender: AnyObject) {
+    delegate?.launchForEndTutorial("Wohoo! you got this!")
+  }
+  
+  @IBAction func noButtonPressed(sender: AnyObject) {
+    delegate?.launchForEndTutorial("Don't worry, you got this!")
   }
   
   @IBAction func continueButtonPressed(sender: AnyObject) {

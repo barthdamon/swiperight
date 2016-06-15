@@ -22,6 +22,7 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
   var delegate: GameViewDelegate?
   
   var shouldPlayImmediately: Bool = false
+  var tutorialText: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,10 +38,14 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
   
   override func viewDidLayoutSubviews() {
     if shouldPlayImmediately {
-      dispatch_async(dispatch_get_main_queue()) {
-        self.performSegueWithIdentifier("showGameController", sender: self)
-      }
+      startGameView()
       shouldPlayImmediately = false
+    }
+  }
+  
+  func startGameView() {
+    dispatch_async(dispatch_get_main_queue()) {
+      self.performSegueWithIdentifier("showGameController", sender: self)
     }
   }
   
@@ -73,16 +78,10 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
         self.gameViewController = vc
         vc.delegate = delegate
         vc.containerView = containerView
+        vc.tutorialText = tutorialText
+        self.tutorialText = nil
       }
     }
   }
-  
-  
-  
-  //MARK: Tutorial
-  
-  func beginTutorial() {
-    
-  }
-  
+
 }

@@ -31,6 +31,7 @@ protocol GameViewDelegate {
   
   
   //MARK: Tutorial
+  func launchForEndTutorial(text: String)
   func setBlinkingTimerOn(on: Bool)
   func setBlinkingOperationsOn(on: Bool)
   func setBlinkingHelperPointsOn(on: Bool, withStreaks: Bool, hideStreaks: Bool)

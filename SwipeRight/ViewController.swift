@@ -273,7 +273,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
       self.timeLabel.alpha = 0.2
       invalidateTimer()
     } else {
-      self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
+      if GameStatus.status.gameMode == .Standard {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
+      } else {
+        invalidateTimer()
+      }
       self.timeLabel.alpha = 1
       self.pausedView.hidden = true
     }
@@ -401,8 +405,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     self.tutorialBlinkingTimer = nil
     self.gameView?.highlightTileTimer?.invalidate()
     self.gameView?.highlightTileTimer = nil
-    self.gameView?.helperPointController?.hideButtonFlashTimer?.invalidate()
-    self.gameView?.helperPointController?.hideButtonFlashTimer = nil
+//    self.gameView?.helperPointController?.hideButtonFlashTimer?.invalidate()
+//    self.gameView?.helperPointController?.hideButtonFlashTimer = nil
   }
   
   @IBAction func menuButtonPressed(sender: AnyObject) {
@@ -561,11 +565,21 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   func setTutorialLabelText(text: String?) {
     if let text = text {
+      self.helperButtonView.hidden = true
       adView.hidden = false
       tutorialLabel.text = text
     } else {
       adView.hidden = true
     }
+  }
+  
+  func launchForEndTutorial(text: String) {
+    ProgressionManager.sharedManager.reset()
+    GameStatus.status.gameMode = .Standard
+    GameStatus.status.tutorialStage = 0
+    gameViewNav?.popToRootViewControllerAnimated(true)
+    gameLaunchView?.tutorialText = text
+    gameLaunchView?.startGameView()
   }
   
   func hideBonusButtonView() {

@@ -10,6 +10,7 @@ import UIKit
 
 class HelperPointViewController: UIViewController, ButtonDelegate {
   
+  @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var removeHelperTextLabel: UILabel!
   @IBOutlet weak var revealHelperTextLabel: UILabel!
   @IBOutlet weak var hideHelperTextLabel: UILabel!
@@ -34,7 +35,15 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupHelperButtons()
+    delegate?.deactivateHelperPointButton(true, deactivate: true)
+    delegate?.hideBonusButtonView()
     // Do any additional setup after loading the view.
+    if GameStatus.status.gameMode == .Tutorial {
+      delegate?.setTutorialLabelText("Hide a tile with your bonus point!")
+      self.backButton.hidden = true
+    } else {
+      // show an add
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -43,7 +52,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   }
   
   override func viewWillAppear(animated: Bool) {
-    delegate?.deactivateHelperPointButton(false, deactivate: true)
+    delegate?.deactivateHelperPointButton(true, deactivate: true)
     activateHelperButtons()
     super.viewWillAppear(true)
   }
@@ -121,13 +130,19 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   
   func hideTileSelected() {
     if showHide {
+      delegate?.setTutorialLabelText(nil)
+      if GameStatus.status.gameMode == .Tutorial {
+        gameViewController?.tutorialTimeForHelper = false
+        gameViewController?.backFromTutorialHelper = true
+        gameViewController?.view.userInteractionEnabled = true
+      }
       gameViewController?.helperSelected(.Hide)
       self.navigationController?.popViewControllerAnimated(true)
       delegate?.toggleHelperMode(false)
     }
     self.backButtonEnabled = true
-    self.hideButtonFlashTimer?.invalidate()
-    self.hideButtonFlashTimer = nil
+//    self.hideButtonFlashTimer?.invalidate()
+//    self.hideButtonFlashTimer = nil
   }
   
   @IBAction func helpButtonPressed(sender: AnyObject) {
@@ -138,7 +153,9 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     if backButtonEnabled {
       GameStatus.status.gameActive = true
       delegate?.deactivateHelperPointButton(false, deactivate: false)
-      delegate?.togglePaused(false)
+      if GameStatus.status.gameMode == .Standard {
+        delegate?.togglePaused(false)
+      }
       self.navigationController?.popViewControllerAnimated(true)
     }
   }
@@ -149,22 +166,4 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     }
    }
   
-  
-  
-  // MARK: Tutorial
-  var hideButtonFlashTimer: NSTimer?
-  
-  func flashHideButton() {
-    UIView.animateWithDuration(0.3, animations: { 
-      self.hideHelperTextLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
-      }) { (done) in
-        self.hideHelperTextLabel.transform = CGAffineTransformIdentity
-    }
-  }
-  
-  func setHideToFlashing() {
-    self.backButtonEnabled = false
-    hideButtonFlashTimer = NSTimer.scheduledTimerWithTimeInterval(0.75, target: self, selector: #selector(HelperPointViewController.flashHideButton), userInfo: nil, repeats: true)
-  }
-
 }
