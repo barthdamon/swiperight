@@ -60,8 +60,6 @@
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -2704,10 +2702,12 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="386" height="386"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
                                 <rect key="frame" x="20" y="0.0" width="346" height="386"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Hide an Incorrect Tile (1 point)
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Hide an Incorrect Tile (1 point)
 - Removes a tile that is not part of the solution to make it easier for you to find the solution.
 
 Reveal a Correct Tile (3 points)
@@ -2715,12 +2715,12 @@ Reveal a Correct Tile (3 points)
 
 Remove an Operation (2 points)
 - Removes the extra operation that the solution does not use. Only active at higher levels where two operations become active.</string>
-                                <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="How To Play" translatesAutoresizingMaskIntoConstraints="NO" id="v9d-Rm-LM6">
-                                <rect key="frame" x="20" y="0.0" width="346" height="386"/>
-                                <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="20"/>
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECD-O3-0MW">
@@ -2822,15 +2822,13 @@ Remove an Operation (2 points)
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="ECD-O3-0MW" secondAttribute="bottom" constant="8" id="8lU-6i-1HG"/>
                             <constraint firstItem="Bzs-no-Gg0" firstAttribute="centerX" secondItem="fKX-Tf-EN9" secondAttribute="centerX" id="AaO-0f-moT"/>
                             <constraint firstItem="wat-z4-b4V" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="C3b-bh-3S1"/>
+                            <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="UfL-oY-K1A" secondAttribute="bottom" id="Kca-Fw-WV8"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="wat-z4-b4V" secondAttribute="bottom" constant="8" id="Mk1-8U-Jfw"/>
-                            <constraint firstItem="v9d-Rm-LM6" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="TWb-nd-bRw"/>
-                            <constraint firstItem="v9d-Rm-LM6" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" id="Um0-tb-wYg"/>
+                            <constraint firstItem="UfL-oY-K1A" firstAttribute="height" secondItem="fKX-Tf-EN9" secondAttribute="height" id="NXH-4U-EbO"/>
                             <constraint firstItem="UfL-oY-K1A" firstAttribute="top" secondItem="tk0-TO-dLB" secondAttribute="bottom" id="Ww7-Ft-0U8"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="UfL-oY-K1A" secondAttribute="bottom" id="acH-HG-9sX"/>
-                            <constraint firstItem="v9d-Rm-LM6" firstAttribute="trailing" secondItem="fKX-Tf-EN9" secondAttribute="trailingMargin" id="cVj-gO-VQa"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="beo-3h-P3h" secondAttribute="bottom" constant="8" id="hXw-Gt-wm9"/>
                             <constraint firstItem="wat-z4-b4V" firstAttribute="leading" secondItem="fKX-Tf-EN9" secondAttribute="leadingMargin" constant="-20" id="iZn-aZ-A7L"/>
-                            <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="v9d-Rm-LM6" secondAttribute="bottom" id="nq6-el-gdw"/>
                             <constraint firstItem="ECD-O3-0MW" firstAttribute="leading" secondItem="wat-z4-b4V" secondAttribute="trailing" constant="8" id="sH8-tt-fwn"/>
                             <constraint firstItem="gQq-lP-w7q" firstAttribute="top" secondItem="Bzs-no-Gg0" secondAttribute="bottom" constant="8" id="smU-SQ-njZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UfL-oY-K1A" secondAttribute="trailing" id="wSx-6O-Fpk"/>
@@ -2840,6 +2838,8 @@ Remove an Operation (2 points)
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="7U6-JN-f4Y"/>
+                                <exclude reference="NXH-4U-EbO"/>
+                                <exclude reference="acH-HG-9sX"/>
                                 <exclude reference="5rp-9C-SyY"/>
                                 <exclude reference="C3b-bh-3S1"/>
                                 <exclude reference="iZn-aZ-A7L"/>
@@ -2851,7 +2851,6 @@ Remove an Operation (2 points)
                         <outlet property="continueButton" destination="Bzs-no-Gg0" id="kAw-5e-MY4"/>
                         <outlet property="helperExplanationView" destination="UfL-oY-K1A" id="gvx-I2-vug"/>
                         <outlet property="noButton" destination="ECD-O3-0MW" id="4Sn-b3-YA0"/>
-                        <outlet property="tutorialTextView" destination="v9d-Rm-LM6" id="7Ex-nv-383"/>
                         <outlet property="yesButton" destination="beo-3h-P3h" id="CLJ-yt-o7l"/>
                     </connections>
                 </viewController>
