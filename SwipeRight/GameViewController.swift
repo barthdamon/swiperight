@@ -167,15 +167,12 @@ class GameViewController: UIViewController {
     if (end.x > 0 && end.y > 0) && (end.x < self.view.frame.width && end.y < self.view.frame.height) {
       endLoc = end
     }
-    if inTutorialHighlightMode {
-      // resolve user interaction?
-      resetTilesToHighlight(true)
-    }
     resolveUserInteraction()
     print("Touches ended")
   }
   
   func resolveUserInteraction() {
+    var showTutorialText: Bool = false
     if GameStatus.status.gameActive {
       if let startLoc = startLoc, endLoc = endLoc {
         var startTile: TileView?
@@ -224,9 +221,16 @@ class GameViewController: UIViewController {
             self.startLoc = nil
             self.endLoc = nil
           } else {
+            if inTutorialHighlightMode {
+              // resolve user interaction?
+              resetTilesToHighlight(true)
+            }
             self.startLoc = nil
             self.endLoc = nil
           }
+        } else if inTutorialHighlightMode {
+          // resolve user interaction?
+          resetTilesToHighlight(true)
         }
       }
     }
@@ -679,6 +683,7 @@ class GameViewController: UIViewController {
     highlightTileTimer?.invalidate()
     highlightTileTimer = nil
     tilesToHighlight.removeAll()
+    delegate?.setTutorialLabelText("Touch your finger to the first tile!")
     if !userBlewIt {
       self.currentLayout = GridNumberLayout()
       self.gradientLayer?.removeFromSuperlayer()
