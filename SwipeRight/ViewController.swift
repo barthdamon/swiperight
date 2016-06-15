@@ -485,9 +485,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
           self.subtractStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
           self.multiplyStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
           self.divideStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+          self.helperButtonView.transform = CGAffineTransformMakeScale(1.2, 1.2)
+        } else {
+          self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
         }
-        
-        self.helperButtonView.transform = CGAffineTransformMakeScale(1.2, 1.2)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
           self.addStreakLabel.transform = CGAffineTransformIdentity
@@ -495,6 +496,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
           self.multiplyStreakLabel.transform = CGAffineTransformIdentity
           self.divideStreakLabel.transform = CGAffineTransformIdentity
           self.helperButtonView.transform = CGAffineTransformIdentity
+          self.helperButtonLabel.transform = CGAffineTransformIdentity
         })
       }
     }
