@@ -44,8 +44,12 @@ class MultipleHelper: NSObject {
       }
     }
     let filteredCount = filteredCombinations.count - 1
-    let randomIndex = Int.random(0...filteredCount)
-    return filteredCombinations[randomIndex]
+    if filteredCount > 0 {
+      let randomIndex = Int.random(0...filteredCount)
+      return filteredCombinations[randomIndex]
+    } else {
+      return MultipleCombination(x: 2, b: 3, sum: 6)
+    }
   }
   
   

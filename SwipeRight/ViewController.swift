@@ -83,7 +83,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     setHighScore()
     configureViewStyles()
     setRound(0)
-    MultipleHelper.defaultHelper.initializeCombinations()
     viewWidth = self.view.frame.width
     viewHeight = self.view.frame.height
     resetGameState()
@@ -328,6 +327,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func buttonPressed(sender: ButtonView) {
+    print("Helper Button Pressed")
     if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 {
       gameView?.helperButtonPressed()
       toggleHelperMode(true)
@@ -401,6 +401,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     self.tutorialBlinkingTimer = nil
     self.gameView?.highlightTileTimer?.invalidate()
     self.gameView?.highlightTileTimer = nil
+    self.gameView?.helperPointController?.hideButtonFlashTimer?.invalidate()
+    self.gameView?.helperPointController?.hideButtonFlashTimer = nil
   }
   
   @IBAction func menuButtonPressed(sender: AnyObject) {
@@ -439,6 +441,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   var blinkingOperations: Bool = false
   var blinkingTimer: Bool = false
   var blinkingHelperPoints: Bool = false
+  var blinkingHelperPointStreaks: Bool = false
   
   func blinkOperations() {
     if blinkingOperations {
@@ -477,11 +480,14 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func blinkHelperPoints() {
     if blinkingHelperPoints {
       UIView.animateWithDuration(tutorialBlinkTime, animations: {
-        self.addStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        self.subtractStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        self.multiplyStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        self.divideStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
-        self.helperButtonView.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        if self.blinkingHelperPointStreaks {
+          self.addStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+          self.subtractStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+          self.multiplyStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+          self.divideStreakLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        }
+        
+        self.helperButtonView.transform = CGAffineTransformMakeScale(1.2, 1.2)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
           self.addStreakLabel.transform = CGAffineTransformIdentity
@@ -511,32 +517,57 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     if on {
       blinkOperations()
       self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkOperations), userInfo: nil, repeats: true)
-    } else {
-      self.addView.image = ThemeHelper.defaultHelper.multiplyImageGray
-      self.subtractView.image = ThemeHelper.defaultHelper.subtractImageGray
-      self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImageGray
-      self.divideView.image = ThemeHelper.defaultHelper.divideImageGray
     }
   }
   
-  func setBlinkingHelperPointsOn(on: Bool) {
-    blinkingHelperPoints = on
+  func setBlinkingHelperPointsOn(on: Bool, withStreaks: Bool, hideStreaks: Bool) {
     self.tutorialBlinkingTimer?.invalidate()
     self.tutorialBlinkingTimer = nil
+    blinkingHelperPoints = on
+    blinkingHelperPointStreaks = withStreaks
+    self.addView.image = ThemeHelper.defaultHelper.addImage
+    self.subtractView.image = ThemeHelper.defaultHelper.subtractImage
+    self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImage
+    self.divideView.image = ThemeHelper.defaultHelper.divideImage
+    self.helperButtonView.hidden = !on
+    if hideStreaks {
+      self.addStreakLabel.hidden = true
+      self.subtractStreakLabel.hidden = true
+      self.multiplyStreakLabel.hidden = true
+      self.divideStreakLabel.hidden = true
+      self.bonusStreakLabel.hidden = true
+    }
+    if withStreaks {
+      self.addStreakLabel.hidden = false
+      self.subtractStreakLabel.hidden = false
+      self.multiplyStreakLabel.hidden = false
+      self.divideStreakLabel.hidden = false
+      self.bonusStreakLabel.hidden = false
+      self.bonusStreakView.hidden = false
+    }
     if on {
       blinkHelperPoints()
       self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkHelperPoints), userInfo: nil, repeats: true)
     } else {
-//      self.addView.image = ThemeHelper.defaultHelper.multiplyImageGray
-//      self.subtractView.image = ThemeHelper.defaultHelper.multiplyImageGray
-//      self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImageGray
-//      self.divideView.image = ThemeHelper.defaultHelper.multiplyImageGray
+      self.helperButtonView.hidden = false
+      self.addStreakLabel.hidden = true
+      self.subtractStreakLabel.hidden = true
+      self.multiplyStreakLabel.hidden = true
+      self.divideStreakLabel.hidden = true
     }
   }
   
-  func setTutorialLabelText(text: String) {
-    adView.hidden = false
-    tutorialLabel.text = text
+  func setTutorialLabelText(text: String?) {
+    if let text = text {
+      adView.hidden = false
+      tutorialLabel.text = text
+    } else {
+      adView.hidden = true
+    }
+  }
+  
+  func hideBonusButtonView() {
+    self.helperButtonView.hidden = true
   }
   
   @IBAction func importantButtonPressed(sender: UIButton) {

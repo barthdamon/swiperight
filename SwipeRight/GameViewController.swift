@@ -295,7 +295,9 @@ class GameViewController: UIViewController {
               self.endResponse()
             })
           } else {
-            self.tutorialEndResponse(false)
+            waitASec(0.05, callback: { (done) in
+              self.tutorialEndResponse(false)
+            })
           }
         }
       }
@@ -335,11 +337,27 @@ class GameViewController: UIViewController {
         ProgressionManager.sharedManager.activeOperations = [.Add, .Subtract, .Multiply, .Divide]
         ProgressionManager.sharedManager.multipleOperationsDisplayActive = true
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
+        MultipleHelper.defaultHelper.range = 20
         self.currentLayout = GridNumberLayout()
         self.gradientLayer?.removeFromSuperlayer()
         delegate?.setTutorialLabelText("Can you find the equation?")
         animateTileReset()
-        break
+      case 8:
+        self.delegate?.deactivateHelperPointButton(false, deactivate: false)
+        ProgressionManager.sharedManager.activeOperations = [.Add]
+        ProgressionManager.sharedManager.numberOfExtraTiles = 2
+        MultipleHelper.defaultHelper.range = 20
+        ProgressionManager.sharedManager.currentHelperPoints = 0
+        ProgressionManager.sharedManager.currentAddStreak = 2
+        delegate?.setStreakLabels({ (done) in
+        })
+        self.currentLayout = GridNumberLayout()
+        self.gradientLayer?.removeFromSuperlayer()
+        if !tutorialTimeForHelper {
+          delegate?.hideBonusButtonView()
+          delegate?.setTutorialLabelText("Complete a streak to get a bonus point!")
+        }
+        animateTileReset()
       default:
         break
       }
@@ -388,11 +406,16 @@ class GameViewController: UIViewController {
         tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
 //        self.borderView.alpha = 1
         }, completion: { (complete) -> Void in
-          self.view.userInteractionEnabled = true
           if GameStatus.status.gameMode == .Standard {
+            self.view.userInteractionEnabled = true
             self.delegate?.beginGame()
           } else {
             GameStatus.status.gameActive = true
+            if GameStatus.status.tutorialStage == 8 && self.tutorialTimeForHelper {
+              self.view.userInteractionEnabled = false
+            } else {
+              self.view.userInteractionEnabled = true
+            }
           }
       })
     }
@@ -448,8 +471,8 @@ class GameViewController: UIViewController {
     self.delegate?.setRound(ProgressionManager.sharedManager.currentRound)
   }
   
-  func helperStreakActivity(correct: Bool) {
-    guard let operation = self.currentLayout?.winningCombination?.operation else { return }
+  func helperStreakActivity(correct: Bool) -> Bool {
+    guard let operation = self.currentLayout?.winningCombination?.operation else { return false }
     if correct {
       let streakReached = ProgressionManager.sharedManager.increaseStreak(operation)
       if streakReached {
@@ -463,10 +486,12 @@ class GameViewController: UIViewController {
         delegate?.setStreakLabels({ (done) in
         })
       }
+      return streakReached
     } else {
       ProgressionManager.sharedManager.resetStreak(operation)
       delegate?.setStreakLabels({ (done) in
       })
+      return false
     }
   }
   
@@ -561,9 +586,13 @@ class GameViewController: UIViewController {
   var highlightTileTimer: NSTimer?
   var tilesToHighlight: Array<TileView> = []
   var inTutorialHighlightMode: Bool = false
+  var tutorialTimeForHelper: Bool = false
   
   func showTutorialText() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.highlightTileTimer?.invalidate()
+      self.highlightTileTimer = nil
+      ProgressionManager.sharedManager.reset()
       self.performSegueWithIdentifier("showTutorialSegue", sender: self)
     })
   }
@@ -586,15 +615,33 @@ class GameViewController: UIViewController {
   }
   
   func tutorialEndResponse(correct: Bool) {
-    var text = correct ? "Nice!" : "You'll get it next time!"
-    if GameStatus.status.tutorialStage == 6 { text = "You're getting the hang of this!" }
-    delegate?.setTutorialLabelText(text)
-    self.inTutorialHighlightMode = false
-    self.highlightTileTimer?.invalidate()
-    self.highlightTileTimer = nil
-    waitASec(1.0) { (done) in
-      self.delegate?.resetGameUI()
-      self.showTutorialText()
+    if GameStatus.status.tutorialStage == 8 && !tutorialTimeForHelper {
+      self.currentLayout = GridNumberLayout()
+      self.gradientLayer?.removeFromSuperlayer()
+      if correct {
+        if helperStreakActivity(true) {
+          self.delegate?.setTutorialLabelText(nil)
+          tutorialTimeForHelper = true
+          delegate?.deactivateHelperPointButton(false, deactivate: false)
+          delegate?.setBlinkingHelperPointsOn(true, withStreaks: false, hideStreaks: false)
+        }
+      } else {
+        helperStreakActivity(false)
+      }
+      animateTileReset()
+    } else {
+      var text = correct ? "Nice!" : "You'll get it next time!"
+      if GameStatus.status.tutorialStage == 6 && correct { text = "You're getting the hang of this!" }
+      if GameStatus.status.tutorialStage == 8 && correct { text = "Okay, enough tutorials for you..." }
+      delegate?.setTutorialLabelText(text)
+      self.inTutorialHighlightMode = false
+      self.highlightTileTimer?.invalidate()
+      self.highlightTileTimer = nil
+      waitASec(1.0) { (done) in
+        self.delegate?.setTutorialLabelText(nil)
+        self.delegate?.resetGameUI()
+        self.showTutorialText()
+      }
     }
   }
   
@@ -613,7 +660,7 @@ class GameViewController: UIViewController {
     if !userBlewIt {
       self.currentLayout = GridNumberLayout()
       self.gradientLayer?.removeFromSuperlayer()
-      animateTileReset()
+      self.animateTileReset()
     }
     // set first one to glowing, and respond only when they move to the correct one
     guard let combo = currentLayout?.winningCombination else { return }

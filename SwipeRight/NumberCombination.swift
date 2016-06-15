@@ -192,19 +192,19 @@ class NumberCombination : NSObject {
   func checkForMultipleActive(x: Int, b: Int, sum: Int) -> Bool {
     switch operation {
     case .Add:
-      if sum / b == x || x * b == sum || x - b == sum {
+      if sum / b == x || x * b == sum {
         return true
       }
     case .Subtract:
-      if x + b == sum || sum / b == x || x * b == sum {
+      if sum / b == x || x * b == sum {
         return true
       }
     case .Multiply:
-      if x + b == sum || sum / b == x || x - b == sum {
+      if x + b == sum || x - b == sum {
         return true
       }
     case .Divide:
-      if x + b == sum || x * b == sum || x - b == sum {
+      if x + b == sum || x - b == sum {
         return true
       }
     }

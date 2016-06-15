@@ -26,6 +26,8 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   var showHide = false
   var showRemove = false
   
+  var backButtonEnabled = true
+  
   var gameViewController: GameViewController?
   var delegate: GameViewDelegate?
   
@@ -123,6 +125,9 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
       self.navigationController?.popViewControllerAnimated(true)
       delegate?.toggleHelperMode(false)
     }
+    self.backButtonEnabled = true
+    self.hideButtonFlashTimer?.invalidate()
+    self.hideButtonFlashTimer = nil
   }
   
   @IBAction func helpButtonPressed(sender: AnyObject) {
@@ -130,10 +135,12 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   }
   
   @IBAction func backToGameButtonPressed(sender: AnyObject) {
-    GameStatus.status.gameActive = true
-    delegate?.deactivateHelperPointButton(false, deactivate: false)
-    delegate?.togglePaused(false)
-    self.navigationController?.popViewControllerAnimated(true)
+    if backButtonEnabled {
+      GameStatus.status.gameActive = true
+      delegate?.deactivateHelperPointButton(false, deactivate: false)
+      delegate?.togglePaused(false)
+      self.navigationController?.popViewControllerAnimated(true)
+    }
   }
   
    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -141,5 +148,23 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
       vc.helperController = self
     }
    }
+  
+  
+  
+  // MARK: Tutorial
+  var hideButtonFlashTimer: NSTimer?
+  
+  func flashHideButton() {
+    UIView.animateWithDuration(0.3, animations: { 
+      self.hideHelperTextLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
+      }) { (done) in
+        self.hideHelperTextLabel.transform = CGAffineTransformIdentity
+    }
+  }
+  
+  func setHideToFlashing() {
+    self.backButtonEnabled = false
+    hideButtonFlashTimer = NSTimer.scheduledTimerWithTimeInterval(0.75, target: self, selector: #selector(HelperPointViewController.flashHideButton), userInfo: nil, repeats: true)
+  }
 
 }

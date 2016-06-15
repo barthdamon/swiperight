@@ -50,21 +50,21 @@ class HelperHelpViewController: UIViewController {
   func setupForTutorialStage() {
     switch GameStatus.status.tutorialStage {
     case 0:
-      self.tutorialTextView.text = "Find the three tiles adjacent or diagonal to each other that complete a mathematical equation."
+      self.tutorialTextView.text = "Welcome! Press continue to learn how to play..."
     case 1:
-      self.tutorialTextView.text = "Swipe the tiles from the start of the equation to the end to score a point."
+      self.tutorialTextView.text = "The goal is to Find three tiles adjacent or diagonal to each other that complete a mathematical equation. Swipe the tiles from the start of the equation to the end to score a point."
     case 2:
       // (really stage 3)
       delegate?.setBlinkingTimerOn(true)
       self.tutorialTextView.text = "Every equation you swipe right adds five seconds to the countdown timer."
       GameStatus.status.tutorialStage += 1
     case 4:
-      self.tutorialTextView.text = "There is only one active equation. Active operations indicate the operation of the equation."
+      self.tutorialTextView.text = "There is only one active equation. Active operations indicate the operation of the current equation."
     case 5:
-      self.tutorialTextView.text = "At higher levels two operations become active to trick you, but there is still only one equation..."
+      self.tutorialTextView.text = "At higher levels two operations become active to trick you, but there is still only one equation on the board..."
     case 6:
       // (really stage 7)
-      delegate?.setBlinkingHelperPointsOn(true)
+      delegate?.setBlinkingHelperPointsOn(true, withStreaks: true, hideStreaks: false)
       self.tutorialTextView.text = "For every three equations of an operation you swipe right in a row you get a bonus point."
       GameStatus.status.tutorialStage += 1
     default:
@@ -79,6 +79,7 @@ class HelperHelpViewController: UIViewController {
       setupForTutorialStage()
     case 1:
       GameStatus.status.tutorialStage += 1
+      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
       gameViewController?.setGameViewForTutorialStage()
     case 3:
       GameStatus.status.tutorialStage += 1
@@ -94,6 +95,9 @@ class HelperHelpViewController: UIViewController {
       gameViewController?.setGameViewForTutorialStage()
     case 7:
       //show gameboard to do helper points
+      GameStatus.status.tutorialStage += 1
+      delegate?.setBlinkingHelperPointsOn(false, withStreaks: false, hideStreaks: true)
+      gameViewController?.setGameViewForTutorialStage()
       break
     default:
       break

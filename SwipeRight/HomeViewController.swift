@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    MultipleHelper.defaultHelper.initializeCombinations()
     beginGameButtonView.alpha = 0
     firstTimeButton.alpha = 0
     logoView.alpha = 0
