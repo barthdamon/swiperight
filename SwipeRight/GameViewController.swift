@@ -172,7 +172,6 @@ class GameViewController: UIViewController {
   }
   
   func resolveUserInteraction() {
-    var showTutorialText: Bool = false
     if GameStatus.status.gameActive {
       if let startLoc = startLoc, endLoc = endLoc {
         var startTile: TileView?

@@ -24,7 +24,6 @@
 		0240B95C1C18EF86004B48BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95B1C18EF86004B48BA /* Assets.xcassets */; };
 		0240B95F1C18EF86004B48BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B95D1C18EF86004B48BA /* LaunchScreen.storyboard */; };
 		0247A3601CFFD30A00FC52B9 /* UIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */; };
-		0247A3621CFFD45600FC52B9 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247A3611CFFD45600FC52B9 /* AuthViewController.swift */; };
 		0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269CD681CFCF512004184E5 /* GradientLayer.swift */; };
 		02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */; };
 		02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */; };
@@ -32,13 +31,9 @@
 		02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */; };
 		02ADE4D81CFE7375000AB183 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D71CFE7375000AB183 /* CurrentUser.swift */; };
 		02ADE4DA1CFE73E1000AB183 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D91CFE73E1000AB183 /* User.swift */; };
-		02ADE4DD1CFE77E1000AB183 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */; };
-		02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */; };
 		02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E01CFE8B1C000AB183 /* Score.swift */; };
-		02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */; };
 		02BCF0DB1D0F0FB70083B2F2 /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */; };
 		02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */; };
-		02BCF0E01D0F372A0083B2F2 /* TutorialPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DF1D0F372A0083B2F2 /* TutorialPopoverViewController.swift */; };
 		02DB529D1D036CB10052D72A /* DIN Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52901D036CB10052D72A /* DIN Black.ttf */; };
 		02DB529E1D036CB10052D72A /* DINB____.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52911D036CB10052D72A /* DINB____.TTF */; };
 		02DB529F1D036CB10052D72A /* DINBA___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 02DB52921D036CB10052D72A /* DINBA___.TTF */; };
@@ -82,7 +77,6 @@
 		0240B95E1C18EF86004B48BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0240B9601C18EF86004B48BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpers.swift; sourceTree = "<group>"; };
-		0247A3611CFFD45600FC52B9 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0269CD681CFCF512004184E5 /* GradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
 		02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -90,16 +84,12 @@
 		02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		02ADE4D71CFE7375000AB183 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		02ADE4D91CFE73E1000AB183 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
-		02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardViewController.swift; path = ../LeaderboardViewController.swift; sourceTree = "<group>"; };
 		02ADE4E01CFE8B1C000AB183 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
-		02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		02BCF0D81D0F0F5B0083B2F2 /* YIInnerShadowLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowLayer.h; sourceTree = "<group>"; };
 		02BCF0D91D0F0FB70083B2F2 /* SwipeRight!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwipeRight!-Bridging-Header.h"; sourceTree = "<group>"; };
 		02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowLayer.m; sourceTree = "<group>"; };
 		02BCF0DC1D0F0FEB0083B2F2 /* YIInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowView.h; sourceTree = "<group>"; };
 		02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowView.m; sourceTree = "<group>"; };
-		02BCF0DF1D0F372A0083B2F2 /* TutorialPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPopoverViewController.swift; sourceTree = "<group>"; };
 		02DB52901D036CB10052D72A /* DIN Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Black.ttf"; sourceTree = "<group>"; };
 		02DB52911D036CB10052D72A /* DINB____.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINB____.TTF"; sourceTree = "<group>"; };
 		02DB52921D036CB10052D72A /* DINBA___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINBA___.TTF"; sourceTree = "<group>"; };
@@ -221,30 +211,17 @@
 			path = SwipeRight;
 			sourceTree = "<group>";
 		};
-		0247A35E1CFFD26D00FC52B9 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				02ADE4E21CFF0544000AB183 /* ProfileViewController.swift */,
-				0247A3611CFFD45600FC52B9 /* AuthViewController.swift */,
-			);
-			name = Profile;
-			sourceTree = "<group>";
-		};
 		02ADE4CC1CFE710B000AB183 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */,
 				02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */,
 				02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */,
-				02BCF0DF1D0F372A0083B2F2 /* TutorialPopoverViewController.swift */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
 				02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */,
 				02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */,
 				02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */,
 				02DB52B21D04C8C10052D72A /* GameViewController.swift */,
-				02ADE4DE1CFE7C94000AB183 /* LeaderboardViewController.swift */,
-				0247A35E1CFFD26D00FC52B9 /* Profile */,
-				02ADE4DC1CFE77E1000AB183 /* ScoreTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -388,12 +365,10 @@
 				02E6FCE21D07B6A9007A98EE /* GameKitViewController.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
 				02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */,
-				02BCF0E01D0F372A0083B2F2 /* TutorialPopoverViewController.swift in Sources */,
 				02DB52B11D04C8B50052D72A /* GameLaunchViewController.swift in Sources */,
 				022098251C1DFDEB005155E6 /* TileView.swift in Sources */,
 				02BCF0DB1D0F0FB70083B2F2 /* YIInnerShadowLayer.m in Sources */,
 				0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */,
-				0247A3621CFFD45600FC52B9 /* AuthViewController.swift in Sources */,
 				02DB52AB1D03961E0052D72A /* ThemeHelper.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
 				02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */,
@@ -408,12 +383,9 @@
 				02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */,
 				02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */,
 				02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */,
-				02ADE4DD1CFE77E1000AB183 /* ScoreTableViewCell.swift in Sources */,
 				0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */,
 				022098191C1DC005005155E6 /* RandomNumber.swift in Sources */,
 				02ADE4D81CFE7375000AB183 /* CurrentUser.swift in Sources */,
-				02ADE4E31CFF0544000AB183 /* ProfileViewController.swift in Sources */,
-				02ADE4DF1CFE7C94000AB183 /* LeaderboardViewController.swift in Sources */,
 				0220981E1C1DC808005155E6 /* MultipleHelper.swift in Sources */,
 				021BD8D21D0C9C5D0017FC49 /* GameViewDelegate.swift in Sources */,
 			);
