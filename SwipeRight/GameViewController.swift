@@ -278,7 +278,7 @@ class GameViewController: UIViewController {
                     self.endResponse()
                   })
                 } else {
-                  self.tutorialEndResponse()
+                  self.tutorialEndResponse(true)
                 }
               })
             })
@@ -295,7 +295,7 @@ class GameViewController: UIViewController {
               self.endResponse()
             })
           } else {
-            self.tutorialEndResponse()
+            self.tutorialEndResponse(false)
           }
         }
       }
@@ -331,6 +331,14 @@ class GameViewController: UIViewController {
         resetTilesToHighlight(false)
       case 6:
         // set two operations active with two potential combinations
+        // make two operations active with range still minimalf
+        ProgressionManager.sharedManager.activeOperations = [.Add, .Subtract, .Multiply, .Divide]
+        ProgressionManager.sharedManager.multipleOperationsDisplayActive = true
+        ProgressionManager.sharedManager.numberOfExtraTiles = 2
+        self.currentLayout = GridNumberLayout()
+        self.gradientLayer?.removeFromSuperlayer()
+        delegate?.setTutorialLabelText("Can you find the equation?")
+        animateTileReset()
         break
       default:
         break
@@ -384,6 +392,7 @@ class GameViewController: UIViewController {
           if GameStatus.status.gameMode == .Standard {
             self.delegate?.beginGame()
           } else {
+            GameStatus.status.gameActive = true
           }
       })
     }
@@ -564,14 +573,26 @@ class GameViewController: UIViewController {
       tilesToHighlight.removeFirst()
       // add it to the highlighted tiles, remove it from the tiles to highlight
     }
+    if tilesToHighlight.count == 3 {
+      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
+    } else if tilesToHighlight.count == 2 {
+      delegate?.setTutorialLabelText("Swipe to the next tile!")
+    } else if tilesToHighlight.count == 1 {
+      delegate?.setTutorialLabelText("Keep swiping!")
+    }else if tilesToHighlight.count == 0 {
+      delegate?.setTutorialLabelText("Now lift your finger!")
+    }
     // when last one reaced showTutorial text
   }
   
-  func tutorialEndResponse() {
-    waitASec(0.15) { (done) in
-      self.inTutorialHighlightMode = false
-      self.highlightTileTimer?.invalidate()
-      self.highlightTileTimer = nil
+  func tutorialEndResponse(correct: Bool) {
+    var text = correct ? "Nice!" : "You'll get it next time!"
+    if GameStatus.status.tutorialStage == 6 { text = "You're getting the hang of this!" }
+    delegate?.setTutorialLabelText(text)
+    self.inTutorialHighlightMode = false
+    self.highlightTileTimer?.invalidate()
+    self.highlightTileTimer = nil
+    waitASec(1.0) { (done) in
       self.delegate?.resetGameUI()
       self.showTutorialText()
     }
@@ -582,16 +603,6 @@ class GameViewController: UIViewController {
     if let highlight = tilesToHighlight.first {
       highlight.highlightForTutorial(operation, callback: { (done) in
       })
-    }
-    
-    if tilesToHighlight.count == 3 {
-      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
-    } else if tilesToHighlight.count == 2 {
-      delegate?.setTutorialLabelText("Swipe to the next tile!")
-    } else if tilesToHighlight.count == 1 {
-      delegate?.setTutorialLabelText("Keep swiping!")
-    }else if tilesToHighlight.count == 0 {
-      delegate?.setTutorialLabelText("Now lift your finger!")
     }
   }
   
@@ -617,15 +628,7 @@ class GameViewController: UIViewController {
   
   func setGameViewForTutorialStage() {
     self.navigationController?.popViewControllerAnimated(true)
-    switch GameStatus.status.tutorialStage {
-    case 2:
-      self.resetTiles()
-    case 6:
-      // make two operations active with range still minimal
-      self.resetTiles()
-    default:
-      break
-    }
+    self.resetTiles()
   }
   
   func tutorialResolveHighlightMovement() {

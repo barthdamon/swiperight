@@ -408,6 +408,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     invalidateTimer()
     GameStatus.status.gameActive = false
     ProgressionManager.sharedManager.reset()
+    GameStatus.status.tutorialStage = 0
     self.navigationController?.popViewControllerAnimated(true)
   }
   

@@ -61,7 +61,7 @@ class HelperHelpViewController: UIViewController {
     case 4:
       self.tutorialTextView.text = "There is only one active equation. Active operations indicate the operation of the equation."
     case 5:
-      self.tutorialTextView.text = "At higher levels two operations become active to trick you, but there is still only one equation. Give it a try:"
+      self.tutorialTextView.text = "At higher levels two operations become active to trick you, but there is still only one equation..."
     case 6:
       // (really stage 7)
       delegate?.setBlinkingHelperPointsOn(true)

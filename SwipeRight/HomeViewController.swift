@@ -73,6 +73,7 @@ class HomeViewController: UIViewController, ButtonDelegate {
   }
   
   func buttonPressed(sender: ButtonView) {
+    GameStatus.status.gameMode = .Standard
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
   

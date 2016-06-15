@@ -180,7 +180,7 @@ class NumberCombination : NSObject {
       solution = combo.x
     }
     
-    if solution == 0 || secondNumber == 0 || firstNumber == 0 {
+    if (solution == 0 || secondNumber == 0 || firstNumber == 0) || (ProgressionManager.sharedManager.multipleOperationsDisplayActive && checkForMultipleActive(firstNumber, b: secondNumber, sum: solution)) {
       setNumberValues()
     } else {
       self.x = firstNumber
@@ -188,5 +188,28 @@ class NumberCombination : NSObject {
       self.sum = solution
     }
   }
+  
+  func checkForMultipleActive(x: Int, b: Int, sum: Int) -> Bool {
+    switch operation {
+    case .Add:
+      if sum / b == x || x * b == sum || x - b == sum {
+        return true
+      }
+    case .Subtract:
+      if x + b == sum || sum / b == x || x * b == sum {
+        return true
+      }
+    case .Multiply:
+      if x + b == sum || sum / b == x || x - b == sum {
+        return true
+      }
+    case .Divide:
+      if x + b == sum || x * b == sum || x - b == sum {
+        return true
+      }
+    }
+    return false
+  }
+
 }
 
