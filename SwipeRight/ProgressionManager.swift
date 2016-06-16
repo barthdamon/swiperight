@@ -79,6 +79,9 @@ class ProgressionManager: NSObject {
     modificationTypes.forEach { (mod) in
       modifications.append(Modification(type: mod))
     }
+    addRandomOperation()
+    previousOperations = activeOperations
+    currentLayoutOperations = activeOperations
   }
   
   func reset() {
@@ -94,7 +97,8 @@ class ProgressionManager: NSObject {
     MultipleHelper.defaultHelper.resetRange()
     currentHelperPoints = 0
     numberOfExtraTiles = 0
-    self.activeOperations = [.Add]
+    self.activeOperations.removeAll()
+    addRandomOperation()
     multipleOperationsDisplayActive = false
   }
   
@@ -159,12 +163,15 @@ class ProgressionManager: NSObject {
   
   // MARK: Operations
   // get a random one for this, but then get random other when progression at that level for the UI
-  var activeOperations: Array<Operation> = [.Add]
+  var activeOperations: Array<Operation> = []
   var multipleOperationsDisplayActive: Bool = false
   
-  var currentLayoutOperations: Array<Operation> = [.Add]
+  var currentLayoutOperations: Array<Operation> = []
   var currentLayoutOperationCount: Int = 0
-  var previousOperations: Array<Operation> = [.Add]
+  var previousOperations: Array<Operation> = []
+  
+  var plusMinusRand: Int = 0
+  var multDivRand: Int = 0
   
   func getCurrentOperations() -> Array<Operation> {
     currentLayoutOperationCount += 1
@@ -177,20 +184,23 @@ class ProgressionManager: NSObject {
   }
   
   func addRandomOperation() {
-    let operationsLeft = Grid.operations.filter { (operation) -> Bool in
-      return !activeOperations.contains(operation)
-    }
-    
-    for operation in Grid.operations {
-      if !activeOperations.contains(operation) {
-        activeOperations.append(operation)
-        break
-      }
-    }
-    
-    let operationLeftCount = operationsLeft.count - 1
-    if operationLeftCount < 0 {
+    switch activeOperations.count {
+    case 0:
+      plusMinusRand = Int.random(0...1)
+      activeOperations.append(Grid.operations[plusMinusRand])
+    case 1:
+      let index = plusMinusRand == 1 ? 0 : 1
+      activeOperations.append(Grid.operations[index])
+    case 2:
+      multDivRand = Int.random(2...3)
+      activeOperations.append(Grid.operations[multDivRand])
+    case 3:
+      let index = multDivRand == 2 ? 3 : 2
+      activeOperations.append(Grid.operations[index])
+    case 4:
       multipleOperationsDisplayActive = true
+    default:
+      break
     }
   }
   
@@ -207,10 +217,6 @@ class ProgressionManager: NSObject {
         while previousOperations.count >= count {
           previousOperations.removeFirst()
         }
-//        let neededOperations = activeOperations.filter({!previousOperations.contains($0)})
-        // subtract one from the current operations
-        // if that one r
-//        activeOperations.filter({!currentLayoutOperations.contains($0)})
         operationsToChooseFrom = activeOperations.filter({!previousOperations.contains($0)})
       } else {
         operationsToChooseFrom = activeOperations
