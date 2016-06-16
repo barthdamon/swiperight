@@ -161,40 +161,87 @@ class ProgressionManager: NSObject {
   // get a random one for this, but then get random other when progression at that level for the UI
   var activeOperations: Array<Operation> = [.Add]
   var multipleOperationsDisplayActive: Bool = false
+  
+  var currentLayoutOperations: Array<Operation> = [.Add]
+  var currentLayoutOperationCount: Int = 0
+  var previousOperations: Array<Operation> = [.Add]
+  
+  func getCurrentOperations() -> Array<Operation> {
+    currentLayoutOperationCount += 1
+    if currentLayoutOperationCount > 2 {
+      currentLayoutOperationCount = 0
+      let newRandos = randomActiveOperations()
+      currentLayoutOperations = newRandos
+    }
+    return currentLayoutOperations
+  }
+  
   func addRandomOperation() {
     let operationsLeft = Grid.operations.filter { (operation) -> Bool in
       return !activeOperations.contains(operation)
     }
+    
+    for operation in Grid.operations {
+      if !activeOperations.contains(operation) {
+        activeOperations.append(operation)
+        break
+      }
+    }
+    
     let operationLeftCount = operationsLeft.count - 1
-    if operationLeftCount >= 0 {
-      let randNew = Int.random(0...operationLeftCount)
-      self.activeOperations.append(operationsLeft[randNew])
-    } else {
+    if operationLeftCount < 0 {
       multipleOperationsDisplayActive = true
     }
   }
   
   func randomActiveOperations() -> Array<Operation> {
+    
     var operations: Array<Operation> = []
-    let activeOperation = randomActiveOperation()
-    operations.append(activeOperation)
-    if multipleOperationsDisplayActive {
-      switch activeOperation {
-      case .Add, .Subtract:
-        let rand = Int.random(2...3)
-        operations.append(Grid.operations[rand])
-      default:
-        let rand = Int.random(0...1)
-        operations.append(Grid.operations[rand])
+    
+    func randomActiveOperation() -> Operation {
+      var operationsToChooseFrom: Array<Operation> = []
+      let count = activeOperations.count
+      if count == 1 {
+        operationsToChooseFrom = activeOperations
+      } else if !multipleOperationsDisplayActive {
+        while previousOperations.count >= count {
+          previousOperations.removeFirst()
+        }
+//        let neededOperations = activeOperations.filter({!previousOperations.contains($0)})
+        // subtract one from the current operations
+        // if that one r
+//        activeOperations.filter({!currentLayoutOperations.contains($0)})
+        operationsToChooseFrom = activeOperations.filter({!previousOperations.contains($0)})
+      } else {
+        operationsToChooseFrom = activeOperations
+      }
+      let operationCount = operationsToChooseFrom.count - 1
+      let randIndex = Int.random(0...operationCount)
+      return operationsToChooseFrom[randIndex]
+    }
+    
+    func generateOperations() {
+      let activeOperation = randomActiveOperation()
+      operations.append(activeOperation)
+      if multipleOperationsDisplayActive {
+        switch activeOperation {
+        case .Add, .Subtract:
+          let rand = Int.random(2...3)
+          operations.append(Grid.operations[rand])
+        default:
+          let rand = Int.random(0...1)
+          operations.append(Grid.operations[rand])
+        }
+        if currentLayoutOperations.contains(operations[0]) && currentLayoutOperations.contains(operations[1]) {
+          operations.removeAll()
+          generateOperations()
+        }
       }
     }
+
+    generateOperations()
+    previousOperations += operations
     return operations
-  }
-  
-  func randomActiveOperation() -> Operation {
-    let operationCount = activeOperations.count - 1
-    let randIndex = Int.random(0...operationCount)
-    return activeOperations[randIndex]
   }
   
   

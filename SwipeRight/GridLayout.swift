@@ -78,7 +78,7 @@ enum Operation {
 class GridNumberLayout: NSObject {
   
   var winningCombination: NumberCombination?
-  var operations: Array<Operation> = ProgressionManager.sharedManager.randomActiveOperations()
+  var operations: Array<Operation> = ProgressionManager.sharedManager.getCurrentOperations()
 //  012
 //  345
 //  678
