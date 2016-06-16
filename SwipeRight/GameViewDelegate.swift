@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol GameViewDelegate {
-  func setStreakLabels(callback: (Bool) ->())
+  func setStreakLabel()
   func beginGame()
   func scoreChange(correct: Bool)
   func startGameplay()

@@ -355,9 +355,8 @@ class GameViewController: UIViewController {
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
         MultipleHelper.defaultHelper.range = 20
         ProgressionManager.sharedManager.currentHelperPoints = 0
-        ProgressionManager.sharedManager.currentAddStreak = 2
-        delegate?.setStreakLabels({ (done) in
-        })
+        ProgressionManager.sharedManager.currentStreak = 2
+        delegate?.setStreakLabel()
         self.currentLayout = GridNumberLayout()
         self.gradientLayer?.removeFromSuperlayer()
         if !tutorialTimeForHelper {
@@ -485,25 +484,22 @@ class GameViewController: UIViewController {
   }
   
   func helperStreakActivity(correct: Bool) -> Bool {
-    guard let operation = self.currentLayout?.winningCombination?.operation else { return false }
+//    guard let operation = self.currentLayout?.winningCombination?.operation else { return false }
     if correct {
-      let streakReached = ProgressionManager.sharedManager.increaseStreak(operation)
+      let streakReached = ProgressionManager.sharedManager.increaseStreak()
       if streakReached {
         ProgressionManager.sharedManager.helperPointsForReachedStreak()
         delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints, callback: { (done) in
-          ProgressionManager.sharedManager.resetStreak(operation)
-          self.delegate?.setStreakLabels({ (done) in
-          })
+          ProgressionManager.sharedManager.resetStreak()
+          self.delegate?.setStreakLabel()
         })
       } else {
-        delegate?.setStreakLabels({ (done) in
-        })
+        delegate?.setStreakLabel()
       }
       return streakReached
     } else {
-      ProgressionManager.sharedManager.resetStreak(operation)
-      delegate?.setStreakLabels({ (done) in
-      })
+      ProgressionManager.sharedManager.resetStreak()
+      delegate?.setStreakLabel()
       return false
     }
   }

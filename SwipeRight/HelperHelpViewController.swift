@@ -52,20 +52,20 @@ class HelperHelpViewController: UIViewController {
     case 0:
       self.helperExplanationView.text = "Welcome! Press continue to learn how to play..."
     case 1:
-      self.helperExplanationView.text = "The goal is to Find three tiles adjacent or diagonal to each other that complete a mathematical equation. Swipe the tiles from the start of the equation to the end to score a point."
+      self.helperExplanationView.text = "The goal is to find three tiles adjacent or diagonal to each other that complete a mathematical equation.\n\nSwipe the tiles from the start of the equation to the end to score a point."
     case 2:
       // (really stage 3)
       delegate?.setBlinkingTimerOn(true)
-      self.helperExplanationView.text = "Every equation you swipe right adds five seconds to the countdown timer."
+      self.helperExplanationView.text = "Every equation you swipe correctly adds five seconds to the countdown timer."
       GameStatus.status.tutorialStage += 1
     case 4:
-      self.helperExplanationView.text = "There is only one active equation. Active operations indicate the operation of the current equation."
+      self.helperExplanationView.text = "There is only ONE active equation. Active operations indicate the operation of the current equation."
     case 5:
-      self.helperExplanationView.text = "At higher levels two operations become active to trick you, but there is still only one equation on the board..."
+      self.helperExplanationView.text = "At higher levels two operations may become active, but only one correct equation will be on the board..."
     case 6:
       // (really stage 7)
       delegate?.setBlinkingHelperPointsOn(true, withStreaks: true, hideStreaks: false)
-      self.helperExplanationView.text = "For every three equations of an operation you swipe right in a row you get a bonus point."
+      self.helperExplanationView.text = "For every three equations you complete in a row you get a bonus point."
       GameStatus.status.tutorialStage += 1
     case 8:
       // (really the final stage)
