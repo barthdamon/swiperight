@@ -104,6 +104,7 @@ class TileView: UIView {
 //      self.innerView.backgroundColor = UIColor.clearColor()
       self.innerShadow?.shadowOpacity = 0
       self.innerShadow?.shadowRadius = 0
+      self.numberLabel?.hidden = true
 //      self.layer.shadowOpacity = 0
 //      self.layer.shadowRadius = 0
 //      self.numberLabel?.alpha = 0

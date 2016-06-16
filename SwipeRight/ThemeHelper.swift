@@ -18,6 +18,11 @@ class ThemeHelper: NSObject {
   let multiplyImage = UIImage(named: "multiplication")
   let divideImage = UIImage(named: "division")
   
+  let addFlashImage = UIImage(named: "addFlash")
+  let subtractFlashImage = UIImage(named: "subtractFlash")
+  let multiplyFlashImage = UIImage(named: "multiplyFlash")
+  let divideFlashImage = UIImage(named: "divideFlash")
+  
   let addImageGray = UIImage(named: "additionGray")
   let subtractImageGray = UIImage(named: "subtractionGray")
   let multiplyImageGray = UIImage(named: "multiplicationGray")

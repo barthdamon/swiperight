@@ -33,6 +33,46 @@ enum Operation {
     }
   }
   
+  var image: UIImage? {
+    switch self {
+    case Divide:
+      return ThemeHelper.defaultHelper.divideImage
+    case Subtract:
+      return ThemeHelper.defaultHelper.divideImage
+    case Add:
+      return ThemeHelper.defaultHelper.addImage
+    case Multiply:
+      return ThemeHelper.defaultHelper.multiplyImage
+    }
+  }
+  
+  var flashImage: UIImage? {
+    switch self {
+    case Divide:
+      return ThemeHelper.defaultHelper.divideFlashImage
+    case Subtract:
+      return ThemeHelper.defaultHelper.subtractFlashImage
+    case Add:
+      return ThemeHelper.defaultHelper.addFlashImage
+    case Multiply:
+      return ThemeHelper.defaultHelper.multiplyFlashImage
+    }
+  }
+  
+  
+  var inactiveImage: UIImage? {
+    switch self {
+    case Divide:
+      return ThemeHelper.defaultHelper.divideImage
+    case Subtract:
+      return ThemeHelper.defaultHelper.subtractImage
+    case Add:
+      return ThemeHelper.defaultHelper.addImage
+    case Multiply:
+      return ThemeHelper.defaultHelper.multiplyImage
+    }
+  }
+  
 }
 
 class GridNumberLayout: NSObject {

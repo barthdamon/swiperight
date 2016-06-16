@@ -13,6 +13,8 @@ class GameViewController: UIViewController {
 //  @IBOutlet weak var borderView: UIView!
 //  @IBOutlet weak var borderTwo: UIView!
 //  @IBOutlet weak var borderOne: UIView!
+  @IBOutlet weak var operationFlashImage: UIImageView!
+  @IBOutlet weak var operationFlashView: UIView!
   @IBOutlet weak var tutorialLaunchTextLabel: UILabel!
   
   @IBOutlet weak var view00: TileView!
@@ -60,6 +62,8 @@ class GameViewController: UIViewController {
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
+  
+  var previousOperations: Array<Operation> = []
   
   var intermissionTimeLabel: UILabel?
   var intermissionTime: Int = 20 {
@@ -347,7 +351,7 @@ class GameViewController: UIViewController {
         MultipleHelper.defaultHelper.range = 20
         self.currentLayout = GridNumberLayout()
         self.gradientLayer?.removeFromSuperlayer()
-        delegate?.setTutorialLabelText("Can you find the equation?")
+        delegate?.setTutorialLabelText("Only ONE of the active operations is in the equation")
         animateTileReset()
       case 8:
         self.delegate?.deactivateHelperPointButton(false, deactivate: false)
@@ -396,7 +400,7 @@ class GameViewController: UIViewController {
   func fadeOutTiles(callback: (complete: Bool) -> ()) {
 //    self.borderView.alpha = 0
     for (i, tile) in tileViews.enumerate() {
-      tile.showBorder(false)
+//      tile.showBorder(false)
       tile.drawNormal({ (complete) in
         if i == self.tileViews.count - 1 {
           callback(complete: true)
@@ -419,10 +423,53 @@ class GameViewController: UIViewController {
             GameStatus.status.gameActive = true
             if GameStatus.status.tutorialStage == 8 && self.tutorialTimeForHelper {
               self.view.userInteractionEnabled = false
+              self.view.alpha = 0.7
             } else {
               self.view.userInteractionEnabled = true
+              self.view.alpha = 1
             }
           }
+      })
+    }
+  }
+  
+  func flashCurrentOperation(operations: Array<Operation>, callback: (Bool) -> ()) {
+    let flashAlpha: CGFloat = 0.3
+    if (operations.count > 1) {
+      if previousOperations.contains(operations[0]) && previousOperations.contains(operations[1]) {
+        callback(false)
+      } else {
+        self.operationFlashImage.image = operations.first?.flashImage
+        self.operationFlashImage.alpha = flashAlpha
+        waitASec(0.5, callback: { (done) in
+          self.operationFlashImage.alpha = 0
+          self.previousOperations = operations
+          self.operationFlashImage.alpha = 0
+          self.operationFlashImage.image = operations[1].flashImage
+          self.operationFlashImage.alpha = flashAlpha
+          waitASec(0.5, callback: { (done) in
+            self.operationFlashImage.alpha = 0
+            self.previousOperations = operations
+          })
+        })
+      }
+    } else if previousOperations.count == 1 {
+      if previousOperations[0] == operations.first {
+        callback(false)
+      } else {
+        self.operationFlashImage.image = operations.first?.flashImage
+        self.operationFlashImage.alpha = flashAlpha
+        waitASec(0.5, callback: { (done) in
+          self.operationFlashImage.alpha = 0
+          self.previousOperations = operations
+        })
+      }
+    } else {
+      self.operationFlashImage.image = operations.first?.flashImage
+      self.operationFlashImage.alpha = flashAlpha
+      waitASec(0.5, callback: { (done) in
+        self.operationFlashImage.alpha = 0
+        self.previousOperations = operations
       })
     }
   }
@@ -431,6 +478,8 @@ class GameViewController: UIViewController {
     fadeOutTiles { (complete) in
       guard let layout = self.currentLayout else { return }
       self.setGameViewBackground(layout.operations)
+      self.flashCurrentOperation(layout.operations, callback: { (done) in
+      })
       self.applyNumberLayoutToTiles(false)
       self.fadeInTiles()
     }
@@ -513,6 +562,11 @@ class GameViewController: UIViewController {
     guard let layout = currentLayout, combo = layout.winningCombination, indexes = layout.solutionIndexes else { return }
     switch helper {
     case .Hide:
+      if GameStatus.status.gameMode == .Tutorial && GameStatus.status.tutorialStage == 8 && backFromTutorialHelper {
+        self.view.alpha = 1
+        self.delegate?.setTutorialLabelText("One less tile to worry about now!")
+      }
+
       // get all the indexes that arent in
       let possibleIndexes = Grid.indexes.filter({!indexes.contains($0)})
       // index of the tile view needs to be the samiae
@@ -640,7 +694,7 @@ class GameViewController: UIViewController {
         self.gradientLayer?.removeFromSuperlayer()
         if correct {
           if helperStreakActivity(true) {
-            self.delegate?.setTutorialLabelText(nil)
+            self.delegate?.setTutorialLabelText("Now use your bonus point!")
             tutorialTimeForHelper = true
             delegate?.deactivateHelperPointButton(false, deactivate: false)
             delegate?.setBlinkingHelperPointsOn(true, withStreaks: false, hideStreaks: false)
