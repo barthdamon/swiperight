@@ -661,6 +661,7 @@ class GameViewController: UIViewController {
   var tutorialTimeForHelper: Bool = false
   var backFromTutorialHelper: Bool = false
   var solvedOneOnFive: Bool = false
+  var pausingForEffect: Bool = false
   
   func showTutorialText() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -695,7 +696,9 @@ class GameViewController: UIViewController {
       if backFromTutorialHelper {
         let text = correct ? "Well done!" : "Don't worry, just a tutorial!"
         self.delegate?.setTutorialLabelText(text)
+        pausingForEffect = true
         waitASec(0.3) { (done) in
+          self.pausingForEffect = false
           self.delegate?.setTutorialLabelText(nil)
           self.delegate?.resetGameUI()
           self.delegate?.deactivateHelperPointButton(true, deactivate: true)
@@ -723,7 +726,9 @@ class GameViewController: UIViewController {
         self.highlightTileTimer = nil
         let text = correct ? "You're getting the hang of this!" : "You'll get it next time!"
         self.delegate?.setTutorialLabelText(text)
+        pausingForEffect = true
         waitASec(1.0) { (done) in
+          self.pausingForEffect = false
           self.delegate?.setTutorialLabelText(nil)
           self.delegate?.resetGameUI()
           self.showTutorialText()
@@ -746,7 +751,9 @@ class GameViewController: UIViewController {
       self.inTutorialHighlightMode = false
       self.highlightTileTimer?.invalidate()
       self.highlightTileTimer = nil
+      pausingForEffect = true
       waitASec(1.0) { (done) in
+        self.pausingForEffect = false
         self.delegate?.setTutorialLabelText(nil)
         self.delegate?.resetGameUI()
         self.showTutorialText()
@@ -755,10 +762,12 @@ class GameViewController: UIViewController {
   }
   
   func highlightTiles() {
-    guard let operation = currentLayout?.winningCombination?.operation else { return }
-    if let highlight = tilesToHighlight.first {
-      highlight.highlightForTutorial(operation, callback: { (done) in
-      })
+    if !pausingForEffect {
+      guard let operation = currentLayout?.winningCombination?.operation else { return }
+      if let highlight = tilesToHighlight.first {
+        highlight.highlightForTutorial(self, operation: operation, callback: { (done) in
+        })
+      }
     }
   }
   

@@ -25,6 +25,7 @@ class TileView: UIView {
   var partOfSolution = false
   var coordinates: TileCoordinates?
   var subView: UIView?
+  var drawnCorrect: Bool = false
   
   func setup(label: UILabel, subview: UIView, overlay: Bool, coordinates: TileCoordinates) {
     self.numberLabel = label
@@ -51,6 +52,7 @@ class TileView: UIView {
   }
   
   func drawCorrect(operation: Operation, callback: (Bool) -> ()) {
+    drawnCorrect = true
     UIView.animateWithDuration(0.05, animations: {
         self.numberLabel?.transform = CGAffineTransformMakeScale(1.1,1.1)
         self.drawShadow(true, operation: operation)
@@ -59,17 +61,21 @@ class TileView: UIView {
     }
   }
   
-  func highlightForTutorial(operation: Operation, callback: (Bool) -> ()) {
+  func highlightForTutorial(controller: GameViewController, operation: Operation, callback: (Bool) -> ()) {
     UIView.animateWithDuration(0.3, animations: {
       self.numberLabel?.transform = CGAffineTransformMakeScale(1.25,1.25)
       self.drawShadow(true, operation: operation)
     }) { (complete) in
       UIView.animateWithDuration(0.3, animations: {
-        self.numberLabel?.transform = CGAffineTransformIdentity
-        self.backgroundColor = UIColor.clearColor()
-        self.innerView.backgroundColor = UIColor.clearColor()
-        self.innerShadow?.shadowOpacity = 0
-        self.innerShadow?.shadowRadius = 0
+        if !controller.pausingForEffect && !self.drawnCorrect {
+          self.numberLabel?.transform = CGAffineTransformIdentity
+          self.backgroundColor = UIColor.clearColor()
+          self.innerView.backgroundColor = UIColor.clearColor()
+          self.innerShadow?.shadowOpacity = 0
+          self.innerShadow?.shadowRadius = 0
+        } else {
+          self.drawnCorrect = false
+        }
       }) { (complete) in
         callback(true)
       }
