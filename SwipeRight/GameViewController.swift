@@ -434,7 +434,7 @@ class GameViewController: UIViewController {
   }
   
   func flashCurrentOperation(operations: Array<Operation>, callback: (Bool) -> ()) {
-    let flashAlpha: CGFloat = 0.3
+    let flashAlpha: CGFloat = 0.5
     if (operations.count > 1) {
       if previousOperations.contains(operations[0]) && previousOperations.contains(operations[1]) {
         callback(false)
