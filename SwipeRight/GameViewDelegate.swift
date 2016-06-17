@@ -37,4 +37,5 @@ protocol GameViewDelegate {
   func setBlinkingHelperPointsOn(on: Bool, withStreaks: Bool, hideStreaks: Bool)
   func setTutorialLabelText(text: String?)
   func hideBonusButtonView()
+  func toggleAdViewVisible(visible: Bool)
 }

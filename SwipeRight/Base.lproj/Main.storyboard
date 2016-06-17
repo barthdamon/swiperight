@@ -19,7 +19,6 @@
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
         </mutableArray>
         <mutableArray key="DINL____.TTF">
             <string>DIN-Light</string>
@@ -50,6 +49,7 @@
             <string>DIN-Medium</string>
         </mutableArray>
         <mutableArray key="DINR____.TTF">
+            <string>DIN-Regular</string>
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
@@ -1308,7 +1308,7 @@ Cg
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="I I" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXm-Mn-9bs">
                                                 <rect key="frame" x="0.0" y="8" width="104" height="47"/>
-                                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="72"/>
+                                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1362,9 +1362,9 @@ Cg
                                     <rect key="frame" x="306" y="385" width="156" height="20"/>
                                 </variation>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-Ll-ZIO">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-Ll-ZIO">
                                 <rect key="frame" x="14" y="227" width="386" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.25098039220000001" green="0.34901960780000002" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8QM-vE-JkL"/>
                                     <constraint firstAttribute="width" constant="386" id="F5f-eq-PFP">
@@ -1387,8 +1387,8 @@ Cg
                                     </mask>
                                 </variation>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-5R-pZq" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
-                                <rect key="frame" x="127" y="233" width="160" height="39"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVt-5R-pZq" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
+                                <rect key="frame" x="127" y="234" width="160" height="38"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zj-7s-nu2">
                                         <rect key="frame" x="128" y="7" width="24" height="24"/>
@@ -2695,26 +2695,43 @@ Cg
                                             <action selector="backToGameButtonPressed:" destination="VYx-Qw-j9I" eventType="touchUpInside" id="ZAv-NT-bkO"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjD-H9-3Lg">
-                                        <rect key="frame" x="180" y="3" width="26" height="26"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZv-iv-sdc">
+                                        <rect key="frame" x="181" y="4" width="24" height="24"/>
+                                        <color key="backgroundColor" red="0.086274509799999996" green="0.49803921569999998" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="tjD-H9-3Lg" secondAttribute="height" multiplier="1:1" id="4A8-6C-DvW"/>
-                                            <constraint firstAttribute="height" constant="26" id="k40-vK-Nj6"/>
-                                            <constraint firstAttribute="width" constant="26" id="tmj-HT-buR"/>
+                                            <constraint firstAttribute="height" constant="27" id="9zh-G0-QOg"/>
+                                            <constraint firstAttribute="height" constant="24" id="KAx-bW-Azw"/>
+                                            <constraint firstAttribute="height" constant="22" id="OH3-2e-ZcL"/>
+                                            <constraint firstAttribute="width" constant="22" id="ZMW-WF-EK0"/>
+                                            <constraint firstAttribute="width" constant="24" id="al1-Dl-NUm"/>
+                                            <constraint firstAttribute="width" constant="22" id="f8B-yz-eyY"/>
+                                            <constraint firstAttribute="width" constant="27" id="g6M-9R-nhQ"/>
+                                            <constraint firstAttribute="height" constant="22" id="oye-UK-sBL"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="14"/>
+                                        <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="9zh-G0-QOg"/>
+                                                <exclude reference="f8B-yz-eyY"/>
+                                                <exclude reference="OH3-2e-ZcL"/>
+                                                <exclude reference="ZMW-WF-EK0"/>
+                                                <exclude reference="oye-UK-sBL"/>
+                                                <exclude reference="g6M-9R-nhQ"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="tjD-H9-3Lg" firstAttribute="centerX" secondItem="M7o-HM-41s" secondAttribute="centerX" id="0wV-78-f4W"/>
                                     <constraint firstAttribute="trailing" secondItem="yV0-v7-dOn" secondAttribute="trailing" constant="15" id="9Xt-ra-YsV"/>
                                     <constraint firstItem="0Xp-YT-ZnP" firstAttribute="top" secondItem="DTu-aK-nMF" secondAttribute="bottom" constant="-1" id="GNa-fu-5S5"/>
                                     <constraint firstItem="nAE-0t-viG" firstAttribute="top" secondItem="M7o-HM-41s" secondAttribute="top" id="Gqz-RA-ZoN"/>
                                     <constraint firstItem="DTu-aK-nMF" firstAttribute="centerY" secondItem="M7o-HM-41s" secondAttribute="centerY" id="KEN-fC-1VY"/>
+                                    <constraint firstItem="jZv-iv-sdc" firstAttribute="centerX" secondItem="M7o-HM-41s" secondAttribute="centerX" id="LTe-rK-gkd"/>
                                     <constraint firstItem="DTu-aK-nMF" firstAttribute="centerX" secondItem="M7o-HM-41s" secondAttribute="centerX" id="M56-WQ-1bj"/>
+                                    <constraint firstItem="jZv-iv-sdc" firstAttribute="top" secondItem="M7o-HM-41s" secondAttribute="top" constant="4" id="MJ0-Go-BJD"/>
                                     <constraint firstItem="yV0-v7-dOn" firstAttribute="top" secondItem="M7o-HM-41s" secondAttribute="top" id="MKH-p0-6cK"/>
                                     <constraint firstItem="nAE-0t-viG" firstAttribute="leading" secondItem="M7o-HM-41s" secondAttribute="leading" constant="20" id="ZOw-ef-iZQ"/>
                                     <constraint firstItem="DTu-aK-nMF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M7o-HM-41s" secondAttribute="top" constant="44" id="aI2-zn-SV2"/>
@@ -2724,7 +2741,6 @@ Cg
                                     <constraint firstAttribute="trailing" secondItem="yV0-v7-dOn" secondAttribute="trailing" constant="20" id="h8y-8R-8Ko"/>
                                     <constraint firstItem="DTu-aK-nMF" firstAttribute="width" secondItem="M7o-HM-41s" secondAttribute="height" multiplier="124:69" id="hGr-Y8-0Xr"/>
                                     <constraint firstAttribute="trailing" secondItem="DTu-aK-nMF" secondAttribute="trailing" constant="83" id="isN-3p-sIv"/>
-                                    <constraint firstItem="tjD-H9-3Lg" firstAttribute="top" secondItem="M7o-HM-41s" secondAttribute="top" constant="3" id="keb-y4-Cub"/>
                                     <constraint firstItem="0Xp-YT-ZnP" firstAttribute="centerX" secondItem="M7o-HM-41s" secondAttribute="centerX" id="wCK-ce-dkw"/>
                                     <constraint firstItem="DTu-aK-nMF" firstAttribute="width" secondItem="M7o-HM-41s" secondAttribute="height" multiplier="124:69" id="zOA-XJ-ohj"/>
                                 </constraints>
@@ -2883,7 +2899,7 @@ Cg
                         <outlet property="hideHelperTextLabel" destination="6H0-XF-NxD" id="doi-cL-PJ0"/>
                         <outlet property="hideTileHelperIndicator" destination="0Xp-YT-ZnP" id="8Ef-oJ-mpf"/>
                         <outlet property="hideTileHelperView" destination="DTu-aK-nMF" id="HyP-mz-amj"/>
-                        <outlet property="pointIndicatorLabel" destination="tjD-H9-3Lg" id="GQC-eZ-6RA"/>
+                        <outlet property="pointIndicatorLabel" destination="jZv-iv-sdc" id="T0R-tx-NKy"/>
                         <outlet property="removeHelperTextLabel" destination="s2m-Vf-BNd" id="Znq-72-Tef"/>
                         <outlet property="removeOperationHelperIndicator" destination="ck5-6S-6gU" id="Ygq-Fr-18x"/>
                         <outlet property="removeOperationHelperView" destination="Cys-bp-98k" id="YMz-qC-h71"/>

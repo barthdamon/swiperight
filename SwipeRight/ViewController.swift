@@ -175,6 +175,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   func startGameplay() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.toggleAdViewVisible(false)
       self.deactivateHelperPointButton(false, deactivate: false)
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       GameStatus.status.gameActive = true
@@ -233,6 +234,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     self.gameView?.view.userInteractionEnabled = false
     self.gameLaunchView?.gameOver(score, highScore: highScore)
     resetGameState()
+    toggleAdViewVisible(true)
+    self.adView.hidden = false
     //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
   }
   
@@ -489,6 +492,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   func hideBonusButtonView() {
     self.helperButtonView.hidden = true
+  }
+  
+  func toggleAdViewVisible(visible: Bool) {
+    self.adView.hidden = !visible
   }
   
   @IBAction func importantButtonPressed(sender: UIButton) {
