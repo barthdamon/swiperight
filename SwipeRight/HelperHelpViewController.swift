@@ -59,7 +59,7 @@ class HelperHelpViewController: UIViewController {
       self.helperExplanationView.text = "Every equation you swipe correctly adds five seconds to the countdown timer."
       GameStatus.status.tutorialStage += 1
     case 4:
-      self.helperExplanationView.text = "There is only ONE active equation. \n\n Active operations and the board background indicate the operation of the current equation."
+      self.helperExplanationView.text = "There is only ONE active equation. \n\nActive operations and the board background indicate the operation of the current equation."
     case 5:
       GameStatus.status.tutorialStage += 1
       setupForTutorialStage()
@@ -69,6 +69,7 @@ class HelperHelpViewController: UIViewController {
       delegate?.setBlinkingHelperPointsOn(true, withStreaks: true, hideStreaks: false)
       self.helperExplanationView.text = "For every three equations you complete in a row you get a bonus point."
       GameStatus.status.tutorialStage += 1
+//      performActionsForTutorialStage()
     case 8:
       // (really the final stage)
       self.helperExplanationView.text = "Ready for the real thing?"

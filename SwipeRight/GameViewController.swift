@@ -448,13 +448,13 @@ class GameViewController: UIViewController {
         let secondOperation = operations.filter({$0 == .Multiply || $0 == .Divide})
         self.operationFlashImage.image = firstOperation.first?.flashImage
         self.operationFlashImage.alpha = flashAlpha
-        waitASec(0.5, callback: { (done) in
+        waitASec(0.7, callback: { (done) in
           self.operationFlashImage.alpha = 0
           self.previousOperations = operations
           self.operationFlashImage.alpha = 0
           self.operationFlashImage.image = secondOperation.first?.flashImage
           self.operationFlashImage.alpha = flashAlpha
-          waitASec(0.5, callback: { (done) in
+          waitASec(0.7, callback: { (done) in
             self.operationFlashImage.alpha = 0
             self.previousOperations = operations
           })
@@ -466,7 +466,7 @@ class GameViewController: UIViewController {
       } else {
         self.operationFlashImage.image = operations.first?.flashImage
         self.operationFlashImage.alpha = flashAlpha
-        waitASec(0.5, callback: { (done) in
+        waitASec(0.7, callback: { (done) in
           self.operationFlashImage.alpha = 0
           self.previousOperations = operations
         })
@@ -474,7 +474,7 @@ class GameViewController: UIViewController {
     } else {
       self.operationFlashImage.image = operations.first?.flashImage
       self.operationFlashImage.alpha = flashAlpha
-      waitASec(0.5, callback: { (done) in
+      waitASec(0.7, callback: { (done) in
         self.operationFlashImage.alpha = 0
         self.previousOperations = operations
       })
@@ -723,7 +723,7 @@ class GameViewController: UIViewController {
         self.highlightTileTimer = nil
         let text = correct ? "You're getting the hang of this!" : "You'll get it next time!"
         self.delegate?.setTutorialLabelText(text)
-        waitASec(1.0) { (done) in
+        waitASec(0.7) { (done) in
           self.delegate?.setTutorialLabelText(nil)
           self.delegate?.resetGameUI()
           self.showTutorialText()

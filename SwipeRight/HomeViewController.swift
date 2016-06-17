@@ -16,6 +16,8 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   @IBOutlet weak var beginGameLabel: UILabel!
   
+  var lineView: UIView?
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,14 +49,18 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   func setupButtons() {
     beginGameButtonView.becomeButtonForGameView(self, label: beginGameLabel, delegate: self)
-    let lineView = UIView(frame: CGRectMake(0, firstTimeButton.frame.height, firstTimeButton.frame.size.width, 1))
-    lineView.backgroundColor=UIColor.blackColor()
-    firstTimeButton.addSubview(lineView)
+    lineView = UIView(frame: CGRectMake(0, firstTimeButton.frame.height, firstTimeButton.frame.size.width, 1))
+    lineView?.backgroundColor=UIColor.blackColor()
+    firstTimeButton.addSubview(lineView!)
 //    howToPlayButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.howToButtonPressed(_:)))
 //    leaderboardsButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.leaderboardsButtonPressed(_:)))
 //    self.leaderboardsButtonView.alpha = 0.4
   }
   
+  
+  func toggleUnderlineAlpha(dark: Bool) {
+    lineView?.alpha = dark ? 1 : 0.1
+  }
   
 
    // MARK: - Navigation
@@ -80,7 +86,16 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   @IBAction func howToButtonPressed(sender: AnyObject) {
     GameStatus.status.gameMode = .Tutorial
+    toggleUnderlineAlpha(true)
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
-
+  @IBAction func howToButtonDown(sender: AnyObject) {
+    toggleUnderlineAlpha(false)
+  }
+  @IBAction func howToButtonCancel(sender: AnyObject) {
+    toggleUnderlineAlpha(true)
+  }
+  @IBAction func howToButtonExited(sender: AnyObject) {
+    toggleUnderlineAlpha(true)
+  }
 }

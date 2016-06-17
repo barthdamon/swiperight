@@ -421,12 +421,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     if blinkingHelperPoints {
       UIView.animateWithDuration(tutorialBlinkTime, animations: {
         if self.blinkingHelperPointStreaks {
-          self.helperButtonView.transform = CGAffineTransformMakeScale(1.2, 1.2)
-        } else {
-          self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
+          self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
         }
+        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
+          self.bonusStreakLabel.transform = CGAffineTransformIdentity
           self.helperButtonView.transform = CGAffineTransformIdentity
           self.helperButtonLabel.transform = CGAffineTransformIdentity
         })
@@ -459,10 +459,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     self.tutorialBlinkingTimer = nil
     blinkingHelperPoints = on
     blinkingHelperPointStreaks = withStreaks
-    self.addView.image = ThemeHelper.defaultHelper.addImage
-    self.subtractView.image = ThemeHelper.defaultHelper.subtractImage
-    self.multiplyView.image = ThemeHelper.defaultHelper.multiplyImage
-    self.divideView.image = ThemeHelper.defaultHelper.divideImage
     self.helperButtonView.hidden = !on
     if on {
       blinkHelperPoints()
