@@ -723,7 +723,7 @@ class GameViewController: UIViewController {
         self.highlightTileTimer = nil
         let text = correct ? "You're getting the hang of this!" : "You'll get it next time!"
         self.delegate?.setTutorialLabelText(text)
-        waitASec(0.7) { (done) in
+        waitASec(1.0) { (done) in
           self.delegate?.setTutorialLabelText(nil)
           self.delegate?.resetGameUI()
           self.showTutorialText()
