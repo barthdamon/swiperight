@@ -471,10 +471,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func setTutorialLabelText(text: String?) {
     if let text = text {
       self.helperButtonView.hidden = true
-      adView.hidden = false
+      tutorialLabel.hidden = false
       tutorialLabel.text = text
     } else {
-      adView.hidden = true
+      tutorialLabel.hidden = true
     }
   }
   
