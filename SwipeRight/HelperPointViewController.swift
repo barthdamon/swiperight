@@ -10,6 +10,7 @@ import UIKit
 
 class HelperPointViewController: UIViewController, ButtonDelegate {
   
+  @IBOutlet weak var pointIndicatorLabel: UILabel!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var removeHelperTextLabel: UILabel!
   @IBOutlet weak var revealHelperTextLabel: UILabel!
