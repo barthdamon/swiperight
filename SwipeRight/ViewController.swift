@@ -395,12 +395,14 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
         self.multiplyView.transform = CGAffineTransformMakeScale(1.3, 1.3)
         self.divideView.transform = CGAffineTransformMakeScale(1.3, 1.3)
       }) { (done) in
-        UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
-          self.addView.transform = CGAffineTransformIdentity
-          self.subtractView.transform = CGAffineTransformIdentity
-          self.multiplyView.transform = CGAffineTransformIdentity
-          self.divideView.transform = CGAffineTransformIdentity
-        })
+        if self.blinkingHelperPoints {
+          UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
+            self.addView.transform = CGAffineTransformIdentity
+            self.subtractView.transform = CGAffineTransformIdentity
+            self.multiplyView.transform = CGAffineTransformIdentity
+            self.divideView.transform = CGAffineTransformIdentity
+          })
+        }
       }
     }
   }
