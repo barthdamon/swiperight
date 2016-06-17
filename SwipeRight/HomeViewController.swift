@@ -59,7 +59,13 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   
   func toggleUnderlineAlpha(dark: Bool) {
-    lineView?.alpha = dark ? 1 : 0.1
+    if dark {
+      UIView.animateWithDuration(0.1, animations: { 
+        self.lineView?.alpha = 1
+      })
+    } else {
+      lineView?.alpha = 0.1
+    }
   }
   
 
