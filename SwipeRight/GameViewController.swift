@@ -439,15 +439,15 @@ class GameViewController: UIViewController {
       if previousOperations.contains(operations[0]) && previousOperations.contains(operations[1]) {
         callback(false)
       } else {
-        let firstOperation = operations[0] == .Add || operations[0] == .Subtract ? operations[0] : operations[1]
-        let secondOperation = operations[1] == .Multiply || operations[1] == .Subtract ? operations[1] : operations[0]
-        self.operationFlashImage.image = firstOperation.flashImage
+        let firstOperation = operations.filter({$0 == .Add || $0 == .Subtract})
+        let secondOperation = operations.filter({$0 == .Multiply || $0 == .Divide})
+        self.operationFlashImage.image = firstOperation.first?.flashImage
         self.operationFlashImage.alpha = flashAlpha
         waitASec(0.5, callback: { (done) in
           self.operationFlashImage.alpha = 0
           self.previousOperations = operations
           self.operationFlashImage.alpha = 0
-          self.operationFlashImage.image = secondOperation.flashImage
+          self.operationFlashImage.image = secondOperation.first?.flashImage
           self.operationFlashImage.alpha = flashAlpha
           waitASec(0.5, callback: { (done) in
             self.operationFlashImage.alpha = 0
