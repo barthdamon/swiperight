@@ -1045,6 +1045,7 @@ Cg
                                 <constraints>
                                     <constraint firstAttribute="height" constant="89" id="Dnn-qE-OG1"/>
                                     <constraint firstAttribute="height" constant="120" id="G2b-Sc-u7t"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="bO4-Lx-nrt"/>
                                     <constraint firstAttribute="height" constant="76" id="eLK-3c-Q5F"/>
                                     <constraint firstAttribute="height" priority="750" constant="83" id="nPz-r1-4eI"/>
                                     <constraint firstAttribute="height" constant="155" id="tx7-CY-dO2"/>
