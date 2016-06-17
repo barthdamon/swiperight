@@ -79,6 +79,7 @@ class ProgressionManager: NSObject {
     modificationTypes.forEach { (mod) in
       modifications.append(Modification(type: mod))
     }
+    self.activeOperations.removeAll()
     addRandomOperation()
     previousOperations = activeOperations
     currentLayoutOperations = activeOperations
@@ -99,6 +100,8 @@ class ProgressionManager: NSObject {
     numberOfExtraTiles = 0
     self.activeOperations.removeAll()
     addRandomOperation()
+    previousOperations = activeOperations
+    currentLayoutOperations = activeOperations
     multipleOperationsDisplayActive = false
   }
   
