@@ -341,21 +341,26 @@ class GameViewController: UIViewController {
     } else {
       switch GameStatus.status.tutorialStage {
       case 2:
+        ProgressionManager.sharedManager.addRandomOperation()
         resetTilesToHighlight(false)
-      case 6:
+      case 5:
         // set two operations active with two potential combinations
         // make two operations active with range still minimalf
-        ProgressionManager.sharedManager.activeOperations = [.Add, .Subtract, .Multiply, .Divide]
-        ProgressionManager.sharedManager.multipleOperationsDisplayActive = true
+        ProgressionManager.sharedManager.activeOperations = [.Add, .Subtract]
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
         MultipleHelper.defaultHelper.range = 20
         self.currentLayout = GridNumberLayout()
+        ProgressionManager.sharedManager.currentLayoutOperationCount = 2
+        guard let operation = currentLayout?.winningCombination?.operation else { return }
         self.gradientLayer?.removeFromSuperlayer()
-        delegate?.setTutorialLabelText("Only ONE of the active operations is in the equation")
+        let text = solvedOneOnFive ? "Now solve this one for" : "Solve for"
+        ProgressionManager.sharedManager.previousOperations = [operation]
+        delegate?.setTutorialLabelText("\(text) \(operation.rawValue)!")
         animateTileReset()
+        resetTilesToHighlight(true)
       case 8:
         self.delegate?.deactivateHelperPointButton(false, deactivate: false)
-        ProgressionManager.sharedManager.activeOperations = [.Add]
+        ProgressionManager.sharedManager.reset()
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
         MultipleHelper.defaultHelper.range = 20
         ProgressionManager.sharedManager.currentHelperPoints = 0
@@ -365,7 +370,7 @@ class GameViewController: UIViewController {
         self.gradientLayer?.removeFromSuperlayer()
         if !tutorialTimeForHelper {
           delegate?.hideBonusButtonView()
-          delegate?.setTutorialLabelText("Complete a streak to get a bonus point!")
+          delegate?.setTutorialLabelText("Complete the streak to get a bonus point!")
         }
         animateTileReset()
       default:
@@ -566,7 +571,7 @@ class GameViewController: UIViewController {
     case .Hide:
       if GameStatus.status.gameMode == .Tutorial && GameStatus.status.tutorialStage == 8 && backFromTutorialHelper {
         self.view.alpha = 1
-        self.delegate?.setTutorialLabelText("One less tile to worry about now!")
+        self.delegate?.setTutorialLabelText("One less tile to distract you now!")
       }
 
       // get all the indexes that arent in
@@ -655,6 +660,7 @@ class GameViewController: UIViewController {
   var inTutorialHighlightMode: Bool = false
   var tutorialTimeForHelper: Bool = false
   var backFromTutorialHelper: Bool = false
+  var solvedOneOnFive: Bool = false
   
   func showTutorialText() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -670,14 +676,16 @@ class GameViewController: UIViewController {
       tilesToHighlight.removeFirst()
       // add it to the highlighted tiles, remove it from the tiles to highlight
     }
-    if tilesToHighlight.count == 3 {
-      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
-    } else if tilesToHighlight.count == 2 {
-      delegate?.setTutorialLabelText("Swipe to the next tile!")
-    } else if tilesToHighlight.count == 1 {
-      delegate?.setTutorialLabelText("Keep swiping!")
-    }else if tilesToHighlight.count == 0 {
-      delegate?.setTutorialLabelText("Now lift your finger!")
+    if GameStatus.status.tutorialStage == 2 {
+      if tilesToHighlight.count == 3 {
+        delegate?.setTutorialLabelText("Touch your finger to the first tile!")
+      } else if tilesToHighlight.count == 2 {
+        delegate?.setTutorialLabelText("Swipe to the next tile!")
+      } else if tilesToHighlight.count == 1 {
+        delegate?.setTutorialLabelText("Keep swiping!")
+      }else if tilesToHighlight.count == 0 {
+        delegate?.setTutorialLabelText("Now lift your finger!")
+      }
     }
     // when last one reaced showTutorial text
   }
@@ -685,6 +693,8 @@ class GameViewController: UIViewController {
   func tutorialEndResponse(correct: Bool) {
     if GameStatus.status.tutorialStage == 8 && !tutorialTimeForHelper {
       if backFromTutorialHelper {
+        let text = correct ? "Well done!" : "Don't worry, just a tutorial!"
+        self.delegate?.setTutorialLabelText(text)
         waitASec(0.3) { (done) in
           self.delegate?.setTutorialLabelText(nil)
           self.delegate?.resetGameUI()
@@ -706,10 +716,32 @@ class GameViewController: UIViewController {
         }
         animateTileReset()
       }
+    } else if GameStatus.status.tutorialStage == 5 {
+      if solvedOneOnFive {
+        self.inTutorialHighlightMode = false
+        self.highlightTileTimer?.invalidate()
+        self.highlightTileTimer = nil
+        let text = correct ? "You're getting the hang of this!" : "You'll get it next time!"
+        self.delegate?.setTutorialLabelText(text)
+        waitASec(1.0) { (done) in
+          self.delegate?.setTutorialLabelText(nil)
+          self.delegate?.resetGameUI()
+          self.showTutorialText()
+        }
+      } else {
+        solvedOneOnFive = true
+        self.inTutorialHighlightMode = false
+        self.highlightTileTimer?.invalidate()
+        self.highlightTileTimer = nil
+        self.currentLayout = GridNumberLayout()
+        self.gradientLayer?.removeFromSuperlayer()
+        guard let operation = currentLayout?.winningCombination?.operation else { return }
+        let text = solvedOneOnFive ? "Now try solving this one for" : "Solve for"
+        delegate?.setTutorialLabelText("\(text) \(operation.rawValue)!")
+        animateTileReset()
+      }
     } else {
-      var text = correct ? "Nice!" : "You'll get it next time!"
-      if GameStatus.status.tutorialStage == 6 && correct { text = "You're getting the hang of this!" }
-      if GameStatus.status.tutorialStage == 8 && correct { text = "Okay, enough tutorials for you..." }
+      let text = correct ? "Nice!" : "You'll get it next time!"
       delegate?.setTutorialLabelText(text)
       self.inTutorialHighlightMode = false
       self.highlightTileTimer?.invalidate()
@@ -734,7 +766,6 @@ class GameViewController: UIViewController {
     highlightTileTimer?.invalidate()
     highlightTileTimer = nil
     tilesToHighlight.removeAll()
-    delegate?.setTutorialLabelText("Touch your finger to the first tile!")
     if !userBlewIt {
       self.currentLayout = GridNumberLayout()
       self.gradientLayer?.removeFromSuperlayer()
@@ -743,8 +774,11 @@ class GameViewController: UIViewController {
     // set first one to glowing, and respond only when they move to the correct one
     guard let combo = currentLayout?.winningCombination else { return }
     tilesToHighlight.append(tileViews[combo.xNumberIndex])
-    tilesToHighlight.append(tileViews[combo.bNumberIndex])
-    tilesToHighlight.append(tileViews[combo.sumNumberIndex])
+    if GameStatus.status.tutorialStage == 2 {
+      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
+      tilesToHighlight.append(tileViews[combo.bNumberIndex])
+      tilesToHighlight.append(tileViews[combo.sumNumberIndex])
+    }
     inTutorialHighlightMode = true
     GameStatus.status.gameActive = true
     highlightTileTimer = NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector: #selector(GameViewController.highlightTiles), userInfo: nil, repeats: true)

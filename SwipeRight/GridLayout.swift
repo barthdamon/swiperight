@@ -14,11 +14,11 @@ import UIKit
 //basically do this by passing in numbers to NumberCombination init(), that way it can tell what is already set (which will only ever be other solutions). Just when generating random numbers check if the index of that spot already exists, and if it does adjust the random number generation accordingly to match the operation
 //then need to have solutionIndexes array just be bigger, and generate several numberCombinations depending on difficulty selected
 
-enum Operation {
-  case Divide
-  case Subtract
-  case Add
-  case Multiply
+enum Operation: String {
+  case Divide = "division"
+  case Subtract = "subtraction"
+  case Add = "addition"
+  case Multiply = "multiplication"
   
   var color: UIColor {
     switch self {

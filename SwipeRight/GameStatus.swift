@@ -31,7 +31,7 @@ class GameStatus: NSObject {
  0 - TEXT: "Find the three tiles adjacent or diagonal to each other that complete a mathematical equation."
  1 - TEXT: "Swipe the tiles from the start of the equation to the end to score a point."
  2 - GAMEBOARD: Show glowing tiles from start to end when they press start end glows and if they miss start glows again. Send back to text after correct.
- 3 - TEXT/ACTION: - blinking timer - "Every equation you swipe right adds five seconds to the countdown timer."
+ 3 - TEXT/ACTION: - blinking timer - "Every equation you swipe corrrectly adds five seconds to the countdown timer."
  4 - TEXT/ACTION: - blinking operations - "There is only one active equation. Active operations indicate the operation of the equation."
  5 - TEXT - "At higher levels two operations become active to trick you, but there is still only one equation."
  6 - GAMEBOARD - Two operations active with only 10 highest range. Let them swipe then send back to text
