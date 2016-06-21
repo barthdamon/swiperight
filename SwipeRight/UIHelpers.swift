@@ -143,8 +143,8 @@ class OperationImageView: UIImageView {
     if let operation = operation {
       if activeOperations.contains(operation) {
         UIView.animateWithDuration(0.3, animations: { 
-          self.transform = CGAffineTransformMakeScale(1.45, 1.45)
-          self.layer.shadowColor = operation.color.CGColor
+          self.transform = CGAffineTransformMakeScale(2.0, 2.0)
+          self.layer.shadowColor = UIColor.whiteColor().CGColor
           self.layer.shadowOpacity = 1
           self.layer.shadowOffset = CGSizeZero
           self.layer.shadowRadius = 10

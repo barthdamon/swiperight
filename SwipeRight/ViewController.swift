@@ -17,7 +17,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   @IBOutlet weak var tutorialLabel: UILabel!
   
   @IBOutlet weak var timeLabel: UILabel!
-  @IBOutlet weak var pausedView: UIView!
+  @IBOutlet weak var pausedLabel: UILabel!
   
   @IBOutlet weak var gameContainerView: UIView!
   @IBOutlet weak var scoreLabel: UILabel!
@@ -46,7 +46,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   var score: Int = 0 {
     didSet {
-      scoreLabel?.text = "\(score)"
+      scoreLabel?.text = "SCORE: \(score)"
     }
   }
   var gameDuration: Int {
@@ -91,7 +91,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   override func viewWillDisappear(animated: Bool) {
     //   self.navigationController?.navigationBarHidden = false
     invalidateTimer()
+    GameStatus.status.inMenu = true
     super.viewWillDisappear(true)
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    GameStatus.status.inMenu = false
   }
   
   func configureViewStyles() {
@@ -140,7 +145,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func setStreakLabel() {
-    self.bonusStreakLabel.text = "BONUS STREAK: \(ProgressionManager.sharedManager.currentStreak)/3"
+    self.bonusStreakLabel.text = "ABILITY STREAK: \(ProgressionManager.sharedManager.currentStreak)/3"
   }
   
 
@@ -196,11 +201,16 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   //MARK: HUD
   
   func tickTock() {
-    if GameStatus.status.gameActive {
-      time -= 1
-      if time == 0 {
-        gameOver()
+    if !GameStatus.status.inMenu {
+      if GameStatus.status.gameActive {
+        time -= 1
+        if time == 0 {
+          gameOver()
+        }
       }
+    } else {
+      print("Timer invalidated from tick tock")
+      self.invalidateTimer()
     }
   }
   
@@ -208,7 +218,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func togglePaused(paused: Bool) {
     GameStatus.status.gameActive = !paused
     if paused {
-      self.pausedView.hidden = false
+      self.pausedLabel.hidden = false
       self.timeLabel.alpha = 0.2
       invalidateTimer()
     } else {
@@ -218,7 +228,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
         invalidateTimer()
       }
       self.timeLabel.alpha = 1
-      self.pausedView.hidden = true
+      self.pausedLabel.hidden = true
     }
   }
   
@@ -247,7 +257,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     } else {
       newHighScore = false
     }
-    self.highScoreLabel.text = "HIGH SCORE: \(CurrentUser.info.highScore)"
+    self.highScoreLabel.text = "BEST: \(CurrentUser.info.highScore)"
     return newHighScore
   }
   
@@ -351,6 +361,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   @IBAction func menuButtonPressed(sender: AnyObject) {
     print("Menu Button Pressed")
     invalidateTimer()
+    GameStatus.status.inMenu = true
     GameStatus.status.gameActive = false
     ProgressionManager.sharedManager.reset()
     GameStatus.status.tutorialStage = 0
@@ -426,9 +437,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     if blinkingHelperPoints {
       UIView.animateWithDuration(tutorialBlinkTime, animations: {
         if self.blinkingHelperPointStreaks {
-          self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
+          self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.15, 1.15)
         }
-        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.2, 1.2)
+        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.15, 1.15)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
           self.bonusStreakLabel.transform = CGAffineTransformIdentity

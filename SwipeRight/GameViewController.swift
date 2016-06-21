@@ -13,7 +13,8 @@ class GameViewController: UIViewController {
 //  @IBOutlet weak var borderView: UIView!
 //  @IBOutlet weak var borderTwo: UIView!
 //  @IBOutlet weak var borderOne: UIView!
-  @IBOutlet weak var operationFlashImage: UIImageView!
+//  @IBOutlet weak var operationFlashImage: UIImageView!
+  @IBOutlet weak var operationFlashText: UILabel!
   @IBOutlet weak var operationFlashView: UIView!
   @IBOutlet weak var tutorialLaunchTextLabel: UILabel!
   
@@ -62,6 +63,7 @@ class GameViewController: UIViewController {
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
+  var flashingOperation: Bool = false
   
   var previousOperations: Array<Operation> = []
   
@@ -370,7 +372,7 @@ class GameViewController: UIViewController {
         self.gradientLayer?.removeFromSuperlayer()
         if !tutorialTimeForHelper {
           delegate?.hideBonusButtonView()
-          delegate?.setTutorialLabelText("Complete the streak to get a bonus point!")
+          delegate?.setTutorialLabelText("Complete the streak to get an ability point!")
         }
         animateTileReset()
       default:
@@ -417,7 +419,7 @@ class GameViewController: UIViewController {
   func fadeInTiles() {
     tileViews.forEach { (tile) -> () in
       tile.showBorder(true)
-      UIView.animateWithDuration(0.2, animations: { () -> Void in
+      UIView.animateWithDuration(0.5, animations: { () -> Void in
         tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
 //        self.borderView.alpha = 1
         }, completion: { (complete) -> Void in
@@ -428,7 +430,7 @@ class GameViewController: UIViewController {
             GameStatus.status.gameActive = true
             if GameStatus.status.tutorialStage == 8 && self.tutorialTimeForHelper {
               self.view.userInteractionEnabled = false
-              self.view.alpha = 0.7
+              self.view.alpha = 0.4
             } else {
               self.view.userInteractionEnabled = true
               self.view.alpha = 1
@@ -446,37 +448,35 @@ class GameViewController: UIViewController {
       } else {
         let firstOperation = operations.filter({$0 == .Add || $0 == .Subtract})
         let secondOperation = operations.filter({$0 == .Multiply || $0 == .Divide})
-        self.operationFlashImage.image = firstOperation.first?.flashImage
-        self.operationFlashImage.alpha = flashAlpha
+        if let first = firstOperation.first?.flashName, second = secondOperation.first?.flashName {
+          self.operationFlashText.text = "\(first)\nOR\n\(second)"
+        }
+        self.operationFlashText.alpha = flashAlpha
         waitASec(0.7, callback: { (done) in
-          self.operationFlashImage.alpha = 0
           self.previousOperations = operations
-          self.operationFlashImage.alpha = 0
-          self.operationFlashImage.image = secondOperation.first?.flashImage
-          self.operationFlashImage.alpha = flashAlpha
-          waitASec(0.7, callback: { (done) in
-            self.operationFlashImage.alpha = 0
-            self.previousOperations = operations
-          })
+          self.operationFlashText.alpha = 0
+          callback(true)
         })
       }
     } else if previousOperations.count == 1 {
       if previousOperations[0] == operations.first {
         callback(false)
       } else {
-        self.operationFlashImage.image = operations.first?.flashImage
-        self.operationFlashImage.alpha = flashAlpha
+        self.operationFlashText.text = operations.first?.flashName
+        self.operationFlashText.alpha = flashAlpha
         waitASec(0.7, callback: { (done) in
-          self.operationFlashImage.alpha = 0
+          self.operationFlashText.alpha = 0
           self.previousOperations = operations
+          callback(true)
         })
       }
     } else {
-      self.operationFlashImage.image = operations.first?.flashImage
-      self.operationFlashImage.alpha = flashAlpha
+      self.operationFlashText.text = operations.first?.flashName
+      self.operationFlashText.alpha = flashAlpha
       waitASec(0.7, callback: { (done) in
-        self.operationFlashImage.alpha = 0
+        self.operationFlashText.alpha = 0
         self.previousOperations = operations
+        callback(true)
       })
     }
   }
@@ -485,10 +485,14 @@ class GameViewController: UIViewController {
     fadeOutTiles { (complete) in
       guard let layout = self.currentLayout else { return }
       self.setGameViewBackground(layout.operations)
+      self.tileViews.forEach({$0.showBorder(false)})
+      self.flashingOperation = true
       self.flashCurrentOperation(layout.operations, callback: { (done) in
+        self.flashingOperation = false
+        self.tileViews.forEach({$0.showBorder(true)})
+        self.applyNumberLayoutToTiles(false)
+        self.fadeInTiles()
       })
-      self.applyNumberLayoutToTiles(false)
-      self.fadeInTiles()
     }
   }
   
@@ -709,7 +713,7 @@ class GameViewController: UIViewController {
         self.gradientLayer?.removeFromSuperlayer()
         if correct {
           if helperStreakActivity(true) {
-            self.delegate?.setTutorialLabelText("Now use your bonus point!")
+            self.delegate?.setTutorialLabelText("Now use your ability point!")
             tutorialTimeForHelper = true
             delegate?.deactivateHelperPointButton(false, deactivate: false)
             delegate?.setBlinkingHelperPointsOn(true, withStreaks: false, hideStreaks: false)
@@ -762,7 +766,7 @@ class GameViewController: UIViewController {
   }
   
   func highlightTiles() {
-    if !pausingForEffect {
+    if !pausingForEffect && !flashingOperation {
       guard let operation = currentLayout?.winningCombination?.operation else { return }
       if let highlight = tilesToHighlight.first {
         highlight.highlightForTutorial(self, operation: operation, callback: { (done) in

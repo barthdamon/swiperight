@@ -24,6 +24,7 @@ class GameStatus: NSObject {
   var gameActive = false
   var gameMode: GameMode = .Standard
   var tutorialStage = 0
+  var inMenu: Bool = true
 }
 
 /*
