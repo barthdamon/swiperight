@@ -29,7 +29,7 @@ enum Operation: String {
     case Add:
       return UIColor(red:0.99, green:0.76, blue:0.57, alpha:1.00)
     case Multiply:
-      return UIColor(red:0.95, green:0.89, blue:0.35, alpha:1.00)
+      return UIColor(red:0.96, green:0.91, blue:0.45, alpha:1.00)
     }
   }
   

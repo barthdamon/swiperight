@@ -26,7 +26,12 @@ class HelperHelpViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setForMode()
+    helperExplanationView.selectable = false
     // Do any additional setup after loading the view.
+  }
+  
+  override func viewDidLayoutSubviews() {
+    self.helperExplanationView.setContentOffset(CGPointZero, animated: false)
   }
   
   func setForMode() {
@@ -50,16 +55,16 @@ class HelperHelpViewController: UIViewController {
   func setupForTutorialStage() {
     switch GameStatus.status.tutorialStage {
     case 0:
-      self.helperExplanationView.text = "Welcome! Press continue to learn how to play..."
+      self.setExplanationText("Welcome! Press continue to learn how to play...")
     case 1:
-      self.helperExplanationView.text = "The goal is to find three tiles adjacent or diagonal to each other that complete a mathematical equation.\n\nSwipe the tiles from the start of the equation to the end to score a point."
+      self.setExplanationText("The goal is to find three tiles adjacent or diagonal to each other that complete a mathematical equation.\n\nSwipe the tiles from the start of the equation to the end to score a point.")
     case 2:
       // (really stage 3)
       delegate?.setBlinkingTimerOn(true)
-      self.helperExplanationView.text = "Every equation you swipe correctly adds five seconds to the countdown timer."
+      self.setExplanationText("Every equation you swipe correctly adds five seconds to the countdown timer.")
       GameStatus.status.tutorialStage += 1
     case 4:
-      self.helperExplanationView.text = "There is only ONE active equation. \n\nActive operations and the board background indicate the operation of the current equation."
+      self.setExplanationText("There is only ONE active equation. \n\nActive operations and the board background indicate the operation of the current equation.")
     case 5:
       GameStatus.status.tutorialStage += 1
       setupForTutorialStage()
@@ -67,18 +72,24 @@ class HelperHelpViewController: UIViewController {
     case 6:
       // (really stage 7)
       delegate?.setBlinkingHelperPointsOn(true, withStreaks: true, hideStreaks: false)
-      self.helperExplanationView.text = "For every three equations you complete in a row you get an ability point."
+      self.setExplanationText("For every three equations you complete in a row you get an ability point.")
       GameStatus.status.tutorialStage += 1
 //      performActionsForTutorialStage()
     case 8:
       // (really the final stage)
-      self.helperExplanationView.text = "Ready for the real thing?"
+      self.setExplanationText("Ready for the real thing?")
       self.continueButton.hidden = true
       self.yesButton.hidden = false
       self.noButton.hidden = false
     default:
       break
     }
+  }
+  
+  func setExplanationText(text: String) {
+    helperExplanationView.selectable = true
+    helperExplanationView.text = text
+    helperExplanationView.selectable = false
   }
   
   func performActionsForTutorialStage() {

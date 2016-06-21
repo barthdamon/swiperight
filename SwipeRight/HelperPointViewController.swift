@@ -10,7 +10,6 @@ import UIKit
 
 class HelperPointViewController: UIViewController, ButtonDelegate {
   
-  @IBOutlet weak var pointIndicatorLabel: UILabel!
   @IBOutlet weak var backButton: UIButton!
   @IBOutlet weak var removeHelperTextLabel: UILabel!
   @IBOutlet weak var revealHelperTextLabel: UILabel!
@@ -32,22 +31,21 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   
   var gameViewController: GameViewController?
   var delegate: GameViewDelegate?
+  var rightSwipe: UISwipeGestureRecognizer?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupHelperButtons()
-    delegate?.deactivateHelperPointButton(true, deactivate: true)
-    delegate?.hideBonusButtonView()
-    // Do any additional setup after loading the view.
-    pointIndicatorLabel.text = "\(ProgressionManager.sharedManager.currentHelperPoints)"
-    pointIndicatorLabel.layer.cornerRadius = pointIndicatorLabel.bounds.height / 2
-    pointIndicatorLabel.clipsToBounds = true
     if GameStatus.status.gameMode == .Tutorial {
       delegate?.setTutorialLabelText("Hide a tile with your bonus point!")
       self.backButton.hidden = true
-      pointIndicatorLabel.hidden = true
+      if let _ = rightSwipe {
+        self.view.removeGestureRecognizer(rightSwipe!)
+        self.rightSwipe = nil
+      }
     } else {
       delegate?.toggleAdViewVisible(true)
+      activateGestureRecognizers()
       // show an add
     }
   }
@@ -58,13 +56,23 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   }
   
   override func viewWillAppear(animated: Bool) {
-    delegate?.deactivateHelperPointButton(true, deactivate: true)
+    delegate?.deactivateHelperPointButton(false, deactivate: true)
     activateHelperButtons()
     super.viewWillAppear(true)
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(true)
+  }
+  
+  func activateGestureRecognizers() {
+    if let _ = rightSwipe {
+      return
+    } else {
+      self.rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(HelperPointViewController.backToGameButtonPressed(_:)))
+      rightSwipe?.direction = .Right
+      self.view.addGestureRecognizer(rightSwipe!)
+    }
   }
   
   func setupHelperButtons() {
@@ -152,10 +160,6 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     self.backButtonEnabled = true
 //    self.hideButtonFlashTimer?.invalidate()
 //    self.hideButtonFlashTimer = nil
-  }
-  
-  @IBAction func helpButtonPressed(sender: AnyObject) {
-    self.performSegueWithIdentifier("showHelpSegue", sender: self)
   }
   
   @IBAction func backToGameButtonPressed(sender: AnyObject) {

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwipeRight/ViewController.swift"
-            timestampString = "488209791.708115"
+            timestampString = "488210895.368184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "toggleAdViewVisible(_:)"
             landmarkType = "5">
          </BreakpointContent>

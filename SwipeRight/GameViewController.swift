@@ -371,9 +371,9 @@ class GameViewController: UIViewController {
         self.currentLayout = GridNumberLayout()
         self.gradientLayer?.removeFromSuperlayer()
         if !tutorialTimeForHelper {
-          delegate?.hideBonusButtonView()
           delegate?.setTutorialLabelText("Complete the streak to get an ability point!")
         }
+        delegate?.hideBonusButtonView(false)
         animateTileReset()
       default:
         break
@@ -441,7 +441,7 @@ class GameViewController: UIViewController {
   }
   
   func flashCurrentOperation(operations: Array<Operation>, callback: (Bool) -> ()) {
-    let flashAlpha: CGFloat = 0.5
+    let flashAlpha: CGFloat = 1.0
     if (operations.count > 1) {
       if previousOperations.contains(operations[0]) && previousOperations.contains(operations[1]) {
         callback(false)
@@ -621,7 +621,7 @@ class GameViewController: UIViewController {
     if segue.identifier == "showHelperPointController" {
       if let vc = segue.destinationViewController as? HelperPointViewController {
         delegate?.togglePaused(true)
-        delegate?.hideBonusButtonView()
+        delegate?.hideBonusButtonView(true)
         vc.delegate = delegate
         helperPointController = vc
         vc.gameViewController = self

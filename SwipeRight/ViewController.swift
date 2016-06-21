@@ -17,7 +17,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   @IBOutlet weak var tutorialLabel: UILabel!
   
   @IBOutlet weak var timeLabel: UILabel!
-  @IBOutlet weak var pausedLabel: UILabel!
+//  @IBOutlet weak var pausedLabel: UILabel!
   
   @IBOutlet weak var gameContainerView: UIView!
   @IBOutlet weak var scoreLabel: UILabel!
@@ -182,7 +182,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.toggleAdViewVisible(false)
       self.deactivateHelperPointButton(false, deactivate: false)
-      self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
+      if self.timer == nil {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
+      }
       GameStatus.status.gameActive = true
     })
   }
@@ -218,7 +220,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func togglePaused(paused: Bool) {
     GameStatus.status.gameActive = !paused
     if paused {
-      self.pausedLabel.hidden = false
+//      self.pausedLabel.hidden = false
       self.timeLabel.alpha = 0.2
       invalidateTimer()
     } else {
@@ -228,7 +230,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
         invalidateTimer()
       }
       self.timeLabel.alpha = 1
-      self.pausedLabel.hidden = true
+//      self.pausedLabel.hidden = true
     }
   }
   
@@ -437,9 +439,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     if blinkingHelperPoints {
       UIView.animateWithDuration(tutorialBlinkTime, animations: {
         if self.blinkingHelperPointStreaks {
-          self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.15, 1.15)
+          self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.1, 1.1)
         }
-        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.15, 1.15)
+        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.1, 1.1)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
           self.bonusStreakLabel.transform = CGAffineTransformIdentity
@@ -456,7 +458,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     self.tutorialBlinkingTimer = nil
     if on {
       blinkTimer()
-      self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkTimer), userInfo: nil, repeats: true)
+      if tutorialBlinkingTimer == nil {
+        self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkTimer), userInfo: nil, repeats: true)
+      }
     }
   }
   
@@ -501,8 +505,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     gameLaunchView?.startGameView()
   }
   
-  func hideBonusButtonView() {
-    self.helperButtonView.hidden = true
+  func hideBonusButtonView(hide: Bool) {
+    self.helperButtonView.hidden = hide
   }
   
   func toggleAdViewVisible(visible: Bool) {
