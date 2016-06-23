@@ -143,9 +143,7 @@ class GridNumberLayout: NSObject {
       for (i, _) in numbers.enumerate() {
         if tilePopulation.contains(i) {
           // need to check other populated tiles
-          let numberRequired = ProgressionManager.sharedManager.numberOfExtraTiles
-          
-          numbers[i] = Int.random(0...ProgressionManager.sharedManager.range)
+          numbers[i] = Int.randomForFiller(1...ProgressionManager.sharedManager.range)
         }
       }
       checkForOtherSolutions(populated)

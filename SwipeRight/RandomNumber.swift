@@ -11,10 +11,8 @@ import UIKit
 
 
 //Random number generator
-extension Int
-{
-  static func random(range: Range<Int> ) -> Int
-  {
+extension Int {
+  static func random(range: Range<Int> ) -> Int {
     var offset = 0
     
     if range.startIndex < 0   // allow negative ranges
@@ -32,4 +30,15 @@ extension Int
     let random = Int(2 + arc4random_uniform(40 - 2)) - 0
     return 2 * random
   }
+  
+  static func randomForFiller(range: Range<Int> ) -> Int {
+    let chances = Int.random(1...3)
+    if chances == 1 {
+      return Int.random(1...12)
+    } else {
+      return Int.random(range)
+    }
+  }
+  
+  
 }
