@@ -74,15 +74,15 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
 //    self.layer.hidden = false
     self.layer.insertSublayer(gradientLayer, atIndex: 0)
     
-    self.layer.cornerRadius = self.frame.height / 2
+    self.layer.cornerRadius = self.bounds.height / 2
     self.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
     self.layer.shadowOpacity = 0.3
     self.layer.shadowOffset = CGSizeZero
     self.layer.shadowRadius = 10
-    offsetX = Double(self.frame.width * 1.2)
-    offsetY = Double(self.frame.height * 1.8)
-    negOffsetX = Double(self.frame.width * -0.2)
-    negOffsetY = Double(self.frame.height * -0.8)
+    offsetX = Double(self.bounds.width * 1.2)
+    offsetY = Double(self.bounds.height * 1.8)
+    negOffsetX = Double(self.bounds.width * -0.2)
+    negOffsetY = Double(self.bounds.height * -0.8)
   }
   
   func togglePressed(down: Bool) {

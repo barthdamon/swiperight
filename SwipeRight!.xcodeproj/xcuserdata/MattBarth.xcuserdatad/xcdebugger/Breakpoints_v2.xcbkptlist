@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwipeRight/GameViewController.swift"
-            timestampString = "488410305.676102"
+            timestampString = "488411965.471818"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "814"
-            endingLineNumber = "814"
+            startingLineNumber = "815"
+            endingLineNumber = "815"
             landmarkName = "tutorialResolveHighlightMovement()"
             landmarkType = "5">
          </BreakpointContent>

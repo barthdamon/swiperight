@@ -694,6 +694,7 @@ class GameViewController: UIViewController {
         delegate?.setTutorialLabelText("Now lift your finger!")
       }
     }
+//    highlightTiles()
     // when last one reaced showTutorial text
   }
   
