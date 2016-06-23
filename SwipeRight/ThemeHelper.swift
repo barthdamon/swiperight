@@ -51,6 +51,9 @@ class ThemeHelper: NSObject {
   let sw_font_large = UIFont(name: "DIN-Medium", size: 32)
   let sw_bold_font = UIFont(name: "DIN-Bold", size: 13)
   
+  let sw_countdown_font = UIFont(name: "DIN-Medium", size: 56)
+  let sw_tile_font = UIFont(name: "DIN-Medium", size: 25)
+  
   let sw_game_font = UIFont(name: "DIN-Medium", size: 25)
   let sw_game_overlay_font = UIFont(name: "DIN-Medium", size: 40)
 }

@@ -142,6 +142,9 @@ class GridNumberLayout: NSObject {
       let tilePopulation = populated.filter({$0 != solution.xNumberIndex && $0 != solution.bNumberIndex && $0 != solution.sumNumberIndex})
       for (i, _) in numbers.enumerate() {
         if tilePopulation.contains(i) {
+          // need to check other populated tiles
+          let numberRequired = ProgressionManager.sharedManager.numberOfExtraTiles
+          
           numbers[i] = Int.random(0...ProgressionManager.sharedManager.range)
         }
       }

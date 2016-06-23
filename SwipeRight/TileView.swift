@@ -131,12 +131,15 @@ class TileView: UIView {
   func countdownForCenter(callback: (Bool) -> ()) {
     var countDown = 3
     func tickTock() {
+      self.numberLabel?.font = ThemeHelper.defaultHelper.sw_countdown_font
       self.numberLabel?.alpha = 0
       self.numberLabel?.text = String(countDown)
       UIView.animateWithDuration(1, animations: { () -> Void in
         self.numberLabel?.alpha = 1
         }, completion: { (complete) -> Void in
           if countDown == 1 {
+            self.numberLabel?.alpha = 0
+            self.numberLabel?.font = ThemeHelper.defaultHelper.sw_tile_font
             callback(true)
           } else {
             countDown -= 1
