@@ -54,6 +54,7 @@
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
             <string>DIN-Regular</string>
+            <string>DIN-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -82,11 +83,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wSD-Mz-bk6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xYe-bN-WP8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7g-nT-De9" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
-                                <rect key="frame" x="176" y="275" width="248" height="50"/>
+                                <rect key="frame" x="388" y="658" width="248" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEGIN GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yml-Ch-wis">
                                         <rect key="frame" x="30" y="15" width="188" height="20"/>
@@ -113,6 +114,9 @@
                                                 <exclude reference="lnn-5T-y3j"/>
                                             </mask>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,7 +128,9 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="7Pv-qM-fRx"/>
                                     <constraint firstItem="Yml-Ch-wis" firstAttribute="leading" secondItem="w7g-nT-De9" secondAttribute="leading" constant="8" id="7zV-KF-mop"/>
                                     <constraint firstItem="Yml-Ch-wis" firstAttribute="top" secondItem="w7g-nT-De9" secondAttribute="top" constant="15" id="A40-6G-u3H"/>
-                                    <constraint firstAttribute="height" constant="50" id="EMq-4v-ETD"/>
+                                    <constraint firstAttribute="height" constant="50" id="EMq-4v-ETD">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="76"/>
+                                    </constraint>
                                     <constraint firstItem="Yml-Ch-wis" firstAttribute="leading" secondItem="w7g-nT-De9" secondAttribute="leading" constant="23" id="HLD-bn-saV"/>
                                     <constraint firstAttribute="height" constant="37" id="L1e-IA-Psm"/>
                                     <constraint firstAttribute="bottom" secondItem="Yml-Ch-wis" secondAttribute="bottom" constant="8" id="LAm-Ev-p0Z"/>
@@ -140,7 +146,9 @@
                                     <constraint firstItem="Yml-Ch-wis" firstAttribute="top" secondItem="w7g-nT-De9" secondAttribute="top" constant="5" id="o9i-1j-JSz"/>
                                     <constraint firstAttribute="height" constant="30" id="ojX-Dk-Chr"/>
                                     <constraint firstAttribute="width" constant="134" id="sJT-OP-aBT"/>
-                                    <constraint firstAttribute="width" constant="248" id="vaa-jI-irS"/>
+                                    <constraint firstAttribute="width" constant="248" id="vaa-jI-irS">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="375"/>
+                                    </constraint>
                                     <constraint firstItem="Yml-Ch-wis" firstAttribute="leading" secondItem="w7g-nT-De9" secondAttribute="leading" constant="15" id="z8O-BM-Rx3"/>
                                     <constraint firstAttribute="bottom" secondItem="Yml-Ch-wis" secondAttribute="bottom" constant="15" id="zfx-13-LjA"/>
                                 </constraints>
@@ -172,7 +180,7 @@
                                 </variation>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XKE-nQ-xjL">
-                                <rect key="frame" x="113" y="74" width="374" height="169"/>
+                                <rect key="frame" x="325" y="457" width="374" height="169"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="169" id="7bZ-Kl-exd"/>
                                     <constraint firstAttribute="width" constant="200" id="GuO-VC-HBh"/>
@@ -191,7 +199,7 @@
                                 </variation>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6R-7b-O5h">
-                                <rect key="frame" x="113" y="74" width="374" height="169"/>
+                                <rect key="frame" x="325" y="457" width="374" height="169"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ag2-v4-QWJ">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="89"/>
@@ -225,7 +233,7 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fiv-Rs-Uvf">
-                                <rect key="frame" x="211" y="339" width="178" height="22"/>
+                                <rect key="frame" x="423" y="722" width="178" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="168" id="4AA-RD-W8N"/>
                                     <constraint firstAttribute="width" constant="187" id="8ur-Bk-Trs"/>
@@ -236,7 +244,9 @@
                                     <constraint firstAttribute="width" constant="77" id="JR0-j5-hF8"/>
                                     <constraint firstAttribute="width" constant="178" id="MjT-Id-Cse"/>
                                     <constraint firstAttribute="width" constant="160" id="alu-on-7D6"/>
+                                    <constraint firstAttribute="width" constant="304" id="ewx-dW-S8w"/>
                                     <constraint firstAttribute="width" constant="92" id="jRo-dB-Khg"/>
+                                    <constraint firstAttribute="height" constant="33" id="sCv-fp-k28"/>
                                     <constraint firstAttribute="width" constant="174" id="ydT-iL-OjI"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="zSQ-lb-e0Y"/>
                                 </constraints>
@@ -253,9 +263,20 @@
                                         <exclude reference="I1S-kO-Lwl"/>
                                         <exclude reference="JR0-j5-hF8"/>
                                         <exclude reference="alu-on-7D6"/>
+                                        <exclude reference="ewx-dW-S8w"/>
                                         <exclude reference="jRo-dB-Khg"/>
+                                        <exclude reference="sCv-fp-k28"/>
                                         <exclude reference="ydT-iL-OjI"/>
                                         <exclude reference="zSQ-lb-e0Y"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                    <mask key="constraints">
+                                        <exclude reference="AJc-si-cI2"/>
+                                        <exclude reference="MjT-Id-Cse"/>
+                                        <include reference="ewx-dW-S8w"/>
+                                        <include reference="sCv-fp-k28"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -266,20 +287,25 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-QJ-fsr">
-                                <rect key="frame" x="120" y="275" width="360" height="182"/>
+                                <rect key="frame" x="205" y="658" width="614" height="182"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like this is your first time 😉 Are you sure you want to skip the tutorial?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIm-SP-Cyv">
-                                        <rect key="frame" x="8" y="8" width="344" height="137"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <rect key="frame" x="8" y="8" width="598" height="137"/>
+                                        <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="28"/>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hR-MP-6Rr">
                                         <rect key="frame" x="8" y="144" width="60" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="3TS-GD-9ea"/>
+                                            <constraint firstAttribute="height" constant="46" id="Kum-5G-k1L"/>
                                             <constraint firstAttribute="width" constant="60" id="Sqn-iY-VS1"/>
                                             <constraint firstAttribute="width" constant="104" id="e5w-G4-n69"/>
+                                            <constraint firstAttribute="width" constant="55" id="uHe-hw-bmQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="18"/>
                                         <state key="normal" title="Skip">
@@ -287,7 +313,18 @@
                                         </state>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="Kum-5G-k1L"/>
                                                 <exclude reference="e5w-G4-n69"/>
+                                                <exclude reference="uHe-hw-bmQ"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                            <mask key="constraints">
+                                                <exclude reference="3TS-GD-9ea"/>
+                                                <include reference="Kum-5G-k1L"/>
+                                                <exclude reference="Sqn-iY-VS1"/>
+                                                <include reference="uHe-hw-bmQ"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -295,15 +332,32 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKJ-L1-dB1">
-                                        <rect key="frame" x="255" y="144" width="97" height="33"/>
+                                        <rect key="frame" x="509" y="144" width="97" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="4bq-LU-a6t"/>
+                                            <constraint firstAttribute="width" constant="159" id="Ty7-Hz-c5q"/>
                                             <constraint firstAttribute="width" constant="97" id="dSB-Qp-XLc"/>
+                                            <constraint firstAttribute="height" constant="46" id="ewk-ck-Sxm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="17"/>
                                         <state key="normal" title="Be Prepared">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Ty7-Hz-c5q"/>
+                                                <exclude reference="ewk-ck-Sxm"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                            <mask key="constraints">
+                                                <exclude reference="4bq-LU-a6t"/>
+                                                <include reference="Ty7-Hz-c5q"/>
+                                                <exclude reference="dSB-Qp-XLc"/>
+                                                <include reference="ewk-ck-Sxm"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="bePreparedButtonPressed:" destination="gcC-dN-XMu" eventType="touchUpInside" id="leb-gc-Kxh"/>
                                         </connections>
@@ -315,6 +369,7 @@
                                     <constraint firstAttribute="height" constant="182" id="KWL-G9-tli"/>
                                     <constraint firstAttribute="trailing" secondItem="BIm-SP-Cyv" secondAttribute="trailing" constant="8" id="LqS-du-tPL"/>
                                     <constraint firstItem="0hR-MP-6Rr" firstAttribute="leading" secondItem="7XU-QJ-fsr" secondAttribute="leading" constant="8" id="Pd2-F1-lGa"/>
+                                    <constraint firstAttribute="height" constant="285" id="QUt-3W-i51"/>
                                     <constraint firstItem="BIm-SP-Cyv" firstAttribute="top" secondItem="7XU-QJ-fsr" secondAttribute="top" constant="8" id="fZU-HU-Liv"/>
                                     <constraint firstAttribute="bottom" secondItem="FKJ-L1-dB1" secondAttribute="bottom" constant="5" id="hz6-fi-ujS"/>
                                     <constraint firstAttribute="bottom" secondItem="0hR-MP-6Rr" secondAttribute="bottom" constant="5" id="pMi-ZE-dRc"/>
@@ -322,6 +377,17 @@
                                     <constraint firstItem="0hR-MP-6Rr" firstAttribute="top" secondItem="BIm-SP-Cyv" secondAttribute="bottom" constant="-1" id="r5n-4p-IP2"/>
                                     <constraint firstItem="FKJ-L1-dB1" firstAttribute="top" secondItem="BIm-SP-Cyv" secondAttribute="bottom" constant="-1" id="xbz-Gb-fzN"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="QUt-3W-i51"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="KWL-G9-tli"/>
+                                        <include reference="QUt-3W-i51"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.74053241889999999" green="0.77045292070000004" blue="0.77045292070000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -379,6 +445,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="VwU-gT-AJC"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPadPro"/>
                     <connections>
                         <outlet property="beginGameButtonView" destination="w7g-nT-De9" id="i2s-JZ-2ce"/>
                         <outlet property="beginGameLabel" destination="Yml-Ch-wis" id="0FT-Gs-uwY"/>
@@ -390,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIT-h2-OPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-480" y="346"/>
+            <point key="canvasLocation" x="-378" y="743.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -616,9 +684,6 @@
                                                         <exclude reference="jnj-sd-b6u"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="94" y="34" width="50" height="50"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -634,9 +699,6 @@
                                                 <exclude reference="Dhc-ND-puI"/>
                                                 <exclude reference="fx3-Lt-Usx"/>
                                             </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="238" height="119"/>
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="905-JF-87P">
@@ -662,7 +724,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="94" y="34" width="50" height="50"/>
+                                                    <rect key="frame" x="63" y="34" width="34" height="51"/>
                                                 </variation>
                                             </imageView>
                                         </subviews>
@@ -679,9 +741,6 @@
                                                 <exclude reference="GxQ-mw-mCt"/>
                                                 <exclude reference="ouk-he-Qc1"/>
                                             </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="475" y="0.0" width="237" height="119"/>
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDK-6U-RRK">
@@ -700,9 +759,6 @@
                                                         <exclude reference="XZu-ry-P0z"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="94" y="34" width="50" height="50"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -718,9 +774,6 @@
                                                 <exclude reference="e7e-Qi-AoU"/>
                                                 <exclude reference="ls7-Su-cD9"/>
                                             </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="712" y="0.0" width="238" height="119"/>
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLx-hB-wKd">
@@ -739,9 +792,6 @@
                                                         <exclude reference="wJG-Zb-H77"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="93" y="34" width="50" height="50"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -757,9 +807,6 @@
                                                 <exclude reference="AFh-Oi-JJz"/>
                                                 <exclude reference="XeN-Br-LOd"/>
                                             </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="238" y="0.0" width="237" height="119"/>
                                         </variation>
                                     </view>
                                 </subviews>
@@ -825,8 +872,7 @@
                                         <exclude reference="wui-Rl-scJ"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="37" y="102" width="950" height="119"/>
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
                                         <exclude reference="Cvz-e3-vbv"/>
                                         <exclude reference="JPq-g9-6cv"/>
@@ -1123,9 +1169,6 @@
                                     <mask key="constraints">
                                         <exclude reference="Adb-nC-nmM"/>
                                     </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="37" y="221" width="950" height="949"/>
                                 </variation>
                                 <connections>
                                     <segue destination="2fl-HP-Wke" kind="embed" identifier="gameViewEmbed" id="zYc-iN-5FX"/>
@@ -1604,8 +1647,9 @@
                                                                 <exclude reference="de8-1r-qyX"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1617,6 +1661,9 @@
                                                     <constraint firstAttribute="bottom" secondItem="pgN-qj-gQJ" secondAttribute="bottom" id="svW-eT-Kov"/>
                                                     <constraint firstItem="pgN-qj-gQJ" firstAttribute="top" secondItem="hOl-jy-ASh" secondAttribute="top" id="z7P-3K-cN6"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="75" y="75" width="168" height="168"/>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1647,7 +1694,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="170" height="169"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="169" height="114"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1660,7 +1707,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="MKM-n7-EY6" secondAttribute="trailing" id="piR-Od-Vjn"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="73" y="74" width="170" height="169"/>
+                                                    <rect key="frame" x="74" y="74" width="169" height="114"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -1690,8 +1737,9 @@
                                                                 <exclude reference="QOj-PC-I5c"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1703,6 +1751,9 @@
                                                     <constraint firstAttribute="width" secondItem="W30-Ai-BEl" secondAttribute="height" multiplier="1:1" id="sWM-yY-B8h"/>
                                                     <constraint firstAttribute="trailing" secondItem="lhy-lj-k1z" secondAttribute="trailing" id="slt-uo-YpE"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="73" y="75" width="168" height="168"/>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1733,7 +1784,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="170" height="171"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="171" height="117"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1746,7 +1797,7 @@
                                                     <constraint firstItem="KZd-qt-m3N" firstAttribute="leading" secondItem="gad-i6-v2C" secondAttribute="leading" id="b95-cn-98r"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="74" y="73" width="170" height="171"/>
+                                                    <rect key="frame" x="73" y="49" width="171" height="117"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -1778,7 +1829,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="170" height="171"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="117"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1791,7 +1842,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="9dx-JZ-mXy" secondAttribute="bottom" id="lqy-x6-InR"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="73" y="73" width="170" height="171"/>
+                                                    <rect key="frame" x="49" y="49" width="117" height="117"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -1823,7 +1874,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="170" height="171"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="171" height="117"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1836,7 +1887,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="4rq-ni-tnn" secondAttribute="bottom" id="s9K-Cl-NjB"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="73" y="73" width="170" height="171"/>
+                                                    <rect key="frame" x="72" y="49" width="171" height="117"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -1866,8 +1917,9 @@
                                                                 <exclude reference="tyq-Y3-KIU"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1879,6 +1931,9 @@
                                                     <constraint firstAttribute="bottom" secondItem="MnH-hB-8VT" secondAttribute="bottom" id="q1s-b5-g49"/>
                                                     <constraint firstItem="MnH-hB-8VT" firstAttribute="leading" secondItem="izg-ox-JiN" secondAttribute="leading" id="smD-LA-5qW"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="73" y="73" width="168" height="168"/>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1909,7 +1964,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="170" height="169"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="169" height="114"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1922,7 +1977,7 @@
                                                     <constraint firstItem="XFy-8b-fHU" firstAttribute="top" secondItem="iGC-AA-5dB" secondAttribute="top" id="yPC-Uu-qZx"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="73" y="73" width="170" height="169"/>
+                                                    <rect key="frame" x="74" y="73" width="169" height="114"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -1952,8 +2007,9 @@
                                                                 <exclude reference="EFm-Mc-FkK"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1965,6 +2021,9 @@
                                                     <constraint firstItem="ESL-uO-Tya" firstAttribute="top" secondItem="QrE-4x-G3R" secondAttribute="top" id="dfH-jf-muL"/>
                                                     <constraint firstAttribute="width" secondItem="QrE-4x-G3R" secondAttribute="height" multiplier="1:1" id="n5J-rs-cEj"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="75" y="73" width="168" height="168"/>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2245,7 +2304,8 @@
                                                 <exclude reference="xks-ev-EZu"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular">
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="287" y="55" width="375" height="76"/>
                                             <mask key="constraints">
                                                 <exclude reference="Qjg-CS-Fv3"/>
                                                 <include reference="h8s-Bm-qSW"/>
@@ -2263,8 +2323,9 @@
                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular">
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="20"/>
+                                            <rect key="frame" x="406" y="133" width="138" height="21"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -2306,8 +2367,9 @@
                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular">
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="20"/>
+                                            <rect key="frame" x="406" y="133" width="138" height="21"/>
                                         </variation>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTu-aK-nMF" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
@@ -2386,7 +2448,8 @@
                                                 <exclude reference="vrj-gA-RhZ"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular">
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="287" y="55" width="375" height="76"/>
                                             <mask key="constraints">
                                                 <exclude reference="MaI-DN-h6X"/>
                                                 <include reference="Zzh-lt-Nhr"/>
@@ -2525,7 +2588,8 @@
                                                 <exclude reference="xYr-3m-4Yu"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular">
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="287" y="55" width="375" height="76"/>
                                             <mask key="constraints">
                                                 <exclude reference="CDR-Ko-pS2"/>
                                                 <exclude reference="G2t-KO-735"/>
@@ -2543,8 +2607,9 @@
                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular">
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="20"/>
+                                            <rect key="frame" x="406" y="133" width="138" height="21"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -2593,6 +2658,7 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="32"/>
                                     <mask key="constraints">
+                                        <exclude reference="ESz-Dp-zvk"/>
                                         <exclude reference="FEY-Tw-hr1"/>
                                         <include reference="SpN-Zj-ang"/>
                                         <include reference="ei0-ZJ-EWw"/>
