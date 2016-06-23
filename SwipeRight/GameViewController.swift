@@ -794,6 +794,11 @@ class GameViewController: UIViewController {
       tilesToHighlight.append(tileViews[combo.bNumberIndex])
       tilesToHighlight.append(tileViews[combo.sumNumberIndex])
     }
+    if GameStatus.status.tutorialStage == 5 && tilesToHighlight.count != 0 {
+      if let op = currentLayout?.winningCombination?.operation {
+        delegate?.setTutorialLabelText("Solve for \(op.rawValue)!")
+      }
+    }
     inTutorialHighlightMode = true
     GameStatus.status.gameActive = true
     highlightTileTimer = NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector: #selector(GameViewController.highlightTiles), userInfo: nil, repeats: true)
@@ -820,10 +825,10 @@ class GameViewController: UIViewController {
         highlightNextTile()
       }
     }
+    if GameStatus.status.tutorialStage == 5 && tilesToHighlight.count == 0 {
+      delegate?.setTutorialLabelText("Keep Solving!")
+    }
   }
-  
-  
-  
-  
+
   
 }

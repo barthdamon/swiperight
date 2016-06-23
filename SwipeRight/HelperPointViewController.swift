@@ -35,7 +35,6 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupHelperButtons()
     if GameStatus.status.gameMode == .Tutorial {
       delegate?.setTutorialLabelText("Hide a tile with your bonus point!")
       self.backButton.hidden = true
@@ -63,6 +62,11 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(true)
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    setupHelperButtons()
   }
   
   func activateGestureRecognizers() {

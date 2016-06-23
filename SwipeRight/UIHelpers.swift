@@ -35,22 +35,22 @@ func alertShow(vc: UIViewController, alertText :String, alertMessage :String) {
 
 extension UILabel {
   
-  func boldRange(range: Range<String.Index>) {
-    if let text = self.attributedText, boldFont = ThemeHelper.defaultHelper.sw_bold_font {
-      let attr = NSMutableAttributedString(attributedString: text)
-      let start = text.string.startIndex.distanceTo(range.startIndex)
-      let length = range.startIndex.distanceTo(range.endIndex)
-      attr.addAttributes([NSFontAttributeName: boldFont], range: NSMakeRange(start, length))
-      self.attributedText = attr
-    }
-  }
+//  func boldRange(range: Range<String.Index>) {
+//    if let text = self.attributedText, boldFont = ThemeHelper.defaultHelper.sw_bold_font {
+//      let attr = NSMutableAttributedString(attributedString: text)
+//      let start = text.string.startIndex.distanceTo(range.startIndex)
+//      let length = range.startIndex.distanceTo(range.endIndex)
+//      attr.addAttributes([NSFontAttributeName: boldFont], range: NSMakeRange(start, length))
+//      self.attributedText = attr
+//    }
+//  }
   
-  func boldSubstring(substr: String) {
-    let range = self.text?.rangeOfString(substr)
-    if let r = range {
-      boldRange(r)
-    }
-  }
+//  func boldSubstring(substr: String) {
+//    let range = self.text?.rangeOfString(substr)
+//    if let r = range {
+//      boldRange(r)
+//    }
+//  }
 }
 
 class ButtonView: UIView, UIGestureRecognizerDelegate {

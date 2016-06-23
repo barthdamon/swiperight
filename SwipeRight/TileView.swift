@@ -31,13 +31,6 @@ class TileView: UIView {
     self.numberLabel = label
     self.coordinates = coordinates
     self.subView = subview
-    if overlay {
-      self.backgroundColor = UIColor.clearColor()
-      self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_overlay_font
-    } else {
-      self.backgroundColor = UIColor.clearColor()
-      self.numberLabel?.font = ThemeHelper.defaultHelper.sw_game_font
-    }
     self.numberLabel?.backgroundColor = UIColor.clearColor()
 //    self.clipsToBounds = true
   }

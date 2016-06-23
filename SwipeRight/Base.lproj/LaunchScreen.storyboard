@@ -64,8 +64,20 @@
                                 <rect key="frame" x="180" y="275" width="240" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NjU-xn-nhs"/>
+                                    <constraint firstAttribute="height" constant="76" id="S9d-e2-PZB"/>
                                     <constraint firstAttribute="width" constant="240" id="sN6-ro-BnY"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="S9d-e2-PZB"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="NjU-xn-nhs"/>
+                                        <include reference="S9d-e2-PZB"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.74053241889999999" green="0.77045292070000004" blue="0.77045292070000004" alpha="1" colorSpace="calibratedRGB"/>

@@ -41,15 +41,20 @@ class HomeViewController: UIViewController, ButtonDelegate {
     logoView.alpha = 0
     // Do any additional setup after loading the view.
     configureBackground()
-    setupButtons()
   }
   
   override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(true)
     UIView.animateWithDuration(0.5) { 
       self.beginGameButtonView.alpha = 1
       self.firstTimeButton.alpha = 1
       self.logoView.alpha = 1
     }
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    setupButtons()
   }
   
   
@@ -73,12 +78,14 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   
   func toggleUnderlineAlpha(dark: Bool) {
-    if dark {
-      UIView.animateWithDuration(0.1, animations: {
-        self.lineView?.alpha = 1
-      })
-    } else {
-      lineView?.alpha = 0.1
+    if let lineView = lineView {
+      if dark {
+        UIView.animateWithDuration(0.1, animations: {
+          lineView.alpha = 1
+        })
+      } else {
+        lineView.alpha = 0.1
+      }
     }
   }
   

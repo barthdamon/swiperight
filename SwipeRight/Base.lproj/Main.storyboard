@@ -8,53 +8,8 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="DINB____.TTF">
-            <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
-        </mutableArray>
-        <mutableArray key="DINL____.TTF">
-            <string>DIN-Light</string>
-            <string>DIN-Light</string>
-            <string>DIN-Light</string>
-        </mutableArray>
         <mutableArray key="DINM____.TTF">
             <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-            <string>DIN-Medium</string>
-        </mutableArray>
-        <mutableArray key="DINR____.TTF">
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
-            <string>DIN-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -89,7 +44,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7g-nT-De9" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                 <rect key="frame" x="388" y="658" width="248" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEGIN GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yml-Ch-wis">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEGIN GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yml-Ch-wis">
                                         <rect key="frame" x="30" y="15" width="188" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="188" id="1E8-5E-WVQ"/>
@@ -100,8 +55,9 @@
                                             <constraint firstAttribute="height" constant="20" id="jB6-fB-XSw"/>
                                             <constraint firstAttribute="width" constant="86" id="jxU-vZ-2vy"/>
                                             <constraint firstAttribute="width" constant="84" id="lnn-5T-y3j"/>
+                                            <constraint firstAttribute="height" constant="34" id="rNB-BS-T2k"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -112,10 +68,15 @@
                                                 <exclude reference="jB6-fB-XSw"/>
                                                 <exclude reference="jxU-vZ-2vy"/>
                                                 <exclude reference="lnn-5T-y3j"/>
+                                                <exclude reference="rNB-BS-T2k"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
+                                            <mask key="constraints">
+                                                <exclude reference="MNk-OK-Hfx"/>
+                                                <include reference="rNB-BS-T2k"/>
+                                            </mask>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -232,25 +193,29 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fiv-Rs-Uvf">
-                                <rect key="frame" x="423" y="722" width="178" height="22"/>
+                            <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fiv-Rs-Uvf">
+                                <rect key="frame" x="421" y="717" width="183" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="168" id="4AA-RD-W8N"/>
                                     <constraint firstAttribute="width" constant="187" id="8ur-Bk-Trs"/>
                                     <constraint firstAttribute="height" constant="22" id="AJc-si-cI2"/>
                                     <constraint firstAttribute="height" constant="23" id="DPg-z5-u3f"/>
                                     <constraint firstAttribute="height" constant="17" id="Faw-bO-xwl"/>
+                                    <constraint firstAttribute="width" constant="183" id="GUb-2j-kl9"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="174" id="I1S-kO-Lwl"/>
                                     <constraint firstAttribute="width" constant="77" id="JR0-j5-hF8"/>
                                     <constraint firstAttribute="width" constant="178" id="MjT-Id-Cse"/>
+                                    <constraint firstAttribute="height" constant="23" id="TQ8-c9-9NV"/>
                                     <constraint firstAttribute="width" constant="160" id="alu-on-7D6"/>
                                     <constraint firstAttribute="width" constant="304" id="ewx-dW-S8w"/>
+                                    <constraint firstAttribute="width" constant="320" id="hp9-QC-HoW"/>
                                     <constraint firstAttribute="width" constant="92" id="jRo-dB-Khg"/>
+                                    <constraint firstAttribute="height" constant="17" id="n2f-R2-8Ph"/>
                                     <constraint firstAttribute="height" constant="33" id="sCv-fp-k28"/>
                                     <constraint firstAttribute="width" constant="174" id="ydT-iL-OjI"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="zSQ-lb-e0Y"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <state key="normal" title="It's my first time playing">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -258,24 +223,31 @@
                                     <mask key="constraints">
                                         <exclude reference="4AA-RD-W8N"/>
                                         <exclude reference="8ur-Bk-Trs"/>
+                                        <exclude reference="AJc-si-cI2"/>
                                         <exclude reference="DPg-z5-u3f"/>
                                         <exclude reference="Faw-bO-xwl"/>
                                         <exclude reference="I1S-kO-Lwl"/>
                                         <exclude reference="JR0-j5-hF8"/>
+                                        <exclude reference="MjT-Id-Cse"/>
                                         <exclude reference="alu-on-7D6"/>
                                         <exclude reference="ewx-dW-S8w"/>
+                                        <exclude reference="hp9-QC-HoW"/>
                                         <exclude reference="jRo-dB-Khg"/>
+                                        <exclude reference="n2f-R2-8Ph"/>
                                         <exclude reference="sCv-fp-k28"/>
                                         <exclude reference="ydT-iL-OjI"/>
                                         <exclude reference="zSQ-lb-e0Y"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
                                     <mask key="constraints">
                                         <exclude reference="AJc-si-cI2"/>
+                                        <exclude reference="GUb-2j-kl9"/>
                                         <exclude reference="MjT-Id-Cse"/>
-                                        <include reference="ewx-dW-S8w"/>
+                                        <exclude reference="TQ8-c9-9NV"/>
+                                        <exclude reference="ewx-dW-S8w"/>
+                                        <include reference="hp9-QC-HoW"/>
                                         <include reference="sCv-fp-k28"/>
                                     </mask>
                                 </variation>
@@ -286,45 +258,48 @@
                                     <action selector="howToButtonPressed:" destination="gcC-dN-XMu" eventType="touchUpInside" id="u1a-bz-CsQ"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-QJ-fsr">
-                                <rect key="frame" x="205" y="658" width="614" height="182"/>
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-QJ-fsr">
+                                <rect key="frame" x="211" y="790" width="614" height="182"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like this is your first time 😉 Are you sure you want to skip the tutorial?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIm-SP-Cyv">
                                         <rect key="frame" x="8" y="8" width="598" height="137"/>
-                                        <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="28"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hR-MP-6Rr">
                                         <rect key="frame" x="8" y="144" width="60" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="3TS-GD-9ea"/>
+                                            <constraint firstAttribute="width" constant="72" id="7EC-hc-TPe"/>
                                             <constraint firstAttribute="height" constant="46" id="Kum-5G-k1L"/>
                                             <constraint firstAttribute="width" constant="60" id="Sqn-iY-VS1"/>
                                             <constraint firstAttribute="width" constant="104" id="e5w-G4-n69"/>
                                             <constraint firstAttribute="width" constant="55" id="uHe-hw-bmQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Skip">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="7EC-hc-TPe"/>
                                                 <exclude reference="Kum-5G-k1L"/>
                                                 <exclude reference="e5w-G4-n69"/>
                                                 <exclude reference="uHe-hw-bmQ"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                             <mask key="constraints">
                                                 <exclude reference="3TS-GD-9ea"/>
+                                                <include reference="7EC-hc-TPe"/>
                                                 <include reference="Kum-5G-k1L"/>
                                                 <exclude reference="Sqn-iY-VS1"/>
-                                                <include reference="uHe-hw-bmQ"/>
+                                                <exclude reference="uHe-hw-bmQ"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -409,7 +384,9 @@
                             <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="f6R-7b-O5h" secondAttribute="bottom" constant="8" id="WML-Bh-VaL"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="28" id="Z4F-L2-8Ea"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xYe-bN-WP8" secondAttribute="leadingMargin" constant="20" id="ZGq-Hh-Gdk"/>
-                            <constraint firstItem="Fiv-Rs-Uvf" firstAttribute="top" secondItem="w7g-nT-De9" secondAttribute="bottom" constant="14" id="Zf0-gI-W9c"/>
+                            <constraint firstItem="Fiv-Rs-Uvf" firstAttribute="top" secondItem="w7g-nT-De9" secondAttribute="bottom" constant="14" id="Zf0-gI-W9c">
+                                <variation key="heightClass=regular-widthClass=regular" constant="28"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="f6R-7b-O5h" secondAttribute="trailing" constant="20" id="a0b-og-7gW"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="32" id="aEk-WZ-w5f"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="ePH-4H-fGW"/>
@@ -458,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIT-h2-OPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-378" y="743.25"/>
+            <point key="canvasLocation" x="-378" y="743"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -483,7 +460,7 @@
                                             <constraint firstAttribute="height" constant="21" id="sRm-Mf-fWL"/>
                                             <constraint firstAttribute="width" constant="121" id="ziA-Ca-Uk8"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -494,7 +471,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                             <mask key="constraints">
                                                 <exclude reference="Woq-b8-0IX"/>
                                                 <include reference="sRm-Mf-fWL"/>
@@ -504,13 +481,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VML-Sv-N3u">
                                         <rect key="frame" x="462" y="0.0" width="100" height="41"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjf-nY-Bsg">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:04" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjf-nY-Bsg">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="41"/>
-                                                <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="38"/>
+                                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="42"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="100"/>
+                                                    <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="110"/>
                                                 </variation>
                                             </label>
                                         </subviews>
@@ -546,7 +523,7 @@
                                             <constraint firstAttribute="width" constant="46" id="NcU-nK-eH6"/>
                                             <constraint firstAttribute="height" constant="21" id="aAo-VZ-tGo"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                         <state key="normal" title="MENU">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -557,7 +534,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <mask key="constraints">
                                                 <include reference="34c-me-i16"/>
                                                 <include reference="LN9-S6-NwY"/>
@@ -580,7 +557,7 @@
                                             <constraint firstAttribute="width" constant="144" id="oH1-rf-hLs"/>
                                             <constraint firstAttribute="height" constant="21" id="wvm-7p-iwU"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -594,7 +571,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                             <mask key="constraints">
                                                 <exclude reference="A23-ag-DX3"/>
                                                 <include reference="MqV-2T-fNh"/>
@@ -672,7 +649,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="125"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="addition" translatesAutoresizingMaskIntoConstraints="NO" id="TuB-LD-hXP" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
-                                                <rect key="frame" x="98" y="36" width="54" height="53"/>
+                                                <rect key="frame" x="98" y="14" width="54" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="TuB-LD-hXP" secondAttribute="height" multiplier="1:1" id="Fsl-PE-HED"/>
                                                     <constraint firstAttribute="height" constant="36" id="Ss1-t6-opt"/>
@@ -705,7 +682,7 @@
                                         <rect key="frame" x="500" y="0.0" width="250" height="125"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="multiplication" translatesAutoresizingMaskIntoConstraints="NO" id="Q5o-NE-XQ0" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
-                                                <rect key="frame" x="98" y="36" width="54" height="53"/>
+                                                <rect key="frame" x="98" y="14" width="54" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="36" id="4L5-Jc-psn"/>
                                                     <constraint firstAttribute="width" secondItem="Q5o-NE-XQ0" secondAttribute="height" multiplier="1:1" id="4nf-Ej-B2X"/>
@@ -723,9 +700,6 @@
                                                         <exclude reference="mUD-K2-PYM"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="63" y="34" width="34" height="51"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -742,12 +716,15 @@
                                                 <exclude reference="ouk-he-Qc1"/>
                                             </mask>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="474" y="0.0" width="237" height="119"/>
+                                        </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDK-6U-RRK">
                                         <rect key="frame" x="750" y="0.0" width="250" height="125"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="division" translatesAutoresizingMaskIntoConstraints="NO" id="IYG-cu-bai" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
-                                                <rect key="frame" x="98" y="36" width="54" height="53"/>
+                                                <rect key="frame" x="98" y="14" width="54" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="GRK-YB-IoU"/>
                                                     <constraint firstAttribute="width" secondItem="IYG-cu-bai" secondAttribute="height" multiplier="1:1" id="RSw-eY-bMx"/>
@@ -758,6 +735,9 @@
                                                         <exclude reference="GRK-YB-IoU"/>
                                                         <exclude reference="XZu-ry-P0z"/>
                                                     </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="93" y="34" width="51" height="51"/>
                                                 </variation>
                                             </imageView>
                                         </subviews>
@@ -775,12 +755,15 @@
                                                 <exclude reference="ls7-Su-cD9"/>
                                             </mask>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="711" y="0.0" width="238" height="119"/>
+                                        </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLx-hB-wKd">
                                         <rect key="frame" x="250" y="0.0" width="250" height="125"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="subtraction" translatesAutoresizingMaskIntoConstraints="NO" id="9t9-9D-bsM" customClass="OperationImageView" customModule="SwipeRight_" customModuleProvider="target">
-                                                <rect key="frame" x="98" y="36" width="54" height="53"/>
+                                                <rect key="frame" x="98" y="14" width="54" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="9t9-9D-bsM" secondAttribute="height" multiplier="1:1" id="m2N-fK-S30"/>
                                                     <constraint firstAttribute="height" constant="36" id="nuC-np-mNS"/>
@@ -791,6 +774,9 @@
                                                         <exclude reference="nuC-np-mNS"/>
                                                         <exclude reference="wJG-Zb-H77"/>
                                                     </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="92" y="34" width="51" height="51"/>
                                                 </variation>
                                             </imageView>
                                         </subviews>
@@ -807,6 +793,9 @@
                                                 <exclude reference="AFh-Oi-JJz"/>
                                                 <exclude reference="XeN-Br-LOd"/>
                                             </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="237" y="0.0" width="237" height="119"/>
                                         </variation>
                                     </view>
                                 </subviews>
@@ -879,8 +868,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-Ll-ZIO">
-                                <rect key="frame" x="47" y="1245" width="320" height="50"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-Ll-ZIO">
+                                <rect key="frame" x="352" y="1245" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.34901960780000002" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8QM-vE-JkL"/>
@@ -911,6 +900,7 @@
                                     <constraint firstAttribute="height" constant="25" id="F8p-x5-BXG"/>
                                     <constraint firstAttribute="width" constant="113" id="GHb-3M-FgZ"/>
                                     <constraint firstAttribute="width" constant="107" id="Gz8-iA-lgw"/>
+                                    <constraint firstAttribute="width" constant="206" id="Pvm-Ie-qwc"/>
                                     <constraint firstAttribute="width" constant="144" id="VkR-DQ-RcK"/>
                                     <constraint firstAttribute="width" constant="187" id="Wh7-6H-4o8"/>
                                     <constraint firstAttribute="width" constant="99" id="ZP1-a9-bYE"/>
@@ -918,7 +908,7 @@
                                     <constraint firstAttribute="height" constant="16" id="glb-W0-nUw"/>
                                     <constraint firstAttribute="height" constant="21" id="tAL-O6-2He"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -926,6 +916,7 @@
                                         <exclude reference="1sP-0H-a8i"/>
                                         <exclude reference="F8p-x5-BXG"/>
                                         <exclude reference="Gz8-iA-lgw"/>
+                                        <exclude reference="Pvm-Ie-qwc"/>
                                         <exclude reference="VkR-DQ-RcK"/>
                                         <exclude reference="Wh7-6H-4o8"/>
                                         <exclude reference="ZP1-a9-bYE"/>
@@ -934,13 +925,14 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="20"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                     <mask key="constraints">
                                         <include reference="F8p-x5-BXG"/>
                                         <exclude reference="GHb-3M-FgZ"/>
                                         <exclude reference="Gz8-iA-lgw"/>
+                                        <include reference="Pvm-Ie-qwc"/>
                                         <exclude reference="VkR-DQ-RcK"/>
-                                        <include reference="Wh7-6H-4o8"/>
+                                        <exclude reference="Wh7-6H-4o8"/>
                                         <exclude reference="glb-W0-nUw"/>
                                     </mask>
                                 </variation>
@@ -956,7 +948,7 @@
                                     <constraint firstAttribute="height" constant="28" id="b4p-RM-5Uq"/>
                                     <constraint firstAttribute="width" constant="163" id="gxe-xX-Ze7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -971,6 +963,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
                                     <mask key="constraints">
                                         <exclude reference="b4p-RM-5Uq"/>
                                     </mask>
@@ -994,7 +987,7 @@
                                             <constraint firstAttribute="width" constant="27" id="iWF-X1-OP3"/>
                                             <constraint firstAttribute="width" constant="24" id="kKj-pm-ra1"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -1010,6 +1003,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                             <mask key="constraints">
                                                 <include reference="EQ1-MZ-fIP"/>
                                                 <exclude reference="N8x-OB-eZh"/>
@@ -1018,38 +1012,30 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USE AN ABILITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDU-CH-OX4">
-                                        <rect key="frame" x="21" y="9" width="102" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USE AN ABILITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMM-Ww-xWX">
+                                        <rect key="frame" x="16" y="8" width="112" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="86" id="Gqi-gR-XeD"/>
-                                            <constraint firstAttribute="height" constant="20" id="HOm-SB-IBH"/>
-                                            <constraint firstAttribute="height" constant="40" id="KKu-DK-7dD"/>
-                                            <constraint firstAttribute="width" constant="86" id="Mwg-4z-qfF"/>
-                                            <constraint firstAttribute="width" constant="204" id="Un7-tE-3y3"/>
-                                            <constraint firstAttribute="width" constant="86" id="aLP-nI-Rfw"/>
-                                            <constraint firstAttribute="height" constant="20" id="bPc-WO-c1a"/>
-                                            <constraint firstAttribute="width" constant="84" id="rZ2-qp-WHA"/>
+                                            <constraint firstAttribute="width" constant="227" id="0eV-ro-lg1"/>
+                                            <constraint firstAttribute="width" constant="112" id="2rb-QC-5IW"/>
+                                            <constraint firstAttribute="height" constant="21" id="CuA-Kf-8gh"/>
+                                            <constraint firstAttribute="height" constant="34" id="VuT-Gz-aqq"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="Gqi-gR-XeD"/>
-                                                <exclude reference="HOm-SB-IBH"/>
-                                                <exclude reference="KKu-DK-7dD"/>
-                                                <exclude reference="Mwg-4z-qfF"/>
-                                                <exclude reference="Un7-tE-3y3"/>
-                                                <exclude reference="aLP-nI-Rfw"/>
-                                                <exclude reference="bPc-WO-c1a"/>
-                                                <exclude reference="rZ2-qp-WHA"/>
+                                                <exclude reference="0eV-ro-lg1"/>
+                                                <exclude reference="VuT-Gz-aqq"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="28"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                             <mask key="constraints">
-                                                <include reference="KKu-DK-7dD"/>
-                                                <include reference="Un7-tE-3y3"/>
+                                                <include reference="0eV-ro-lg1"/>
+                                                <exclude reference="2rb-QC-5IW"/>
+                                                <exclude reference="CuA-Kf-8gh"/>
+                                                <include reference="VuT-Gz-aqq"/>
                                             </mask>
                                         </variation>
                                     </label>
@@ -1062,6 +1048,7 @@
                                     <constraint firstAttribute="width" constant="134" id="2k1-4C-Lts"/>
                                     <constraint firstAttribute="bottom" secondItem="4Zj-7s-nu2" secondAttribute="bottom" constant="8" id="5tq-IH-Lgs"/>
                                     <constraint firstAttribute="width" constant="133" id="85b-bb-wEr"/>
+                                    <constraint firstItem="4Zj-7s-nu2" firstAttribute="leading" secondItem="NMM-Ww-xWX" secondAttribute="trailing" id="Aj8-1w-38R"/>
                                     <constraint firstAttribute="width" constant="128" id="BJf-ic-jbg"/>
                                     <constraint firstItem="4Zj-7s-nu2" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="top" constant="7" id="Bez-jf-h3Q"/>
                                     <constraint firstItem="4Zj-7s-nu2" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="top" constant="5" id="DnV-Jg-QLa"/>
@@ -1076,20 +1063,17 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="VWN-hu-8nT"/>
                                     <constraint firstItem="4Zj-7s-nu2" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="top" constant="8" id="Vbd-9v-oIU"/>
                                     <constraint firstItem="4Zj-7s-nu2" firstAttribute="centerY" secondItem="oVt-5R-pZq" secondAttribute="centerY" id="XK4-gI-h5R"/>
-                                    <constraint firstItem="fDU-CH-OX4" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="top" constant="18" id="XLL-Mc-8gf"/>
-                                    <constraint firstItem="4Zj-7s-nu2" firstAttribute="leading" secondItem="fDU-CH-OX4" secondAttribute="trailing" constant="8" id="YSJ-PR-WhO"/>
                                     <constraint firstItem="4Zj-7s-nu2" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="top" constant="4" id="YYU-nP-oS2"/>
                                     <constraint firstAttribute="trailing" secondItem="4Zj-7s-nu2" secondAttribute="trailing" constant="6" id="ZiS-IM-hZX"/>
+                                    <constraint firstItem="NMM-Ww-xWX" firstAttribute="centerY" secondItem="oVt-5R-pZq" secondAttribute="centerY" id="adl-Ba-MkN"/>
                                     <constraint firstAttribute="trailing" secondItem="4Zj-7s-nu2" secondAttribute="trailing" constant="8" id="e3v-im-UKs"/>
                                     <constraint firstAttribute="bottom" secondItem="4Zj-7s-nu2" secondAttribute="bottom" constant="4" id="fiP-nY-fUX"/>
                                     <constraint firstAttribute="width" constant="160" id="gEi-ct-OBC"/>
-                                    <constraint firstItem="fDU-CH-OX4" firstAttribute="leading" secondItem="oVt-5R-pZq" secondAttribute="leading" constant="43" id="gx6-a0-6dC"/>
                                     <constraint firstAttribute="trailing" secondItem="4Zj-7s-nu2" secondAttribute="trailing" constant="12" id="kPL-g6-aQT"/>
                                     <constraint firstItem="4Zj-7s-nu2" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="top" constant="4" id="lxW-rQ-21w"/>
                                     <constraint firstAttribute="height" constant="30" id="oWo-59-YBl"/>
                                     <constraint firstAttribute="height" constant="37" id="p5R-xx-Pja"/>
                                     <constraint firstAttribute="width" constant="320" id="pR4-yH-Kdh"/>
-                                    <constraint firstAttribute="bottom" secondItem="fDU-CH-OX4" secondAttribute="bottom" constant="18" id="pzD-8f-d3e"/>
                                     <constraint firstAttribute="height" constant="32" id="smb-mt-r3J"/>
                                     <constraint firstItem="4Zj-7s-nu2" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="top" constant="4" id="t1x-Gu-GA9"/>
                                     <constraint firstAttribute="trailing" secondItem="4Zj-7s-nu2" secondAttribute="trailing" constant="8" id="wXJ-RK-xud"/>
@@ -1097,9 +1081,6 @@
                                     <constraint firstAttribute="bottom" secondItem="4Zj-7s-nu2" secondAttribute="bottom" constant="4" id="z8Y-kY-o4d"/>
                                 </constraints>
                                 <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="fDU-CH-OX4"/>
-                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="2k1-4C-Lts"/>
                                         <exclude reference="85b-bb-wEr"/>
@@ -1111,9 +1092,6 @@
                                         <exclude reference="p5R-xx-Pja"/>
                                         <exclude reference="pR4-yH-Kdh"/>
                                         <exclude reference="smb-mt-r3J"/>
-                                        <exclude reference="XLL-Mc-8gf"/>
-                                        <exclude reference="gx6-a0-6dC"/>
-                                        <exclude reference="pzD-8f-d3e"/>
                                         <exclude reference="0dD-yK-BeY"/>
                                         <exclude reference="2Te-Hp-Bxb"/>
                                         <exclude reference="5tq-IH-Lgs"/>
@@ -1125,7 +1103,6 @@
                                         <exclude reference="VVT-ce-36Q"/>
                                         <exclude reference="Vbd-9v-oIU"/>
                                         <exclude reference="XK4-gI-h5R"/>
-                                        <exclude reference="YSJ-PR-WhO"/>
                                         <exclude reference="YYU-nP-oS2"/>
                                         <exclude reference="ZiS-IM-hZX"/>
                                         <exclude reference="e3v-im-UKs"/>
@@ -1138,22 +1115,15 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <mask key="subviews">
-                                        <include reference="fDU-CH-OX4"/>
-                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="0uZ-p1-Nb5"/>
                                         <include reference="FGt-a4-HNt"/>
                                         <exclude reference="gEi-ct-OBC"/>
                                         <include reference="pR4-yH-Kdh"/>
-                                        <include reference="XLL-Mc-8gf"/>
-                                        <exclude reference="gx6-a0-6dC"/>
-                                        <include reference="pzD-8f-d3e"/>
                                         <exclude reference="Bez-jf-h3Q"/>
                                         <exclude reference="Gvc-No-b9F"/>
                                         <include reference="TzO-kC-S9C"/>
                                         <include reference="Ut7-I5-T11"/>
-                                        <include reference="YSJ-PR-WhO"/>
                                         <exclude reference="wXJ-RK-xud"/>
                                         <include reference="yGw-A1-Qcv"/>
                                     </mask>
@@ -1275,7 +1245,7 @@
                         <outlet property="bonusStreakLabel" destination="1tO-Qg-7Hf" id="znW-Fy-SVN"/>
                         <outlet property="divideView" destination="IYG-cu-bai" id="1Tj-Ud-rQL"/>
                         <outlet property="gameContainerView" destination="Dvc-gp-5A3" id="7QI-8Y-eAw"/>
-                        <outlet property="helperButtonLabel" destination="fDU-CH-OX4" id="5Hd-71-PPw"/>
+                        <outlet property="helperButtonLabel" destination="NMM-Ww-xWX" id="pTz-J4-Sc0"/>
                         <outlet property="helperButtonView" destination="oVt-5R-pZq" id="DSv-nw-03G"/>
                         <outlet property="helperButtonViewIndicator" destination="4Zj-7s-nu2" id="Y2X-vq-mqf"/>
                         <outlet property="highScoreLabel" destination="xCV-I3-Ju5" id="Ijq-wS-k1w"/>
@@ -1289,7 +1259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="274.5" y="-345.75"/>
+            <point key="canvasLocation" x="163.5" y="-394.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dw0-Er-Fbb">
@@ -1328,6 +1298,7 @@
                                     <constraint firstAttribute="width" constant="84" id="5Ql-sW-rfc"/>
                                     <constraint firstAttribute="height" constant="20" id="El3-WT-Cdt"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="188" id="Ime-PO-Zsw"/>
+                                    <constraint firstAttribute="width" constant="427" id="Otk-Hd-o3u"/>
                                     <constraint firstAttribute="height" constant="20" id="Wko-aU-IzP"/>
                                     <constraint firstAttribute="width" constant="189" id="Y2T-VI-n7F"/>
                                     <constraint firstAttribute="width" constant="86" id="aPE-WH-qev"/>
@@ -1339,7 +1310,7 @@
                                     <constraint firstAttribute="width" constant="188" id="sdE-We-dvH"/>
                                     <constraint firstAttribute="width" constant="188" id="wtR-1I-0Zi"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="31"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -1349,6 +1320,7 @@
                                         <exclude reference="5Ql-sW-rfc"/>
                                         <exclude reference="El3-WT-Cdt"/>
                                         <exclude reference="Ime-PO-Zsw"/>
+                                        <exclude reference="Otk-Hd-o3u"/>
                                         <exclude reference="Wko-aU-IzP"/>
                                         <exclude reference="aPE-WH-qev"/>
                                         <exclude reference="bTS-yL-8NA"/>
@@ -1361,12 +1333,13 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="76"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="72"/>
                                     <mask key="constraints">
                                         <include reference="2mA-Qi-4KO"/>
                                         <exclude reference="4NL-wm-O2P"/>
+                                        <include reference="Otk-Hd-o3u"/>
                                         <exclude reference="Y2T-VI-n7F"/>
-                                        <include reference="bTS-yL-8NA"/>
+                                        <exclude reference="bTS-yL-8NA"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -1376,6 +1349,7 @@
                                     <constraint firstAttribute="width" constant="188" id="2tg-KE-ZiD"/>
                                     <constraint firstAttribute="height" constant="20" id="D5J-Nx-xTv"/>
                                     <constraint firstAttribute="height" constant="20" id="GYk-fG-Jv5"/>
+                                    <constraint firstAttribute="width" constant="331" id="ZVh-tM-ECd"/>
                                     <constraint firstAttribute="width" constant="188" id="bai-Yh-QXC"/>
                                     <constraint firstAttribute="height" constant="44" id="fKF-Hf-VLS"/>
                                     <constraint firstAttribute="width" constant="84" id="fKv-1p-cNN"/>
@@ -1386,13 +1360,14 @@
                                     <constraint firstAttribute="height" constant="20" id="tWD-RW-IxE"/>
                                     <constraint firstAttribute="width" constant="86" id="wBm-ty-aj2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="D5J-Nx-xTv"/>
                                         <exclude reference="GYk-fG-Jv5"/>
+                                        <exclude reference="ZVh-tM-ECd"/>
                                         <exclude reference="bai-Yh-QXC"/>
                                         <exclude reference="fKF-Hf-VLS"/>
                                         <exclude reference="fKv-1p-cNN"/>
@@ -1404,11 +1379,12 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
                                     <mask key="constraints">
                                         <exclude reference="2tg-KE-ZiD"/>
+                                        <include reference="ZVh-tM-ECd"/>
                                         <include reference="fKF-Hf-VLS"/>
-                                        <include reference="qeW-51-l9q"/>
+                                        <exclude reference="qeW-51-l9q"/>
                                         <exclude reference="scQ-90-jsB"/>
                                     </mask>
                                 </variation>
@@ -1426,10 +1402,11 @@
                                     <constraint firstAttribute="height" constant="20" id="Xuv-Qd-Q94"/>
                                     <constraint firstAttribute="width" constant="331" id="YZh-9N-Ww3"/>
                                     <constraint firstAttribute="height" constant="44" id="ZHX-ou-TLL"/>
+                                    <constraint firstAttribute="width" constant="335" id="qr4-lt-g0C"/>
                                     <constraint firstAttribute="width" constant="86" id="uFJ-Yi-o7D"/>
                                     <constraint firstAttribute="width" constant="188" id="yV8-bf-Ra1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -1443,15 +1420,17 @@
                                         <exclude reference="PjJ-Zz-ptc"/>
                                         <exclude reference="YZh-9N-Ww3"/>
                                         <exclude reference="ZHX-ou-TLL"/>
+                                        <exclude reference="qr4-lt-g0C"/>
                                         <exclude reference="uFJ-Yi-o7D"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="36"/>
                                     <mask key="constraints">
                                         <exclude reference="Xuv-Qd-Q94"/>
-                                        <include reference="YZh-9N-Ww3"/>
+                                        <exclude reference="YZh-9N-Ww3"/>
                                         <include reference="ZHX-ou-TLL"/>
+                                        <include reference="qr4-lt-g0C"/>
                                         <exclude reference="yV8-bf-Ra1"/>
                                     </mask>
                                 </variation>
@@ -1471,7 +1450,7 @@
                                             <constraint firstAttribute="height" constant="20" id="azE-dg-hds"/>
                                             <constraint firstAttribute="height" constant="20" id="yfj-hG-X91"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -1485,7 +1464,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -1584,7 +1563,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6X-2d-RqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061.625" y="280.125"/>
+            <point key="canvasLocation" x="1061.25" y="280.125"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="1CO-YK-vEN">
@@ -1598,6 +1577,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You Got This!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rf-yB-PGB">
+                                <rect key="frame" x="20" y="20" width="960" height="251"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="09t-mW-Vjb"/>
+                                    <constraint firstAttribute="height" constant="21" id="hL8-7H-uRc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="09t-mW-Vjb"/>
+                                        <exclude reference="hL8-7H-uRc"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="64"/>
+                                </variation>
+                            </label>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBM-AL-Rph">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                 <subviews>
@@ -1606,13 +1604,16 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="123" id="nAW-i1-xru"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="56"/>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="42"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="nAW-i1-xru"/>
                                             </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -1631,15 +1632,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iaj-Gm-Tzo" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="333"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-jy-ASh">
-                                                <rect key="frame" x="78" y="78" width="177" height="177"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-jy-ASh">
+                                                <rect key="frame" x="77" y="77" width="179" height="179"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgN-qj-gQJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="177"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgN-qj-gQJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="pgN-qj-gQJ" secondAttribute="height" multiplier="1:1" id="de8-1r-qyX"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1647,9 +1648,8 @@
                                                                 <exclude reference="de8-1r-qyX"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1661,9 +1661,6 @@
                                                     <constraint firstAttribute="bottom" secondItem="pgN-qj-gQJ" secondAttribute="bottom" id="svW-eT-Kov"/>
                                                     <constraint firstItem="pgN-qj-gQJ" firstAttribute="top" secondItem="hOl-jy-ASh" secondAttribute="top" id="z7P-3K-cN6"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="75" y="75" width="168" height="168"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1684,7 +1681,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="MKM-n7-EY6" secondAttribute="height" multiplier="1:1" id="jzb-TV-Eu8"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1692,9 +1689,8 @@
                                                                 <exclude reference="jzb-TV-Eu8"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="169" height="114"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1706,9 +1702,6 @@
                                                     <constraint firstItem="MKM-n7-EY6" firstAttribute="top" secondItem="VzE-OI-fG1" secondAttribute="top" id="Y0x-mQ-aa0"/>
                                                     <constraint firstAttribute="trailing" secondItem="MKM-n7-EY6" secondAttribute="trailing" id="piR-Od-Vjn"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="74" y="74" width="169" height="114"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1729,7 +1722,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="lhy-lj-k1z" secondAttribute="height" multiplier="1:1" id="QOj-PC-I5c"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1737,9 +1730,8 @@
                                                                 <exclude reference="QOj-PC-I5c"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1751,9 +1743,6 @@
                                                     <constraint firstAttribute="width" secondItem="W30-Ai-BEl" secondAttribute="height" multiplier="1:1" id="sWM-yY-B8h"/>
                                                     <constraint firstAttribute="trailing" secondItem="lhy-lj-k1z" secondAttribute="trailing" id="slt-uo-YpE"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="73" y="75" width="168" height="168"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1774,7 +1763,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="KZd-qt-m3N" secondAttribute="height" multiplier="1:1" id="18l-8h-DYm"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1782,9 +1771,8 @@
                                                                 <exclude reference="18l-8h-DYm"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="171" height="117"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1796,9 +1784,6 @@
                                                     <constraint firstItem="KZd-qt-m3N" firstAttribute="top" secondItem="gad-i6-v2C" secondAttribute="top" id="ZWe-oq-s6Y"/>
                                                     <constraint firstItem="KZd-qt-m3N" firstAttribute="leading" secondItem="gad-i6-v2C" secondAttribute="leading" id="b95-cn-98r"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="73" y="49" width="171" height="117"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1819,7 +1804,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="9dx-JZ-mXy" secondAttribute="height" multiplier="1:1" id="WpW-tU-y3B"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1827,9 +1812,8 @@
                                                                 <exclude reference="WpW-tU-y3B"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="117"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1841,9 +1825,6 @@
                                                     <constraint firstItem="9dx-JZ-mXy" firstAttribute="top" secondItem="XMx-gE-9y6" secondAttribute="top" id="hfF-6j-75u"/>
                                                     <constraint firstAttribute="bottom" secondItem="9dx-JZ-mXy" secondAttribute="bottom" id="lqy-x6-InR"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="49" y="49" width="117" height="117"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1864,7 +1845,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="4rq-ni-tnn" secondAttribute="height" multiplier="1:1" id="9BF-H1-ahA"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1872,9 +1853,8 @@
                                                                 <exclude reference="9BF-H1-ahA"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="171" height="117"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1886,9 +1866,6 @@
                                                     <constraint firstAttribute="width" secondItem="lE8-cj-PAz" secondAttribute="height" multiplier="1:1" id="mP7-Er-cPf"/>
                                                     <constraint firstAttribute="bottom" secondItem="4rq-ni-tnn" secondAttribute="bottom" id="s9K-Cl-NjB"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="72" y="49" width="171" height="117"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1909,7 +1886,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="MnH-hB-8VT" secondAttribute="height" multiplier="1:1" id="tyq-Y3-KIU"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1917,9 +1894,8 @@
                                                                 <exclude reference="tyq-Y3-KIU"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1931,9 +1907,6 @@
                                                     <constraint firstAttribute="bottom" secondItem="MnH-hB-8VT" secondAttribute="bottom" id="q1s-b5-g49"/>
                                                     <constraint firstItem="MnH-hB-8VT" firstAttribute="leading" secondItem="izg-ox-JiN" secondAttribute="leading" id="smD-LA-5qW"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="73" y="73" width="168" height="168"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1954,7 +1927,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="XFy-8b-fHU" secondAttribute="height" multiplier="1:1" id="SES-mi-VWY"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -1962,9 +1935,8 @@
                                                                 <exclude reference="SES-mi-VWY"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="169" height="114"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1976,9 +1948,6 @@
                                                     <constraint firstAttribute="width" secondItem="iGC-AA-5dB" secondAttribute="height" multiplier="1:1" id="nnx-qv-ZAt"/>
                                                     <constraint firstItem="XFy-8b-fHU" firstAttribute="top" secondItem="iGC-AA-5dB" secondAttribute="top" id="yPC-Uu-qZx"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="74" y="73" width="169" height="114"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1991,15 +1960,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K72-Lf-kyU" customClass="TileView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="667" width="333" height="333"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-4x-G3R">
-                                                <rect key="frame" x="78" y="78" width="177" height="177"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-4x-G3R">
+                                                <rect key="frame" x="77" y="77" width="179" height="179"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESL-uO-Tya">
-                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="177"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESL-uO-Tya">
+                                                        <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="ESL-uO-Tya" secondAttribute="height" multiplier="1:1" id="EFm-Mc-FkK"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="35"/>
+                                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="35"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -2007,9 +1976,8 @@
                                                                 <exclude reference="EFm-Mc-FkK"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                            <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="168" height="168"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="72"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -2021,9 +1989,6 @@
                                                     <constraint firstItem="ESL-uO-Tya" firstAttribute="top" secondItem="QrE-4x-G3R" secondAttribute="top" id="dfH-jf-muL"/>
                                                     <constraint firstAttribute="width" secondItem="QrE-4x-G3R" secondAttribute="height" multiplier="1:1" id="n5J-rs-cEj"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="75" y="73" width="168" height="168"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2108,25 +2073,6 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You Got This!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rf-yB-PGB">
-                                <rect key="frame" x="20" y="20" width="960" height="251"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="09t-mW-Vjb"/>
-                                    <constraint firstAttribute="height" constant="21" id="hL8-7H-uRc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="09t-mW-Vjb"/>
-                                        <exclude reference="hL8-7H-uRc"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="64"/>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2195,8 +2141,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="veK-oh-hwI">
-                                <rect key="frame" x="0.0" y="570" width="1000" height="285"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="veK-oh-hwI">
+                                <rect key="frame" x="0.0" y="221" width="1000" height="285"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cys-bp-98k" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="376" y="118" width="248" height="50"/>
@@ -2219,7 +2165,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="oBJ-zb-ygO"/>
                                                     <constraint firstAttribute="width" constant="188" id="zOc-Pn-xVX"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
@@ -2235,7 +2181,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
                                                     <mask key="constraints">
                                                         <include reference="41V-No-DE5"/>
                                                         <include reference="7VX-4D-xez"/>
@@ -2304,8 +2250,7 @@
                                                 <exclude reference="xks-ev-EZu"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="287" y="55" width="375" height="76"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
                                                 <exclude reference="Qjg-CS-Fv3"/>
                                                 <include reference="h8s-Bm-qSW"/>
@@ -2320,12 +2265,11 @@
                                             <constraint firstAttribute="width" constant="138" id="HPM-Gz-xIf"/>
                                             <constraint firstAttribute="height" constant="21" id="PJW-V1-T7S"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="20"/>
-                                            <rect key="frame" x="406" y="133" width="138" height="21"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -2364,12 +2308,11 @@
                                             <constraint firstAttribute="width" constant="138" id="OjD-7J-AAL"/>
                                             <constraint firstAttribute="height" constant="21" id="RzD-6s-cq3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="20"/>
-                                            <rect key="frame" x="406" y="133" width="138" height="21"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         </variation>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTu-aK-nMF" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
@@ -2391,7 +2334,7 @@
                                                     <constraint firstAttribute="width" constant="188" id="vD8-mQ-f6I"/>
                                                     <constraint firstAttribute="width" constant="86" id="wcm-Wf-chf"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
@@ -2407,7 +2350,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
                                                     <mask key="constraints">
                                                         <include reference="9CN-X7-Z0u"/>
                                                         <include reference="Aiz-kM-jYn"/>
@@ -2448,8 +2391,7 @@
                                                 <exclude reference="vrj-gA-RhZ"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="287" y="55" width="375" height="76"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
                                                 <exclude reference="MaI-DN-h6X"/>
                                                 <include reference="Zzh-lt-Nhr"/>
@@ -2483,8 +2425,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFb-XO-zLB">
-                                <rect key="frame" x="0.0" y="285" width="1000" height="285"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AFb-XO-zLB">
+                                <rect key="frame" x="0.0" y="285" width="1000" height="110"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8Y-7S-hNP" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="376" y="118" width="248" height="50"/>
@@ -2503,7 +2445,7 @@
                                                     <constraint firstAttribute="width" constant="86" id="hwf-ac-CnK"/>
                                                     <constraint firstAttribute="height" constant="20" id="m0d-sz-kEB"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
@@ -2519,7 +2461,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="28"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
                                                     <mask key="constraints">
                                                         <exclude reference="9bH-yQ-PrN"/>
                                                         <include reference="Eyc-wc-cOJ"/>
@@ -2588,8 +2530,7 @@
                                                 <exclude reference="xYr-3m-4Yu"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="287" y="55" width="375" height="76"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
                                                 <exclude reference="CDR-Ko-pS2"/>
                                                 <exclude reference="G2t-KO-735"/>
@@ -2604,12 +2545,11 @@
                                             <constraint firstAttribute="width" constant="138" id="GKM-Cu-QvI"/>
                                             <constraint firstAttribute="height" constant="21" id="ZIa-Xv-Ado"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="20"/>
-                                            <rect key="frame" x="406" y="133" width="138" height="21"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -2641,7 +2581,7 @@
                                     <constraint firstAttribute="height" constant="50" id="ei0-ZJ-EWw"/>
                                     <constraint firstAttribute="height" constant="32" id="wUE-qz-dzg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Back To Game">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -2656,7 +2596,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="32"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
                                     <mask key="constraints">
                                         <exclude reference="ESz-Dp-zvk"/>
                                         <exclude reference="FEY-Tw-hr1"/>
@@ -2725,7 +2665,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
                                 <rect key="frame" x="20" y="0.0" width="960" height="1000"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Hide an Incorrect Tile
@@ -2739,10 +2679,10 @@ Reveal a Correct Tile
 Remove an Operation
 (2 points)
 - Removes the extra operation that the solution does not use. Only active at higher levels where two operations become active.</string>
-                                <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Regular" family="DIN-Regular" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="36"/>
                                 </variation>
                             </textView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECD-O3-0MW">
@@ -2751,13 +2691,15 @@ Remove an Operation
                                     <constraint firstAttribute="width" constant="92" id="9eR-QH-ldm"/>
                                     <constraint firstAttribute="height" constant="27" id="D1u-x1-Okn"/>
                                     <constraint firstAttribute="width" constant="60" id="Gev-bf-4wP"/>
-                                    <constraint firstAttribute="width" constant="49" id="P99-KR-zr1"/>
+                                    <constraint firstAttribute="width" constant="49" id="P99-KR-zr1">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="84"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="56" id="RzA-2S-H5Y"/>
                                     <constraint firstAttribute="height" constant="36" id="XNy-Hv-ILR"/>
                                     <constraint firstAttribute="height" constant="17" id="fV9-Nj-SiH"/>
                                     <constraint firstAttribute="width" constant="77" id="xiF-2O-4jL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="NO">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -2772,7 +2714,7 @@ Remove an Operation
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                     <mask key="constraints">
                                         <exclude reference="Gev-bf-4wP"/>
                                         <include reference="P99-KR-zr1"/>
@@ -2787,6 +2729,7 @@ Remove an Operation
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wat-z4-b4V">
                                 <rect key="frame" x="454" y="956" width="92" height="36"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="197" id="4vs-FA-eqf"/>
                                     <constraint firstAttribute="height" constant="17" id="5wL-Oy-HWi"/>
                                     <constraint firstAttribute="height" constant="54" id="8ZA-IM-WII"/>
                                     <constraint firstAttribute="width" constant="92" id="EFn-Jp-kjx"/>
@@ -2795,12 +2738,13 @@ Remove an Operation
                                     <constraint firstAttribute="width" constant="77" id="iap-R5-d1U"/>
                                     <constraint firstAttribute="width" constant="81" id="yR6-qZ-zIA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="4vs-FA-eqf"/>
                                         <exclude reference="5wL-Oy-HWi"/>
                                         <exclude reference="8ZA-IM-WII"/>
                                         <exclude reference="fRA-b2-sck"/>
@@ -2809,13 +2753,14 @@ Remove an Operation
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                     <mask key="constraints">
+                                        <include reference="4vs-FA-eqf"/>
                                         <include reference="8ZA-IM-WII"/>
                                         <exclude reference="EFn-Jp-kjx"/>
                                         <exclude reference="PBQ-93-5KM"/>
                                         <exclude reference="fRA-b2-sck"/>
-                                        <include reference="yR6-qZ-zIA"/>
+                                        <exclude reference="yR6-qZ-zIA"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -2831,9 +2776,10 @@ Remove an Operation
                                     <constraint firstAttribute="height" constant="36" id="bVn-H5-ijF"/>
                                     <constraint firstAttribute="width" constant="77" id="fBd-qO-TGq"/>
                                     <constraint firstAttribute="width" constant="92" id="jLr-5Q-5kb"/>
+                                    <constraint firstAttribute="width" constant="84" id="sbF-Hb-g5n"/>
                                     <constraint firstAttribute="height" constant="17" id="wW0-72-8bo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="YES">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -2843,16 +2789,18 @@ Remove an Operation
                                         <exclude reference="Vd3-dq-toJ"/>
                                         <exclude reference="fBd-qO-TGq"/>
                                         <exclude reference="jLr-5Q-5kb"/>
+                                        <exclude reference="sbF-Hb-g5n"/>
                                         <exclude reference="wW0-72-8bo"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                     <mask key="constraints">
                                         <exclude reference="MQe-A3-U7Y"/>
                                         <include reference="Mjj-bZ-H5v"/>
-                                        <include reference="Vd3-dq-toJ"/>
+                                        <exclude reference="Vd3-dq-toJ"/>
                                         <exclude reference="bVn-H5-ijF"/>
+                                        <include reference="sbF-Hb-g5n"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -2869,7 +2817,7 @@ Remove an Operation
                                     <constraint firstAttribute="width" constant="197" id="gFZ-Xr-awx"/>
                                     <constraint firstAttribute="width" constant="77" id="ogx-jM-v6F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -2882,7 +2830,7 @@ Remove an Operation
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                     <mask key="constraints">
                                         <include reference="89i-QS-h0d"/>
                                         <exclude reference="BnO-T5-yQK"/>
@@ -2951,7 +2899,7 @@ Remove an Operation
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqQ-ex-qxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1509.375" y="1213.125"/>
+            <point key="canvasLocation" x="1509" y="1213.125"/>
         </scene>
     </scenes>
     <resources>

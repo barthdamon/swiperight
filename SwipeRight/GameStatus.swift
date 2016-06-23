@@ -33,6 +33,14 @@ class GameStatus: NSObject {
     return ProgressionManager.sharedManager.standardRoundDuration
   }
   var timer: NSTimer?
+  
+  var highlightTileTimer: NSTimer?
+  var tilesToHighlight: Array<TileView> = []
+  var inTutorialHighlightMode: Bool = false
+  var tutorialTimeForHelper: Bool = false
+  var backFromTutorialHelper: Bool = false
+  var solvedOneOnFive: Bool = false
+  var pausingForEffect: Bool = false
 }
 
 /*

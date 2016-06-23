@@ -84,9 +84,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     viewHeight = self.view.frame.height
     resetGameState()
 //    gameView = GameView(container: gameContainerView, delegate: self)
-    configureStartOptions()
     adView?.userInteractionEnabled = false
   }
+  
   
   override func viewWillDisappear(animated: Bool) {
     //   self.navigationController?.navigationBarHidden = false
@@ -97,6 +97,14 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   override func viewDidAppear(animated: Bool) {
     GameStatus.status.inMenu = false
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    configureStartOptions()
+    if UIScreen.mainScreen().bounds.height < 1000 {
+      self.tutorialLabel.font = ThemeHelper.defaultHelper.sw_mini_tutorial_font
+    }
   }
   
   func configureViewStyles() {
@@ -450,9 +458,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     if blinkingHelperPoints {
       UIView.animateWithDuration(tutorialBlinkTime, animations: {
         if self.blinkingHelperPointStreaks {
-          self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.1, 1.1)
+          self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.08, 1.08)
         }
-        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.1, 1.1)
+        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.08, 1.08)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
           self.bonusStreakLabel.transform = CGAffineTransformIdentity

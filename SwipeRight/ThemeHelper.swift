@@ -47,15 +47,25 @@ class ThemeHelper: NSObject {
   
 
   // Fonts
-  let sw_font = UIFont(name: "DIN-Medium", size: 16)
-  let sw_font_large = UIFont(name: "DIN-Medium", size: 32)
-  let sw_bold_font = UIFont(name: "DIN-Bold", size: 13)
+  var sw_countdown_font: UIFont? {
+    let deviceIdiom = UIScreen.mainScreen().traitCollection.userInterfaceIdiom
+    if deviceIdiom == .Pad {
+      return UIFont(name: "Kohinoor Telugu Medium", size: 100)
+    } else {
+      return UIFont(name: "Kohinoor Telugu Medium", size: 60)
+    }
+  }
   
-  let sw_countdown_font = UIFont(name: "DIN-Medium", size: 56)
-  let sw_tile_font = UIFont(name: "DIN-Medium", size: 25)
+  var sw_tile_font: UIFont? {
+    let deviceIdiom = UIScreen.mainScreen().traitCollection.userInterfaceIdiom
+    if deviceIdiom == .Pad {
+      return UIFont(name: "Kohinoor Telugu Medium", size: 72)
+    } else {
+      return UIFont(name: "Kohinoor Telugu Medium", size: 35)
+    }
+  }
   
-  let sw_game_font = UIFont(name: "DIN-Medium", size: 25)
-  let sw_game_overlay_font = UIFont(name: "DIN-Medium", size: 40)
+  let sw_mini_tutorial_font: UIFont? = UIFont(name: "Helvetica Neue", size: 18)
 }
 
 @IBDesignable class TIFAttributedLabel: UILabel {
