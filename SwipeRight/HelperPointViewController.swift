@@ -28,6 +28,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   var showRemove = false
   
   var backButtonEnabled = true
+  var helperButtonsSetup: Bool = false
   
   var gameViewController: GameViewController?
   var delegate: GameViewDelegate?
@@ -54,19 +55,18 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     // Dispose of any resources that can be recreated.
   }
   
-  override func viewWillAppear(animated: Bool) {
-    delegate?.deactivateHelperPointButton(false, deactivate: true)
-    activateHelperButtons()
-    super.viewWillAppear(true)
-  }
-  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(true)
   }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    setupHelperButtons()
+    if !helperButtonsSetup {
+      setupHelperButtons()
+      helperButtonsSetup = true
+    }
+    delegate?.deactivateHelperPointButton(false, deactivate: true)
+    activateHelperButtons()
   }
   
   func activateGestureRecognizers() {
@@ -88,7 +88,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   func activateHelperButtons() {
     let points = ProgressionManager.sharedManager.currentHelperPoints
     guard let layout = gameViewController?.currentLayout, _ = layout.winningCombination else { return }
-    delegate?.setHelperPoints(points, callback: { (done) in })
+//    delegate?.setHelperPoints(points, callback: { (done) in })
     // need to know the index of all of th
     showRemove = points >= 2 && ProgressionManager.sharedManager.multipleOperationsDisplayActive
     showHide = points >= 1 && ProgressionManager.sharedManager.numberOfExtraTiles > 0

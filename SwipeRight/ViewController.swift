@@ -69,6 +69,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   var viewHeight: CGFloat = 0
   var operations: Array<Operation>?
   
+  var startOptionsConfigured: Bool = false
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     timeLabel.adjustsFontSizeToFitWidth = true
@@ -101,7 +103,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    configureStartOptions()
+    if !startOptionsConfigured {
+      configureStartOptions()
+      startOptionsConfigured = true
+    }
+
     if UIScreen.mainScreen().bounds.height < 1000 {
       self.tutorialLabel.font = ThemeHelper.defaultHelper.sw_mini_tutorial_font
     }
@@ -136,6 +142,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func setHelperPoints(points: Int, callback: (Bool) -> ()) {
+//    self.helperButtonViewIndicator.text = "\(points)"
     setStreakLabel()
     UIView.animateWithDuration(0.3, animations: {
       if let text = self.helperButtonViewIndicator.text, current = Int(text) where current >= points {
