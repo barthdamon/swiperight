@@ -1800,7 +1800,7 @@
                                 </variation>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Got This!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rf-yB-PGB">
-                                <rect key="frame" x="20" y="20" width="350" height="35"/>
+                                <rect key="frame" x="20" y="20" width="350" height="98"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="09t-mW-Vjb"/>
                                     <constraint firstAttribute="height" constant="21" id="hL8-7H-uRc"/>
@@ -1810,6 +1810,7 @@
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="09t-mW-Vjb"/>
                                         <exclude reference="hL8-7H-uRc"/>
                                     </mask>
                                 </variation>
@@ -1820,6 +1821,7 @@
                             <constraint firstItem="lBM-AL-Rph" firstAttribute="height" secondItem="I9N-kr-DZV" secondAttribute="height" id="8jc-Uc-3sE"/>
                             <constraint firstItem="eEa-Yo-P69" firstAttribute="centerX" secondItem="I9N-kr-DZV" secondAttribute="centerX" id="9jg-Fz-xYh"/>
                             <constraint firstItem="0Rf-yB-PGB" firstAttribute="leading" secondItem="I9N-kr-DZV" secondAttribute="leadingMargin" id="CeF-ph-g5D"/>
+                            <constraint firstItem="0Rf-yB-PGB" firstAttribute="height" secondItem="I9N-kr-DZV" secondAttribute="height" multiplier="1/4" id="F2J-zB-oO3"/>
                             <constraint firstItem="eEa-Yo-P69" firstAttribute="width" secondItem="I9N-kr-DZV" secondAttribute="width" id="Fmb-Mf-JGv"/>
                             <constraint firstItem="lBM-AL-Rph" firstAttribute="width" secondItem="I9N-kr-DZV" secondAttribute="width" id="KCr-kv-owd"/>
                             <constraint firstItem="eEa-Yo-P69" firstAttribute="centerY" secondItem="I9N-kr-DZV" secondAttribute="centerY" id="Kmp-rB-Ox9"/>

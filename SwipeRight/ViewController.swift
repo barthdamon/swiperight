@@ -39,20 +39,20 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   var componentView: UIView?
   var shouldPlayImmediately: Bool = false
   
-  var time: Int = 0 {
-    didSet {
-      timeLabel?.text = stringToGameTime(time)
-    }
-  }
-  var score: Int = 0 {
-    didSet {
-      scoreLabel?.text = "SCORE: \(score)"
-    }
-  }
-  var gameDuration: Int {
-    return ProgressionManager.sharedManager.standardRoundDuration
-  }
-  var timer: NSTimer?
+//  var time: Int = 0 {
+//    didSet {
+//      timeLabel?.text = stringToGameTime(time)
+//    }
+//  }
+//  var score: Int = 0 {
+//    didSet {
+//      scoreLabel?.text = "SCORE: \(score)"
+//    }
+//  }
+//  var gameDuration: Int {
+//    return ProgressionManager.sharedManager.standardRoundDuration
+//  }
+//  var timer: NSTimer?
   var helperButtonViewEnabled: Bool = true
   
   //Game Client
@@ -116,10 +116,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   //MARK: GameView Delegate Methods:
   func scoreChange(correct: Bool) {
     if correct {
-      score += 1
+      GameStatus.status.score += 1
     } else {
-      score -= 1
+      GameStatus.status.score -= 1
     }
+    self.scoreLabel.text = "SCORE: \(GameStatus.status.score)"
   }
   
   func setGameViewController(controller: GameViewController) {
@@ -151,7 +152,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
 
   
   func addTime(seconds: Int) {
-    time += seconds
+    GameStatus.status.time += seconds
+    timeLabel?.text = stringToGameTime(GameStatus.status.time)
     //some fancy animation
   }
   
@@ -168,7 +170,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func setStartTime() {
-    time = gameDuration
+    GameStatus.status.time = GameStatus.status.gameDuration
+    timeLabel?.text = stringToGameTime(GameStatus.status.time)
     setRound(ProgressionManager.sharedManager.currentRound)
   }
   
@@ -182,16 +185,18 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.toggleAdViewVisible(false)
       self.deactivateHelperPointButton(false, deactivate: false)
-      if self.timer == nil {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
+      if GameStatus.status.timer == nil {
+        GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       }
       GameStatus.status.gameActive = true
     })
   }
   
   func resetGameState() {
-    score = 0
-    time = 0
+    GameStatus.status.score = 0
+    GameStatus.status.time = 0
+    scoreLabel.text = "SCORE: \(GameStatus.status.score)"
+    timeLabel?.text = stringToGameTime(GameStatus.status.time)
     invalidateTimer()
     gameView?.applyNumberLayoutToTiles(true)
     GameStatus.status.gameActive = false
@@ -204,11 +209,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   func tickTock() {
     if !GameStatus.status.inMenu {
-      if GameStatus.status.gameActive {
-        time -= 1
-        if time == 0 {
+      if GameStatus.status.gameActive && GameStatus.status.timer != nil {
+        GameStatus.status.time -= 1
+        if GameStatus.status.time == 0 {
           gameOver()
         }
+        timeLabel?.text = stringToGameTime(GameStatus.status.time)
       }
     } else {
       print("Timer invalidated from tick tock")
@@ -225,7 +231,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
       invalidateTimer()
     } else {
       if GameStatus.status.gameMode == .Standard {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
+        GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       } else {
         invalidateTimer()
       }
@@ -240,11 +246,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     }
     deactivateHelperPointButton(true, deactivate: false)
     invalidateTimer()
-    timer = nil
+    GameStatus.status.timer = nil
     GameStatus.status.gameActive = false
     let highScore = setHighScore()
     self.gameView?.view.userInteractionEnabled = false
-    self.gameLaunchView?.gameOver(score, highScore: highScore)
+    self.gameLaunchView?.gameOver(GameStatus.status.score, highScore: highScore)
     if GameStatus.status.gameMode == .Standard {
       resetGameState()
     }
@@ -255,8 +261,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   func setHighScore() -> Bool {
     var newHighScore: Bool = false
-    if CurrentUser.info.highScore < score {
-      CurrentUser.info.highScore = score
+    if CurrentUser.info.highScore < GameStatus.status.score {
+      CurrentUser.info.highScore = GameStatus.status.score
       newHighScore = true
     } else {
       newHighScore = false
@@ -347,14 +353,22 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   }
   
   func invalidateTimer() {
-    self.timer?.invalidate()
-    self.timer = nil
+    GameStatus.status.timer?.invalidate()
+    GameStatus.status.timer = nil
     self.tutorialBlinkingTimer?.invalidate()
     self.tutorialBlinkingTimer = nil
     self.gameView?.highlightTileTimer?.invalidate()
     self.gameView?.highlightTileTimer = nil
 //    self.gameView?.helperPointController?.hideButtonFlashTimer?.invalidate()
 //    self.gameView?.helperPointController?.hideButtonFlashTimer = nil
+  }
+  
+  func timerAlreadyTocking() -> Bool {
+    if let _ = GameStatus.status.timer {
+      return true
+    } else {
+      return false
+    }
   }
   
   @IBAction func menuButtonPressed(sender: AnyObject) {

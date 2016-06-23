@@ -517,12 +517,14 @@ class GameViewController: UIViewController {
     tileViews.forEach { (view) in
       view.animateCountdown({ (done) in
         if done {
-          self.tutorialLaunchTextLabel.hidden = true
-          self.tutorialText = nil
-          self.delegate?.setStartTime()
-          GameStatus.status.gameActive = true
-          self.resetTiles()
-          self.delegate?.startGameplay()
+          if let delegate = self.delegate where !delegate.timerAlreadyTocking() {
+            self.tutorialLaunchTextLabel.hidden = true
+            self.tutorialText = nil
+            self.delegate?.setStartTime()
+            GameStatus.status.gameActive = true
+            self.resetTiles()
+            self.delegate?.startGameplay()
+          }
         }
       })
     }

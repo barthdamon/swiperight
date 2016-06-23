@@ -25,6 +25,14 @@ class GameStatus: NSObject {
   var gameMode: GameMode = .Standard
   var tutorialStage = 0
   var inMenu: Bool = true
+  
+  
+  var time: Int = 0
+  var score: Int = 0
+  var gameDuration: Int {
+    return ProgressionManager.sharedManager.standardRoundDuration
+  }
+  var timer: NSTimer?
 }
 
 /*
