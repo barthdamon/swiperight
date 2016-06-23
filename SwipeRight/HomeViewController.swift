@@ -40,7 +40,6 @@ class HomeViewController: UIViewController, ButtonDelegate {
     firstTimeButton.alpha = 0
     logoView.alpha = 0
     // Do any additional setup after loading the view.
-    configureBackground()
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -56,21 +55,16 @@ class HomeViewController: UIViewController, ButtonDelegate {
     super.viewDidLayoutSubviews()
     setupButtons()
   }
-  
-  
-  func configureBackground() {
-//    let firstColor = ThemeHelper.defaultHelper.sw_background_color
-//    let secondColor = ThemeHelper.defaultHelper.sw_background_glow_color
-//    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.view.bounds, colors: (start: firstColor, end: secondColor), rounded: false)
-//    self.view.layer.hidden = false
-//    self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
-  }
+
   
   func setupButtons() {
     beginGameButtonView.becomeButtonForGameView(self, label: beginGameLabel, delegate: self)
-    lineView = UIView(frame: CGRectMake(0, firstTimeButton.frame.height, firstTimeButton.frame.size.width, 1))
-    lineView?.backgroundColor=UIColor.blackColor()
-    firstTimeButton.addSubview(lineView!)
+    if self.lineView == nil {
+      lineView = UIView(frame: CGRectMake(0, firstTimeButton.frame.height, firstTimeButton.frame.size.width, 1))
+      lineView?.backgroundColor=UIColor.blackColor()
+      firstTimeButton.addSubview(lineView!)
+//      lineView?.alpha = 0.1
+    }
 //    howToPlayButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.howToButtonPressed(_:)))
 //    leaderboardsButtonView.becomeButtonForGameView(self, selector: #selector(HomeViewController.leaderboardsButtonPressed(_:)))
 //    self.leaderboardsButtonView.alpha = 0.4
@@ -78,14 +72,12 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   
   func toggleUnderlineAlpha(dark: Bool) {
-    if let lineView = lineView {
-      if dark {
-        UIView.animateWithDuration(0.1, animations: {
-          lineView.alpha = 1
-        })
-      } else {
-        lineView.alpha = 0.1
-      }
+    if dark {
+      UIView.animateWithDuration(0.1, animations: {
+        self.lineView?.alpha = 1
+      })
+    } else {
+      lineView?.alpha = 0.1
     }
   }
   
