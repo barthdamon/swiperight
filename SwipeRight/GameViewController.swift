@@ -350,7 +350,7 @@ class GameViewController: UIViewController {
         // make two operations active with range still minimalf
         ProgressionManager.sharedManager.activeOperations = [.Add, .Subtract]
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
-        MultipleHelper.defaultHelper.range = 20
+        MultipleHelper.defaultHelper.range = 10
         self.currentLayout = GridNumberLayout()
         ProgressionManager.sharedManager.currentLayoutOperationCount = 2
         guard let operation = currentLayout?.winningCombination?.operation else { return }
@@ -683,7 +683,7 @@ class GameViewController: UIViewController {
     }
     if GameStatus.status.tutorialStage == 2 {
       if tilesToHighlight.count == 3 {
-        delegate?.setTutorialLabelText("Touch your finger to the first tile!")
+        delegate?.setTutorialLabelText("Press and hold your finger to the first tile, then swipe!")
       } else if tilesToHighlight.count == 2 {
         delegate?.setTutorialLabelText("Swipe to the next tile!")
       } else if tilesToHighlight.count == 1 {
@@ -788,7 +788,7 @@ class GameViewController: UIViewController {
     guard let combo = currentLayout?.winningCombination else { return }
     tilesToHighlight.append(tileViews[combo.xNumberIndex])
     if GameStatus.status.tutorialStage == 2 {
-      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
+      delegate?.setTutorialLabelText("Press and hold your finger to the first tile, then swipe!")
       tilesToHighlight.append(tileViews[combo.bNumberIndex])
       tilesToHighlight.append(tileViews[combo.sumNumberIndex])
     }

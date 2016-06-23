@@ -21,17 +21,14 @@ class CurrentUser: NSObject {
   
   var highScore: Int {
     get {
-      if let keychain = NSUserDefaults.standardUserDefaults().objectForKey("scores") as? Dictionary<String, AnyObject>, highScore = keychain["highScore"] as? Int {
-        return highScore
+      if let score = UserDefaultsManager.sharedManager.getObjectForKey("highScore") as? Int {
+        return score
       } else {
         return 0
       }
     }
     set (newValue) {
-      let scores = [
-        "highScore" : newValue
-      ]
-      NSUserDefaults.standardUserDefaults().setObject(scores, forKey: "scores")
+      UserDefaultsManager.sharedManager.setValueAtKey("highScore", value: newValue)
     }
   }
   

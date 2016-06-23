@@ -17,7 +17,6 @@
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
             <string>DIN-Bold</string>
-            <string>DIN-Bold</string>
         </mutableArray>
         <mutableArray key="DINL____.TTF">
             <string>DIN-Light</string>
@@ -25,6 +24,8 @@
             <string>DIN-Light</string>
         </mutableArray>
         <mutableArray key="DINM____.TTF">
+            <string>DIN-Medium</string>
+            <string>DIN-Medium</string>
             <string>DIN-Medium</string>
             <string>DIN-Medium</string>
             <string>DIN-Medium</string>
@@ -71,556 +72,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wwt-1R-eJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1164" y="346"/>
-        </scene>
-        <!--How To Play View Controller-->
-        <scene sceneID="JjW-pc-Jx3">
-            <objects>
-                <viewController id="Fse-V2-O1t" customClass="HowToPlayViewController" customModule="SwipeRight_" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zqq-wC-xNZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="51E-Gi-EBr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iXE-L3-eZJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TN6-5U-ck0">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="How To Play:">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="28" name="Menlo-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="28" name="Menlo-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Find the three tiles adjacent or diagonal to each other that complete a mathematical equation. ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Swipe the tiles">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-BoldItalic"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content"> from the start of the equation to the end to score a point.
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Every solution you swipe right adds five seconds to the countdown timer. When the timer reaches zero, ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="game over">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Italic"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Italic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">.
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="There is ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="only one correct answer">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-BoldItalic"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-BoldItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">. Keep an eye on the active operations, which indicate whether the solution is addition, subtraction, multiplication, or division. At higher levels two operations become active to trick you, but there is still only one solution.
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="For every three solutions you swipe right in a row you get a ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="bonus">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" point. You can use ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="bonus">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content"> points if you get stuck:
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Hide a Tile">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="(1 point)">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Italic"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Italic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-- Removes a tile that is not part of the solution to make it easier for you to find the solution
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Reveal a Tile">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="(3 points)">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Italic"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Italic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-- Reveals one of the three tiles that are part of the solution
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Remove an Operation">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="(2 points)">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Italic"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Italic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-- Removes the extra operation that the solution does not use. Only active at higher levels where two operations become active.
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="17" name="Menlo-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7z8-Op-Z5Y">
-                                <rect key="frame" x="534" y="20" width="46" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="AkZ-cP-xZ4"/>
-                                    <constraint firstAttribute="width" constant="46" id="u3W-E2-gXq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="11"/>
-                                <state key="normal" title="MENU">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="menuButtonPressed:" destination="Fse-V2-O1t" eventType="touchUpInside" id="9OM-B8-xai"/>
-                                    <action selector="menuButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WSC-9r-KnE"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="7z8-Op-Z5Y" firstAttribute="trailing" secondItem="iXE-L3-eZJ" secondAttribute="trailingMargin" id="0kf-5b-uql"/>
-                            <constraint firstItem="7z8-Op-Z5Y" firstAttribute="top" secondItem="zqq-wC-xNZ" secondAttribute="bottom" id="FWw-Fr-ixG"/>
-                            <constraint firstItem="TN6-5U-ck0" firstAttribute="top" secondItem="iXE-L3-eZJ" secondAttribute="topMargin" id="ZIu-7y-dNA"/>
-                            <constraint firstItem="51E-Gi-EBr" firstAttribute="top" secondItem="TN6-5U-ck0" secondAttribute="bottom" id="cgO-Yw-2hP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TN6-5U-ck0" secondAttribute="trailing" constant="-20" id="gcg-FR-5qq"/>
-                            <constraint firstItem="TN6-5U-ck0" firstAttribute="top" secondItem="zqq-wC-xNZ" secondAttribute="bottom" id="wfU-wm-znl"/>
-                            <constraint firstItem="TN6-5U-ck0" firstAttribute="leading" secondItem="iXE-L3-eZJ" secondAttribute="leadingMargin" constant="-20" id="y5B-lj-RKj"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ZIu-7y-dNA"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="usj-yG-cjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-480" y="-357"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="yOB-pY-lDM">
@@ -814,6 +265,64 @@ Cg
                                     <action selector="howToButtonPressed:" destination="gcC-dN-XMu" eventType="touchUpInside" id="u1a-bz-CsQ"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-QJ-fsr">
+                                <rect key="frame" x="120" y="275" width="360" height="182"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looks like this is your first time 😉 Are you sure you want to skip the tutorial?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIm-SP-Cyv">
+                                        <rect key="frame" x="8" y="8" width="344" height="137"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hR-MP-6Rr">
+                                        <rect key="frame" x="8" y="144" width="60" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="3TS-GD-9ea"/>
+                                            <constraint firstAttribute="width" constant="60" id="Sqn-iY-VS1"/>
+                                            <constraint firstAttribute="width" constant="104" id="e5w-G4-n69"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="18"/>
+                                        <state key="normal" title="Skip">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="e5w-G4-n69"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="skipTutorialButtonPressed:" destination="gcC-dN-XMu" eventType="touchUpInside" id="vdf-LK-4Ee"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKJ-L1-dB1">
+                                        <rect key="frame" x="255" y="144" width="97" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="4bq-LU-a6t"/>
+                                            <constraint firstAttribute="width" constant="97" id="dSB-Qp-XLc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="17"/>
+                                        <state key="normal" title="Be Prepared">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="bePreparedButtonPressed:" destination="gcC-dN-XMu" eventType="touchUpInside" id="leb-gc-Kxh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="BIm-SP-Cyv" firstAttribute="leading" secondItem="7XU-QJ-fsr" secondAttribute="leading" constant="8" id="GUh-g5-GVI"/>
+                                    <constraint firstAttribute="height" constant="182" id="KWL-G9-tli"/>
+                                    <constraint firstAttribute="trailing" secondItem="BIm-SP-Cyv" secondAttribute="trailing" constant="8" id="LqS-du-tPL"/>
+                                    <constraint firstItem="0hR-MP-6Rr" firstAttribute="leading" secondItem="7XU-QJ-fsr" secondAttribute="leading" constant="8" id="Pd2-F1-lGa"/>
+                                    <constraint firstItem="BIm-SP-Cyv" firstAttribute="top" secondItem="7XU-QJ-fsr" secondAttribute="top" constant="8" id="fZU-HU-Liv"/>
+                                    <constraint firstAttribute="bottom" secondItem="FKJ-L1-dB1" secondAttribute="bottom" constant="5" id="hz6-fi-ujS"/>
+                                    <constraint firstAttribute="bottom" secondItem="0hR-MP-6Rr" secondAttribute="bottom" constant="5" id="pMi-ZE-dRc"/>
+                                    <constraint firstAttribute="trailing" secondItem="FKJ-L1-dB1" secondAttribute="trailing" constant="8" id="qYp-x3-DDm"/>
+                                    <constraint firstItem="0hR-MP-6Rr" firstAttribute="top" secondItem="BIm-SP-Cyv" secondAttribute="bottom" constant="-1" id="r5n-4p-IP2"/>
+                                    <constraint firstItem="FKJ-L1-dB1" firstAttribute="top" secondItem="BIm-SP-Cyv" secondAttribute="bottom" constant="-1" id="xbz-Gb-fzN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.74053241889999999" green="0.77045292070000004" blue="0.77045292070000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -822,8 +331,10 @@ Cg
                             <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="Fiv-Rs-Uvf" secondAttribute="bottom" constant="20" id="8FB-8W-DL6"/>
                             <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="Fiv-Rs-Uvf" secondAttribute="bottom" constant="25" id="AOa-Wu-u6Y"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="baseline" secondItem="XKE-nQ-xjL" secondAttribute="baseline" id="BsK-WJ-gJC"/>
+                            <constraint firstItem="7XU-QJ-fsr" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="D4t-wj-0Eq"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="bottom" secondItem="XKE-nQ-xjL" secondAttribute="bottom" id="DpM-uh-kzD"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="centerY" secondItem="xYe-bN-WP8" secondAttribute="centerY" id="Gx8-hv-tna"/>
+                            <constraint firstItem="7XU-QJ-fsr" firstAttribute="width" secondItem="xYe-bN-WP8" secondAttribute="width" multiplier="3/5" id="I1W-ui-QxW"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" secondItem="xYe-bN-WP8" secondAttribute="topMargin" id="Jk2-9x-Jw3"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="top" id="O0x-hf-QKS"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="52" id="S1j-QU-PQB"/>
@@ -838,6 +349,7 @@ Cg
                             <constraint firstItem="w7g-nT-De9" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="ePH-4H-fGW"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="8" id="hS8-db-cd6"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="8" id="n9g-gV-l79"/>
+                            <constraint firstItem="7XU-QJ-fsr" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="32" id="ob2-jM-x1z"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" secondItem="ezL-eS-kNw" secondAttribute="bottom" id="syo-6G-noV"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="tTw-i6-vFw"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="tg3-51-ZMx"/>
@@ -871,9 +383,9 @@ Cg
                         <outlet property="beginGameButtonView" destination="w7g-nT-De9" id="i2s-JZ-2ce"/>
                         <outlet property="beginGameLabel" destination="Yml-Ch-wis" id="0FT-Gs-uwY"/>
                         <outlet property="firstTimeButton" destination="Fiv-Rs-Uvf" id="hGW-n3-cv4"/>
+                        <outlet property="firstTimeView" destination="7XU-QJ-fsr" id="6Db-WX-C1d"/>
                         <outlet property="logoView" destination="Ag2-v4-QWJ" id="dls-XU-vJi"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showGameSegue" id="6yq-r9-zFY"/>
-                        <segue destination="Fse-V2-O1t" kind="show" identifier="howToSegue" id="4sS-Zs-aNd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIT-h2-OPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1469,7 +981,7 @@ Cg
                                     <constraint firstAttribute="height" constant="28" id="b4p-RM-5Uq"/>
                                     <constraint firstAttribute="width" constant="163" id="gxe-xX-Ze7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="32"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -1482,9 +994,6 @@ Cg
                                         <exclude reference="b4p-RM-5Uq"/>
                                         <exclude reference="gxe-xX-Ze7"/>
                                     </mask>
-                                </variation>
-                                <variation key="widthClass=regular">
-                                    <fontDescription key="fontDescription" name="DIN-Medium" family="DIN-Medium" pointSize="24"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">

@@ -10,6 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, ButtonDelegate {
   
+  @IBOutlet weak var firstTimeView: UIView!
   @IBOutlet weak var logoView: UIImageView!
   @IBOutlet weak var firstTimeButton: UIButton!
   @IBOutlet weak var beginGameButtonView: ButtonView!
@@ -17,6 +18,19 @@ class HomeViewController: UIViewController, ButtonDelegate {
   @IBOutlet weak var beginGameLabel: UILabel!
   
   var lineView: UIView?
+  
+  var firstTime: Bool {
+    get {
+      if let first = UserDefaultsManager.sharedManager.getObjectForKey("firstTime") as? Bool {
+        return first
+      } else {
+        return true
+      }
+    }
+    set (newValue) {
+      UserDefaultsManager.sharedManager.setValueAtKey("firstTime", value: newValue)
+    }
+  }
   
   
   override func viewDidLoad() {
@@ -60,12 +74,21 @@ class HomeViewController: UIViewController, ButtonDelegate {
   
   func toggleUnderlineAlpha(dark: Bool) {
     if dark {
-      UIView.animateWithDuration(0.1, animations: { 
+      UIView.animateWithDuration(0.1, animations: {
         self.lineView?.alpha = 1
       })
     } else {
       lineView?.alpha = 0.1
     }
+  }
+  
+  func presentFirstTimeOptions() {
+    self.firstTimeView.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
+    self.firstTimeView.layer.shadowRadius = 10
+    self.firstTimeView.layer.shadowOffset = CGSizeZero
+    self.firstTimeView.layer.shadowOpacity = 0.3
+    self.firstTimeView.hidden = false
+    firstTime = false
   }
   
 
@@ -84,17 +107,40 @@ class HomeViewController: UIViewController, ButtonDelegate {
     print("show leaderboards")
 //    self.performSegueWithIdentifier("showLeaderboard", sender: self)
   }
+
+  @IBAction func bePreparedButtonPressed(sender: AnyObject) {
+    self.firstTimeView.hidden = true
+    sendToTutorial()
+  }
+  
+  @IBAction func skipTutorialButtonPressed(sender: AnyObject) {
+    self.firstTimeView.hidden = true
+    sendToGame()
+  }
   
   func buttonPressed(sender: ButtonView) {
+    if firstTime {
+      presentFirstTimeOptions()
+    } else {
+      sendToGame()
+    }
+  }
+  
+  func sendToGame() {
     GameStatus.status.gameMode = .Standard
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
   
-  @IBAction func howToButtonPressed(sender: AnyObject) {
+  func sendToTutorial() {
     GameStatus.status.gameMode = .Tutorial
-    toggleUnderlineAlpha(true)
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
+  
+  @IBAction func howToButtonPressed(sender: AnyObject) {
+    toggleUnderlineAlpha(true)
+    sendToTutorial()
+  }
+  
   @IBAction func howToButtonDown(sender: AnyObject) {
     toggleUnderlineAlpha(false)
   }

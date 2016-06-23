@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02011FBF1D1B6F88009C9CB8 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02011FBE1D1B6F88009C9CB8 /* UserDefaultsManager.swift */; };
 		021BD8D21D0C9C5D0017FC49 /* GameViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BD8D11D0C9C5D0017FC49 /* GameViewDelegate.swift */; };
 		022098171C1DBFD2005155E6 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098161C1DBFD2005155E6 /* GridLayout.swift */; };
 		022098191C1DC005005155E6 /* RandomNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022098181C1DC005005155E6 /* RandomNumber.swift */; };
@@ -54,10 +55,10 @@
 		02DB52B51D04FE530052D72A /* SegueHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB52B41D04FE530052D72A /* SegueHelper.swift */; };
 		02E6FCE21D07B6A9007A98EE /* GameKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */; };
 		02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */; };
-		02E6FCE61D08EB91007A98EE /* HowToPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02011FBE1D1B6F88009C9CB8 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		021BD8D11D0C9C5D0017FC49 /* GameViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewDelegate.swift; sourceTree = "<group>"; };
 		022098161C1DBFD2005155E6 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		022098181C1DC005005155E6 /* RandomNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumber.swift; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		02DB52B41D04FE530052D72A /* SegueHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHelper.swift; sourceTree = "<group>"; };
 		02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameKitViewController.swift; sourceTree = "<group>"; };
 		02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperHelpViewController.swift; sourceTree = "<group>"; };
-		02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToPlayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,12 +124,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0220981A1C1DC00A005155E6 /* Extensions */ = {
+		02011FBD1D1B6F6C009C9CB8 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */,
+				02011FBE1D1B6F88009C9CB8 /* UserDefaultsManager.swift */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
+		0220981A1C1DC00A005155E6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
 				02BCF0D71D0F0F1D0083B2F2 /* objc */,
 				0220981B1C1DC796005155E6 /* Grid.swift */,
+				02011FBD1D1B6F6C009C9CB8 /* Storage */,
 				0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */,
 				0269CD681CFCF512004184E5 /* GradientLayer.swift */,
 				022098181C1DC005005155E6 /* RandomNumber.swift */,
@@ -216,7 +225,6 @@
 			children = (
 				02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */,
 				02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */,
-				02E6FCE51D08EB91007A98EE /* HowToPlayViewController.swift */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
 				02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */,
 				02DB52B01D04C8B50052D72A /* GameLaunchViewController.swift */,
@@ -362,6 +370,7 @@
 				0232DC941C23A9830039E5CE /* GameStatus.swift in Sources */,
 				02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */,
 				02DB52B51D04FE530052D72A /* SegueHelper.swift in Sources */,
+				02011FBF1D1B6F88009C9CB8 /* UserDefaultsManager.swift in Sources */,
 				02E6FCE21D07B6A9007A98EE /* GameKitViewController.swift in Sources */,
 				0240B9571C18EF86004B48BA /* ViewController.swift in Sources */,
 				02E6FCE41D08EA0D007A98EE /* HelperHelpViewController.swift in Sources */,
@@ -378,7 +387,6 @@
 				022D4B201CE92885004EFFC7 /* ProgressionManager.swift in Sources */,
 				022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */,
 				02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */,
-				02E6FCE61D08EB91007A98EE /* HowToPlayViewController.swift in Sources */,
 				0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */,
 				02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */,
 				02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */,
@@ -503,7 +511,7 @@
 				INFOPLIST_FILE = SwipeRight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fortyhandsgames.SwipedRight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesecgames.swiperight;
 				PRODUCT_NAME = "SwipeRight!";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwipeRight/SwipeRight!-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -520,7 +528,7 @@
 				INFOPLIST_FILE = SwipeRight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fortyhandsgames.SwipedRight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesecgames.swiperight;
 				PRODUCT_NAME = "SwipeRight!";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwipeRight/SwipeRight!-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";

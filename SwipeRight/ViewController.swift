@@ -245,7 +245,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     let highScore = setHighScore()
     self.gameView?.view.userInteractionEnabled = false
     self.gameLaunchView?.gameOver(score, highScore: highScore)
-    resetGameState()
+    if GameStatus.status.gameMode == .Standard {
+      resetGameState()
+    }
     toggleAdViewVisible(true)
     self.adView.hidden = false
     //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
@@ -336,11 +338,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool) {
     helperButtonView.hidden = remove
     helperButtonViewEnabled = !deactivate
-  }
-  
-  func resetButtonPressed() {
-    gameOver(false)
-    resetGameState()
   }
   
   func beginButtonPressed() {

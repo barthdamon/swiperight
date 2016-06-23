@@ -99,7 +99,7 @@ class HelperHelpViewController: UIViewController {
       setupForTutorialStage()
     case 1:
       GameStatus.status.tutorialStage += 1
-      delegate?.setTutorialLabelText("Touch your finger to the first tile!")
+      delegate?.setTutorialLabelText("Press and hold your finger to the first tile, then swipe!")
       gameViewController?.setGameViewForTutorialStage()
     case 3:
       GameStatus.status.tutorialStage += 1
