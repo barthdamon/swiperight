@@ -64,7 +64,7 @@ class HelperHelpViewController: UIViewController {
       self.setExplanationText("Every equation you swipe correctly adds five seconds to the countdown timer.")
       GameStatus.status.tutorialStage += 1
     case 4:
-      self.setExplanationText("There is only ONE active equation. \n\nActive operations and the board background indicate the operation of the current equation.")
+      self.setExplanationText("There is only ONE active equation. \n\nActive operations and the board background color indicate the operation of the current equation.")
     case 5:
       GameStatus.status.tutorialStage += 1
       setupForTutorialStage()
