@@ -62,17 +62,19 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
   var negOffsetX: Double?
   var negOffsetY: Double?
   var active: Bool = true
+  var gradientLayer: CAGradientLayer?
   
   func becomeButtonForGameView(target: UIViewController, label: UILabel, delegate: ButtonDelegate) {
+    self.gradientLayer?.removeFromSuperlayer()
     self.userInteractionEnabled = true
     self.label = label
     self.delegate = delegate
     
     let firstColor = ThemeHelper.defaultHelper.sw_button_top_color
     let secondColor = ThemeHelper.defaultHelper.sw_button_bottom_color
-    let gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor), rounded: self.bounds.height / 2)
+    gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor), rounded: self.bounds.height / 2)
 //    self.layer.hidden = false
-    self.layer.insertSublayer(gradientLayer, atIndex: 0)
+    self.layer.insertSublayer(gradientLayer!, atIndex: 0)
     
     self.layer.cornerRadius = self.bounds.height / 2
     self.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor

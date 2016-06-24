@@ -28,7 +28,6 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   var showRemove = false
   
   var backButtonEnabled = true
-  var helperButtonsSetup: Bool = false
   
   var gameViewController: GameViewController?
   var delegate: GameViewDelegate?
@@ -56,6 +55,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   }
   
   override func viewWillDisappear(animated: Bool) {
+    delegate?.toggleHelperMode(false)
     super.viewWillDisappear(true)
   }
   
@@ -63,12 +63,14 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     delegate?.deactivateHelperPointButton(false, deactivate: true)
   }
   
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(true)
+
+  }
+  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    if !helperButtonsSetup {
-      setupHelperButtons()
-      helperButtonsSetup = true
-    }
+    setupHelperButtons()
     activateHelperButtons()
   }
   
@@ -177,6 +179,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
       if GameStatus.status.gameMode == .Standard {
         delegate?.togglePaused(false)
       }
+      delegate?.toggleHelperMode(false)
       self.navigationController?.popViewControllerAnimated(true)
     }
   }

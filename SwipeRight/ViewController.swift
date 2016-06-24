@@ -99,13 +99,13 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   override func viewDidAppear(animated: Bool) {
     GameStatus.status.inMenu = false
+    startOptionsConfigured = true
   }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     if !startOptionsConfigured {
       configureStartOptions()
-      startOptionsConfigured = true
     }
 
     if UIScreen.mainScreen().bounds.height < 1000 {
