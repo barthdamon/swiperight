@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwipeRight/HelperPointViewController.swift"
-            timestampString = "488421329.371016"
+            timestampString = "488423953.411216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "activateHelperButtons()"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "setupHelperButtons()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
