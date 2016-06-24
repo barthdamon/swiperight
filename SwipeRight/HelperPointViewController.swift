@@ -59,13 +59,16 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
     super.viewWillDisappear(true)
   }
   
+  override func viewWillAppear(animated: Bool) {
+    delegate?.deactivateHelperPointButton(false, deactivate: true)
+  }
+  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     if !helperButtonsSetup {
       setupHelperButtons()
       helperButtonsSetup = true
     }
-    delegate?.deactivateHelperPointButton(false, deactivate: true)
     activateHelperButtons()
   }
   

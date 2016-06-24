@@ -201,7 +201,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
       self.toggleAdViewVisible(false)
       self.deactivateHelperPointButton(false, deactivate: false)
       if GameStatus.status.timer == nil {
-        GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
+        GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock(_:)), userInfo: nil, repeats: true)
       }
       GameStatus.status.gameActive = true
     })
@@ -222,7 +222,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   //MARK: HUD
   
-  func tickTock() {
+  func tickTock(sender: NSTimer) {
     if !GameStatus.status.inMenu {
       if GameStatus.status.gameActive && GameStatus.status.timer != nil {
         GameStatus.status.time -= 1
@@ -232,6 +232,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
         timeLabel?.text = stringToGameTime(GameStatus.status.time)
       }
     } else {
+      sender.invalidate()
       print("Timer invalidated from tick tock")
       self.invalidateTimer()
     }
@@ -318,9 +319,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   //DELEGATE METHOD DON'T DELETE:
   func toggleHelperMode(on: Bool) {
     if on {
+      helperButtonViewEnabled = false
       GameStatus.status.gameActive = false
     } else {
       GameStatus.status.gameActive = true
+      helperButtonViewEnabled = true
     }
   }
   

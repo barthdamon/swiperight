@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwipeRight/GameViewController.swift"
-            timestampString = "488411965.471818"
+            filePath = "SwipeRight/HelperPointViewController.swift"
+            timestampString = "488421329.371016"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "815"
-            endingLineNumber = "815"
-            landmarkName = "tutorialResolveHighlightMovement()"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "activateHelperButtons()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

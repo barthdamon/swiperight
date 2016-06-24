@@ -26,7 +26,6 @@ class GameStatus: NSObject {
   var tutorialStage = 0
   var inMenu: Bool = true
   
-  
   var time: Int = 0
   var score: Int = 0
   var gameDuration: Int {
@@ -34,13 +33,13 @@ class GameStatus: NSObject {
   }
   var timer: NSTimer?
   
-  var highlightTileTimer: NSTimer?
-  var tilesToHighlight: Array<TileView> = []
-  var inTutorialHighlightMode: Bool = false
-  var tutorialTimeForHelper: Bool = false
-  var backFromTutorialHelper: Bool = false
-  var solvedOneOnFive: Bool = false
-  var pausingForEffect: Bool = false
+//  var highlightTileTimer: NSTimer?
+//  var tilesToHighlight: Array<TileView> = []
+//  var inTutorialHighlightMode: Bool = false
+//  var tutorialTimeForHelper: Bool = false
+//  var backFromTutorialHelper: Bool = false
+//  var solvedOneOnFive: Bool = false
+//  var pausingForEffect: Bool = false
 }
 
 /*
