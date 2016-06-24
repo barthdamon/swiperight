@@ -823,7 +823,11 @@ class GameViewController: UIViewController {
     }
     if let tile = currentTile {
       if tilesToHighlight.contains(tile) {
-        highlightNextTile()
+        if let first = tilesToHighlight.first {
+          if first == tile {
+            highlightNextTile()
+          }
+        }
       }
     }
     if GameStatus.status.tutorialStage == 5 && tilesToHighlight.count == 0 {

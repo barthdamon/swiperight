@@ -56,7 +56,7 @@ class TileView: UIView {
   
   func highlightForTutorial(controller: GameViewController, operation: Operation, callback: (Bool) -> ()) {
     UIView.animateWithDuration(0.3, animations: {
-      self.numberLabel?.transform = CGAffineTransformMakeScale(1.25,1.25)
+      self.numberLabel?.transform = CGAffineTransformMakeScale(1.2,1.2)
       self.drawShadow(true, operation: operation)
     }) { (complete) in
       UIView.animateWithDuration(0.3, animations: {
@@ -79,6 +79,7 @@ class TileView: UIView {
     let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_color : ThemeHelper.defaultHelper.sw_tile_incorrect_color
 //    guard let subview = subView else { return }
     self.innerView.backgroundColor = operation.color
+    self.innerView.userInteractionEnabled = false
     innerShadow?.shadowColor = color
     innerShadow?.shadowOpacity = 0.8
     let radius = self.bounds.width / 4
