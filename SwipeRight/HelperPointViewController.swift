@@ -37,7 +37,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     if GameStatus.status.gameMode == .Tutorial {
-      delegate?.setTutorialLabelText("Hide a tile with your bonus point!")
+      delegate?.setTutorialLabelText("Hide a tile with your ability point!")
       self.backButton.hidden = true
       if let _ = rightSwipe {
         self.view.removeGestureRecognizer(rightSwipe!)
