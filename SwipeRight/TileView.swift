@@ -41,7 +41,12 @@ class TileView: UIView {
   func showBorder(show: Bool) {
     if show {
       self.layer.borderColor = ThemeHelper.defaultHelper.sw_tile_separator_color.CGColor
-      self.layer.borderWidth = 1
+      let deviceIdiom = UIScreen.mainScreen().traitCollection.userInterfaceIdiom
+      if deviceIdiom == .Pad {
+        self.layer.borderWidth = 3
+      } else {
+        self.layer.borderWidth = 1
+      }
     } else {
       self.layer.borderWidth = 0
     }

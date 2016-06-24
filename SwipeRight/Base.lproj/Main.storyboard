@@ -416,11 +416,11 @@
                                 <exclude reference="a0b-og-7gW"/>
                                 <exclude reference="n9g-gV-l79"/>
                                 <exclude reference="tTw-i6-vFw"/>
+                                <exclude reference="2rv-FX-AMd"/>
+                                <exclude reference="I1W-ui-QxW"/>
                                 <exclude reference="WML-Bh-VaL"/>
                                 <exclude reference="Z4F-L2-8Ea"/>
                                 <exclude reference="aEk-WZ-w5f"/>
-                                <exclude reference="2rv-FX-AMd"/>
-                                <exclude reference="I1W-ui-QxW"/>
                                 <exclude reference="8FB-8W-DL6"/>
                                 <exclude reference="AOa-Wu-u6Y"/>
                             </mask>
@@ -2737,10 +2737,10 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Welcome!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UfL-oY-K1A">
                                 <rect key="frame" x="20" y="0.0" width="350" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="36"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="42"/>
                                 </variation>
                             </textView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECD-O3-0MW">
