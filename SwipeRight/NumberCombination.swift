@@ -47,7 +47,12 @@ class NumberCombination : NSObject {
   convenience init(solution: Bool, layout: GridNumberLayout) {
     self.init()
     self.numbers = layout.numbers
-    self.operation = layout.operations[0]
+    if layout.operations.count > 1 && ProgressionManager.sharedManager.multipleOperationsDisplayActive {
+      let randOp = Int.random(0...1)
+      self.operation = layout.operations[randOp]
+    } else {
+      self.operation = layout.operations[0]
+    }
     if solution {
       self.solution = solution
       generateWinningCombination()
