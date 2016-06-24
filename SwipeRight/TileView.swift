@@ -15,6 +15,7 @@ class TileView: UIView {
     didSet {
       numberLabel?.text = String(number!)
       self.userInteractionEnabled = number == -1 ? false : true
+      active = number != -1
       if number == -1 {
         self.numberLabel?.hidden = true
       } else {
@@ -22,10 +23,12 @@ class TileView: UIView {
       }
     }
   }
+  var active: Bool = false
   var partOfSolution = false
   var coordinates: TileCoordinates?
   var subView: UIView?
   var drawnCorrect: Bool = false
+  var drawnIncorrect: Bool = false
   
   func setup(label: UILabel, subview: UIView, overlay: Bool, coordinates: TileCoordinates) {
     self.numberLabel = label
@@ -93,10 +96,13 @@ class TileView: UIView {
   }
   
   func drawIncorrect(operation: Operation) {
+    drawnIncorrect = true
     drawShadow(false, operation: operation)
   }
   
   func drawNormal(callback: (Bool) -> ()) {
+    drawnCorrect = false
+    drawnIncorrect = false
     self.backgroundColor = UIColor.clearColor()
     self.innerView.backgroundColor = UIColor.clearColor()
     self.numberLabel?.transform = CGAffineTransformIdentity

@@ -497,13 +497,18 @@ class GameViewController: UIViewController {
   }
   
   func applyNumberLayoutToTiles(reset: Bool) {
-    if let layout = currentLayout {
+    if let layout = currentLayout, indexes = layout.solutionIndexes {
       for i in 0 ..< layout.numbers.count {
         if reset {
           tileViews[i].numberLabel?.alpha = 0
         } else {
           tileViews[i].number = layout.numbers[i]
           tileViews[i].numberLabel?.alpha = 0
+          if indexes.contains(i) {
+            tileViews[i].partOfSolution = true
+          } else {
+            tileViews[i].partOfSolution = false
+          }
         }
       }
     }
@@ -605,6 +610,7 @@ class GameViewController: UIViewController {
       ProgressionManager.sharedManager.helperPointUtilized(.Reveal)
     case .Remove:
       let filteredOperations = ProgressionManager.sharedManager.activeOperations.filter({$0 == combo.operation})
+      currentLayout?.operations = filteredOperations
       delegate?.resetClientOperations(filteredOperations)
       setGameViewBackground(filteredOperations)
       ProgressionManager.sharedManager.helperPointUtilized(.Remove)

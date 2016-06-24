@@ -61,11 +61,12 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   
   override func viewWillAppear(animated: Bool) {
     delegate?.deactivateHelperPointButton(false, deactivate: true)
+//    activateHelperButtons()
   }
   
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(true)
-
+//    activateHelperButtons()
   }
   
   override func viewDidLayoutSubviews() {
@@ -92,12 +93,17 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   
   func activateHelperButtons() {
     let points = ProgressionManager.sharedManager.currentHelperPoints
-    guard let layout = gameViewController?.currentLayout, _ = layout.winningCombination else { return }
-//    delegate?.setHelperPoints(points, callback: { (done) in })
-    // need to know the index of all of th
-    showRemove = points >= 2 && ProgressionManager.sharedManager.multipleOperationsDisplayActive
-    showHide = points >= 1 && ProgressionManager.sharedManager.numberOfExtraTiles > 0
-    showReveal = points >= 3
+    guard let layout = gameViewController?.currentLayout, _ = layout.winningCombination, tileViews = gameViewController?.tileViews else { return }
+    
+    // need number of tiles to be based on ones not effected by hide or reveal. So hide
+    // hide is number of extra tiles without already being hidden
+    // revealed is number of solution indexes left that aren't already revealed
+    let hides = tileViews.filter({!$0.partOfSolution && $0.active && !$0.drawnIncorrect})
+    let reveals = tileViews.filter({$0.partOfSolution && !$0.drawnCorrect})
+    
+    showRemove = points >= 2 && layout.operations.count > 1 && ProgressionManager.sharedManager.multipleOperationsDisplayActive
+    showHide = points >= 1 && hides.count > 0
+    showReveal = points >= 3 && reveals.count > 1
     
     revealTileHelperView.togglePressed(!showReveal)
     removeOperationHelperView.togglePressed(!showRemove)
