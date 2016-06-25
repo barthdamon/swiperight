@@ -42,6 +42,9 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
     beginGameButtonView.alpha = 0
     firstTimeButton.alpha = 0
     logoView.alpha = 0
+    if GameStatus.status.gc_enabled {
+      authenticateLocalPlayer()
+    }
     // Do any additional setup after loading the view.
   }
   
@@ -51,9 +54,6 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
       self.beginGameButtonView.alpha = 1
       self.firstTimeButton.alpha = 1
       self.logoView.alpha = 1
-    }
-    if GameStatus.status.gc_enabled {
-      authenticateLocalPlayer()
     }
   }
   
@@ -177,15 +177,16 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
         self.presentViewController(ViewController!, animated: true, completion: nil)
       } else if (localPlayer.authenticated) {
         // 2 Player is already euthenticated & logged in, load game center
-        GameStatus.status.gc_enabled = true
-        
         // Get the default leaderboard ID
         localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
           if error != nil {
             print(error)
           } else {
             GameStatus.status.gc_leaderboard_id = leaderboardIdentifer!
-            self.showLeaderboard()
+            if !GameStatus.status.gc_enabled {
+              self.showLeaderboard()
+            }
+            GameStatus.status.gc_enabled = true
           }
         })
       } else {

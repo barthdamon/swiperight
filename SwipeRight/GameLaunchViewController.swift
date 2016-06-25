@@ -62,6 +62,7 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
     self.scoreLabel.text = "SCORE: \(score)"
     self.scoreLabel.hidden = false
     self.beginButtonView.hidden = false
+    leaderboardsButton.hidden = false
     if highScore {
       print("HIGH SCORE RECOGNIZED")
 //      highScoreLabel.text = "NEW HIGH SCORE: \(score)"
