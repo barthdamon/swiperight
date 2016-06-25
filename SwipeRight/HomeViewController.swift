@@ -56,8 +56,8 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
       self.beginGameButtonView.alpha = 1
       self.firstTimeButton.alpha = 1
       self.logoView.alpha = 1
-      leaderboardsButton.alpha = 1
-      removeAdsButton.alpha = 1
+      self.leaderboardsButton.alpha = 1
+      self.removeAdsButton.alpha = 1
     }
   }
   
