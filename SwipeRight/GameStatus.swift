@@ -50,7 +50,7 @@ class GameStatus: NSObject {
       if let first = UserDefaultsManager.sharedManager.getObjectForKey("gc_enabled") as? Bool {
         return first
       } else {
-        return true
+        return false
       }
     }
     set (newValue) {
