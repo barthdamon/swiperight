@@ -423,6 +423,7 @@ class GameViewController: UIViewController {
         tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
 //        self.borderView.alpha = 1
         }, completion: { (complete) -> Void in
+          GameStatus.status.resettingTiles = false
           if GameStatus.status.gameMode == .Standard {
             self.view.userInteractionEnabled = true
             self.delegate?.beginGame()
@@ -482,6 +483,7 @@ class GameViewController: UIViewController {
   }
   
   func animateTileReset() {
+    GameStatus.status.resettingTiles = true
     fadeOutTiles { (complete) in
       guard let layout = self.currentLayout else { return }
       self.setGameViewBackground(layout.operations)

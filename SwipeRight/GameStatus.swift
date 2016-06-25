@@ -26,6 +26,8 @@ class GameStatus: NSObject {
   var tutorialStage = 0
   var inMenu: Bool = true
   
+  var resettingTiles: Bool = false
+  
   var time: Int = 0
   var score: Int = 0
   var gameDuration: Int {

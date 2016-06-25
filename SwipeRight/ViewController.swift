@@ -227,18 +227,23 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   //MARK: HUD
   
   func tickTock(sender: NSTimer) {
-    if !GameStatus.status.inMenu {
-      if GameStatus.status.gameActive && GameStatus.status.timer != nil {
-        GameStatus.status.time -= 1
-        if GameStatus.status.time == 0 {
-          gameOver()
-        }
-        timeLabel?.text = stringToGameTime(GameStatus.status.time)
-      }
-    } else {
+    if sender != GameStatus.status.timer {
       sender.invalidate()
-      print("Timer invalidated from tick tock")
-      self.invalidateTimer()
+      print("Resilient timers not dying...")
+    } else {
+      if !GameStatus.status.inMenu {
+        if GameStatus.status.gameActive && GameStatus.status.timer != nil {
+          GameStatus.status.time -= 1
+          if GameStatus.status.time == 0 {
+            gameOver()
+          }
+          timeLabel?.text = stringToGameTime(GameStatus.status.time)
+        }
+      } else {
+        sender.invalidate()
+        print("Timer invalidated from tick tock")
+        self.invalidateTimer()
+      }
     }
   }
   
@@ -302,7 +307,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func buttonPressed(sender: ButtonView) {
     print("Helper Button Pressed")
-    if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 {
+    if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 && GameStatus.status.gameActive && !GameStatus.status.resettingTiles {
       gameView?.helperButtonPressed()
       toggleHelperMode(true)
       // stop the clock, show pause button overlay
@@ -387,6 +392,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     invalidateTimer()
     GameStatus.status.inMenu = true
     GameStatus.status.gameActive = false
+    GameStatus.status.resettingTiles = false
     ProgressionManager.sharedManager.reset()
     GameStatus.status.tutorialStage = 0
     self.navigationController?.popViewControllerAnimated(true)
