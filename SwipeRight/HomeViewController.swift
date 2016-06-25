@@ -174,34 +174,38 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   //MARK: GameKit
   func authenticateLocalPlayer() {
     let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
-    
-    localPlayer.authenticateHandler = {(ViewController, error) -> Void in
-      if((ViewController) != nil) {
-        // 1 Show login if player is not logged in
-        self.presentViewController(ViewController!, animated: true, completion: nil)
-      } else if (localPlayer.authenticated) {
-        // 2 Player is already euthenticated & logged in, load game center
-        // Get the default leaderboard ID
-        localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
-          if error != nil {
-            print(error)
-          } else {
-            GameStatus.status.gc_leaderboard_id = leaderboardIdentifer!
-            if !GameStatus.status.gc_enabled {
-              self.showLeaderboard()
+    if let loginView = GameStatus.status.gc_login_view_controller where !GameStatus.status.gc_enabled {
+      self.presentViewController(loginView, animated: true, completion: nil)
+    } else {
+      localPlayer.authenticateHandler = {(ViewController, error) -> Void in
+        if((ViewController) != nil) {
+          // 1 Show login if player is not logged in
+          GameStatus.status.gc_login_view_controller = ViewController
+          self.presentViewController(ViewController!, animated: true, completion: nil)
+        } else if (localPlayer.authenticated) {
+          // 2 Player is already euthenticated & logged in, load game center
+          // Get the default leaderboard ID
+          localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
+            if error != nil {
+              print(error)
+            } else {
+              GameStatus.status.gc_leaderboard_id = leaderboardIdentifer!
+              if !GameStatus.status.gc_enabled {
+                self.showLeaderboard()
+              }
+              GameStatus.status.gc_enabled = true
             }
-            GameStatus.status.gc_enabled = true
-          }
-        })
-      } else {
-        // 3 Game center is not enabled on the users device
-        GameStatus.status.gc_enabled = false
-        print("Local player could not be authenticated, disabling game center")
-        //show some kind of warning saying authentication failed, giving retry and okay options?
-//        self.navigationController?.popViewControllerAnimated(true)
+          })
+        } else {
+          // 3 Game center is not enabled on the users device
+          GameStatus.status.gc_enabled = false
+          print("Local player could not be authenticated, disabling game center")
+          //show some kind of warning saying authentication failed, giving retry and okay options?
+          //        self.navigationController?.popViewControllerAnimated(true)
+        }
       }
-      
     }
+
     
   }
   

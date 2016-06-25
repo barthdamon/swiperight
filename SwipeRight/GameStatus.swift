@@ -58,6 +58,8 @@ class GameStatus: NSObject {
     }
   }
   
+  var gc_login_view_controller: UIViewController?
+  
 //  var highlightTileTimer: NSTimer?
 //  var tilesToHighlight: Array<TileView> = []
 //  var inTutorialHighlightMode: Bool = false
