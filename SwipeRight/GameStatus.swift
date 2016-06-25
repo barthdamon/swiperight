@@ -32,6 +32,31 @@ class GameStatus: NSObject {
     return ProgressionManager.sharedManager.standardRoundDuration
   }
   var timer: NSTimer?
+  var gc_leaderboard_id: String {
+    get {
+      if let first = UserDefaultsManager.sharedManager.getObjectForKey("gc_leaderboard_id") as? String {
+        return first
+      } else {
+        return "sw_all_time_leaderboard"
+      }
+    }
+    set (newValue) {
+      UserDefaultsManager.sharedManager.setValueAtKey("gc_leaderboard_id", value: newValue)
+    }
+  }
+  
+  var gc_enabled: Bool {
+    get {
+      if let first = UserDefaultsManager.sharedManager.getObjectForKey("gc_enabled") as? Bool {
+        return first
+      } else {
+        return true
+      }
+    }
+    set (newValue) {
+      UserDefaultsManager.sharedManager.setValueAtKey("gc_enabled", value: newValue)
+    }
+  }
   
 //  var highlightTileTimer: NSTimer?
 //  var tilesToHighlight: Array<TileView> = []

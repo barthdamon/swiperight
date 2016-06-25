@@ -16,6 +16,7 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
   @IBOutlet weak var highScoreLabel: UILabel!
   @IBOutlet weak var beginButtonView: ButtonView!
   @IBOutlet weak var beginButtonLabel: UILabel!
+  @IBOutlet weak var leaderboardsButton: UIButton!
   
   var gameViewController: GameViewController?
   var containerView: UIView?
@@ -85,4 +86,7 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
     }
   }
 
+  @IBAction func leaderboardsButtonPressed(sender: AnyObject) {
+    self.delegate?.showLeaderboards()
+  }
 }

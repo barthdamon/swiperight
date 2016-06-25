@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import GameKit
 
-class HomeViewController: UIViewController, ButtonDelegate {
+class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControllerDelegate {
   
   @IBOutlet weak var firstTimeView: UIView!
   @IBOutlet weak var logoView: UIImageView!
   @IBOutlet weak var firstTimeButton: UIButton!
   @IBOutlet weak var beginGameButtonView: ButtonView!
+  @IBOutlet weak var leaderboardsButton: UIButton!
+  @IBOutlet weak var removeAdsButton: UIButton!
   
   @IBOutlet weak var beginGameLabel: UILabel!
   
@@ -49,13 +52,15 @@ class HomeViewController: UIViewController, ButtonDelegate {
       self.firstTimeButton.alpha = 1
       self.logoView.alpha = 1
     }
+    if GameStatus.status.gc_enabled {
+      authenticateLocalPlayer()
+    }
   }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     setupButtons()
   }
-
   
   func setupButtons() {
     beginGameButtonView.becomeButtonForGameView(self, label: beginGameLabel, delegate: self)
@@ -101,11 +106,6 @@ class HomeViewController: UIViewController, ButtonDelegate {
       }
     }
    }
-  
-  func leaderboardsButtonPressed(sender: AnyObject) {
-    print("show leaderboards")
-//    self.performSegueWithIdentifier("showLeaderboard", sender: self)
-  }
 
   @IBAction func bePreparedButtonPressed(sender: AnyObject) {
     self.firstTimeView.hidden = true
@@ -135,6 +135,20 @@ class HomeViewController: UIViewController, ButtonDelegate {
     self.performSegueWithIdentifier("showGameSegue", sender: self)
   }
   
+  @IBAction func leaderboardsButtonPressed(sender: AnyObject) {
+    print("Leaderboards Pressed")
+    if GameStatus.status.gc_enabled {
+      showLeaderboard()
+    } else {
+      authenticateLocalPlayer()
+    }
+  }
+  
+  @IBAction func removeAdsButtonPressed(sender: AnyObject) {
+    print("Remove Ads Pressed")
+    
+  }
+  
   @IBAction func howToButtonPressed(sender: AnyObject) {
     toggleUnderlineAlpha(true)
     sendToTutorial()
@@ -148,5 +162,54 @@ class HomeViewController: UIViewController, ButtonDelegate {
   }
   @IBAction func howToButtonExited(sender: AnyObject) {
     toggleUnderlineAlpha(true)
+  }
+  
+  
+  
+  
+  //MARK: GameKit
+  func authenticateLocalPlayer() {
+    let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+    
+    localPlayer.authenticateHandler = {(ViewController, error) -> Void in
+      if((ViewController) != nil) {
+        // 1 Show login if player is not logged in
+        self.presentViewController(ViewController!, animated: true, completion: nil)
+      } else if (localPlayer.authenticated) {
+        // 2 Player is already euthenticated & logged in, load game center
+        GameStatus.status.gc_enabled = true
+        
+        // Get the default leaderboard ID
+        localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
+          if error != nil {
+            print(error)
+          } else {
+            GameStatus.status.gc_leaderboard_id = leaderboardIdentifer!
+            self.showLeaderboard()
+          }
+        })
+      } else {
+        // 3 Game center is not enabled on the users device
+        GameStatus.status.gc_enabled = false
+        print("Local player could not be authenticated, disabling game center")
+        //show some kind of warning saying authentication failed, giving retry and okay options?
+//        self.navigationController?.popViewControllerAnimated(true)
+      }
+      
+    }
+    
+  }
+  
+  func showLeaderboard() {
+    let gcVC: GKGameCenterViewController = GKGameCenterViewController()
+    gcVC.gameCenterDelegate = self
+    gcVC.viewState = GKGameCenterViewControllerState.Leaderboards
+    gcVC.leaderboardIdentifier = GameStatus.status.gc_leaderboard_id
+    self.presentViewController(gcVC, animated: true, completion: nil)
+  }
+  
+  func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+    gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    //perhaps only if going to the leaderboard?? not to sign in?
   }
 }

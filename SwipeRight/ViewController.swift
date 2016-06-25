@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import GameKit
 
-class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
+class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGameCenterControllerDelegate {
   
   
   @IBOutlet weak var bonusStreakLabel: UILabel!
@@ -258,7 +259,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
   
   func gameOver(finished: Bool = true) {
     if finished && GameStatus.status.gameMode == .Standard {
-      reportScore()
+      reportScore({ (done) in
+      })
     }
     deactivateHelperPointButton(true, deactivate: false)
     invalidateTimer()
@@ -285,17 +287,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
     }
     self.highScoreLabel.text = "BEST: \(CurrentUser.info.highScore)"
     return newHighScore
-  }
-  
-  func reportScore() {
-    print("REPORT SCORE")
-//    APIService.sharedService.post(["value": score], url: "score/register") { (res, err) in
-//      if let e = err {
-//        print("Error reporting score: \(e)")
-//      } else {
-//        print("Score reported successfully")
-//      }
-//    }
   }
   
   func configureStartOptions() {
@@ -413,6 +404,91 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate {
         }
       }
     }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  //MARK: Leaderboards
+  
+  func showLeaderboards() {
+    if GameStatus.status.gc_enabled {
+      // show the leaderboards
+      showLeaderboard()
+    } else {
+      // activate the leaderboards, then report the score
+      authenticateLocalPlayer()
+    }
+  }
+  
+  //MARK: GameKit
+  func authenticateLocalPlayer() {
+    let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+    
+    localPlayer.authenticateHandler = {(ViewController, error) -> Void in
+      if((ViewController) != nil) {
+        // 1 Show login if player is not logged in
+        self.presentViewController(ViewController!, animated: true, completion: nil)
+      } else if (localPlayer.authenticated) {
+        // 2 Player is already euthenticated & logged in, load game center
+        GameStatus.status.gc_enabled = true
+          // Get the default leaderboard ID
+          localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
+            if error != nil {
+              print(error)
+            } else {
+              GameStatus.status.gc_leaderboard_id = leaderboardIdentifer!
+              self.reportScore({ (done) in
+                self.showLeaderboard()
+              })
+            }
+        })
+      } else {
+        // 3 Game center is not enabled on the users device
+        GameStatus.status.gc_enabled = false
+        print("Local player could not be authenticated, disabling game center")
+        //show some kind of warning saying authentication failed, giving retry and okay options?
+        //        self.navigationController?.popViewControllerAnimated(true)
+      }
+    }
+  }
+  
+  func showLeaderboard() {
+    let gcVC: GKGameCenterViewController = GKGameCenterViewController()
+    gcVC.gameCenterDelegate = self
+    gcVC.viewState = GKGameCenterViewControllerState.Leaderboards
+    gcVC.leaderboardIdentifier = GameStatus.status.gc_leaderboard_id
+    self.presentViewController(gcVC, animated: true, completion: nil)
+  }
+  
+  func reportScore(callback: (Bool) -> ()) {
+    print("REPORT SCORE")
+    if GameStatus.status.gc_enabled {
+      let sScore = GKScore(leaderboardIdentifier: GameStatus.status.gc_leaderboard_id)
+      sScore.value = Int64(GameStatus.status.score)
+      
+      GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError?) -> Void in
+        if error != nil {
+          print(error!.localizedDescription)
+        } else {
+          print("Score submitted")
+        }
+      })
+    }
+  }
+  
+  func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+    gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    //perhaps only if going to the leaderboard?? not to sign in?
   }
   
   

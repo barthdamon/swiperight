@@ -12,10 +12,14 @@ import GameKit
 
 class GameKitController: UIViewController, GKGameCenterControllerDelegate {
   
-  var score: Int = 0 // Stores the score
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
   
-  var gcEnabled = Bool() // Stores if the user has Game Center enabled
-  var gcDefaultLeaderBoard = String() // Stores the default leaderboardID
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(true)
+    authenticateLocalPlayer()
+  }
   
   func authenticateLocalPlayer() {
     let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
@@ -26,54 +30,55 @@ class GameKitController: UIViewController, GKGameCenterControllerDelegate {
         self.presentViewController(ViewController!, animated: true, completion: nil)
       } else if (localPlayer.authenticated) {
         // 2 Player is already euthenticated & logged in, load game center
-        self.gcEnabled = true
+         GameStatus.status.gc_enabled = true
         
         // Get the default leaderboard ID
         localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
           if error != nil {
             print(error)
           } else {
-            self.gcDefaultLeaderBoard = leaderboardIdentifer!
+            GameStatus.status.gc_leaderboard_id = leaderboardIdentifer!
+            self.showLeaderboard()
           }
         })
-        
-        
       } else {
         // 3 Game center is not enabled on the users device
-        self.gcEnabled = false
+        GameStatus.status.gc_enabled = false
         print("Local player could not be authenticated, disabling game center")
-        print(error)
+        //show some kind of warning saying authentication failed, giving retry and okay options?
+        self.navigationController?.popViewControllerAnimated(true)
       }
       
     }
     
   }
   
-  @IBAction func submitScore(sender: UIButton) {
-    let leaderboardID = "LeaderboardID"
-    let sScore = GKScore(leaderboardIdentifier: leaderboardID)
-    sScore.value = Int64(score)
-    
-    GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError?) -> Void in
-      if error != nil {
-        print(error!.localizedDescription)
-      } else {
-        print("Score submitted")
-        
-      }
-    })
-  }
+//  func submitScore(score: Int) {
+//    let leaderboardID = gcDefaultLeaderBoard
+//    let sScore = GKScore(leaderboardIdentifier: leaderboardID)
+//    sScore.value = Int64(score)
+//    
+//    GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError?) -> Void in
+//      if error != nil {
+//        print(error!.localizedDescription)
+//      } else {
+//        print("Score submitted")
+//      }
+//    })
+//  }
   
   func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
     gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    //perhaps only if going to the leaderboard?? not to sign in?
+    self.navigationController?.popViewControllerAnimated(true)
   }
   
   
-  @IBAction func showLeaderboard(sender: UIButton) {
+  func showLeaderboard() {
     let gcVC: GKGameCenterViewController = GKGameCenterViewController()
     gcVC.gameCenterDelegate = self
     gcVC.viewState = GKGameCenterViewControllerState.Leaderboards
-    gcVC.leaderboardIdentifier = "LeaderboardID"
+    gcVC.leaderboardIdentifier = GameStatus.status.gc_leaderboard_id
     self.presentViewController(gcVC, animated: true, completion: nil)
   }
 }

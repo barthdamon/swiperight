@@ -46,7 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
     let savedKeychain = [
       "highScore" : 0,
-      "firstTime" : true
+      "firstTime" : true,
+      "gc_enabled" : false,
+      "gc_leaderboard_id" : "sw_all_time_leaderboard"
     ]
 
     let registrationDictionary = ["saved": savedKeychain]

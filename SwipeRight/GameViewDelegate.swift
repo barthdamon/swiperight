@@ -29,6 +29,8 @@ protocol GameViewDelegate {
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool)
   func setGameViewController(controller: GameViewController)
   
+  func showLeaderboards()
+  
   func timerAlreadyTocking() -> Bool
   
   
