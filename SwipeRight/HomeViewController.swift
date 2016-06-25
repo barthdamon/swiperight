@@ -42,6 +42,8 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
     beginGameButtonView.alpha = 0
     firstTimeButton.alpha = 0
     logoView.alpha = 0
+    leaderboardsButton.alpha = 0
+    removeAdsButton.alpha = 0
     if GameStatus.status.gc_enabled {
       authenticateLocalPlayer()
     }
@@ -54,6 +56,8 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
       self.beginGameButtonView.alpha = 1
       self.firstTimeButton.alpha = 1
       self.logoView.alpha = 1
+      leaderboardsButton.alpha = 1
+      removeAdsButton.alpha = 1
     }
   }
   
