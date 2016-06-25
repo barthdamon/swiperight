@@ -86,7 +86,7 @@ class TileView: UIView {
   func drawShadow(correct: Bool, operation: Operation) {
     let color = correct ? ThemeHelper.defaultHelper.sw_tile_correct_color : ThemeHelper.defaultHelper.sw_tile_incorrect_color
 //    guard let subview = subView else { return }
-    self.innerView.backgroundColor = operation.color
+    self.innerView.backgroundColor = UIColor.clearColor()
     self.innerView.userInteractionEnabled = false
     innerShadow?.shadowColor = color
     innerShadow?.shadowOpacity = 0.8
