@@ -957,8 +957,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-Ll-ZIO">
-                                <rect key="frame" x="47" y="559" width="320" height="50"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-Ll-ZIO" customClass="DFPBannerView">
+                                <rect key="frame" x="47" y="576" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.34901960780000002" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8QM-vE-JkL"/>
@@ -1244,7 +1244,9 @@
                             <constraint firstItem="d0r-v1-Kww" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1gB-iy-ZCb"/>
                             <constraint firstItem="67Q-5K-lYM" firstAttribute="height" secondItem="Dvc-gp-5A3" secondAttribute="height" multiplier="1/8" id="29w-V7-fFV"/>
                             <constraint firstItem="Dvc-gp-5A3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" priority="750" constant="-20" id="6B3-IN-M8e"/>
-                            <constraint firstItem="pT0-Ll-ZIO" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="bottom" constant="3" id="7aF-Cd-i2S"/>
+                            <constraint firstItem="pT0-Ll-ZIO" firstAttribute="top" secondItem="oVt-5R-pZq" secondAttribute="bottom" priority="750" constant="20" id="6cL-gg-23N"/>
+                            <constraint firstItem="pT0-Ll-ZIO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="oVt-5R-pZq" secondAttribute="bottom" constant="3" id="7aF-Cd-i2S"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pT0-Ll-ZIO" secondAttribute="bottom" constant="20" id="AwL-bu-DKS"/>
                             <constraint firstItem="Dvc-gp-5A3" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="9:16" id="BBe-at-AY4"/>
                             <constraint firstItem="oVt-5R-pZq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-21" id="BU7-1T-Ing"/>
                             <constraint firstItem="67Q-5K-lYM" firstAttribute="width" secondItem="Dvc-gp-5A3" secondAttribute="height" multiplier="1:1" id="COh-3P-0X6"/>
@@ -1312,6 +1314,7 @@
                                 <exclude reference="rom-Kj-QzL"/>
                                 <exclude reference="BU7-1T-Ing"/>
                                 <exclude reference="M3f-pm-icd"/>
+                                <exclude reference="AwL-bu-DKS"/>
                                 <exclude reference="Om0-20-87k"/>
                                 <exclude reference="Uxi-dn-hxH"/>
                             </mask>
@@ -1333,7 +1336,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="adView" destination="pT0-Ll-ZIO" id="lZf-yF-Ygn"/>
+                        <outlet property="adView" destination="pT0-Ll-ZIO" id="fEN-yZ-TKT"/>
                         <outlet property="addView" destination="TuB-LD-hXP" id="h92-kK-KFC"/>
                         <outlet property="bonusStreakLabel" destination="1tO-Qg-7Hf" id="znW-Fy-SVN"/>
                         <outlet property="divideView" destination="IYG-cu-bai" id="1Tj-Ud-rQL"/>
@@ -1647,9 +1650,8 @@
                                         <exclude reference="a1m-g6-Q5A"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
-                                    <rect key="frame" x="49" y="369" width="293" height="55"/>
                                     <mask key="constraints">
                                         <include reference="2gz-fn-Zb0"/>
                                         <exclude reference="QY1-ip-YXz"/>
@@ -2234,7 +2236,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="72"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="42"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -2344,8 +2346,9 @@
                                                         <exclude reference="oBJ-zb-ygO"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular">
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
+                                                    <rect key="frame" x="15" y="25" width="345" height="26"/>
                                                     <mask key="constraints">
                                                         <include reference="41V-No-DE5"/>
                                                         <include reference="7VX-4D-xez"/>
@@ -2519,8 +2522,9 @@
                                                         <exclude reference="wcm-Wf-chf"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular">
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
+                                                    <rect key="frame" x="15" y="25" width="345" height="26"/>
                                                     <mask key="constraints">
                                                         <include reference="9CN-X7-Z0u"/>
                                                         <include reference="Aiz-kM-jYn"/>

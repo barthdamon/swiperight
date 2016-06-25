@@ -43,7 +43,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
         self.rightSwipe = nil
       }
     } else {
-      delegate?.toggleAdViewVisible(true)
+//      delegate?.toggleAdViewVisible(true)
       activateGestureRecognizers()
       // show an add
     }
@@ -144,7 +144,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   func revealTileSelected() {
     if showReveal {
       gameViewController?.helperSelected(.Reveal)
-      delegate?.toggleAdViewVisible(false)
+//      delegate?.toggleAdViewVisible(false)
       self.navigationController?.popViewControllerAnimated(true)
       delegate?.toggleHelperMode(false)
     }
@@ -153,7 +153,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   func removeOperationSelected() {
     if showRemove {
       gameViewController?.helperSelected(.Remove)
-      delegate?.toggleAdViewVisible(false)
+//      delegate?.toggleAdViewVisible(false)
       self.navigationController?.popViewControllerAnimated(true)
       delegate?.toggleHelperMode(false)
     }
@@ -162,7 +162,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   func hideTileSelected() {
     if showHide {
       delegate?.setTutorialLabelText(nil)
-      delegate?.toggleAdViewVisible(false)
+//      delegate?.toggleAdViewVisible(false)
       if GameStatus.status.gameMode == .Tutorial {
         gameViewController?.tutorialTimeForHelper = false
         gameViewController?.backFromTutorialHelper = true
@@ -180,7 +180,7 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
   @IBAction func backToGameButtonPressed(sender: AnyObject) {
     if backButtonEnabled {
       GameStatus.status.gameActive = true
-      delegate?.toggleAdViewVisible(false)
+//      delegate?.toggleAdViewVisible(false)
       delegate?.deactivateHelperPointButton(false, deactivate: false)
       if GameStatus.status.gameMode == .Standard {
         delegate?.togglePaused(false)

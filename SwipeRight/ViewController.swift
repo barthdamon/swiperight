@@ -8,13 +8,14 @@
 
 import UIKit
 import GameKit
+import GoogleMobileAds
 
 class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGameCenterControllerDelegate {
   
   
   @IBOutlet weak var bonusStreakLabel: UILabel!
   
-  @IBOutlet weak var adView: UIView!
+  @IBOutlet weak var adView: DFPBannerView!
   @IBOutlet weak var tutorialLabel: UILabel!
   
   @IBOutlet weak var timeLabel: UILabel!
@@ -199,7 +200,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func startGameplay() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-      self.toggleAdViewVisible(false)
+      if GameStatus.status.gameMode == .Standard {
+        self.toggleAdViewVisible(true)
+      }
       self.deactivateHelperPointButton(false, deactivate: false)
       if GameStatus.status.timer == nil {
         GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock(_:)), userInfo: nil, repeats: true)
@@ -273,7 +276,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       resetGameState()
     }
     toggleAdViewVisible(true)
-    self.adView.hidden = false
     //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
   }
   
@@ -328,7 +330,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     subtractView.displayOperationStatus([])
     addView.displayOperationStatus([])
     divideView.displayOperationStatus([])
-    adView.hidden = true
+    toggleAdViewVisible(false)
   }
   
   func resetClientOperations(currentOperations: Array<Operation>?) {
@@ -619,7 +621,22 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   func toggleAdViewVisible(visible: Bool) {
-    self.adView.hidden = !visible
+    if visible {
+      let deviceIdiom = UIScreen.mainScreen().traitCollection.userInterfaceIdiom
+      if deviceIdiom == .Pad {
+//        self.layer.borderWidth = 3
+      } else {
+        
+      }
+//      .kGADAdSizeBanner
+      adView.adSize = kGADAdSizeSmartBannerPortrait
+      adView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+      adView.rootViewController = self
+      adView.loadRequest(DFPRequest())
+      adView.hidden = false
+    } else {
+      adView.hidden = true
+    }
   }
   
   @IBAction func importantButtonPressed(sender: UIButton) {
