@@ -582,9 +582,11 @@ class GameViewController: UIViewController {
     guard let layout = currentLayout, combo = layout.winningCombination, indexes = layout.solutionIndexes else { return }
     switch helper {
     case .Hide:
-      if GameStatus.status.gameMode == .Tutorial && GameStatus.status.tutorialStage == 8 && backFromTutorialHelper {
+      if GameStatus.status.gameMode == .Tutorial && GameStatus.status.tutorialStage == 8 && !backFromTutorialHelper {
         self.view.alpha = 1
         self.delegate?.setTutorialLabelText("One less tile to distract you now!")
+        self.view.userInteractionEnabled = true
+        backFromTutorialHelper = true
       }
 
       // get all the indexes that arent in
@@ -731,10 +733,10 @@ class GameViewController: UIViewController {
         self.gradientLayer?.removeFromSuperlayer()
         if correct {
           if helperStreakActivity(true) {
-            self.delegate?.setTutorialLabelText("Now use your ability point!")
+            self.delegate?.setTutorialLabelText("Hide a tile with your ability point!")
             tutorialTimeForHelper = true
             delegate?.deactivateHelperPointButton(false, deactivate: false)
-            delegate?.setBlinkingHelperPointsOn(true, withStreaks: false, hideStreaks: false)
+//            delegate?.setBlinkingHelperPointsOn(true, withStreaks: false, hideStreaks: false)
           }
         } else {
           helperStreakActivity(false)

@@ -615,12 +615,17 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
         if self.blinkingHelperPointStreaks {
           self.bonusStreakLabel.transform = CGAffineTransformMakeScale(1.08, 1.08)
         }
-        self.helperButtonLabel.transform = CGAffineTransformMakeScale(1.08, 1.08)
+        self.revealTileButtonView.transform = CGAffineTransformMakeScale(1.08, 1.08)
+        self.helperButtonViewIndicator.transform = CGAffineTransformMakeScale(1.08, 1.08)
+        self.hideTileButtonView.transform = CGAffineTransformMakeScale(1.08, 1.08)
+//        self.helperButtonView.transform = CGAffineTransformMakeScale(1.08, 1.08)
+//        self.revealTileLabel.transform = CGAffineTransformMakeScale(1.08, 1.08)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
           self.bonusStreakLabel.transform = CGAffineTransformIdentity
-          self.helperButtonView.transform = CGAffineTransformIdentity
-          self.helperButtonLabel.transform = CGAffineTransformIdentity
+          self.revealTileButtonView.transform = CGAffineTransformIdentity
+          self.helperButtonViewIndicator.transform = CGAffineTransformIdentity
+          self.hideTileButtonView.transform = CGAffineTransformIdentity
         })
       }
     }

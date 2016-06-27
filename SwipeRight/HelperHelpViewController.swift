@@ -72,7 +72,7 @@ class HelperHelpViewController: UIViewController {
     case 6:
       // (really stage 7)
       delegate?.setBlinkingHelperPointsOn(true, withStreaks: true, hideStreaks: false)
-      self.setExplanationText("For every three equations you complete in a row you get an ability point.")
+      self.setExplanationText("For every three equations you complete in a row you get an ability point. \n\nHiding an extra tile uses up one ability point, revealing a correct tiles uses up three ability points.")
       GameStatus.status.tutorialStage += 1
 //      performActionsForTutorialStage()
     case 8:
