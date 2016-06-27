@@ -30,7 +30,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   @IBOutlet weak var subtractView: OperationImageView!
   @IBOutlet weak var addView: OperationImageView!
   
-  @IBOutlet weak var helperButtonView: ButtonView!
+  @IBOutlet weak var revealTileLabel: UILabel!
+  @IBOutlet weak var revealTileIndicator: UILabel!
+  @IBOutlet weak var hideTileButtonView: ButtonView!
+  @IBOutlet weak var revealTileButtonView: ButtonView!
+  @IBOutlet weak var helperButtonView: UIView!
+  @IBOutlet weak var hideTileIndicator: UILabel!
   @IBOutlet weak var helperButtonViewIndicator: UILabel!
   @IBOutlet weak var helperButtonLabel: UILabel!
   //HUD
@@ -157,6 +162,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
         self.helperButtonViewIndicator.transform = CGAffineTransformIdentity
         self.bonusStreakLabel.transform = CGAffineTransformIdentity
         }, completion: { (done) in
+        self.activateHelperButtons()
         callback(true)
       })
     }
@@ -297,7 +303,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   func configureStartOptions() {
-    helperButtonView.becomeButtonForGameView(self, label: helperButtonLabel, delegate: self)
+    hideTileButtonView.becomeButtonForGameView(self, label: helperButtonLabel, delegate: self)
+    revealTileButtonView.becomeButtonForGameView(self, label: revealTileLabel, delegate: self)
     //TOOD: Set helper button Target to gameView
     helperButtonViewIndicator.text = "\(0)"
     helperButtonViewIndicator.layer.cornerRadius = helperButtonViewIndicator.bounds.height / 2
@@ -305,14 +312,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     
   }
   
-  func buttonPressed(sender: ButtonView) {
-    print("Helper Button Pressed")
-    if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 && GameStatus.status.gameActive && !GameStatus.status.resettingTiles {
-      gameView?.helperButtonPressed()
-      toggleHelperMode(true)
-      // stop the clock, show pause button overlay
-    }
-  }
   
   //DELEGATE METHOD DON'T DELETE:
   func toggleHelperMode(on: Bool) {
@@ -323,6 +322,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       GameStatus.status.gameActive = true
       helperButtonViewEnabled = true
     }
+    self.activateHelperButtons()
   }
   
   
@@ -358,7 +358,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool) {
+    self.activateHelperButtons()
     helperButtonView.hidden = remove
+    bonusStreakLabel.hidden = remove
     helperButtonViewEnabled = !deactivate
   }
   
@@ -505,6 +507,60 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   
   
+  //Mark Helpers
+  func buttonPressed(sender: ButtonView) {
+    print("Helper Button Pressed")
+    if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 && GameStatus.status.gameActive && !GameStatus.status.resettingTiles {
+      if sender == self.hideTileButtonView {
+       gameView?.helperSelected(.Hide)
+      } else if sender == self.revealTileButtonView {
+        gameView?.helperSelected(.Reveal)
+      }
+//      gameView?.helperButtonPressed()
+//      toggleHelperMode(true)
+      // stop the clock, show pause button overlay
+    }
+  }
+  
+  var showRemove: Bool = false
+  var showHide: Bool = false
+  var showReveal: Bool = false
+  
+  func activateHelperButtons() {
+    let points = ProgressionManager.sharedManager.currentHelperPoints
+    guard let layout = gameView?.currentLayout, _ = layout.winningCombination, tileViews = gameView?.tileViews else { return }
+    
+    // need number of tiles to be based on ones not effected by hide or reveal. So hide
+    // hide is number of extra tiles without already being hidden
+    // revealed is number of solution indexes left that aren't already revealed
+    let hides = tileViews.filter({!$0.partOfSolution && $0.active && !$0.drawnIncorrect})
+    let reveals = tileViews.filter({$0.partOfSolution && !$0.drawnCorrect})
+    
+    showHide = points >= 1 && hides.count > 0
+    showReveal = points >= 3 && reveals.count > 1
+    
+    revealTileButtonView.togglePressed(!showReveal)
+    hideTileButtonView.togglePressed(!showHide)
+    revealTileButtonView.toggleActive(showReveal)
+    hideTileButtonView.toggleActive(showHide)
+    
+    if points != 0 {
+      let revA = Int(points / 3)
+      let hideA = points
+      
+      revealTileIndicator.text = "\(revA) AVAILABLE"
+      hideTileIndicator.text = "\(hideA) AVAILABLE"
+    } else {
+      revealTileIndicator.text = "0 AVAILABLE"
+      hideTileIndicator.text = "0 AVAILABLE"
+    }
+    
+  }
+  
+  
+  
+  
+  
   
   //MARK: Tutorial Mode
   var tutorialBlinkingTimer: NSTimer?
@@ -597,6 +653,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     blinkingHelperPoints = on
     blinkingHelperPointStreaks = withStreaks
     self.helperButtonView.hidden = !on
+    self.bonusStreakLabel.hidden = !on
     if on {
       blinkHelperPoints()
       self.tutorialBlinkingTimer = NSTimer.scheduledTimerWithTimeInterval(tutorialTimerTime, target: self, selector: #selector(ViewController.blinkHelperPoints), userInfo: nil, repeats: true)
@@ -606,6 +663,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   func setTutorialLabelText(text: String?) {
     if let text = text {
       self.helperButtonView.hidden = true
+      self.bonusStreakLabel.hidden = true
       tutorialLabel.hidden = false
       tutorialLabel.text = text
     } else {
@@ -624,6 +682,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func hideBonusButtonView(hide: Bool) {
     self.helperButtonView.hidden = hide
+    self.bonusStreakLabel.hidden = hide
   }
   
   func toggleAdViewVisible(visible: Bool) {
