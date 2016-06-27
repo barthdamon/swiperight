@@ -511,11 +511,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   func buttonPressed(sender: ButtonView) {
     print("Helper Button Pressed")
     if helperButtonViewEnabled && ProgressionManager.sharedManager.currentHelperPoints > 0 && GameStatus.status.gameActive && !GameStatus.status.resettingTiles {
-      if sender == self.hideTileButtonView {
+      if sender == self.hideTileButtonView && showHide {
        gameView?.helperSelected(.Hide)
-      } else if sender == self.revealTileButtonView {
+      } else if sender == self.revealTileButtonView && showReveal {
         gameView?.helperSelected(.Reveal)
       }
+      activateHelperButtons()
 //      gameView?.helperButtonPressed()
 //      toggleHelperMode(true)
       // stop the clock, show pause button overlay

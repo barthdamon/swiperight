@@ -592,7 +592,7 @@ class GameViewController: UIViewController {
       // index of the tile view needs to be the samiae
       var possibleRemovals: Array<TileView> = []
       for (index, tile) in tileViews.enumerate() {
-        if possibleIndexes.contains(index) && tile.numberLabel!.hidden == false {
+        if possibleIndexes.contains(index) && tile.active && !tile.drawnIncorrect {
           possibleRemovals.append(tile)
         }
       }
@@ -603,10 +603,17 @@ class GameViewController: UIViewController {
       possibleRemovals[randRemovalIndex].numberLabel?.alpha = 0
       ProgressionManager.sharedManager.helperPointUtilized(.Hide)
     case .Reveal:
-      let randIndex = Int.random(0...2)
-      let randSolutionIndex = indexes[randIndex]
+      var possibleReveals: Array<TileView> = []
+      for (index, tile) in tileViews.enumerate() {
+        if indexes.contains(index) && tile.active && !tile.drawnIncorrect && !tile.drawnCorrect {
+          possibleReveals.append(tile)
+        }
+      }
+      
+      let revealCount = possibleReveals.count - 1
+      let randRevealIndex = Int.random(0...revealCount)
       // reveal one
-      self.tileViews[randSolutionIndex].drawCorrect(combo.operation, callback: { (done) in
+      possibleReveals[randRevealIndex].drawCorrect(combo.operation, callback: { (done) in
       })
       // light up a tile selected
       ProgressionManager.sharedManager.helperPointUtilized(.Reveal)
