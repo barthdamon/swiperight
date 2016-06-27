@@ -600,10 +600,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   func blinkTimer() {
     if blinkingTimer {
       UIView.animateWithDuration(tutorialBlinkTime, animations: {
-        self.timeLabel.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        self.timeLabel.transform = CGAffineTransformMakeScale(1.1, 1.1)
+        self.scoreLabel.transform = CGAffineTransformMakeScale(1.05, 1.05)
       }) { (done) in
         UIView.animateWithDuration(self.tutorialBlinkTime, animations: {
           self.timeLabel.transform = CGAffineTransformIdentity
+          self.scoreLabel.transform = CGAffineTransformIdentity
         })
       }
     }

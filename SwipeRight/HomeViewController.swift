@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   
   @IBAction func removeAdsButtonPressed(sender: AnyObject) {
     print("Remove Ads Pressed")
-    
+    alertShow(self, alertText: "Coming Soon!", alertMessage: "Remove ads is under construction 👷🔧🔨")
   }
   
   @IBAction func howToButtonPressed(sender: AnyObject) {

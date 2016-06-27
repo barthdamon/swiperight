@@ -32,6 +32,7 @@ protocol GameViewDelegate {
   func showLeaderboards()
   
   func timerAlreadyTocking() -> Bool
+  func activateHelperButtons()
   
   
   //MARK: Tutorial

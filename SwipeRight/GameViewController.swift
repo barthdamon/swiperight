@@ -423,6 +423,7 @@ class GameViewController: UIViewController {
         tile.numberLabel?.alpha = tile.number == -1 ? 0 : 1
 //        self.borderView.alpha = 1
         }, completion: { (complete) -> Void in
+          self.delegate?.activateHelperButtons()
           GameStatus.status.resettingTiles = false
           if GameStatus.status.gameMode == .Standard {
             self.view.userInteractionEnabled = true
