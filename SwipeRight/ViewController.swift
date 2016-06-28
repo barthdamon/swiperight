@@ -703,9 +703,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       }
 //      .kGADAdSizeBanner
       adView.adSize = kGADAdSizeSmartBannerPortrait
-      adView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+      adView.adUnitID = "ca-app-pub-2768090392054119/6062392781"
       adView.rootViewController = self
-      adView.loadRequest(DFPRequest())
+      let request = DFPRequest()
+      adView.loadRequest(request)
       adView.hidden = false
     } else {
       adView.hidden = true
