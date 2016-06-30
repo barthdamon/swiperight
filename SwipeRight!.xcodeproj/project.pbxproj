@@ -20,6 +20,8 @@
 		0232DC921C2386360039E5CE /* CenterOfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232DC911C2386360039E5CE /* CenterOfView.swift */; };
 		0232DC941C23A9830039E5CE /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232DC931C23A9830039E5CE /* GameStatus.swift */; };
 		0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232DC951C25D7E90039E5CE /* OperationCompletion.swift */; };
+		0235797E1D24A9FD0082437E /* incorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0235797D1D24A9FD0082437E /* incorrect.wav */; };
+		023579801D24AA010082437E /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0235797F1D24AA000082437E /* correct.wav */; };
 		0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240B9541C18EF86004B48BA /* AppDelegate.swift */; };
 		0240B9571C18EF86004B48BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240B9561C18EF86004B48BA /* ViewController.swift */; };
 		0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0240B9581C18EF86004B48BA /* Main.storyboard */; };
@@ -74,6 +76,8 @@
 		0232DC911C2386360039E5CE /* CenterOfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterOfView.swift; sourceTree = "<group>"; };
 		0232DC931C23A9830039E5CE /* GameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
 		0232DC951C25D7E90039E5CE /* OperationCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCompletion.swift; sourceTree = "<group>"; };
+		0235797D1D24A9FD0082437E /* incorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = incorrect.wav; sourceTree = "<group>"; };
+		0235797F1D24AA000082437E /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
 		0240B9511C18EF86004B48BA /* SwipeRight!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwipeRight!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0240B9541C18EF86004B48BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0240B9561C18EF86004B48BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +204,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		0235797C1D24A9840082437E /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				0235797F1D24AA000082437E /* correct.wav */,
+				0235797D1D24A9FD0082437E /* incorrect.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		0240B9481C18EF86004B48BA = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +238,7 @@
 				0220981A1C1DC00A005155E6 /* Extensions */,
 				022098211C1DCA73005155E6 /* DataObjects */,
 				02ADE4CC1CFE710B000AB183 /* ViewControllers */,
+				0235797C1D24A9840082437E /* Sounds */,
 				022098221C1DCAA9005155E6 /* Interface */,
 				0240B95B1C18EF86004B48BA /* Assets.xcassets */,
 			);
@@ -359,6 +373,7 @@
 				0240B95F1C18EF86004B48BA /* LaunchScreen.storyboard in Resources */,
 				02DB52A91D036CB10052D72A /* DINRA___.TTF in Resources */,
 				02DB52A21D036CB10052D72A /* DINLA___.TTF in Resources */,
+				023579801D24AA010082437E /* correct.wav in Resources */,
 				02DB529D1D036CB10052D72A /* DIN Black.ttf in Resources */,
 				02DB52A31D036CB10052D72A /* DINM____.TTF in Resources */,
 				02DB52A61D036CB10052D72A /* DINNGBC3.TTF in Resources */,
@@ -370,6 +385,7 @@
 				02DB52A71D036CB10052D72A /* DINNGL4.TTF in Resources */,
 				02DB52A51D036CB10052D72A /* DINMA___.TTF in Resources */,
 				0240B95A1C18EF86004B48BA /* Main.storyboard in Resources */,
+				0235797E1D24A9FD0082437E /* incorrect.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController {
   
@@ -57,6 +58,12 @@ class GameViewController: UIViewController {
   var delegate: GameViewDelegate?
   var containerView: UIView?
   
+  let correctSound = NSBundle.mainBundle().pathForResource("correct", ofType: "wav")
+  let incorrectSound = NSBundle.mainBundle().pathForResource("incorrect", ofType: "wav")
+  var correctPlayer: AVAudioPlayer?
+  var incorrectPlayer: AVAudioPlayer?
+//  var coinSound: NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("coin", ofType: "wav"))
+  
   var gradientLayer: CAGradientLayer?
   var tileWidth: CGFloat!
   var viewWidth: CGFloat!
@@ -83,6 +90,7 @@ class GameViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    loadSoundFiles()
     if let container = self.containerView {
       self.viewWidth = container.bounds.width
       tileWidth = container.bounds.width / 3
@@ -94,6 +102,20 @@ class GameViewController: UIViewController {
       showTutorialText()
     } else {
       animateBeginGame()
+    }
+  }
+  
+  func loadSoundFiles() {
+    if let correctSound = correctSound, incorrectSound = incorrectSound {
+      let correctURL = NSURL(fileURLWithPath: correctSound), incorrectURL = NSURL(fileURLWithPath: incorrectSound)
+      do {
+        correctPlayer = try AVAudioPlayer(contentsOfURL: correctURL)
+        incorrectPlayer = try AVAudioPlayer(contentsOfURL: incorrectURL)
+      } catch {
+        print("Error loading sound files")
+      }
+      incorrectPlayer?.prepareToPlay()
+      correctPlayer?.prepareToPlay()
     }
   }
   
@@ -279,6 +301,7 @@ class GameViewController: UIViewController {
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
           self.view.userInteractionEnabled = false
+          correctPlayer?.play()
           startTile.drawCorrect(winningOp, callback: { (success) in
             middleTile.drawCorrect(winningOp, callback: { (success) in
               endTile.drawCorrect(winningOp, callback: { (success) in
@@ -298,6 +321,7 @@ class GameViewController: UIViewController {
           delegate?.scoreChange(false)
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
+          incorrectPlayer?.play()
           startTile.drawIncorrect(winningOp)
           endTile.drawIncorrect(winningOp)
           middleTile.drawIncorrect(winningOp)
