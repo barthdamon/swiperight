@@ -53,7 +53,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       if let first = UserDefaultsManager.sharedManager.getObjectForKey("muted") as? Bool {
         return first
       } else {
-        return true
+        return false
       }
     }
     set (newValue) {
