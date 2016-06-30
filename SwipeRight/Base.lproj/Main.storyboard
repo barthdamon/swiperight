@@ -385,8 +385,9 @@
                                         <exclude reference="wyc-uO-sKH"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="28"/>
+                                    <rect key="frame" x="116" y="670" width="184" height="46"/>
                                     <mask key="constraints">
                                         <exclude reference="INH-Bj-BSZ"/>
                                         <include reference="Sos-Wd-jbL"/>
@@ -647,12 +648,24 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="41" id="474-mf-qtg"/>
                                             <constraint firstAttribute="height" constant="27" id="XVL-fV-wlz"/>
+                                            <constraint firstAttribute="height" constant="42" id="a7N-gH-HHu"/>
+                                            <constraint firstAttribute="width" constant="42" id="mNC-8w-qht"/>
                                             <constraint firstAttribute="width" constant="27" id="s0I-so-lVM"/>
                                         </constraints>
                                         <state key="normal" image="soundOn"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="474-mf-qtg"/>
+                                                <exclude reference="a7N-gH-HHu"/>
+                                                <exclude reference="mNC-8w-qht"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <mask key="constraints">
+                                                <exclude reference="XVL-fV-wlz"/>
+                                                <include reference="a7N-gH-HHu"/>
+                                                <include reference="mNC-8w-qht"/>
+                                                <exclude reference="s0I-so-lVM"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -691,7 +704,9 @@
                                     <constraint firstAttribute="height" constant="36" id="nRu-k5-Bkm"/>
                                     <constraint firstAttribute="height" constant="41" id="nxC-tj-GqB"/>
                                     <constraint firstItem="VML-Sv-N3u" firstAttribute="leading" secondItem="Fmj-vf-O2D" secondAttribute="trailing" constant="8" id="rOl-9u-zRE"/>
-                                    <constraint firstItem="S8V-T2-JlN" firstAttribute="leading" secondItem="NFe-nc-SxC" secondAttribute="trailing" constant="8" id="sua-sE-ebU"/>
+                                    <constraint firstItem="S8V-T2-JlN" firstAttribute="leading" secondItem="NFe-nc-SxC" secondAttribute="trailing" constant="8" id="sua-sE-ebU">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="26" id="tku-Si-ucH"/>
                                     <constraint firstAttribute="height" constant="114" id="ufe-2X-B9l"/>
                                     <constraint firstItem="VML-Sv-N3u" firstAttribute="centerX" secondItem="d0r-v1-Kww" secondAttribute="centerX" id="wdo-Un-hqV"/>
@@ -747,7 +762,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="60" y="22" width="33" height="34"/>
+                                                    <rect key="frame" x="60" y="23" width="33" height="33"/>
                                                 </variation>
                                             </imageView>
                                         </subviews>
@@ -789,7 +804,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="60" y="22" width="33" height="34"/>
+                                                    <rect key="frame" x="60" y="23" width="33" height="33"/>
                                                 </variation>
                                             </imageView>
                                         </subviews>
@@ -806,6 +821,9 @@
                                                 <exclude reference="GxQ-mw-mCt"/>
                                                 <exclude reference="ouk-he-Qc1"/>
                                             </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="308" y="0.0" width="154" height="77"/>
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDK-6U-RRK">
@@ -825,7 +843,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="61" y="22" width="33" height="34"/>
+                                                    <rect key="frame" x="61" y="23" width="33" height="33"/>
                                                 </variation>
                                             </imageView>
                                         </subviews>
@@ -844,7 +862,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="462" y="0.0" width="154" height="77"/>
+                                            <rect key="frame" x="462" y="0.0" width="155" height="77"/>
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLx-hB-wKd">
@@ -864,7 +882,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="60" y="22" width="33" height="34"/>
+                                                    <rect key="frame" x="60" y="23" width="33" height="33"/>
                                                 </variation>
                                             </imageView>
                                         </subviews>
@@ -881,6 +899,9 @@
                                                 <exclude reference="AFh-Oi-JJz"/>
                                                 <exclude reference="XeN-Br-LOd"/>
                                             </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="154" y="0.0" width="154" height="77"/>
                                         </variation>
                                     </view>
                                 </subviews>
@@ -946,8 +967,7 @@
                                         <exclude reference="wui-Rl-scJ"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="76" y="102" width="616" height="77"/>
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
                                         <exclude reference="Cvz-e3-vbv"/>
                                         <exclude reference="JPq-g9-6cv"/>
@@ -1010,9 +1030,8 @@
                                         <exclude reference="tAL-O6-2He"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                    <rect key="frame" x="282" y="796" width="206" height="25"/>
                                     <mask key="constraints">
                                         <include reference="F8p-x5-BXG"/>
                                         <exclude reference="GHb-3M-FgZ"/>
@@ -1067,9 +1086,6 @@
                                         <exclude reference="Adb-nC-nmM"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="76" y="179" width="616" height="617"/>
-                                </variation>
                                 <connections>
                                     <segue destination="2fl-HP-Wke" kind="embed" identifier="gameViewEmbed" id="zYc-iN-5FX"/>
                                 </connections>
@@ -1097,9 +1113,8 @@
                                                         <exclude reference="VuT-Gz-aqq"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
-                                                    <rect key="frame" x="14" y="22" width="227" height="34"/>
                                                     <mask key="constraints">
                                                         <include reference="0eV-ro-lg1"/>
                                                         <exclude reference="2rb-QC-5IW"/>
@@ -1157,8 +1172,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I28-Sc-e7D" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="228" y="0.0" width="162" height="38"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REVEAL A TILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSY-Gf-wFs">
-                                                <rect key="frame" x="25" y="11" width="112" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="REVEAL A TILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSY-Gf-wFs">
+                                                <rect key="frame" x="24" y="11" width="112" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="112" id="GL9-90-I6h"/>
                                                     <constraint firstAttribute="height" constant="17" id="PRE-pe-vsO"/>
@@ -1174,9 +1189,8 @@
                                                         <exclude reference="lIz-hJ-RH0"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
-                                                    <rect key="frame" x="15" y="22" width="227" height="34"/>
                                                     <mask key="constraints">
                                                         <exclude reference="GL9-90-I6h"/>
                                                         <exclude reference="PRE-pe-vsO"/>
@@ -1222,8 +1236,7 @@
                                                 <exclude reference="zfH-sE-4yx"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="359" y="0.0" width="257" height="76"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
                                                 <exclude reference="6gz-9B-r69"/>
                                                 <exclude reference="IcG-jR-mXP"/>
@@ -1278,9 +1291,8 @@
                                                 <exclude reference="Udb-5y-Yg8"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                        <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                            <rect key="frame" x="359" y="75" width="257" height="34"/>
                                             <mask key="constraints">
                                                 <exclude reference="8eX-1d-fJB"/>
                                                 <include reference="FQk-UR-pA7"/>
@@ -1376,8 +1388,7 @@
                                         <exclude reference="Sli-po-aYW"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="76" y="823" width="616" height="109"/>
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
                                         <exclude reference="3bZ-Iq-vMT"/>
                                         <exclude reference="BeZ-HO-2rv"/>
@@ -2018,7 +2029,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="111" height="69"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="112" height="69"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -2031,7 +2042,7 @@
                                                     <constraint firstItem="KZd-qt-m3N" firstAttribute="leading" secondItem="gad-i6-v2C" secondAttribute="leading" id="b95-cn-98r"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="48" y="47" width="111" height="69"/>
+                                                    <rect key="frame" x="48" y="47" width="112" height="69"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -2063,7 +2074,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="111" height="69"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="112" height="69"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -2076,7 +2087,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="9dx-JZ-mXy" secondAttribute="bottom" id="lqy-x6-InR"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="47" y="47" width="111" height="69"/>
+                                                    <rect key="frame" x="46" y="47" width="112" height="69"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -2108,7 +2119,7 @@
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="72"/>
-                                                            <rect key="frame" x="0.0" y="0.0" width="111" height="69"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="112" height="69"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -2121,7 +2132,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="4rq-ni-tnn" secondAttribute="bottom" id="s9K-Cl-NjB"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="47" y="47" width="111" height="69"/>
+                                                    <rect key="frame" x="47" y="47" width="112" height="69"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -2348,7 +2359,7 @@
                                     <constraint firstAttribute="height" constant="35" id="09t-mW-Vjb"/>
                                     <constraint firstAttribute="height" constant="21" id="hL8-7H-uRc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -2988,7 +2999,7 @@
                                     <constraint firstAttribute="height" constant="17" id="fV9-Nj-SiH"/>
                                     <constraint firstAttribute="width" constant="77" id="xiF-2O-4jL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="NO">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -3028,7 +3039,7 @@
                                     <constraint firstAttribute="width" constant="77" id="iap-R5-d1U"/>
                                     <constraint firstAttribute="width" constant="81" id="yR6-qZ-zIA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -3070,7 +3081,7 @@
                                     <constraint firstAttribute="width" constant="84" id="sbF-Hb-g5n"/>
                                     <constraint firstAttribute="height" constant="17" id="wW0-72-8bo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="YES">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -3109,7 +3120,7 @@
                                     <constraint firstAttribute="width" constant="197" id="gFZ-Xr-awx"/>
                                     <constraint firstAttribute="width" constant="77" id="ogx-jM-v6F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
