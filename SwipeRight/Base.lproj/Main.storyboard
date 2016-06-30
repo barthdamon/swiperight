@@ -367,40 +367,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zq9-z2-qNz">
-                                <rect key="frame" x="263" y="684" width="131" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="Cr7-HG-CEA"/>
-                                    <constraint firstAttribute="height" constant="32" id="I1e-eI-KXe"/>
-                                    <constraint firstAttribute="width" constant="131" id="JM5-mp-aiI"/>
-                                    <constraint firstAttribute="width" constant="229" id="kkc-It-4md"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="LEADERBOARDS">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Cr7-HG-CEA"/>
-                                        <exclude reference="kkc-It-4md"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="28"/>
-                                    <rect key="frame" x="166" y="670" width="229" height="46"/>
-                                    <mask key="constraints">
-                                        <include reference="Cr7-HG-CEA"/>
-                                        <exclude reference="I1e-eI-KXe"/>
-                                        <exclude reference="JM5-mp-aiI"/>
-                                        <include reference="kkc-It-4md"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="leaderboardsButtonPressed:" destination="gcC-dN-XMu" eventType="touchUpInside" id="VE5-SS-LWz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfc-fQ-7aK">
-                                <rect key="frame" x="20" y="684" width="105" height="32"/>
+                                <rect key="frame" x="155" y="684" width="105" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="INH-Bj-BSZ"/>
                                     <constraint firstAttribute="width" constant="184" id="Sos-Wd-jbL"/>
@@ -436,7 +404,6 @@
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xYe-bN-WP8" secondAttribute="topMargin" id="08O-ey-lU2"/>
                             <constraint firstItem="dfc-fQ-7aK" firstAttribute="leading" secondItem="xYe-bN-WP8" secondAttribute="leadingMargin" id="0mT-tl-bc7"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="width" secondItem="Fiv-Rs-Uvf" secondAttribute="width" id="2rv-FX-AMd"/>
-                            <constraint firstItem="Zq9-z2-qNz" firstAttribute="trailing" secondItem="xYe-bN-WP8" secondAttribute="trailingMargin" id="42R-iD-jGI"/>
                             <constraint firstItem="Fiv-Rs-Uvf" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="4aO-xY-1Kt"/>
                             <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="Fiv-Rs-Uvf" secondAttribute="bottom" constant="20" id="8FB-8W-DL6"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="width" secondItem="w7g-nT-De9" secondAttribute="width" id="AK5-xW-Nsj"/>
@@ -444,6 +411,7 @@
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="baseline" secondItem="XKE-nQ-xjL" secondAttribute="baseline" id="BsK-WJ-gJC"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="D4t-wj-0Eq"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="bottom" secondItem="XKE-nQ-xjL" secondAttribute="bottom" id="DpM-uh-kzD"/>
+                            <constraint firstItem="dfc-fQ-7aK" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="GKz-7r-Io1"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="centerY" secondItem="xYe-bN-WP8" secondAttribute="centerY" id="Gx8-hv-tna"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="width" secondItem="xYe-bN-WP8" secondAttribute="width" multiplier="3/5" id="I1W-ui-QxW"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" secondItem="xYe-bN-WP8" secondAttribute="topMargin" id="Jk2-9x-Jw3"/>
@@ -453,7 +421,6 @@
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="height" secondItem="XKE-nQ-xjL" secondAttribute="height" id="Ugi-vg-qBr"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="VzM-nt-xqP"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="f6R-7b-O5h" secondAttribute="bottom" constant="8" id="WML-Bh-VaL"/>
-                            <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="Zq9-z2-qNz" secondAttribute="bottom" constant="20" id="YYI-mX-Vei"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="28" id="Z4F-L2-8Ea"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xYe-bN-WP8" secondAttribute="leadingMargin" constant="20" id="ZGq-Hh-Gdk"/>
                             <constraint firstItem="Fiv-Rs-Uvf" firstAttribute="top" secondItem="w7g-nT-De9" secondAttribute="bottom" constant="14" id="Zf0-gI-W9c">
@@ -461,6 +428,7 @@
                             </constraint>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="f6R-7b-O5h" secondAttribute="trailing" constant="20" id="a0b-og-7gW"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="32" id="aEk-WZ-w5f"/>
+                            <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="dfc-fQ-7aK" secondAttribute="bottom" constant="20" id="dqI-03-QO3"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="ePH-4H-fGW"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="8" id="hS8-db-cd6"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="8" id="n9g-gV-l79"/>
@@ -489,8 +457,10 @@
                                 <exclude reference="WML-Bh-VaL"/>
                                 <exclude reference="Z4F-L2-8Ea"/>
                                 <exclude reference="aEk-WZ-w5f"/>
+                                <exclude reference="0mT-tl-bc7"/>
                                 <exclude reference="8FB-8W-DL6"/>
                                 <exclude reference="AOa-Wu-u6Y"/>
+                                <exclude reference="LmH-lj-lbq"/>
                             </mask>
                         </variation>
                     </view>
@@ -503,7 +473,6 @@
                         <outlet property="beginGameLabel" destination="Yml-Ch-wis" id="0FT-Gs-uwY"/>
                         <outlet property="firstTimeButton" destination="Fiv-Rs-Uvf" id="hGW-n3-cv4"/>
                         <outlet property="firstTimeView" destination="7XU-QJ-fsr" id="6Db-WX-C1d"/>
-                        <outlet property="leaderboardsButton" destination="Zq9-z2-qNz" id="e4A-kF-6bP"/>
                         <outlet property="logoView" destination="Ag2-v4-QWJ" id="dls-XU-vJi"/>
                         <outlet property="removeAdsButton" destination="dfc-fQ-7aK" id="yxb-D2-tLJ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showGameSegue" id="6yq-r9-zFY"/>
@@ -1795,38 +1764,6 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F65-0o-2FZ">
-                                <rect key="frame" x="129" y="240" width="132" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="2gz-fn-Zb0"/>
-                                    <constraint firstAttribute="height" constant="17" id="QY1-ip-YXz"/>
-                                    <constraint firstAttribute="width" constant="293" id="a1m-g6-Q5A"/>
-                                    <constraint firstAttribute="width" constant="132" id="wCF-Bc-jbq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="LEADERBOARDS">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2gz-fn-Zb0"/>
-                                        <exclude reference="a1m-g6-Q5A"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
-                                    <rect key="frame" x="163" y="534" width="293" height="55"/>
-                                    <mask key="constraints">
-                                        <include reference="2gz-fn-Zb0"/>
-                                        <exclude reference="QY1-ip-YXz"/>
-                                        <include reference="a1m-g6-Q5A"/>
-                                        <exclude reference="wCF-Bc-jbq"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="leaderboardsButtonPressed:" destination="kg6-Wk-IrR" eventType="touchUpInside" id="MWh-4r-dab"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1836,8 +1773,6 @@
                             <constraint firstItem="cxJ-Z5-f2O" firstAttribute="top" secondItem="mHZ-XO-PEO" secondAttribute="bottom" constant="8" id="N5s-ZN-qFO"/>
                             <constraint firstItem="cxJ-Z5-f2O" firstAttribute="centerX" secondItem="ziF-Jq-f3w" secondAttribute="centerX" id="Xn0-CV-XTI"/>
                             <constraint firstItem="l9S-bo-9aT" firstAttribute="top" secondItem="cxJ-Z5-f2O" secondAttribute="bottom" constant="8" id="dRr-4f-lLA"/>
-                            <constraint firstItem="F65-0o-2FZ" firstAttribute="centerX" secondItem="ziF-Jq-f3w" secondAttribute="centerX" id="hDg-DM-iPa"/>
-                            <constraint firstItem="F65-0o-2FZ" firstAttribute="top" secondItem="1tg-n0-d9J" secondAttribute="bottom" constant="20" id="hXV-vY-Sqc"/>
                             <constraint firstItem="1tg-n0-d9J" firstAttribute="top" secondItem="l9S-bo-9aT" secondAttribute="bottom" constant="21" id="nBw-hu-Bv7"/>
                             <constraint firstItem="mHZ-XO-PEO" firstAttribute="centerX" secondItem="ziF-Jq-f3w" secondAttribute="centerX" id="nX7-7B-pUj"/>
                             <constraint firstItem="1tg-n0-d9J" firstAttribute="centerX" secondItem="ziF-Jq-f3w" secondAttribute="centerX" id="qgc-pl-co7"/>
@@ -1850,7 +1785,6 @@
                         <outlet property="beginButtonView" destination="1tg-n0-d9J" id="Rac-Iz-Hv5"/>
                         <outlet property="gameOverLabel" destination="mHZ-XO-PEO" id="dzr-uU-SV7"/>
                         <outlet property="highScoreLabel" destination="l9S-bo-9aT" id="ZoI-Dl-Ugo"/>
-                        <outlet property="leaderboardsButton" destination="F65-0o-2FZ" id="snW-Gy-GvC"/>
                         <outlet property="scoreLabel" destination="cxJ-Z5-f2O" id="yui-HX-Acv"/>
                         <segue destination="Gke-k0-e9L" kind="show" identifier="showGameController" animates="NO" id="JfZ-bb-BLy"/>
                     </connections>
