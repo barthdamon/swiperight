@@ -644,13 +644,17 @@
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFe-nc-SxC">
-                                        <rect key="frame" x="320" y="7" width="27" height="27"/>
+                                        <rect key="frame" x="327" y="11" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="41" id="474-mf-qtg"/>
-                                            <constraint firstAttribute="height" constant="27" id="XVL-fV-wlz"/>
-                                            <constraint firstAttribute="height" constant="42" id="a7N-gH-HHu"/>
-                                            <constraint firstAttribute="width" constant="42" id="mNC-8w-qht"/>
-                                            <constraint firstAttribute="width" constant="27" id="s0I-so-lVM"/>
+                                            <constraint firstAttribute="height" constant="20" id="XVL-fV-wlz"/>
+                                            <constraint firstAttribute="height" constant="42" id="a7N-gH-HHu">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                                            </constraint>
+                                            <constraint firstAttribute="width" constant="42" id="mNC-8w-qht">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                                            </constraint>
+                                            <constraint firstAttribute="width" constant="20" id="s0I-so-lVM"/>
                                         </constraints>
                                         <state key="normal" image="soundOn"/>
                                         <variation key="default">
@@ -701,6 +705,9 @@
                                     <constraint firstItem="NFe-nc-SxC" firstAttribute="centerY" secondItem="d0r-v1-Kww" secondAttribute="centerY" id="eHN-dM-fqF"/>
                                     <constraint firstAttribute="height" constant="34" id="h8x-Xy-SCY"/>
                                     <constraint firstItem="xCV-I3-Ju5" firstAttribute="top" secondItem="d0r-v1-Kww" secondAttribute="top" id="kKZ-eX-XNo"/>
+                                    <constraint firstItem="S8V-T2-JlN" firstAttribute="leading" secondItem="NFe-nc-SxC" secondAttribute="trailing" constant="8" id="kdj-wi-yMv">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="36" id="nRu-k5-Bkm"/>
                                     <constraint firstAttribute="height" constant="41" id="nxC-tj-GqB"/>
                                     <constraint firstItem="VML-Sv-N3u" firstAttribute="leading" secondItem="Fmj-vf-O2D" secondAttribute="trailing" constant="8" id="rOl-9u-zRE"/>
@@ -732,6 +739,7 @@
                                         <exclude reference="A0u-ew-Yyi"/>
                                         <exclude reference="cBr-by-lfV"/>
                                         <exclude reference="D2i-1x-vku"/>
+                                        <exclude reference="sua-sE-ebU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -1189,8 +1197,9 @@
                                                         <exclude reference="lIz-hJ-RH0"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=regular">
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
+                                                    <rect key="frame" x="-40" y="21" width="227" height="34"/>
                                                     <mask key="constraints">
                                                         <exclude reference="GL9-90-I6h"/>
                                                         <exclude reference="PRE-pe-vsO"/>
@@ -1491,7 +1500,7 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="adView" destination="pT0-Ll-ZIO" id="fEN-yZ-TKT"/>
                         <outlet property="addView" destination="TuB-LD-hXP" id="h92-kK-KFC"/>
@@ -1997,7 +2006,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="lhy-lj-k1z" secondAttribute="trailing" id="slt-uo-YpE"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="48" y="74" width="109" height="109"/>
+                                                    <rect key="frame" x="27" y="74" width="109" height="109"/>
                                                 </variation>
                                             </view>
                                         </subviews>
@@ -2177,7 +2186,7 @@
                                                     <constraint firstItem="MnH-hB-8VT" firstAttribute="leading" secondItem="izg-ox-JiN" secondAttribute="leading" id="smD-LA-5qW"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="48" y="73" width="109" height="109"/>
+                                                    <rect key="frame" x="27" y="73" width="109" height="109"/>
                                                 </variation>
                                             </view>
                                         </subviews>
