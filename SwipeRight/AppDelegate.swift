@@ -48,7 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       "highScore" : 0,
       "firstTime" : true,
       "gc_enabled" : false,
-      "gc_leaderboard_id" : "sw_all_time_leaderboard"
+      "gc_leaderboard_id" : "sw_all_time_leaderboard",
+      "muted" : false
     ]
 
     let registrationDictionary = ["saved": savedKeychain]

@@ -28,6 +28,9 @@ class ThemeHelper: NSObject {
   let multiplyImageGray = UIImage(named: "multiplicationGray")
   let divideImageGray = UIImage(named: "divisionGray")
   
+  let soundOnImage = UIImage(named: "soundOn")
+  let soundOffImage = UIImage(named: "soundOff")
+  
   // Colors
   let sw_tile_separator_color: UIColor = UIColor.darkGrayColor()
   let sw_shadow_color: UIColor = UIColor.darkGrayColor()

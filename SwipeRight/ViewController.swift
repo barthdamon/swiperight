@@ -13,6 +13,7 @@ import GoogleMobileAds
 class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGameCenterControllerDelegate {
   
   
+  @IBOutlet weak var muteButton: UIButton!
   @IBOutlet weak var bonusStreakLabel: UILabel!
   
   @IBOutlet weak var adView: DFPBannerView!
@@ -45,6 +46,20 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   var helperPointLabel: UILabel?
   var componentView: UIView?
   var shouldPlayImmediately: Bool = false
+  
+  //todo: get from user pref
+  var muted: Bool {
+    get {
+      if let first = UserDefaultsManager.sharedManager.getObjectForKey("muted") as? Bool {
+        return first
+      } else {
+        return true
+      }
+    }
+    set (newValue) {
+      UserDefaultsManager.sharedManager.setValueAtKey("muted", value: newValue)
+    }
+  }
   
 //  var time: Int = 0 {
 //    didSet {
@@ -80,6 +95,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    if muted {
+      self.muteButton.setImage(ThemeHelper.defaultHelper.soundOffImage, forState: .Normal)
+    }
     timeLabel.adjustsFontSizeToFitWidth = true
     multiplyView.operation = .Multiply
     addView.operation = .Add
@@ -182,6 +200,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func getWidth() -> CGFloat {
     return self.view.frame.width
+  }
+  
+  func isMuted() -> Bool {
+    return muted
   }
   
   func beginGame() {
@@ -725,5 +747,13 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     popoverPresentationController?.sourceRect = CGRectMake(0, 0, sender.frame.size.width, sender.frame.size.height)
   }
   
+  @IBAction func muteButtonPressed(sender: AnyObject) {
+    muted = !muted
+    if muted {
+      self.muteButton.setImage(ThemeHelper.defaultHelper.soundOffImage, forState: .Normal)
+    } else {
+      self.muteButton.setImage(ThemeHelper.defaultHelper.soundOnImage, forState: .Normal)
+    }
+  }
 }
 

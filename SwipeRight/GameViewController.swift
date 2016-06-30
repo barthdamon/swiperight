@@ -301,7 +301,9 @@ class GameViewController: UIViewController {
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
           self.view.userInteractionEnabled = false
-          correctPlayer?.play()
+          if let delegate = delegate where !delegate.isMuted() {
+            correctPlayer?.play()
+          }
           startTile.drawCorrect(winningOp, callback: { (success) in
             middleTile.drawCorrect(winningOp, callback: { (success) in
               endTile.drawCorrect(winningOp, callback: { (success) in
@@ -321,7 +323,9 @@ class GameViewController: UIViewController {
           delegate?.scoreChange(false)
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
-          incorrectPlayer?.play()
+          if let delegate = delegate where !delegate.isMuted() {
+            incorrectPlayer?.play()
+          }
           startTile.drawIncorrect(winningOp)
           endTile.drawIncorrect(winningOp)
           middleTile.drawIncorrect(winningOp)

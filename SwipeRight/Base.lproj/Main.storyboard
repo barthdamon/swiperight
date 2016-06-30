@@ -642,6 +642,23 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFe-nc-SxC">
+                                        <rect key="frame" x="320" y="7" width="27" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="41" id="474-mf-qtg"/>
+                                            <constraint firstAttribute="height" constant="27" id="XVL-fV-wlz"/>
+                                            <constraint firstAttribute="width" constant="27" id="s0I-so-lVM"/>
+                                        </constraints>
+                                        <state key="normal" image="soundOn"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="474-mf-qtg"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="muteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qIH-RG-TTA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Fmj-vf-O2D" secondAttribute="trailing" constant="8" id="14S-X8-uo0"/>
@@ -649,6 +666,7 @@
                                     <constraint firstItem="S8V-T2-JlN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Cjf-nY-Bsg" secondAttribute="trailing" id="7bE-qe-twY"/>
                                     <constraint firstItem="Fmj-vf-O2D" firstAttribute="leading" secondItem="VML-Sv-N3u" secondAttribute="trailing" constant="8" id="7hi-ie-jU5"/>
                                     <constraint firstItem="VML-Sv-N3u" firstAttribute="top" secondItem="d0r-v1-Kww" secondAttribute="top" id="7u9-OS-B9a"/>
+                                    <constraint firstItem="NFe-nc-SxC" firstAttribute="top" secondItem="d0r-v1-Kww" secondAttribute="top" id="A0u-ew-Yyi"/>
                                     <constraint firstAttribute="bottom" secondItem="VML-Sv-N3u" secondAttribute="bottom" id="A7n-V9-1oq"/>
                                     <constraint firstAttribute="trailing" secondItem="S8V-T2-JlN" secondAttribute="trailing" id="D2i-1x-vku"/>
                                     <constraint firstItem="Fmj-vf-O2D" firstAttribute="top" secondItem="xCV-I3-Ju5" secondAttribute="bottom" constant="2" id="EFz-fj-oVb"/>
@@ -662,15 +680,18 @@
                                     <constraint firstAttribute="bottom" secondItem="Fmj-vf-O2D" secondAttribute="bottom" id="V5n-lg-RtG"/>
                                     <constraint firstItem="Fmj-vf-O2D" firstAttribute="top" secondItem="d0r-v1-Kww" secondAttribute="top" id="WCc-Pg-7gl"/>
                                     <constraint firstItem="xCV-I3-Ju5" firstAttribute="leading" secondItem="VML-Sv-N3u" secondAttribute="trailing" constant="8" id="Z61-80-nur"/>
+                                    <constraint firstAttribute="bottom" secondItem="NFe-nc-SxC" secondAttribute="bottom" id="cBr-by-lfV"/>
                                     <constraint firstAttribute="height" constant="41" id="dZy-bD-WYQ">
                                         <variation key="heightClass=regular-widthClass=regular" constant="82"/>
                                     </constraint>
                                     <constraint firstItem="VML-Sv-N3u" firstAttribute="leading" secondItem="xCV-I3-Ju5" secondAttribute="trailing" constant="8" id="eAA-6Q-jyn"/>
+                                    <constraint firstItem="NFe-nc-SxC" firstAttribute="centerY" secondItem="d0r-v1-Kww" secondAttribute="centerY" id="eHN-dM-fqF"/>
                                     <constraint firstAttribute="height" constant="34" id="h8x-Xy-SCY"/>
                                     <constraint firstItem="xCV-I3-Ju5" firstAttribute="top" secondItem="d0r-v1-Kww" secondAttribute="top" id="kKZ-eX-XNo"/>
                                     <constraint firstAttribute="height" constant="36" id="nRu-k5-Bkm"/>
                                     <constraint firstAttribute="height" constant="41" id="nxC-tj-GqB"/>
                                     <constraint firstItem="VML-Sv-N3u" firstAttribute="leading" secondItem="Fmj-vf-O2D" secondAttribute="trailing" constant="8" id="rOl-9u-zRE"/>
+                                    <constraint firstItem="S8V-T2-JlN" firstAttribute="leading" secondItem="NFe-nc-SxC" secondAttribute="trailing" constant="8" id="sua-sE-ebU"/>
                                     <constraint firstAttribute="height" constant="26" id="tku-Si-ucH"/>
                                     <constraint firstAttribute="height" constant="114" id="ufe-2X-B9l"/>
                                     <constraint firstItem="VML-Sv-N3u" firstAttribute="centerX" secondItem="d0r-v1-Kww" secondAttribute="centerX" id="wdo-Un-hqV"/>
@@ -693,6 +714,8 @@
                                         <exclude reference="GA7-gk-4aC"/>
                                         <exclude reference="V5n-lg-RtG"/>
                                         <exclude reference="WCc-Pg-7gl"/>
+                                        <exclude reference="A0u-ew-Yyi"/>
+                                        <exclude reference="cBr-by-lfV"/>
                                         <exclude reference="D2i-1x-vku"/>
                                     </mask>
                                 </variation>
@@ -1134,8 +1157,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I28-Sc-e7D" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="228" y="0.0" width="162" height="38"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="REVEAL A TILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSY-Gf-wFs">
-                                                <rect key="frame" x="24" y="11" width="112" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REVEAL A TILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSY-Gf-wFs">
+                                                <rect key="frame" x="25" y="11" width="112" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="112" id="GL9-90-I6h"/>
                                                     <constraint firstAttribute="height" constant="17" id="PRE-pe-vsO"/>
@@ -1471,6 +1494,7 @@
                         <outlet property="hideTileIndicator" destination="tqK-Pd-y44" id="vSJ-V7-BzA"/>
                         <outlet property="highScoreLabel" destination="xCV-I3-Ju5" id="Ijq-wS-k1w"/>
                         <outlet property="multiplyView" destination="Q5o-NE-XQ0" id="NFb-8A-ckZ"/>
+                        <outlet property="muteButton" destination="NFe-nc-SxC" id="Hf7-nd-4cy"/>
                         <outlet property="operationIndicatorView" destination="67Q-5K-lYM" id="fXj-Vp-QYP"/>
                         <outlet property="revealTileButtonView" destination="I28-Sc-e7D" id="6Hr-t4-ifU"/>
                         <outlet property="revealTileIndicator" destination="mzQ-sY-VEb" id="IYC-9v-kqz"/>
@@ -3177,6 +3201,7 @@
         <image name="logo" width="575" height="147"/>
         <image name="multiplication" width="121" height="121"/>
         <image name="operations" width="566" height="122"/>
+        <image name="soundOn" width="75" height="71"/>
         <image name="subtraction" width="121" height="121"/>
     </resources>
 </document>
