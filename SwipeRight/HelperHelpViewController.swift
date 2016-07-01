@@ -55,7 +55,9 @@ class HelperHelpViewController: UIViewController {
   func setupForTutorialStage() {
     switch GameStatus.status.tutorialStage {
     case 0:
-      self.setExplanationText("Welcome! Press continue to learn how to play...")
+      GameStatus.status.tutorialStage += 1
+      setupForTutorialStage()
+//      self.setExplanationText("Welcome! Press continue to learn how to play...")
     case 1:
       self.setExplanationText("The goal is to find three tiles adjacent or diagonal to each other that complete a mathematical equation.\n\nSwipe the tiles from the start of the equation to the end to score a point.")
     case 2:
