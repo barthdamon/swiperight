@@ -33,7 +33,6 @@ protocol GameViewDelegate {
   
   func timerAlreadyTocking() -> Bool
   func activateHelperButtons()
-  func isMuted() -> Bool
   
   
   //MARK: Tutorial

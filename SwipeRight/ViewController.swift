@@ -48,18 +48,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   var shouldPlayImmediately: Bool = false
   
   //todo: get from user pref
-  var muted: Bool {
-    get {
-      if let first = UserDefaultsManager.sharedManager.getObjectForKey("muted") as? Bool {
-        return first
-      } else {
-        return false
-      }
-    }
-    set (newValue) {
-      UserDefaultsManager.sharedManager.setValueAtKey("muted", value: newValue)
-    }
-  }
   
 //  var time: Int = 0 {
 //    didSet {
@@ -95,7 +83,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if muted {
+    if SoundManager.defaultManager.muted {
       self.muteButton.setImage(ThemeHelper.defaultHelper.soundOffImage, forState: .Normal)
     }
     timeLabel.adjustsFontSizeToFitWidth = true
@@ -119,6 +107,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     //   self.navigationController?.navigationBarHidden = false
     invalidateTimer()
     GameStatus.status.inMenu = true
+    SoundManager.defaultManager.shutDownSoundSystem()
     super.viewWillDisappear(true)
   }
   
@@ -168,14 +157,20 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func setHelperPoints(points: Int, callback: (Bool) -> ()) {
 //    self.helperButtonViewIndicator.text = "\(points)"
+    var more = false
+    if let text = self.helperButtonViewIndicator.text, current = Int(text) where current < points {
+      more = true
+    }
     setStreakLabel()
     UIView.animateWithDuration(0.3, animations: {
-      if let text = self.helperButtonViewIndicator.text, current = Int(text) where current >= points {
-      } else {
+      if more {
         self.helperButtonViewIndicator.transform = CGAffineTransformMakeScale(1.3,1.3)
       }
     }) { (done) in
       self.helperButtonViewIndicator.text = "\(points)"
+      if GameStatus.status.gameActive && more && points != 0 {
+        SoundManager.defaultManager.playSound(.AbilityPoint)
+      }
       UIView.animateWithDuration(0.3, animations: {
         self.helperButtonViewIndicator.transform = CGAffineTransformIdentity
         self.bonusStreakLabel.transform = CGAffineTransformIdentity
@@ -200,10 +195,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func getWidth() -> CGFloat {
     return self.view.frame.width
-  }
-  
-  func isMuted() -> Bool {
-    return muted
   }
   
   func beginGame() {
@@ -298,6 +289,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       reportScore({ (done) in
       })
     }
+    SoundManager.defaultManager.playSound(.GameOver)
     deactivateHelperPointButton(true, deactivate: false)
     invalidateTimer()
     GameStatus.status.timer = nil
@@ -308,7 +300,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     if GameStatus.status.gameMode == .Standard {
       resetGameState()
     }
-    toggleAdViewVisible(true)
+//    toggleAdViewVisible(true)
     //    self.alertShow("Game Over", alertMessage: "Your Score: \(String(score))")
   }
   
@@ -357,7 +349,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     subtractView.displayOperationStatus([])
     addView.displayOperationStatus([])
     divideView.displayOperationStatus([])
-    toggleAdViewVisible(false)
+//    toggleAdViewVisible(false)
   }
   
   func resetClientOperations(currentOperations: Array<Operation>?) {
@@ -748,10 +740,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   @IBAction func muteButtonPressed(sender: AnyObject) {
-    muted = !muted
-    if muted {
+    SoundManager.defaultManager.muted = !SoundManager.defaultManager.muted
+    if SoundManager.defaultManager.muted {
       self.muteButton.setImage(ThemeHelper.defaultHelper.soundOffImage, forState: .Normal)
     } else {
+      SoundManager.defaultManager.loadSoundFiles()
       self.muteButton.setImage(ThemeHelper.defaultHelper.soundOnImage, forState: .Normal)
     }
   }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class GameViewController: UIViewController {
   
@@ -58,10 +57,8 @@ class GameViewController: UIViewController {
   var delegate: GameViewDelegate?
   var containerView: UIView?
   
-  let correctSound = NSBundle.mainBundle().pathForResource("correct", ofType: "wav")
-  let incorrectSound = NSBundle.mainBundle().pathForResource("incorrect", ofType: "wav")
-  var correctPlayer: AVAudioPlayer?
-  var incorrectPlayer: AVAudioPlayer?
+
+  
 //  var coinSound: NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("coin", ofType: "wav"))
   
   var gradientLayer: CAGradientLayer?
@@ -90,7 +87,7 @@ class GameViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    loadSoundFiles()
+    SoundManager.defaultManager.loadSoundFiles()
     if let container = self.containerView {
       self.viewWidth = container.bounds.width
       tileWidth = container.bounds.width / 3
@@ -104,20 +101,7 @@ class GameViewController: UIViewController {
       animateBeginGame()
     }
   }
-  
-  func loadSoundFiles() {
-    if let correctSound = correctSound, incorrectSound = incorrectSound {
-      let correctURL = NSURL(fileURLWithPath: correctSound), incorrectURL = NSURL(fileURLWithPath: incorrectSound)
-      do {
-        correctPlayer = try AVAudioPlayer(contentsOfURL: correctURL)
-        incorrectPlayer = try AVAudioPlayer(contentsOfURL: incorrectURL)
-      } catch {
-        print("Error loading sound files")
-      }
-      incorrectPlayer?.prepareToPlay()
-      correctPlayer?.prepareToPlay()
-    }
-  }
+
   
   func appendViews() {
     numberLabels.append(label00)
@@ -301,9 +285,7 @@ class GameViewController: UIViewController {
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
           self.view.userInteractionEnabled = false
-          if let delegate = delegate where !delegate.isMuted() {
-            correctPlayer?.play()
-          }
+          SoundManager.defaultManager.playSound(.Correct)
           startTile.drawCorrect(winningOp, callback: { (success) in
             middleTile.drawCorrect(winningOp, callback: { (success) in
               endTile.drawCorrect(winningOp, callback: { (success) in
@@ -323,9 +305,7 @@ class GameViewController: UIViewController {
           delegate?.scoreChange(false)
           self.view.backgroundColor = winningOp.color
           self.gradientLayer?.removeFromSuperlayer()
-          if let delegate = delegate where !delegate.isMuted() {
-            incorrectPlayer?.play()
-          }
+          SoundManager.defaultManager.playSound(.Incorrect)
           startTile.drawIncorrect(winningOp)
           endTile.drawIncorrect(winningOp)
           middleTile.drawIncorrect(winningOp)
@@ -546,24 +526,26 @@ class GameViewController: UIViewController {
   }
   
   func animateBeginGame() {
-    if let text = tutorialText {
-      self.tutorialLaunchTextLabel.text = text
-      self.tutorialLaunchTextLabel.hidden = false
-    }
-    tileViews.forEach { (view) in
-      view.animateCountdown({ (done) in
-        if done {
-          if let delegate = self.delegate where !delegate.timerAlreadyTocking() {
-            self.tutorialLaunchTextLabel.hidden = true
-            self.tutorialText = nil
-            self.delegate?.setStartTime()
-            GameStatus.status.gameActive = true
-            self.resetTiles()
-            self.delegate?.startGameplay()
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      if let text = self.tutorialText {
+        self.tutorialLaunchTextLabel.text = text
+        self.tutorialLaunchTextLabel.hidden = false
+      }
+      self.tileViews.forEach { (view) in
+        view.animateCountdown({ (done) in
+          if done {
+            if let delegate = self.delegate where !delegate.timerAlreadyTocking() {
+              self.tutorialLaunchTextLabel.hidden = true
+              self.tutorialText = nil
+              self.delegate?.setStartTime()
+              GameStatus.status.gameActive = true
+              self.resetTiles()
+              self.delegate?.startGameplay()
+            }
           }
-        }
-      })
-    }
+        })
+      }
+    })
   }
   
   func newRound() {
@@ -655,6 +637,7 @@ class GameViewController: UIViewController {
       setGameViewBackground(filteredOperations)
       ProgressionManager.sharedManager.helperPointUtilized(.Remove)
     }
+    SoundManager.defaultManager.playSound(.AbilityUse)
     delegate?.deactivateHelperPointButton(false, deactivate: false)
     delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints, callback: { (done) in })
     delegate?.togglePaused(false)
