@@ -296,7 +296,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
         } else {
           GameStatus.status.gc_enabled = false
           print("Local player could not be authenticated, disabling game center")
-          alertShow(self, alertText: "Can't Connect!", alertMessage: "Unable to connect to leaderboards with your game center account. Please try again later.")
+          alertShow(self, alertText: "Leaderboards Unavailable", alertMessage: "Sorry, unable to connect to leaderboards with your game center account at this time. Please try again later. Can you get an even higher score in the meantime? ;)")
           //show some kind of warning saying authentication failed, giving retry and okay options?
           //        self.navigationController?.popViewControllerAnimated(true)
         }

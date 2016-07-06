@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
     let savedKeychain = [
       "highScore" : 0,
+      "highScoreReported" : false,
       "firstTime" : true,
       "gc_enabled" : false,
       "gc_leaderboard_id" : "sw_all_time_leaderboard",

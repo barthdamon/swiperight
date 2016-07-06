@@ -483,6 +483,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
           // 3 Game center is not enabled on the users device
           GameStatus.status.gc_enabled = false
           print("Local player could not be authenticated, disabling game center")
+          alertShow(self, alertText: "Leaderboards Unavailable", alertMessage: "Sorry, unable to connect to leaderboards with your game center account at this time. Please try again later. Can you get an even higher score in the meantime? ;)")
           //show some kind of warning saying authentication failed, giving retry and okay options?
           //        self.navigationController?.popViewControllerAnimated(true)
         }
@@ -503,12 +504,21 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     if GameStatus.status.gc_enabled {
       let sScore = GKScore(leaderboardIdentifier: GameStatus.status.gc_leaderboard_id)
       sScore.value = Int64(GameStatus.status.score)
+      var scores = [sScore]
       
-      GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError?) -> Void in
+      if let reported = UserDefaultsManager.sharedManager.getObjectForKey("highScoreReported") as? Bool where !reported && CurrentUser.info.highScore != 0 && CurrentUser.info.highScore > GameStatus.status.score {
+        let hScore = GKScore(leaderboardIdentifier: GameStatus.status.gc_leaderboard_id)
+        hScore.value = Int64(CurrentUser.info.highScore)
+        scores.append(hScore)
+        UserDefaultsManager.sharedManager.setValueAtKey("highScoreReported", value: true)
+        print("Attached previous high score")
+      }
+      
+      GKScore.reportScores(scores, withCompletionHandler: { (error: NSError?) -> Void in
         if error != nil {
           print(error!.localizedDescription)
         } else {
-          print("Score submitted")
+          print("Scores submitted")
         }
       })
     }
