@@ -154,6 +154,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   
   @IBAction func removeAdsButtonPressed(sender: AnyObject) {
     print("Remove Ads Pressed")
+//    removeAds()
     beginPurchase()
 //    alertShow(self, alertText: "Coming Soon!", alertMessage: "Remove ads is under construction 👷🔧🔨")
   }
@@ -207,6 +208,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
         print(validProduct.localizedTitle)
         print(validProduct.localizedDescription)
         print(validProduct.price)
+        // show option to buy product with this info...
         buyProduct(validProduct)
       } else {
         print("Not desired Product: \(validProduct.productIdentifier)")
@@ -221,6 +223,11 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
     // show error
   }
   
+  func removeAds() {
+    //    UserDefaultsManager.sharedManager.savePurchasedToKeychain("adsRemoved", value: true)
+    UserDefaultsManager.sharedManager.setValueAtKey("adsRemoved", value: true)
+  }
+  
   func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
     print("Received Payment Transaction Response from Apple")
     
@@ -231,8 +238,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
           print("Product Purchased")
           SKPaymentQueue.defaultQueue().finishTransaction(transaction)
           // set purchased ads to true
-          //          defaults.setBool(true , forKey: "purchased")
-        //          overlayView.hidden = true
+          removeAds()
         case .Failed:
           print("Purchase Failed")
           SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
@@ -241,6 +247,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
           print("Already Purchased")
           SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
         // set purchased ads to true as well
+          removeAds()
         default:
           break
         }

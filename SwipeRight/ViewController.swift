@@ -719,6 +719,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func toggleAdViewVisible(visible: Bool) {
     if visible {
+      if let adsRemoved = UserDefaultsManager.sharedManager.getObjectForKey("adsRemoved") as? Bool where adsRemoved {
+        print("Ads removed")
+        return
+      }
       let deviceIdiom = UIScreen.mainScreen().traitCollection.userInterfaceIdiom
       if deviceIdiom == .Pad {
 //        self.layer.borderWidth = 3

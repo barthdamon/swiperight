@@ -13,6 +13,7 @@ import UIKit
 class UserDefaultsManager {
   
   static var sharedManager = UserDefaultsManager()
+  let keychain = KeychainSwift()
   
   func getObjectForKey(key: String) -> AnyObject? {
     if let keychain = NSUserDefaults.standardUserDefaults().objectForKey("saved") as? Dictionary<String, AnyObject>, value = keychain[key] as? Int {
@@ -29,6 +30,14 @@ class UserDefaultsManager {
     }
     saved[key] = value
     NSUserDefaults.standardUserDefaults().setObject(saved, forKey: "saved")
+  }
+  
+  func savePurchasedToKeychain(key: String, value: Bool) {
+    keychain.set(value, forKey: key)
+  }
+  
+  func getValueFromKeychain(key: String) -> AnyObject? {
+    return keychain.get(key)
   }
   
 }
