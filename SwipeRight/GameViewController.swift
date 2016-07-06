@@ -797,13 +797,22 @@ class GameViewController: UIViewController {
     }
   }
   
+  func highlightNext(operation: Operation, index: UInt) {
+    do {
+      let highlight = try tilesToHighlight.lookup(index)
+      highlight.highlightForTutorial(self, operation: operation, callback: { (done) in
+        self.highlightNext(operation, index: index + 1)
+      })
+    }
+    catch {
+      return
+    }
+  }
+  
   func highlightTiles() {
     if !pausingForEffect && !flashingOperation {
       guard let operation = currentLayout?.winningCombination?.operation else { return }
-      if let highlight = tilesToHighlight.first {
-        highlight.highlightForTutorial(self, operation: operation, callback: { (done) in
-        })
-      }
+      highlightNext(operation, index: 0)
     }
   }
   
@@ -819,10 +828,10 @@ class GameViewController: UIViewController {
     // set first one to glowing, and respond only when they move to the correct one
     guard let combo = currentLayout?.winningCombination else { return }
     tilesToHighlight.append(tileViews[combo.xNumberIndex])
+    tilesToHighlight.append(tileViews[combo.bNumberIndex])
+    tilesToHighlight.append(tileViews[combo.sumNumberIndex])
     if GameStatus.status.tutorialStage == 2 {
       delegate?.setTutorialLabelText("Press and hold your finger to the first tile, then swipe!")
-      tilesToHighlight.append(tileViews[combo.bNumberIndex])
-      tilesToHighlight.append(tileViews[combo.sumNumberIndex])
     }
     if GameStatus.status.tutorialStage == 5 && tilesToHighlight.count != 0 {
       if let op = currentLayout?.winningCombination?.operation {
@@ -831,7 +840,7 @@ class GameViewController: UIViewController {
     }
     inTutorialHighlightMode = true
     GameStatus.status.gameActive = true
-    highlightTileTimer = NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector: #selector(GameViewController.highlightTiles), userInfo: nil, repeats: true)
+    highlightTileTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(GameViewController.highlightTiles), userInfo: nil, repeats: true)
   }
   
   

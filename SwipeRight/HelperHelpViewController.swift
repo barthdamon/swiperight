@@ -137,7 +137,7 @@ class HelperHelpViewController: UIViewController {
   }
   
   @IBAction func yesButtonPressed(sender: AnyObject) {
-    delegate?.launchForEndTutorial("Wohoo! you got this!")
+    delegate?.launchForEndTutorial("Woohoo! you got this!")
   }
   
   @IBAction func noButtonPressed(sender: AnyObject) {

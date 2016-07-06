@@ -63,11 +63,12 @@ class TileView: UIView {
   }
   
   func highlightForTutorial(controller: GameViewController, operation: Operation, callback: (Bool) -> ()) {
-    UIView.animateWithDuration(0.3, animations: {
+    UIView.animateWithDuration(0.15, animations: {
       self.numberLabel?.transform = CGAffineTransformMakeScale(1.2,1.2)
       self.drawShadow(true, operation: operation)
     }) { (complete) in
-      UIView.animateWithDuration(0.3, animations: {
+      callback(true)
+      UIView.animateWithDuration(0.15, animations: {
         if !controller.pausingForEffect && !self.drawnCorrect {
           self.numberLabel?.transform = CGAffineTransformIdentity
           self.backgroundColor = UIColor.clearColor()
@@ -78,7 +79,6 @@ class TileView: UIView {
           self.drawnCorrect = false
         }
       }) { (complete) in
-        callback(true)
       }
     }
   }

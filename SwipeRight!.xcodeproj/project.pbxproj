@@ -42,6 +42,7 @@
 		02AFC9B01D2C41B00043F261 /* game_over.wav in Resources */ = {isa = PBXBuildFile; fileRef = 02AFC9AF1D2C41B00043F261 /* game_over.wav */; };
 		02AFC9B21D2C49E80043F261 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AFC9B11D2C49E80043F261 /* SoundManager.swift */; };
 		02AFC9B41D2C6AC00043F261 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AFC9B31D2C6ABF0043F261 /* StoreKit.framework */; };
+		02AFC9B61D2D8EA30043F261 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AFC9B51D2D8EA30043F261 /* Array.swift */; };
 		02BA52261D1C6A8800EF1628 /* UILabelSizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA52251D1C6A8800EF1628 /* UILabelSizeClass.swift */; };
 		02BCF0DB1D0F0FB70083B2F2 /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DA1D0F0FB70083B2F2 /* YIInnerShadowLayer.m */; };
 		02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0DD1D0F10080083B2F2 /* YIInnerShadowView.m */; };
@@ -105,6 +106,7 @@
 		02AFC9AF1D2C41B00043F261 /* game_over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = game_over.wav; sourceTree = "<group>"; };
 		02AFC9B11D2C49E80043F261 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		02AFC9B31D2C6ABF0043F261 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		02AFC9B51D2D8EA30043F261 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		02BA52251D1C6A8800EF1628 /* UILabelSizeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelSizeClass.swift; sourceTree = "<group>"; };
 		02BCF0D81D0F0F5B0083B2F2 /* YIInnerShadowLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowLayer.h; sourceTree = "<group>"; };
 		02BCF0D91D0F0FB70083B2F2 /* SwipeRight!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwipeRight!-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				0247A35F1CFFD30A00FC52B9 /* UIHelpers.swift */,
 				02BA52251D1C6A8800EF1628 /* UILabelSizeClass.swift */,
 				0269CD681CFCF512004184E5 /* GradientLayer.swift */,
+				02AFC9B51D2D8EA30043F261 /* Array.swift */,
 				022098181C1DC005005155E6 /* RandomNumber.swift */,
 				02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */,
 				0232DC911C2386360039E5CE /* CenterOfView.swift */,
@@ -434,6 +437,7 @@
 				02BA52261D1C6A8800EF1628 /* UILabelSizeClass.swift in Sources */,
 				0232DC961C25D7E90039E5CE /* OperationCompletion.swift in Sources */,
 				02DB52AB1D03961E0052D72A /* ThemeHelper.swift in Sources */,
+				02AFC9B61D2D8EA30043F261 /* Array.swift in Sources */,
 				0240B9551C18EF86004B48BA /* AppDelegate.swift in Sources */,
 				02ADE4E11CFE8B1C000AB183 /* Score.swift in Sources */,
 				02ADE4DA1CFE73E1000AB183 /* User.swift in Sources */,

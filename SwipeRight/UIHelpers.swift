@@ -65,26 +65,28 @@ class ButtonView: UIView, UIGestureRecognizerDelegate {
   var gradientLayer: CAGradientLayer?
   
   func becomeButtonForGameView(target: UIViewController, label: UILabel, delegate: ButtonDelegate) {
-    self.gradientLayer?.removeFromSuperlayer()
-    self.userInteractionEnabled = true
-    self.label = label
-    self.delegate = delegate
-    
-    let firstColor = ThemeHelper.defaultHelper.sw_button_top_color
-    let secondColor = ThemeHelper.defaultHelper.sw_button_bottom_color
-    gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor), rounded: self.bounds.height / 2)
-//    self.layer.hidden = false
-    self.layer.insertSublayer(gradientLayer!, atIndex: 0)
-    
-    self.layer.cornerRadius = self.bounds.height / 2
-    self.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
-    self.layer.shadowOpacity = 0.3
-    self.layer.shadowOffset = CGSizeZero
-    self.layer.shadowRadius = 10
-    offsetX = Double(self.bounds.width * 1.2)
-    offsetY = Double(self.bounds.height * 1.8)
-    negOffsetX = Double(self.bounds.width * -0.2)
-    negOffsetY = Double(self.bounds.height * -0.8)
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.gradientLayer?.removeFromSuperlayer()
+      self.userInteractionEnabled = true
+      self.label = label
+      self.delegate = delegate
+      
+      let firstColor = ThemeHelper.defaultHelper.sw_button_top_color
+      let secondColor = ThemeHelper.defaultHelper.sw_button_bottom_color
+      self.gradientLayer = CAGradientLayer.verticalGradientLayerForBounds(self.bounds, colors: (start: firstColor, end: secondColor), rounded: self.bounds.height / 2)
+      //    self.layer.hidden = false
+      self.layer.insertSublayer(self.gradientLayer!, atIndex: 0)
+      
+      self.layer.cornerRadius = self.bounds.height / 2
+      self.layer.shadowColor = ThemeHelper.defaultHelper.sw_shadow_color.CGColor
+      self.layer.shadowOpacity = 0.3
+      self.layer.shadowOffset = CGSizeZero
+      self.layer.shadowRadius = 10
+      self.offsetX = Double(self.bounds.width * 1.2)
+      self.offsetY = Double(self.bounds.height * 1.8)
+      self.negOffsetX = Double(self.bounds.width * -0.2)
+      self.negOffsetY = Double(self.bounds.height * -0.8)
+    })
   }
   
   func togglePressed(down: Bool) {
