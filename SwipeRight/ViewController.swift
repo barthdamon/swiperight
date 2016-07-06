@@ -715,13 +715,15 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       } else {
         
       }
-//      .kGADAdSizeBanner
-      adView.adSize = kGADAdSizeSmartBannerPortrait
-      adView.adUnitID = "ca-app-pub-2768090392054119/6062392781"
-      adView.rootViewController = self
-      let request = DFPRequest()
-      adView.loadRequest(request)
-      adView.hidden = false
+      if self.adView.hidden {
+        //      .kGADAdSizeBanner
+        adView.adSize = kGADAdSizeSmartBannerPortrait
+        adView.adUnitID = "ca-app-pub-2768090392054119/6062392781"
+        adView.rootViewController = self
+        let request = DFPRequest()
+        adView.loadRequest(request)
+      }
+        adView.hidden = false
     } else {
       adView.hidden = true
     }

@@ -488,8 +488,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="2rv-FX-AMd"/>
-                                <exclude reference="I1W-ui-QxW"/>
                                 <exclude reference="Jk2-9x-Jw3"/>
                                 <exclude reference="S1j-QU-PQB"/>
                                 <exclude reference="syo-6G-noV"/>
@@ -499,15 +497,17 @@
                                 <exclude reference="a0b-og-7gW"/>
                                 <exclude reference="n9g-gV-l79"/>
                                 <exclude reference="tTw-i6-vFw"/>
+                                <exclude reference="2rv-FX-AMd"/>
+                                <exclude reference="I1W-ui-QxW"/>
                                 <exclude reference="WML-Bh-VaL"/>
                                 <exclude reference="Z4F-L2-8Ea"/>
                                 <exclude reference="aEk-WZ-w5f"/>
                                 <exclude reference="0mT-tl-bc7"/>
                                 <exclude reference="GKz-7r-Io1"/>
+                                <exclude reference="xV4-4a-v0c"/>
                                 <exclude reference="8FB-8W-DL6"/>
                                 <exclude reference="AOa-Wu-u6Y"/>
                                 <exclude reference="LmH-lj-lbq"/>
-                                <exclude reference="xV4-4a-v0c"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1875,23 +1875,23 @@
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="DJE-3f-z5E"/>
+                                        <exclude reference="00M-nd-vA4"/>
                                         <exclude reference="Bn6-hh-zX6"/>
+                                        <exclude reference="DJE-3f-z5E"/>
                                         <exclude reference="N0x-Q3-j5n"/>
                                         <exclude reference="yX7-wk-aT9"/>
-                                        <exclude reference="00M-nd-vA4"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="28"/>
                                     <mask key="constraints">
-                                        <include reference="DJE-3f-z5E"/>
-                                        <include reference="Bn6-hh-zX6"/>
-                                        <exclude reference="N0x-Q3-j5n"/>
-                                        <exclude reference="yX7-wk-aT9"/>
-                                        <exclude reference="cgy-Hm-khm"/>
-                                        <exclude reference="2k7-BI-gZF"/>
                                         <exclude reference="00M-nd-vA4"/>
+                                        <exclude reference="2k7-BI-gZF"/>
+                                        <include reference="Bn6-hh-zX6"/>
+                                        <include reference="DJE-3f-z5E"/>
+                                        <exclude reference="N0x-Q3-j5n"/>
+                                        <exclude reference="cgy-Hm-khm"/>
+                                        <exclude reference="yX7-wk-aT9"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -1929,7 +1929,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6X-2d-RqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="742.5" y="420.75"/>
+            <point key="canvasLocation" x="833" y="349"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="1CO-YK-vEN">
@@ -2529,7 +2529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yf8-1o-fiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="1164.75"/>
+            <point key="canvasLocation" x="769" y="888"/>
         </scene>
         <!--Helper Point View Controller-->
         <scene sceneID="Yph-cg-u2X">
@@ -2723,7 +2723,7 @@
                                             <rect key="frame" x="240" y="133" width="138" height="21"/>
                                         </variation>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DTu-aK-nMF" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTu-aK-nMF" customClass="ButtonView" customModule="SwipeRight_" customModuleProvider="target">
                                         <rect key="frame" x="71" y="30" width="248" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIDE AN INCORRECT TILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H0-XF-NxD">
@@ -3306,7 +3306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqQ-ex-qxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1035" y="1155"/>
+            <point key="canvasLocation" x="1635" y="1139"/>
         </scene>
     </scenes>
     <resources>

@@ -140,6 +140,7 @@ class TileView: UIView {
       self.numberLabel?.alpha = 0
       self.numberLabel?.text = String(countDown)
       UIView.animateWithDuration(1, animations: { () -> Void in
+//        SoundManager.defaultManager.playSound(.AbilityUse)
         self.numberLabel?.alpha = 1
         }, completion: { (complete) -> Void in
           if countDown == 1 {

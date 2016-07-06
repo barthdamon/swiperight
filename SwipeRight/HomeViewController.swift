@@ -8,8 +8,9 @@
 
 import UIKit
 import GameKit
+import StoreKit
 
-class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControllerDelegate {
+class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControllerDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
   
   @IBOutlet weak var firstTimeView: UIView!
   @IBOutlet weak var logoView: UIImageView!
@@ -35,10 +36,13 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
     }
   }
   
+  let product_id = "com.onesecgames.remove_ads"
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     MultipleHelper.defaultHelper.initializeCombinations()
+    SKPaymentQueue.defaultQueue().addTransactionObserver(self)
     beginGameButtonView.alpha = 0
     firstTimeButton.alpha = 0
     logoView.alpha = 0
@@ -150,7 +154,8 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   
   @IBAction func removeAdsButtonPressed(sender: AnyObject) {
     print("Remove Ads Pressed")
-    alertShow(self, alertText: "Coming Soon!", alertMessage: "Remove ads is under construction 👷🔧🔨")
+    beginPurchase()
+//    alertShow(self, alertText: "Coming Soon!", alertMessage: "Remove ads is under construction 👷🔧🔨")
   }
   
   @IBAction func howToButtonPressed(sender: AnyObject) {
@@ -167,6 +172,98 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   @IBAction func howToButtonExited(sender: AnyObject) {
     toggleUnderlineAlpha(true)
   }
+  
+  
+  
+  
+  
+  
+  
+//  GKPlayerAuthenticationDidChangeNotificationName
+  //MARK: IAP
+  func beginPurchase() {
+    if SKPaymentQueue.canMakePayments() {
+      let productIDs = NSSet(array: [product_id])
+      let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productIDs as! Set<String>)
+      productsRequest.delegate = self
+      productsRequest.start()
+      print("fetching products...")
+    } else {
+      alertShow(self, alertText: "Payment Failure", alertMessage: "Unable to make payments at this time. Please try again later.")
+    }
+  }
+  
+  func buyProduct(product: SKProduct){
+    print("Sending the Payment Request to Apple")
+    let payment = SKPayment(product: product)
+    SKPaymentQueue.defaultQueue().addPayment(payment)
+  }
+  
+  func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+    let count: Int = response.products.count
+    if count > 0 {
+      let validProduct: SKProduct = response.products[0] as SKProduct
+      if validProduct.productIdentifier == self.product_id {
+        print(validProduct.localizedTitle)
+        print(validProduct.localizedDescription)
+        print(validProduct.price)
+        buyProduct(validProduct)
+      } else {
+        print("Not desired Product: \(validProduct.productIdentifier)")
+      }
+    } else {
+      print("No products found")
+    }
+  }
+  
+  func request(request: SKRequest, didFailWithError error: NSError) {
+    print("Error Fetching product information")
+    // show error
+  }
+  
+  func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    print("Received Payment Transaction Response from Apple")
+    
+    for transaction:AnyObject in transactions {
+      if let transaction = transaction as? SKPaymentTransaction{
+        switch transaction.transactionState {
+        case .Purchased:
+          print("Product Purchased")
+          SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+          // set purchased ads to true
+          //          defaults.setBool(true , forKey: "purchased")
+        //          overlayView.hidden = true
+        case .Failed:
+          print("Purchase Failed")
+          SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
+        // show error purchasing dialog
+        case .Restored:
+          print("Already Purchased")
+          SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+        // set purchased ads to true as well
+        default:
+          break
+        }
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -197,9 +294,9 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
             }
           })
         } else {
-          // 3 Game center is not enabled on the users device
           GameStatus.status.gc_enabled = false
           print("Local player could not be authenticated, disabling game center")
+          alertShow(self, alertText: "Can't Connect!", alertMessage: "Unable to connect to leaderboards with your game center account. Please try again later.")
           //show some kind of warning saying authentication failed, giving retry and okay options?
           //        self.navigationController?.popViewControllerAnimated(true)
         }

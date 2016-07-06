@@ -31,6 +31,13 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
     // Do any additional setup after loading the view.
   }
   
+  override func viewWillAppear(animated: Bool) {
+    if shouldPlayImmediately {
+      startGameView()
+      shouldPlayImmediately = false
+    }
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -39,10 +46,6 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     beginButtonView.becomeButtonForGameView(self, label: beginButtonLabel, delegate: self)
-    if shouldPlayImmediately {
-      startGameView()
-      shouldPlayImmediately = false
-    }
   }
   
   func startGameView() {
