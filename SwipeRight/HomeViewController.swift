@@ -205,11 +205,11 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
     if count > 0 {
       let validProduct: SKProduct = response.products[0] as SKProduct
       if validProduct.productIdentifier == self.product_id {
-        print(validProduct.localizedTitle)
-        print(validProduct.localizedDescription)
-        print(validProduct.price)
+//        print(validProduct.localizedTitle)
+//        print(validProduct.localizedDescription)
+//        print(validProduct.price)
         // show option to buy product with this info...
-        buyProduct(validProduct)
+        showPayAlert(validProduct)
       } else {
         print("Not desired Product: \(validProduct.productIdentifier)")
       }
@@ -237,6 +237,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
         case .Purchased:
           print("Product Purchased")
           SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+          alertShow(self, alertText: "Success", alertMessage: "Remove ads successfully purchased. Thank you for your support!")
           // set purchased ads to true
           removeAds()
         case .Failed:
@@ -246,6 +247,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
         case .Restored:
           print("Already Purchased")
           SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+          alertShow(self, alertText: "Success", alertMessage: "Remove ads successfully restored from previous purchase. Thank you for your support!")
         // set purchased ads to true as well
           removeAds()
         default:
@@ -255,7 +257,23 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
     }
   }
   
-  
+  func showPayAlert(product: SKProduct) {
+    let title: String = product.localizedTitle, description: String = product.localizedDescription, price: NSDecimalNumber = product.price
+    let alert = UIAlertController(title: title, message: "\(price)/n\(description)", preferredStyle: UIAlertControllerStyle.Alert)
+    
+    alert.addAction(UIAlertAction(title: "Purchase/Restore", style: .Default, handler: { (action) -> Void in
+      self.buyProduct(product)
+      alert.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action) -> Void in
+      alert.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    //can add another action (maybe cancel, here)
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.presentViewController(alert, animated: true, completion: nil)
+    })
+  }
+
   
   
   
