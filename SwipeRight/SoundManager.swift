@@ -85,20 +85,22 @@ class SoundManager: NSObject {
   }
   
   func playSound(sound: Sound) {
-    if !muted {
-      switch sound {
-      case .AbilityPoint:
-        abilityPointPlayer?.play()
-      case .AbilityUse:
-        abilityUsePlayer?.play()
-      case .Correct:
-        correctPlayer?.play()
-      case .Incorrect:
-        incorrectPlayer?.play()
-      case .GameOver:
-        gameOverPlayer?.play()
+    dispatch_async(dispatch_get_main_queue(), {
+      if !self.muted {
+        switch sound {
+        case .AbilityPoint:
+          self.abilityPointPlayer?.play()
+        case .AbilityUse:
+          self.abilityUsePlayer?.play()
+        case .Correct:
+          self.correctPlayer?.play()
+        case .Incorrect:
+          self.incorrectPlayer?.play()
+        case .GameOver:
+          self.gameOverPlayer?.play()
+        }
       }
-    }
+    })
   }
   
   
