@@ -234,8 +234,9 @@
                                         <exclude reference="zSQ-lb-e0Y"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
+                                    <rect key="frame" x="48" y="434" width="320" height="33"/>
                                     <mask key="constraints">
                                         <exclude reference="AJc-si-cI2"/>
                                         <exclude reference="GUb-2j-kl9"/>
@@ -358,15 +359,48 @@
                                         <exclude reference="QUt-3W-i51"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="32" y="162" width="375" height="285"/>
                                     <mask key="constraints">
                                         <exclude reference="KWL-G9-tli"/>
                                         <include reference="QUt-3W-i51"/>
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfc-fQ-7aK">
+                                <rect key="frame" x="20" y="684" width="105" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="INH-Bj-BSZ"/>
+                                    <constraint firstAttribute="width" constant="184" id="Sos-Wd-jbL"/>
+                                    <constraint firstAttribute="width" constant="105" id="e85-h3-pMg"/>
+                                    <constraint firstAttribute="height" constant="46" id="wyc-uO-sKH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="REMOVE ADS">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Sos-Wd-jbL"/>
+                                        <exclude reference="wyc-uO-sKH"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="28"/>
+                                    <rect key="frame" x="116" y="670" width="184" height="46"/>
+                                    <mask key="constraints">
+                                        <exclude reference="INH-Bj-BSZ"/>
+                                        <include reference="Sos-Wd-jbL"/>
+                                        <exclude reference="e85-h3-pMg"/>
+                                        <include reference="wyc-uO-sKH"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="removeAdsButtonPressed:" destination="gcC-dN-XMu" eventType="touchUpInside" id="7jq-ET-LkL"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFw-lo-dd9">
-                                <rect key="frame" x="140" y="684" width="134" height="32"/>
+                                <rect key="frame" x="260" y="684" width="134" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="LGF-1f-Xdx"/>
                                     <constraint firstAttribute="width" constant="230" id="QxP-zI-aAP"/>
@@ -409,6 +443,7 @@
                         <color key="backgroundColor" red="0.74053241889999999" green="0.77045292070000004" blue="0.77045292070000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xYe-bN-WP8" secondAttribute="topMargin" id="08O-ey-lU2"/>
+                            <constraint firstItem="dfc-fQ-7aK" firstAttribute="leading" secondItem="xYe-bN-WP8" secondAttribute="leadingMargin" id="0mT-tl-bc7"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="width" secondItem="Fiv-Rs-Uvf" secondAttribute="width" id="2rv-FX-AMd"/>
                             <constraint firstItem="Fiv-Rs-Uvf" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="4aO-xY-1Kt"/>
                             <constraint firstItem="LFw-lo-dd9" firstAttribute="trailing" secondItem="xYe-bN-WP8" secondAttribute="trailingMargin" id="665-dY-bvd"/>
@@ -418,9 +453,12 @@
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="baseline" secondItem="XKE-nQ-xjL" secondAttribute="baseline" id="BsK-WJ-gJC"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="D4t-wj-0Eq"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="bottom" secondItem="XKE-nQ-xjL" secondAttribute="bottom" id="DpM-uh-kzD"/>
+                            <constraint firstItem="dfc-fQ-7aK" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="GKz-7r-Io1"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="centerY" secondItem="xYe-bN-WP8" secondAttribute="centerY" id="Gx8-hv-tna"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="width" secondItem="xYe-bN-WP8" secondAttribute="width" multiplier="3/5" id="I1W-ui-QxW"/>
+                            <constraint firstItem="dfc-fQ-7aK" firstAttribute="leading" secondItem="xYe-bN-WP8" secondAttribute="leadingMargin" id="IWv-aI-qGt"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" secondItem="xYe-bN-WP8" secondAttribute="topMargin" id="Jk2-9x-Jw3"/>
+                            <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="dfc-fQ-7aK" secondAttribute="bottom" constant="20" id="LmH-lj-lbq"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="top" id="O0x-hf-QKS"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="52" id="S1j-QU-PQB"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="height" secondItem="XKE-nQ-xjL" secondAttribute="height" id="Ugi-vg-qBr"/>
@@ -433,11 +471,11 @@
                             </constraint>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="f6R-7b-O5h" secondAttribute="trailing" constant="20" id="a0b-og-7gW"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="32" id="aEk-WZ-w5f"/>
+                            <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="dfc-fQ-7aK" secondAttribute="bottom" constant="20" id="dqI-03-QO3"/>
                             <constraint firstItem="w7g-nT-De9" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="ePH-4H-fGW"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="8" id="hS8-db-cd6"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ezL-eS-kNw" secondAttribute="bottom" constant="8" id="n9g-gV-l79"/>
                             <constraint firstItem="7XU-QJ-fsr" firstAttribute="top" secondItem="XKE-nQ-xjL" secondAttribute="bottom" constant="32" id="ob2-jM-x1z"/>
-                            <constraint firstItem="LFw-lo-dd9" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="qCn-JY-XMq"/>
                             <constraint firstItem="wSD-Mz-bk6" firstAttribute="top" secondItem="LFw-lo-dd9" secondAttribute="bottom" constant="20" id="qtq-vV-eSa"/>
                             <constraint firstItem="XKE-nQ-xjL" firstAttribute="top" secondItem="ezL-eS-kNw" secondAttribute="bottom" id="syo-6G-noV"/>
                             <constraint firstItem="f6R-7b-O5h" firstAttribute="centerX" secondItem="xYe-bN-WP8" secondAttribute="centerX" id="tTw-i6-vFw"/>
@@ -464,16 +502,18 @@
                                 <exclude reference="WML-Bh-VaL"/>
                                 <exclude reference="Z4F-L2-8Ea"/>
                                 <exclude reference="aEk-WZ-w5f"/>
-                                <exclude reference="665-dY-bvd"/>
+                                <exclude reference="0mT-tl-bc7"/>
+                                <exclude reference="GKz-7r-Io1"/>
                                 <exclude reference="xV4-4a-v0c"/>
                                 <exclude reference="8FB-8W-DL6"/>
                                 <exclude reference="AOa-Wu-u6Y"/>
+                                <exclude reference="LmH-lj-lbq"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
                                 <exclude reference="665-dY-bvd"/>
-                                <exclude reference="xV4-4a-v0c"/>
+                                <include reference="xV4-4a-v0c"/>
                             </mask>
                         </variation>
                     </view>
@@ -488,6 +528,7 @@
                         <outlet property="firstTimeView" destination="7XU-QJ-fsr" id="6Db-WX-C1d"/>
                         <outlet property="leaderboardsButton" destination="LFw-lo-dd9" id="Vxw-LA-cPK"/>
                         <outlet property="logoView" destination="Ag2-v4-QWJ" id="dls-XU-vJi"/>
+                        <outlet property="removeAdsButton" destination="dfc-fQ-7aK" id="yxb-D2-tLJ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showGameSegue" id="6yq-r9-zFY"/>
                     </connections>
                 </viewController>
