@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   @IBOutlet weak var firstTimeButton: UIButton!
   @IBOutlet weak var beginGameButtonView: ButtonView!
   @IBOutlet weak var leaderboardsButton: UIButton!
-  @IBOutlet weak var removeAdsButton: UIButton!
+//  @IBOutlet weak var removeAdsButton: UIButton!
   
   @IBOutlet weak var beginGameLabel: UILabel!
   
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
     firstTimeButton.alpha = 0
     logoView.alpha = 0
     leaderboardsButton.alpha = 0
-    removeAdsButton.alpha = 0
+//    removeAdsButton.alpha = 0
     if GameStatus.status.gc_enabled {
       authenticateLocalPlayer()
     }
@@ -61,7 +61,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
       self.firstTimeButton.alpha = 1
       self.logoView.alpha = 1
       self.leaderboardsButton.alpha = 1
-      self.removeAdsButton.alpha = 1
+//      self.removeAdsButton.alpha = 1
     }
   }
   
