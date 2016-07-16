@@ -239,9 +239,9 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
         case .Purchased:
           print("Product Purchased")
           SKPaymentQueue.defaultQueue().finishTransaction(transaction)
-          alertShow(self, alertText: "Success", alertMessage: "Remove ads successfully purchased. Thank you for your support!")
           // set purchased ads to true
           removeAds()
+          alertShow(self, alertText: "Success", alertMessage: "Remove ads successfully purchased. Thank you for your support!")
         case .Failed:
           print("Purchase Failed")
           SKPaymentQueue.defaultQueue().finishTransaction(transaction as SKPaymentTransaction)
@@ -249,9 +249,8 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
         case .Restored:
           print("Already Purchased")
           SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
-          alertShow(self, alertText: "Success", alertMessage: "Remove ads successfully restored from previous purchase. Thank you for your support!")
-        // set purchased ads to true as well
           removeAds()
+          alertShow(self, alertText: "Success", alertMessage: "Remove ads successfully restored from previous purchase. Thank you for your support!")
         default:
           break
         }
@@ -261,7 +260,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   
   func showPayAlert(product: SKProduct) {
     let title: String = product.localizedTitle, description: String = product.localizedDescription, price: NSDecimalNumber = product.price
-    let alert = UIAlertController(title: title, message: "\(price)/n\(description)", preferredStyle: UIAlertControllerStyle.Alert)
+    let alert = UIAlertController(title: title, message: "\(description): $\(price) ", preferredStyle: UIAlertControllerStyle.Alert)
     
     alert.addAction(UIAlertAction(title: "Purchase/Restore", style: .Default, handler: { (action) -> Void in
       self.buyProduct(product)
