@@ -260,7 +260,10 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   
   func showPayAlert(product: SKProduct) {
     let title: String = product.localizedTitle, description: String = product.localizedDescription, price: NSDecimalNumber = product.price
-    let alert = UIAlertController(title: title, message: "\(description): $\(price) ", preferredStyle: UIAlertControllerStyle.Alert)
+    print(title)
+    print(description)
+    print(price)
+    let alert = UIAlertController(title: title, message: "A one time payment of $1.99 to remove all advertisements from the app.", preferredStyle: UIAlertControllerStyle.Alert)
     
     alert.addAction(UIAlertAction(title: "Purchase/Restore", style: .Default, handler: { (action) -> Void in
       self.buyProduct(product)
