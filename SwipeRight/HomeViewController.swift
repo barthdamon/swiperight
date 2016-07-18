@@ -222,6 +222,7 @@ class HomeViewController: UIViewController, ButtonDelegate, GKGameCenterControll
   
   func request(request: SKRequest, didFailWithError error: NSError) {
     print("Error Fetching product information")
+    alertShow(self, alertText: "Connection Error", alertMessage: "Can't Connect to the App Store at this time. Please try again later.")
     // show error
   }
   
