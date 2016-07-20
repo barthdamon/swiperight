@@ -13,6 +13,7 @@ import GoogleMobileAds
 class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGameCenterControllerDelegate {
   
   
+  @IBOutlet weak var muteButtonImageView: UIImageView!
   @IBOutlet weak var muteButton: UIButton!
   @IBOutlet weak var bonusStreakLabel: UILabel!
   
@@ -88,7 +89,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   override func viewDidLoad() {
     super.viewDidLoad()
     if SoundManager.defaultManager.muted {
-      self.muteButton.setImage(ThemeHelper.defaultHelper.soundOffImage, forState: .Normal)
+      self.muteButtonImageView.image = ThemeHelper.defaultHelper.soundOffImage
     }
     timeLabel.adjustsFontSizeToFitWidth = true
     multiplyView.operation = .Multiply
@@ -816,10 +817,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   @IBAction func muteButtonPressed(sender: AnyObject) {
     SoundManager.defaultManager.muted = !SoundManager.defaultManager.muted
     if SoundManager.defaultManager.muted {
-      self.muteButton.setImage(ThemeHelper.defaultHelper.soundOffImage, forState: .Normal)
+      self.muteButtonImageView.image = ThemeHelper.defaultHelper.soundOffImage
     } else {
       SoundManager.defaultManager.loadSoundFiles()
-      self.muteButton.setImage(ThemeHelper.defaultHelper.soundOnImage, forState: .Normal)
+      self.muteButtonImageView.image = ThemeHelper.defaultHelper.soundOnImage
     }
   }
 }
