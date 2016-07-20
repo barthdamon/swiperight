@@ -49,7 +49,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   var componentView: UIView?
   var shouldPlayImmediately: Bool = false
   
-  var menuExit: Bool = false
+  var menuExit: Bool = true
   var countingDown: Bool = false
   
   //todo: get from user pref
@@ -232,6 +232,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       if GameStatus.status.gameMode == .Standard {
         self.toggleAdViewVisible(true)
       }
+      self.toggleMenuToExit(false)
       self.deactivateHelperPointButton(false, deactivate: false)
       if GameStatus.status.timer == nil {
         GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock(_:)), userInfo: nil, repeats: true)
@@ -330,7 +331,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   func toggleMenuToExit(exit: Bool) {
-    let text = exit ? "EXIT" : "MENU"
+    let text = exit ? "BACK" : "MENU"
     self.menuButton.setTitle(text, forState: .Normal)
     menuExit = exit
   }
@@ -448,7 +449,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   func countingDown(counting: Bool) {
-    self.menuButton.alpha = counting ? 0.2 : 1
     countingDown = counting
   }
   
