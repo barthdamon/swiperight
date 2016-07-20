@@ -279,7 +279,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   func exitGame() {
-    print("Menu Button Pressed")
+    print("Exiting Game")
     invalidateTimer()
     GameStatus.status.inMenu = true
     GameStatus.status.gameActive = false
