@@ -463,7 +463,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       exitGame()
     } else {
       if let gameView = gameView {
-        if !GameStatus.status.gameActive && !GameStatus.status.resettingTiles && gameView.view.userInteractionEnabled && !countingDown {
+        if GameStatus.status.gameActive && !GameStatus.status.resettingTiles && gameView.view.userInteractionEnabled && !countingDown {
           togglePaused(true)
         }
       }
