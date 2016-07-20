@@ -38,6 +38,8 @@ class ThemeHelper: NSObject {
   let sw_background_color: UIColor = UIColor(red:0.71, green:0.74, blue:0.74, alpha:1.00)
   let sw_background_glow_color: UIColor = UIColor(red:0.82, green:0.84, blue:0.84, alpha:1.00)
   
+  let sw_tile_selected_color: UIColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.10)
+  
   let sw_button_top_color: UIColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
   let sw_button_bottom_color: UIColor = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1.00)
   

@@ -29,6 +29,12 @@ class TileView: UIView {
   var subView: UIView?
   var drawnCorrect: Bool = false
   var drawnIncorrect: Bool = false
+  var selected: Bool = false
+
+  
+  func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
+  }
   
   func setup(label: UILabel, subview: UIView, overlay: Bool, coordinates: TileCoordinates) {
     self.numberLabel = label
@@ -50,6 +56,19 @@ class TileView: UIView {
     } else {
       self.layer.borderWidth = 0
     }
+  }
+  
+  func drawSelected() {
+    if !selected {
+      selected = true
+      // draw tint on the entire tile perhaps????
+      self.backgroundColor = ThemeHelper.defaultHelper.sw_tile_selected_color
+    }
+  }
+  
+  func deselect() {
+    selected = false
+    self.backgroundColor = UIColor.clearColor()
   }
   
   func drawCorrect(operation: Operation, callback: (Bool) -> ()) {

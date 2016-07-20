@@ -57,6 +57,8 @@ class GameViewController: UIViewController {
   var delegate: GameViewDelegate?
   var containerView: UIView?
   
+  var countingDown: Bool = false
+  
 
   
 //  var coinSound: NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("coin", ofType: "wav"))
@@ -67,6 +69,7 @@ class GameViewController: UIViewController {
   
   var startLoc: CGPoint?
   var endLoc: CGPoint?
+  var currentLoc: CGPoint?
   var flashingOperation: Bool = false
   
   var previousOperations: Array<Operation> = []
@@ -155,6 +158,8 @@ class GameViewController: UIViewController {
     guard let touch = touches.first else { return }
     startLoc = touch.locationInView(self.view)
     endLoc = touch.locationInView(self.view)
+    currentLoc = touch.locationInView(self.view)
+    selectTileForGestureLocation()
     if inTutorialHighlightMode {
       tutorialResolveHighlightMovement()
     }
@@ -164,6 +169,8 @@ class GameViewController: UIViewController {
   override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
     guard let touch = touches.first else { return }
     let end = touch.locationInView(self.view)
+    selectTileForGestureLocation()
+    currentLoc = touch.locationInView(self.view)
     if (end.x > 0 && end.y > 0) && (end.x < self.view.frame.width && end.y < self.view.frame.height) {
       endLoc = touch.locationInView(self.view)
       if inTutorialHighlightMode {
@@ -179,8 +186,31 @@ class GameViewController: UIViewController {
     if (end.x > 0 && end.y > 0) && (end.x < self.view.frame.width && end.y < self.view.frame.height) {
       endLoc = end
     }
+    tileViews.forEach({$0.deselect()})
     resolveUserInteraction()
     print("Touches ended")
+  }
+  
+  func selectTileForGestureLocation() {
+    if GameStatus.status.gameActive {
+      if let currentLoc = currentLoc {
+        let current = (x: Int(currentLoc.x / tileWidth), y: Int(currentLoc.y / tileWidth))
+        var currentTile: TileView?
+        for i in 0 ..< Grid.tileCoordinates.count {
+          let loc = Grid.tileCoordinates[i]
+          if loc.x == current.x && loc.y == current.y {
+            currentTile = tileViews[i]
+          }
+        }
+        tileViews.forEach({ (tile) in
+          if tile != currentTile {
+            tile.deselect()
+          } else {
+            tile.drawSelected()
+          }
+        })
+      }
+    }
   }
   
   func resolveUserInteraction() {
@@ -292,7 +322,7 @@ class GameViewController: UIViewController {
                 if GameStatus.status.gameMode == .Standard {
                   self.delegate?.addTime(ProgressionManager.sharedManager.standardBoostTime)
                   self.helperStreakActivity(true)
-                  waitASec(0.05, callback: { (done) in
+                  waitASec(0.3, callback: { (done) in
                     self.endResponse()
                   })
                 } else {
@@ -312,11 +342,11 @@ class GameViewController: UIViewController {
           self.view.userInteractionEnabled = false
           if GameStatus.status.gameMode == .Standard {
             self.helperStreakActivity(false)
-            waitASec(0.05, callback: { (done) in
+            waitASec(0.3, callback: { (done) in
               self.endResponse()
             })
           } else {
-            waitASec(0.05, callback: { (done) in
+            waitASec(0.3, callback: { (done) in
               self.tutorialEndResponse(false)
             })
           }
@@ -526,6 +556,7 @@ class GameViewController: UIViewController {
   }
   
   func animateBeginGame() {
+    self.delegate?.countingDown(true)
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       if let text = self.tutorialText {
         self.tutorialLaunchTextLabel.text = text
@@ -540,6 +571,7 @@ class GameViewController: UIViewController {
               self.delegate?.setStartTime()
               GameStatus.status.gameActive = true
               self.resetTiles()
+              self.delegate?.countingDown(false)
               self.delegate?.startGameplay()
             }
           }

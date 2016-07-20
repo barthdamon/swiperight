@@ -49,6 +49,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   var shouldPlayImmediately: Bool = false
   
   var menuExit: Bool = false
+  var countingDown: Bool = false
   
   //todo: get from user pref
   
@@ -295,8 +296,16 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   
   func toggleHelpersFromPaused(on: Bool) {
-    self.hideTileButtonView.toggleActive(on)
-    self.revealTileButtonView.toggleActive(on)
+    if on {
+      hideTileButtonView.toggleActive(true)
+      revealTileButtonView.toggleActive(true)
+      activateHelperButtons()
+    } else {
+      hideTileButtonView.togglePressed(true)
+      revealTileButtonView.togglePressed(true)
+      hideTileButtonView.toggleActive(false)
+      revealTileButtonView.toggleActive(false)
+    }
   }
   
   func togglePaused(paused: Bool) {
@@ -380,7 +389,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
       GameStatus.status.gameActive = true
       helperButtonViewEnabled = true
     }
-    self.activateHelperButtons()
+//    self.activateHelperButtons()
   }
   
   
@@ -439,6 +448,11 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
 //    self.gameView?.helperPointController?.hideButtonFlashTimer = nil
   }
   
+  func countingDown(counting: Bool) {
+    self.menuButton.alpha = counting ? 0.2 : 1
+    countingDown = counting
+  }
+  
   func timerAlreadyTocking() -> Bool {
     if let _ = GameStatus.status.timer {
       return true
@@ -452,7 +466,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     if menuExit {
       exitGame()
     } else {
-      if !GameStatus.status.resettingTiles && !isPaused() {
+      if !GameStatus.status.resettingTiles && !isPaused() && !countingDown {
         togglePaused(true)
       }
     }

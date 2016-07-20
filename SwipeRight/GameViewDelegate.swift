@@ -31,6 +31,7 @@ protocol GameViewDelegate {
   func setGameViewController(controller: GameViewController)
   func exitGame()
   func toggleMenuToExit(exit: Bool)
+  func countingDown(counting: Bool)
   
   func showLeaderboards()
   
