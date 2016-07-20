@@ -465,7 +465,7 @@ class GameViewController: UIViewController {
           GameStatus.status.resettingTiles = false
           if GameStatus.status.gameMode == .Standard {
             self.view.userInteractionEnabled = true
-            self.delegate?.beginGame()
+//            self.delegate?.beginGame()
           } else {
             GameStatus.status.gameActive = true
             if GameStatus.status.tutorialStage == 8 && self.tutorialTimeForHelper {

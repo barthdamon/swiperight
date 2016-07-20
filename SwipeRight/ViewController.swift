@@ -290,10 +290,6 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     self.navigationController?.popViewControllerAnimated(true)
   }
   
-  func isPaused() -> Bool {
-    return GameStatus.status.gameActive && !pausedLabel.hidden
-  }
-  
   
   func toggleHelpersFromPaused(on: Bool) {
     if on {
@@ -310,7 +306,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   func togglePaused(paused: Bool) {
     GameStatus.status.gameActive = !paused
-    if paused {
+    if paused && self.pausedLabel.hidden {
       self.pausedLabel.hidden = false
       self.timeLabel.alpha = 0.2
       self.menuButton.alpha = 0.2
@@ -466,8 +462,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     if menuExit {
       exitGame()
     } else {
-      if !GameStatus.status.resettingTiles && !isPaused() && !countingDown {
-        togglePaused(true)
+      if let gameView = gameView {
+        if !GameStatus.status.gameActive && !GameStatus.status.resettingTiles && gameView.view.userInteractionEnabled && !countingDown {
+          togglePaused(true)
+        }
       }
     }
   }
