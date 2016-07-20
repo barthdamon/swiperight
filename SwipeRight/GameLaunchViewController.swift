@@ -56,6 +56,7 @@ class GameLaunchViewController: UIViewController, ButtonDelegate {
   
   func buttonPressed(sender: ButtonView) {
     dispatch_async(dispatch_get_main_queue()) {
+      self.delegate?.toggleMenuToExit(false)
       self.performSegueWithIdentifier("showGameController", sender: self)
     }
   }

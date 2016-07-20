@@ -30,6 +30,7 @@ protocol GameViewDelegate {
   func deactivateHelperPointButton(remove: Bool, deactivate: Bool)
   func setGameViewController(controller: GameViewController)
   func exitGame()
+  func toggleMenuToExit(exit: Bool)
   
   func showLeaderboards()
   

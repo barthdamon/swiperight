@@ -48,6 +48,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   var componentView: UIView?
   var shouldPlayImmediately: Bool = false
   
+  var menuExit: Bool = false
+  
   //todo: get from user pref
   
 //  var time: Int = 0 {
@@ -191,7 +193,10 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
 
   
   func addTime(seconds: Int) {
+    GameStatus.status.timer?.invalidate()
+    GameStatus.status.timer = nil
     GameStatus.status.time += seconds
+    GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock(_:)), userInfo: nil, repeats: true)
     timeLabel?.text = stringToGameTime(GameStatus.status.time)
     //some fancy animation
   }
@@ -316,6 +321,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     }
   }
   
+  func toggleMenuToExit(exit: Bool) {
+    let text = exit ? "EXIT" : "MENU"
+    self.menuButton.setTitle(text, forState: .Normal)
+    menuExit = exit
+  }
+  
   func gameOver(finished: Bool = true) {
     if finished && GameStatus.status.gameMode == .Standard {
       reportScore({ (done) in
@@ -328,6 +339,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     GameStatus.status.gameActive = false
     let highScore = setHighScore()
     self.gameView?.view.userInteractionEnabled = false
+    toggleMenuToExit(true)
     self.gameLaunchView?.gameOver(GameStatus.status.score, highScore: highScore)
     if GameStatus.status.gameMode == .Standard {
       resetGameState()
@@ -437,8 +449,12 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   @IBAction func menuButtonPressed(sender: AnyObject) {
     print("Menu Button Pressed")
-    if !isPaused() {
-      togglePaused(true)
+    if menuExit {
+      exitGame()
+    } else {
+      if !GameStatus.status.resettingTiles && !isPaused() {
+        togglePaused(true)
+      }
     }
   }
   
