@@ -276,7 +276,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   }
   
   func enteringBackground(sender: AnyObject) {
-    togglePaused(true)
+    if GameStatus.status.gameActive {
+      togglePaused(true)
+    }
   }
   
   func exitGame() {
