@@ -19,8 +19,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   @IBOutlet weak var adView: DFPBannerView!
   @IBOutlet weak var tutorialLabel: UILabel!
   
+  @IBOutlet weak var menuButton: UIButton!
   @IBOutlet weak var timeLabel: UILabel!
-//  @IBOutlet weak var pausedLabel: UILabel!
+  @IBOutlet weak var pausedLabel: UILabel!
   
   @IBOutlet weak var gameContainerView: UIView!
   @IBOutlet weak var scoreLabel: UILabel!
@@ -99,7 +100,8 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     viewHeight = self.view.frame.height
     resetGameState()
 //    gameView = GameView(container: gameContainerView, delegate: self)
-    adView?.userInteractionEnabled = false
+    adView?.userInteractionEnabled = true
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.enteringBackground(_:)), name: UIApplicationWillResignActiveNotification, object: nil)
   }
   
   
@@ -108,6 +110,7 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     invalidateTimer()
     GameStatus.status.inMenu = true
     SoundManager.defaultManager.shutDownSoundSystem()
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillResignActiveNotification, object: nil)
     super.viewWillDisappear(true)
   }
   
@@ -266,21 +269,50 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
     }
   }
   
+  func enteringBackground(sender: AnyObject) {
+    togglePaused(true)
+  }
+  
+  func exitGame() {
+    print("Menu Button Pressed")
+    invalidateTimer()
+    GameStatus.status.inMenu = true
+    GameStatus.status.gameActive = false
+    GameStatus.status.resettingTiles = false
+    ProgressionManager.sharedManager.reset()
+    GameStatus.status.tutorialStage = 0
+    self.navigationController?.popViewControllerAnimated(true)
+  }
+  
+  func isPaused() -> Bool {
+    return GameStatus.status.gameActive && !pausedLabel.hidden
+  }
+  
+  
+  func toggleHelpersFromPaused(on: Bool) {
+    self.hideTileButtonView.toggleActive(on)
+    self.revealTileButtonView.toggleActive(on)
+  }
   
   func togglePaused(paused: Bool) {
     GameStatus.status.gameActive = !paused
     if paused {
-//      self.pausedLabel.hidden = false
+      self.pausedLabel.hidden = false
       self.timeLabel.alpha = 0.2
+      self.menuButton.alpha = 0.2
       invalidateTimer()
+      toggleHelpersFromPaused(false)
+      gameView?.sendToPausedView()
     } else {
       if GameStatus.status.gameMode == .Standard {
         GameStatus.status.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.tickTock), userInfo: nil, repeats: true)
       } else {
         invalidateTimer()
       }
+      toggleHelpersFromPaused(true)
+      self.menuButton.alpha = 1
       self.timeLabel.alpha = 1
-//      self.pausedLabel.hidden = true
+      self.pausedLabel.hidden = true
     }
   }
   
@@ -405,13 +437,9 @@ class ViewController: UIViewController, GameViewDelegate, ButtonDelegate, GKGame
   
   @IBAction func menuButtonPressed(sender: AnyObject) {
     print("Menu Button Pressed")
-    invalidateTimer()
-    GameStatus.status.inMenu = true
-    GameStatus.status.gameActive = false
-    GameStatus.status.resettingTiles = false
-    ProgressionManager.sharedManager.reset()
-    GameStatus.status.tutorialStage = 0
-    self.navigationController?.popViewControllerAnimated(true)
+    if !isPaused() {
+      togglePaused(true)
+    }
   }
   
   //MARK: Navigation

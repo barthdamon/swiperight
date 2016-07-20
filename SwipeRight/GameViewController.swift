@@ -640,22 +640,34 @@ class GameViewController: UIViewController {
     SoundManager.defaultManager.playSound(.AbilityUse)
     delegate?.deactivateHelperPointButton(false, deactivate: false)
     delegate?.setHelperPoints(ProgressionManager.sharedManager.currentHelperPoints, callback: { (done) in })
-    delegate?.togglePaused(false)
+//    delegate?.togglePaused(false)
   }
   
   func helperButtonPressed() {
     self.performSegueWithIdentifier("showHelperPointController", sender: self)
   }
   
+  func sendToPausedView() {
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.performSegueWithIdentifier("showPausedSegue", sender: self)
+    })
+  }
+  
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showHelperPointController" {
       if let vc = segue.destinationViewController as? HelperPointViewController {
-        delegate?.togglePaused(true)
+//        delegate?.togglePaused(true)
         delegate?.hideBonusButtonView(true)
         vc.delegate = delegate
         helperPointController = vc
         vc.gameViewController = self
+      }
+    }
+    
+    if segue.identifier == "showPausedSegue" {
+      if let vc = segue.destinationViewController as? PausedViewController {
+        vc.delegate = delegate
       }
     }
     

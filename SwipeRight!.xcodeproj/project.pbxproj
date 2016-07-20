@@ -31,6 +31,7 @@
 		0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269CD681CFCF512004184E5 /* GradientLayer.swift */; };
 		028632731D1EB8FB00F9FB6F /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 028632721D1EB8FB00F9FB6F /* GoogleMobileAds.framework */; };
 		02A4E49F1C2102BC00C5B4E1 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */; };
+		02A510A31D3FE3AD004FA361 /* PausedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A510A21D3FE3AD004FA361 /* PausedViewController.swift */; };
 		02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */; };
 		02ADE4D41CFE7218000AB183 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D31CFE7218000AB183 /* APIService.swift */; };
 		02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */; };
@@ -95,6 +96,7 @@
 		0269CD681CFCF512004184E5 /* GradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		028632721D1EB8FB00F9FB6F /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		02A4E49E1C2102BC00C5B4E1 /* TimeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
+		02A510A21D3FE3AD004FA361 /* PausedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedViewController.swift; sourceTree = "<group>"; };
 		02ADE4CD1CFE7133000AB183 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		02ADE4D31CFE7218000AB183 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		02ADE4D51CFE7344000AB183 /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				02E6FCE11D07B6A9007A98EE /* GameKitViewController.swift */,
+				02A510A21D3FE3AD004FA361 /* PausedViewController.swift */,
 				02E6FCE31D08EA0D007A98EE /* HelperHelpViewController.swift */,
 				0240B9561C18EF86004B48BA /* ViewController.swift */,
 				02DB52AE1D04BF0C0052D72A /* HelperPointViewController.swift */,
@@ -447,6 +450,7 @@
 				022098201C1DCA6C005155E6 /* NumberCombination.swift in Sources */,
 				02ADE4CE1CFE7133000AB183 /* HomeViewController.swift in Sources */,
 				0269CD691CFCF512004184E5 /* GradientLayer.swift in Sources */,
+				02A510A31D3FE3AD004FA361 /* PausedViewController.swift in Sources */,
 				02BCF0DE1D0F10080083B2F2 /* YIInnerShadowView.m in Sources */,
 				02DB52B31D04C8C10052D72A /* GameViewController.swift in Sources */,
 				02ADE4D61CFE7344000AB183 /* KeychainSwiftDistrib.swift in Sources */,

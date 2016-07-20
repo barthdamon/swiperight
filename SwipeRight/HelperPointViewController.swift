@@ -42,10 +42,6 @@ class HelperPointViewController: UIViewController, ButtonDelegate {
         self.view.removeGestureRecognizer(rightSwipe!)
         self.rightSwipe = nil
       }
-    } else {
-      delegate?.toggleAdViewVisible(true)
-      activateGestureRecognizers()
-      // show an add
     }
   }
   
