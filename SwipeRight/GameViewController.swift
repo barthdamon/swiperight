@@ -99,7 +99,9 @@ class GameViewController: UIViewController {
     self.view.userInteractionEnabled = false
     configureGameViewComponents()
     if GameStatus.status.gameMode == .Tutorial {
-      showTutorialText()
+      GameStatus.status.tutorialStage += 2
+      delegate?.setTutorialLabelText("Swipe from the beginning to the end of the equation!")
+      self.resetTiles()
     } else {
       animateBeginGame()
     }
@@ -379,6 +381,7 @@ class GameViewController: UIViewController {
         animateTileReset()
       }
     } else {
+      print(GameStatus.status.tutorialStage)
       switch GameStatus.status.tutorialStage {
       case 2:
         ProgressionManager.sharedManager.addRandomOperation()
@@ -404,12 +407,12 @@ class GameViewController: UIViewController {
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
         MultipleHelper.defaultHelper.range = 20
         ProgressionManager.sharedManager.currentHelperPoints = 0
-        ProgressionManager.sharedManager.currentStreak = 2
+        ProgressionManager.sharedManager.currentStreak = 0
         delegate?.setStreakLabel()
         self.currentLayout = GridNumberLayout()
         self.gradientLayer?.removeFromSuperlayer()
         if !tutorialTimeForHelper {
-          delegate?.setTutorialLabelText("Complete the streak to get an ability point!")
+          delegate?.setTutorialLabelText("Complete three in a row to get an ability point!")
         }
         delegate?.hideBonusButtonView(false)
         animateTileReset()
@@ -758,7 +761,7 @@ class GameViewController: UIViewController {
     }
     if GameStatus.status.tutorialStage == 2 {
       if tilesToHighlight.count == 3 {
-        delegate?.setTutorialLabelText("Press and hold your finger to the first tile, then swipe!")
+        delegate?.setTutorialLabelText("Swipe from the beginning to the end of the equation!")
       } else if tilesToHighlight.count == 2 {
         delegate?.setTutorialLabelText("Swipe to the next tile!")
       } else if tilesToHighlight.count == 1 {
@@ -808,10 +811,13 @@ class GameViewController: UIViewController {
         self.delegate?.setTutorialLabelText(text)
         pausingForEffect = true
         waitASec(1.0) { (done) in
+          // Right before helper points
           self.pausingForEffect = false
-          self.delegate?.setTutorialLabelText(nil)
-          self.delegate?.resetGameUI()
-          self.showTutorialText()
+          GameStatus.status.tutorialStage += 3
+          self.resetTiles()
+//          self.delegate?.setTutorialLabelText(nil)
+//          self.delegate?.resetGameUI()
+//          self.showTutorialText()
         }
       } else {
         solvedOneOnFive = true
@@ -834,9 +840,19 @@ class GameViewController: UIViewController {
       pausingForEffect = true
       waitASec(1.0) { (done) in
         self.pausingForEffect = false
-        self.delegate?.setTutorialLabelText(nil)
-        self.delegate?.resetGameUI()
-        self.showTutorialText()
+//        self.delegate?.setTutorialLabelText(nil)
+          // right after first one
+        if GameStatus.status.tutorialStage != 8 {
+          GameStatus.status.tutorialStage += 3
+          self.resetTiles()
+        } else {
+          self.delegate?.setTutorialLabelText(nil)
+          self.delegate?.resetGameUI()
+          self.delegate?.deactivateHelperPointButton(true, deactivate: true)
+          self.delegate?.launchForEndTutorial("Woohoo! you got this!")
+        }
+//        self.delegate?.resetGameUI()
+//        self.showTutorialText()
       }
     }
   }
@@ -875,7 +891,7 @@ class GameViewController: UIViewController {
     tilesToHighlight.append(tileViews[combo.bNumberIndex])
     tilesToHighlight.append(tileViews[combo.sumNumberIndex])
     if GameStatus.status.tutorialStage == 2 {
-      delegate?.setTutorialLabelText("Press and hold your finger to the first tile, then swipe!")
+      delegate?.setTutorialLabelText("Swipe from the beginning to the end of the equation!")
     }
     if GameStatus.status.tutorialStage == 5 && tilesToHighlight.count != 0 {
       if let op = currentLayout?.winningCombination?.operation {

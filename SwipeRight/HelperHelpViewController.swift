@@ -79,7 +79,7 @@ class HelperHelpViewController: UIViewController {
 //      performActionsForTutorialStage()
     case 8:
       // (really the final stage)
-      self.setExplanationText("Ready for the real thing?")
+      self.setExplanationText("Keep in mind there is always ONLY ONE active equation.\nReady for the real thing?")
       self.continueButton.hidden = true
       self.yesButton.hidden = false
       self.noButton.hidden = false
