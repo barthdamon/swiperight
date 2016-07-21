@@ -569,6 +569,7 @@ class GameViewController: UIViewController {
         view.animateCountdown({ (done) in
           if done {
             if let delegate = self.delegate where !delegate.timerAlreadyTocking() {
+              self.delegate?.setTutorialLabelText(nil)
               self.tutorialLaunchTextLabel.hidden = true
               self.tutorialText = nil
               self.delegate?.setStartTime()
@@ -846,7 +847,7 @@ class GameViewController: UIViewController {
           GameStatus.status.tutorialStage += 3
           self.resetTiles()
         } else {
-          self.delegate?.setTutorialLabelText(nil)
+          self.delegate?.setTutorialLabelText("There is only ever one equation on the board!")
           self.delegate?.resetGameUI()
           self.delegate?.deactivateHelperPointButton(true, deactivate: true)
           self.delegate?.launchForEndTutorial("Woohoo! you got this!")
