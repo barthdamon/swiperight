@@ -561,10 +561,11 @@ class GameViewController: UIViewController {
   func animateBeginGame() {
     self.delegate?.countingDown(true)
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-      if let text = self.tutorialText {
-        self.tutorialLaunchTextLabel.text = text
-        self.tutorialLaunchTextLabel.hidden = false
-      }
+//      if let text = self.tutorialText {
+//        self.tutorialLaunchTextLabel.text = text
+//        self.tutorialLaunchTextLabel.hidden = false
+//      }
+      self.delegate?.setTutorialLabelText("There is always only one correct equation!")
       self.tileViews.forEach { (view) in
         view.animateCountdown({ (done) in
           if done {
@@ -847,7 +848,6 @@ class GameViewController: UIViewController {
           GameStatus.status.tutorialStage += 3
           self.resetTiles()
         } else {
-          self.delegate?.setTutorialLabelText("There is only ever one equation on the board!")
           self.delegate?.resetGameUI()
           self.delegate?.deactivateHelperPointButton(true, deactivate: true)
           self.delegate?.launchForEndTutorial("Woohoo! you got this!")
