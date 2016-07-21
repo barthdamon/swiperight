@@ -384,16 +384,21 @@ class GameViewController: UIViewController {
       print(GameStatus.status.tutorialStage)
       switch GameStatus.status.tutorialStage {
       case 2:
-        ProgressionManager.sharedManager.addRandomOperation()
+        ProgressionManager.sharedManager.setOperationsAsActive([.Add])
+        self.currentLayout = GridNumberLayout()
         resetTilesToHighlight(false)
       case 5:
         // set two operations active with two potential combinations
         // make two operations active with range still minimalf
-        ProgressionManager.sharedManager.activeOperations = [.Add, .Subtract]
+        if solvedOneOnFive {
+          ProgressionManager.sharedManager.setOperationsAsActive([.Divide])
+        } else {
+          ProgressionManager.sharedManager.setOperationsAsActive([.Subtract])
+        }
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
         MultipleHelper.defaultHelper.range = 10
         self.currentLayout = GridNumberLayout()
-        ProgressionManager.sharedManager.currentLayoutOperationCount = 2
+//        ProgressionManager.sharedManager.currentLayoutOperationCount = 2
         guard let operation = currentLayout?.winningCombination?.operation else { return }
         self.gradientLayer?.removeFromSuperlayer()
         let text = solvedOneOnFive ? "Now solve this one for" : "Solve for"
@@ -404,6 +409,7 @@ class GameViewController: UIViewController {
       case 8:
         self.delegate?.deactivateHelperPointButton(false, deactivate: false)
         ProgressionManager.sharedManager.reset()
+        ProgressionManager.sharedManager.setOperationsAsActive([.Add])
         ProgressionManager.sharedManager.numberOfExtraTiles = 2
         MultipleHelper.defaultHelper.range = 20
         ProgressionManager.sharedManager.currentHelperPoints = 0
@@ -561,10 +567,10 @@ class GameViewController: UIViewController {
   func animateBeginGame() {
     self.delegate?.countingDown(true)
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//      if let text = self.tutorialText {
-//        self.tutorialLaunchTextLabel.text = text
-//        self.tutorialLaunchTextLabel.hidden = false
-//      }
+      if let text = self.tutorialText {
+        self.tutorialLaunchTextLabel.text = text
+        self.tutorialLaunchTextLabel.hidden = false
+      }
       self.delegate?.setTutorialLabelText("There is always only one correct equation!")
       self.tileViews.forEach { (view) in
         view.animateCountdown({ (done) in
@@ -826,6 +832,7 @@ class GameViewController: UIViewController {
         self.inTutorialHighlightMode = false
         self.highlightTileTimer?.invalidate()
         self.highlightTileTimer = nil
+        ProgressionManager.sharedManager.setOperationsAsActive([.Divide])
         self.currentLayout = GridNumberLayout()
         self.gradientLayer?.removeFromSuperlayer()
         guard let operation = currentLayout?.winningCombination?.operation else { return }

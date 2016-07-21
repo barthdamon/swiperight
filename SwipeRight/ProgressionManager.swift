@@ -176,12 +176,19 @@ class ProgressionManager: NSObject {
   var plusMinusRand: Int = 0
   var multDivRand: Int = 0
   
+  func setOperationsAsActive(operations: Array<Operation>) {
+    self.activeOperations = operations
+    self.currentLayoutOperations = operations
+  }
+  
   func getCurrentOperations() -> Array<Operation> {
-    currentLayoutOperationCount += 1
-    if currentLayoutOperationCount > 2 {
-      currentLayoutOperationCount = 0
-      let newRandos = randomActiveOperations()
-      currentLayoutOperations = newRandos
+    if GameStatus.status.gameMode != .Tutorial {
+      currentLayoutOperationCount += 1
+      if currentLayoutOperationCount > 2 {
+        currentLayoutOperationCount = 0
+        let newRandos = randomActiveOperations()
+        currentLayoutOperations = newRandos
+      }
     }
     return currentLayoutOperations
   }
